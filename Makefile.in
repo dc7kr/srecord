@@ -153,49 +153,52 @@ etc/BUILDING.txt: etc/BUILDING.man etc/version.so
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/BUILDING.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/README.dvi: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
-		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
-		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
-		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
-		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
+		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
+		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
+		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
+		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
+		etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/README.txt: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
-		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
-		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
-		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
-		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
+		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
+		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
+		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
+		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
+		etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/README.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
 etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
-		etc/new-file-format.so etc/ref-parts.so \
-		man/man1/srec_cat.1 man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
-		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so \
+		etc/BUILDING.man etc/new-file-format.so \
+		etc/ref-parts.so man/man1/srec_cat.1 \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_info.1 man/man1/srec_license.1 \
+		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
+		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
+		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
+		man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel.5 man/man5/srec_mos_tech.5 \
 		man/man5/srec_motorola.5 man/man5/srec_needham.5 \
@@ -209,21 +212,22 @@ etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -t -man > $@ 
 
 etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
-		etc/new-file-format.so etc/ref-parts.so \
-		man/man1/srec_cat.1 man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
-		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so \
+		etc/BUILDING.man etc/new-file-format.so \
+		etc/ref-parts.so man/man1/srec_cat.1 \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_info.1 man/man1/srec_license.1 \
+		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
+		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
+		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
+		man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel.5 man/man5/srec_mos_tech.5 \
 		man/man5/srec_motorola.5 man/man5/srec_needham.5 \
@@ -237,21 +241,22 @@ etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
-		etc/new-file-format.so etc/ref-parts.so \
-		man/man1/srec_cat.1 man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
-		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so \
+		etc/BUILDING.man etc/new-file-format.so \
+		etc/ref-parts.so man/man1/srec_cat.1 \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_info.1 man/man1/srec_license.1 \
+		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
+		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
+		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
+		man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel.5 man/man5/srec_mos_tech.5 \
 		man/man5/srec_motorola.5 man/man5/srec_needham.5 \

@@ -48,6 +48,8 @@ srec_output_file_cosmac::write(const srec_record &record)
     switch (record.get_type())
     {
     case srec_record::type_header:
+    case srec_record::type_unknown:
+    case srec_record::type_data_count:
 	// ignore
 	break;
 
@@ -60,14 +62,14 @@ srec_output_file_cosmac::write(const srec_record &record)
 	if (header_required)
 	{
 	    address = record.get_address();
-	    put_stringf("!M%.*lX ", address_length, address);
+	    put_stringf("!M%.*lX ", (int)address_length, address);
 	    column = address_length + 3;
 	    header_required = false;
 	}
 	if (address != record.get_address())
 	{
 	    address = record.get_address();
-	    put_stringf(";\n%.*lX ", address_length, address);
+	    put_stringf(";\n%.*lX ", (int)address_length, address);
 	    column = address_length + 1;
 	}
 	for (int j = 0; j < record.get_length(); ++j)
