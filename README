@@ -3,7 +3,7 @@ Read Me(SRecord)                                              Read Me(SRecord)
 
 
 NAME
-       RSecord - manipulate EPROM load files
+       SRecord - manipulate EPROM load files
 
 DESCRIPTION
        The SRecord package is a collection of powerful tools for manipulating
@@ -208,11 +208,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.19.README   # Description, from the tar file
-           File:   srecord-1.19.lsm      # Description, LSM format
-           File:   srecord-1.19.spec     # RedHat package specification
-           File:   srecord-1.19.tar.gz   # the complete source
-           File:   srecord-1.19.pdf      # Reference Manual
+           File:   srecord-1.21.README   # Description, from the tar file
+           File:   srecord-1.21.lsm      # Description, LSM format
+           File:   srecord-1.21.spec     # RedHat package specification
+           File:   srecord-1.21.tar.gz   # the complete source
+           File:   srecord-1.21.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -221,11 +221,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.19.README   # Description, from the tar file
-           File:   srecord-1.19.lsm      # Description, LSM format
-           File:   srecord-1.19.spec     # RedHat package specification
-           File:   srecord-1.19.tar.gz   # the complete source
-           File:   srecord-1.19.pdf      # Reference Manual
+           File:   srecord-1.21.README   # Description, from the tar file
+           File:   srecord-1.21.lsm      # Description, LSM format
+           File:   srecord-1.21.spec     # RedHat package specification
+           File:   srecord-1.21.tar.gz   # the complete source
+           File:   srecord-1.21.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -255,9 +255,9 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.19
-       Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004 Peter Miller;
-       All rights reserved.
+       srecord version 1.21
+       Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Peter
+       Miller; All rights reserved.
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -285,12 +285,31 @@ RELEASE NOTES
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
+   Version 1.21 (7-Feb-2005)
+       * More Doxygen comments have been added to the class header files.
+
+       * There is a new srec_cat --crlf option, which may be used for force
+       CRLF output on operating systems which don't use that style of line
+       termination.
+
+       * A number of problems with GCC, particularly with the early 3.x
+       series.
+
+       * There is a new "Stewie" format, an undocumented format loosely based
+       on the Motorola S-Record format, apparently used in mobile phones.
+       More information would be most welcome.
+
+       * A number of build problems have been fixed.
+
+   Version 1.20 (8-Feb-2004)
+       * The AOMF format now accepts (and ignores) more record types.
+
    Version 1.19 (3-Jan-2004)
        * It is now possible to set the start address in the output using the
        srec_cat -Start_Address command line option.
 
-       * The Intel Absolute Object Module Format is now supported for reading
-       and writing.
+       * The Intel Absolute Object Module Format (AOMF) is now supported for
+       reading and writing.
 
        * There is a new srec_cat -Random_Fill filter, like the srec_cat -Fill
        filter except that it uses random values.

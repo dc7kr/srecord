@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2000, 2002, 2003 Peter Miller;
+//	Copyright (C) 1998-2000, 2002-2005 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -174,7 +174,8 @@ public:
 private:
     /**
       * The length instance variable is used to remember the length of
-      * the data instance variable.
+      * the data instance variable.  This is almost always even, because
+      * the internal is a series of [lo, hi) sub-intervals.
       */
     size_t length;
 
@@ -212,34 +213,49 @@ private:
     bool valid() const;
 
     /**
-      * The append method is used to append another valoue to the end
-      * of an interval under construction.
+      * The append method is used to append another value to the end
+      * of an interval under construction.  This breaks the "length is
+      * even" assertion which usually applies; for this reason it is
+      * only to be used by the arithmetic operator implementations when
+      * calculating their results.
       */
     void append(data_t);
 };
 
-
+/**
+  * The equality operator is used to determine if two intervals are the
+  * same.
+  */
 inline bool
 operator == (const interval &lhs, const interval &rhs)
 {
     return interval::equal(lhs, rhs);
 }
 
-
+/**
+  * The inequality operator is used to determine if two intervals are
+  * different.
+  */
 inline bool
 operator != (const interval &lhs, const interval &rhs)
 {
     return !interval::equal(lhs, rhs);
 }
 
-
+/**
+  * The binary star operator is used to calculate the intersection of
+  * two intervals.
+  */
 inline interval
 operator * (const interval &lhs, const interval &rhs)
 {
     return interval::intersection(lhs, rhs);
 }
 
-
+/**
+  * The star-and-replace operator is used to calculate the intersection
+  * of two intervals, and assign the result to the left-hand-side.
+  */
 inline interval &
 operator *= (interval &lhs, const interval &rhs)
 {
@@ -247,14 +263,20 @@ operator *= (interval &lhs, const interval &rhs)
     return lhs;
 }
 
-
+/**
+  * The binary plus operator is used to calculate the union of two
+  * intervals.
+  */
 inline interval
 operator + (const interval &lhs, const interval &rhs)
 {
     return interval::union_(lhs, rhs);
 }
 
-
+/**
+  * The plus-and-replace operator is used to calculate the union of two
+  * intervals, and assign the result to the left-hand-side.
+  */
 inline interval &
 operator += (interval &lhs, const interval &rhs)
 {
@@ -262,14 +284,20 @@ operator += (interval &lhs, const interval &rhs)
     return lhs;
 }
 
-
+/**
+  * The binary minus operator is used to calculate the difference of two
+  * intervals.
+  */
 inline interval
 operator - (const interval &lhs, const interval &rhs)
 {
     return interval::difference(lhs, rhs);
 }
 
-
+/**
+  * The minus-and-replace operator is used to calculate the difference
+  * of two intervals, and assign the result to the left-hand-side.
+  */
 inline interval &
 operator -= (interval &lhs, const interval &rhs)
 {
@@ -277,12 +305,20 @@ operator -= (interval &lhs, const interval &rhs)
     return lhs;
 }
 
+/**
+  * The unary minus operator is used to calculate the logical complement
+  * (inverse, negative) of an interval.
+  */
 inline interval
 operator - (const interval &arg)
 {
     return (interval(0, 0) - arg);
 }
 
+/**
+  * The binary left-shift operator is used to print an interval on an
+  * output stream.
+  */
 inline ostream &
 operator << (ostream &os, const interval &val)
 {

@@ -21,6 +21,7 @@
 .so man/man5/srec_signetics.5
 .so man/man5/srec_spasm.5
 .so man/man5/srec_spectrum.5
+.so man/man5/srec_stewie.5
 .so man/man5/srec_tektronix.5
 .so man/man5/srec_tektronix_extended.5
 .so man/man5/srec_ti_tagged.5

@@ -60,6 +60,13 @@ T}	T{
 .ad l
 Binary file format
 T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+srec stewie - Stewie's
+T}	T{
+.ad l
+binary file format
+T}
 srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
 .ad r
 srec formatted
@@ -347,6 +354,13 @@ T}	T{
 .ad l
 file format
 T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+srec stewie - Stewie's binary
+T}	T{
+.ad l
+file format
+T}
 srec_tektronix_extended(5)	\*[Page*Of*srec_tektronix_extended(5)]	T{
 .ad r
 srec tektronix extended - Tektronix Extended hexadecimal
@@ -539,6 +553,13 @@ T}
 srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
 .ad r
 srec spectrum - Spectrum file
+T}	T{
+.ad l
+format
+T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+srec stewie - Stewie's binary file
 T}	T{
 .ad l
 format
@@ -900,6 +921,13 @@ T}	T{
 .ad l
 Record hexadecimal file format
 T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+srec stewie - Stewie'
+T}	T{
+.ad l
+s binary file format
+T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
 srec needham - Needham EMP-
@@ -1117,6 +1145,13 @@ T}	T{
 .ad l
 srec spectrum - Spectrum file format
 T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec stewie - Stewie's binary file format
+T}
 srec_tektronix_extended(5)	\*[Page*Of*srec_tektronix_extended(5)]	T{
 .ad r
 
@@ -1151,6 +1186,20 @@ srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 T}	T{
 .ad l
 srec wilson - wilson file format
+T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+srec stewie -
+T}	T{
+.ad l
+Stewie's binary file format
+T}
+srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+stewie - Stewie's binary file format
 T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
