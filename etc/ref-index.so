@@ -67,6 +67,13 @@ T}	T{
 .ad l
 Binary (XXDP) file format
 T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec intel16 - Intel Hexadecimal 16-
+T}	T{
+.ad l
+bit file format specification
+T}
 srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 .ad r
 srec
@@ -347,12 +354,26 @@ T}	T{
 .ad l
 file format
 T}
+srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
+.ad r
+srec vmem - vmem
+T}	T{
+.ad l
+file format
+T}
 srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 .ad r
 srec wilson - wilson
 T}	T{
 .ad l
 file format
+T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec intel16 - Intel Hexadecimal 16-bit
+T}	T{
+.ad l
+file format specification
 T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
@@ -515,12 +536,26 @@ T}	T{
 .ad l
 format
 T}
+srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
+.ad r
+srec vmem - vmem file
+T}	T{
+.ad l
+format
+T}
 srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 .ad r
 srec wilson - wilson file
 T}	T{
 .ad l
 format
+T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec intel16 - Intel Hexadecimal 16-bit file
+T}	T{
+.ad l
+format specification
 T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
@@ -563,6 +598,13 @@ srec atmel generic - Atmel
 T}	T{
 .ad l
 Generic file format
+T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec intel16 - Intel
+T}	T{
+.ad l
+Hexadecimal 16-bit file format specification
 T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
@@ -626,6 +668,20 @@ srec ti tagged - Texas
 T}	T{
 .ad l
 Instruments Tagged file format
+T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+intel16 - Intel Hexadecimal 16-bit file format specification
+T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec intel16 -
+T}	T{
+.ad l
+Intel Hexadecimal 16-bit file format specification
 T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
@@ -802,6 +858,13 @@ T}	T{
 .ad l
 spasm - SPASM file format
 T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+srec intel16 - Intel Hexadecimal 16-bit file format
+T}	T{
+.ad l
+specification
+T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
 srec intel - Intel Hexadecimal object file format
@@ -885,6 +948,13 @@ srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 T}	T{
 .ad l
 srec info - information about eprom load files
+T}
+srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec intel16 - Intel Hexadecimal 16-bit file format specification
 T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
@@ -984,6 +1054,13 @@ T}	T{
 .ad l
 srec ti tagged - Texas Instruments Tagged file format
 T}
+srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec vmem - vmem file format
+T}
 srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 .ad r
 
@@ -1067,6 +1144,20 @@ srec cmp - compare
 T}	T{
 .ad l
 two eprom load files for equality
+T}
+srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
+.ad r
+srec vmem -
+T}	T{
+.ad l
+vmem file format
+T}
+srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+vmem - vmem file format
 T}
 srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 .ad r

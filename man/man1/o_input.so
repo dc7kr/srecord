@@ -93,6 +93,12 @@ See
 .IR srec_intel (5)
 for a description of this file format.
 .TP 8n
+\fB\-INtel_HeX_16\fP
+This option says to use the Intel hex 16 (INHX16) format to read the file.
+See
+.IR srec_intel16 (5)
+for a description of this file format.
+.TP 8n
 \fB\-MOS_Technologies\fP
 This option says to use the Mos Technologies format to read the file.
 See
@@ -145,6 +151,10 @@ This option says to use the Texas Instruments Tagged format to read the file.
 See
 .IR srec_ti_tagged (5)
 for a description of this file format.
+.TP 8n
+\fB\-VMem\fP
+This option says to use the Verilog VMEM format to read the file.
+See \fIsrec_vmem\fP(5) for a description of this file format.
 .TP 8n
 \fB\-WILson\fP
 This option says to use the wilson format to read the file.
@@ -199,7 +209,7 @@ at the address given.  Holes in the input data are ignored.  Bytes are
 processed in ascending address order (\fInot\fP in the order they appear
 in the input).
 .TP 8n
-\fB\-Big_Endian_CRC16\fP \fIaddress\fP
+\fB\-Little_Endian_CRC16\fP \fIaddress\fP
 As above, except little-endian order.
 .TP 8n
 \fB\-Big_Endian_CRC32\fP \fIaddress\fP
@@ -209,7 +219,7 @@ at the address given.  Holes in the input data are ignored.  Bytes are
 processed in ascending address order (\fInot\fP in the order they appear
 in the input).
 .TP 8n
-\fB\-Big_Endian_CRC32\fP \fIaddress\fP
+\fB\-Little_Endian_CRC32\fP \fIaddress\fP
 As above, except little-endian order.
 .TP 8n
 \fB\-Crop\fP \fIaddress-range\fP

@@ -26,6 +26,7 @@ etc/Makefile.sh	 shell script to generate Makefile file
 etc/README.man	 source of the README file
 etc/archive.cook	 How to build the release sets
 etc/autoconf.cook	 instructions to cook, how to use GNU Autoconf
+etc/change_log.man	 source of the README file
 etc/configure.in	 how to configure srecord, input to the GNU autoconf program
 etc/documentation.cook	 instructions to Cook: how to build the documentation
 etc/download.html	 input for archive/srecord.html
@@ -42,6 +43,8 @@ etc/new.1.13.so	 description of new 1.13 features
 etc/new.1.14.so	 description of new 1.14 features
 etc/new.1.15.so	 description of new 1.15 features
 etc/new.1.16.so	 description of new 1.16 features
+etc/new.1.17.so	 description of new 1.17 features
+etc/new.1.18.so	 description of new 1.18 features
 etc/new.1.2.so	 description of new 1.2 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
@@ -99,6 +102,7 @@ include/srec/input/file/formatted_binary.h	 interface defn for include/srec/inpu
 include/srec/input/file/four_packed_code.h	 interface definition for include/srec/input/file/four_packed_code.cc
 include/srec/input/file/guess.h	 interface definition for include/srec/input/file/guess.cc
 include/srec/input/file/intel.h	 interface definition for srec/input/file/intel.cc
+include/srec/input/file/intel16.h	 interface definition for include/srec/input/file/intel16.cc
 include/srec/input/file/mos_tech.h	 interface definition for include/srec/input/file/mos_tech.cc
 include/srec/input/file/needham.h	 interface definition for include/srec/input/file/needham.cc
 include/srec/input/file/os65v.h	 interface definition for include/srec/input/file/os65v.cc
@@ -109,6 +113,7 @@ include/srec/input/file/srecord.h	 interface definition for lib/input/file/sreco
 include/srec/input/file/tektronix.h	 interface definition for lib/srec/input/file/tektronix.cc
 include/srec/input/file/tektronix_extended.h	 interface definition for lib/srec/input/file/tektronix_extended.cc
 include/srec/input/file/ti_tagged.h	 interface definition for lib/srec/input/file/ti_tagged.cc
+include/srec/input/file/vmem.h	 interface definition for include/srec/input/file/vmem.cc
 include/srec/input/file/wilson.h	 interface definition for lib/srec/input/file/wilson.cc
 include/srec/input/filter.h	 interface definition for lib/srec/input/filter.cc
 include/srec/input/filter/and.h	 interface definition for include/srec/input/filter/and.cc
@@ -155,6 +160,7 @@ include/srec/output/file/fastload.h	 interface definition for include/srec/outpu
 include/srec/output/file/formatted_binary.h	 interface defn for include/srec/output/file/formatted_binary.cc
 include/srec/output/file/four_packed_code.h	 interface definition for include/srec/output/file/four_packed_code.cc
 include/srec/output/file/intel.h	 interface definition for lib/srec/output/file/intel.cc
+include/srec/output/file/intel16.h	 interface definition for include/srec/output/file/intel16.cc
 include/srec/output/file/mos_tech.h	 interface definition for lib/srec/output/file/mos_tech.cc
 include/srec/output/file/needham.h	 interface definition for include/srec/output/file/needham.cc
 include/srec/output/file/os65v.h	 interface definition for include/srec/output/file/os65v.cc
@@ -166,6 +172,7 @@ include/srec/output/file/tektronix.h	 interface definition for lib/srec/output/f
 include/srec/output/file/tektronix_extended.h	 interface definition for lib/srec/output/file/tektronix_extended.cc
 include/srec/output/file/ti_tagged.h	 interface definition for include/srec/output/file/ti_tagged.cc
 include/srec/output/file/vhdl.h	 interface definition for lib/srec/output/file/vhdl.cc
+include/srec/output/file/vmem.h	 interface definition for lib/srec/output/file/vmem.cc
 include/srec/output/file/wilson.h	 interface definition for lib/srec/output/file/wilson.cc
 include/srec/record.h	 interface definition for lib/srec/record.cc
 lib/common/arglex.cc	
@@ -196,6 +203,7 @@ lib/srec/input/file/formatted_binary.cc	 functions to impliment the srec_input_f
 lib/srec/input/file/four_packed_code.cc	 functions to impliment the srec_input_file_four_packed_code class
 lib/srec/input/file/guess.cc	 functions to guess the format
 lib/srec/input/file/intel.cc	 functions to impliment the srec_input_file_intel class
+lib/srec/input/file/intel16.cc	 functions to impliment the srec_input_file_intel16 class
 lib/srec/input/file/mos_tech.cc	 functions to impliment the srec_input_file_mos_tech class
 lib/srec/input/file/needham.cc	 functions to impliment the srec_input_file_needham class
 lib/srec/input/file/os65v.cc	 functions to impliment the srec_input_file_os65v class
@@ -206,6 +214,7 @@ lib/srec/input/file/srecord.cc	 functions to impliment the srec_input_file_sreco
 lib/srec/input/file/tektronix.cc	 functions to impliment the srec_input_file_tektronix class
 lib/srec/input/file/tektronix_extended.cc	 functions to impliment the srec_input_file_tektronix_extended class
 lib/srec/input/file/ti_tagged.cc	 functions to impliment the srec_input_file_ti_tagged class
+lib/srec/input/file/vmem.cc	 functions to impliment the srec_input_file_vmem class
 lib/srec/input/file/wilson.cc	 functions to impliment the srec_input_file_wilson class
 lib/srec/input/filter.cc	 functions to impliment the srec_input_filter class
 lib/srec/input/filter/and.cc	 functions to impliment the srec_input_filter_and class
@@ -252,6 +261,7 @@ lib/srec/output/file/fastload.cc	 functions to impliment the srec_output_file_fa
 lib/srec/output/file/formatted_binary.cc	 functions to impliment the srec_output_file_formatted_binary class
 lib/srec/output/file/four_packed_code.cc	 functions to impliment the srec_output_file_four_packed_code class
 lib/srec/output/file/intel.cc	 functions to impliment the srec_output_file_intel class
+lib/srec/output/file/intel16.cc	 functions to impliment the srec_output_file_intel16 class
 lib/srec/output/file/mos_tech.cc	 functions to impliment the srec_output_file_mos_tech class
 lib/srec/output/file/needham.cc	 functions to impliment the srec_output_file_needham class
 lib/srec/output/file/os65v.cc	 functions to impliment the srec_output_file_os65v class
@@ -263,6 +273,7 @@ lib/srec/output/file/tektronix.cc	 functions to impliment the srec_output_file_t
 lib/srec/output/file/tektronix_extended.cc	 functions to impliment the srec_output_file_tektronix_extended class
 lib/srec/output/file/ti_tagged.cc	 functions to impliment the srec_output_file_ti_tagged class
 lib/srec/output/file/vhdl.cc	 functions to impliment the srec_output_file_vhdl class
+lib/srec/output/file/vmem.cc	 functions to impliment the srec_output_file_vmem class
 lib/srec/output/file/wilson.cc	 functions to impliment the srec_output_file_wilson class
 lib/srec/record.cc	 functions to impliment the srec_record class
 man/man1/o_input.so	 describe input file specifiers
@@ -284,6 +295,7 @@ man/man5/srec_fastload.5	 manual entry for the srec_fastload.5 command
 man/man5/srec_formatted_binary.5	 manual entry for the srec_formatted_binary.5 command
 man/man5/srec_fpc.5	 manual entry for the srec_fpc.5 command
 man/man5/srec_intel.5	 manual entry for the srec_intel.5 command
+man/man5/srec_intel16.5	 manual entry for the srec_intel16.5 command
 man/man5/srec_mos_tech.5	 manual entry for the srec_mos_tech.5 command
 man/man5/srec_motorola.5	 manual entry for the srec_motorola.5 command
 man/man5/srec_needham.5	 manual entry for the srec_needham.5 command
@@ -294,6 +306,7 @@ man/man5/srec_spectrum.5	 manual entry for the srec_spectrum.5 command
 man/man5/srec_tektronix.5	 manual entry for the srec_tektronix.5 command
 man/man5/srec_tektronix_extended.5	 manual entry for the srec_tektronix_extended.5 command
 man/man5/srec_ti_tagged.5	 manual entry for the srec_ti_tagged.5 command
+man/man5/srec_vmem.5	 manual entry for the srec_vmem.5 command
 man/man5/srec_wilson.5	 manual entry for the srec_wilson.5 command
 prog/srec_cat/arglex3.cc	 functions to impliment the srec_cat_arglex3 class
 prog/srec_cat/arglex3.h	 interface definition for prog/srec_cat/arglex3.cc
@@ -374,3 +387,7 @@ test/00/t0083a.sh	 Test the Cosmac functionality
 test/00/t0085a.sh	 Test the Formatted Binary functionality
 test/00/t0086a.sh	 Test the Spectrum format functionality
 test/00/t0087a.sh	 Test the Fairchild Fairbug functionality
+test/00/t0088a.sh	 Test the INHX16 functionality
+test/00/t0089a.sh	 Test the Verilog VMEM functionality
+test/00/t0090a.sh	 Test the intel segment output functionality
+test/00/t0091a.sh	 Test the Verilog VMEM functionality

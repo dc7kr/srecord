@@ -11,6 +11,7 @@
 .so man/man5/srec_fastload.5
 .so man/man5/srec_formatted_binary.5
 .so man/man5/srec_fpc.5
+.so man/man5/srec_intel16.5
 .so man/man5/srec_intel.5
 .so man/man5/srec_mos_tech.5
 .so man/man5/srec_motorola.5
@@ -22,4 +23,5 @@
 .so man/man5/srec_tektronix.5
 .so man/man5/srec_tektronix_extended.5
 .so man/man5/srec_ti_tagged.5
+.so man/man5/srec_vmem.5
 .so man/man5/srec_wilson.5

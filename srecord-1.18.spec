@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.16
+Version: 1.18
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -76,6 +76,7 @@ strip $RPM_BUILD_ROOT%{_bindir}/*
 %{_mandir}/man5/srec_fastload.5*
 %{_mandir}/man5/srec_formatted_binary.5*
 %{_mandir}/man5/srec_fpc.5*
+%{_mandir}/man5/srec_intel16.5*
 %{_mandir}/man5/srec_intel.5*
 %{_mandir}/man5/srec_mos_tech.5*
 %{_mandir}/man5/srec_motorola.5*
@@ -87,4 +88,5 @@ strip $RPM_BUILD_ROOT%{_bindir}/*
 %{_mandir}/man5/srec_tektronix.5*
 %{_mandir}/man5/srec_tektronix_extended.5*
 %{_mandir}/man5/srec_ti_tagged.5*
+%{_mandir}/man5/srec_vmem.5*
 %{_mandir}/man5/srec_wilson.5*

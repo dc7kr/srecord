@@ -1,6 +1,6 @@
 .\"
 .\"	srecord - manipulate eprom load files
-.\"	Copyright (C) 1998, 2000-2003 Peter Miller;
+.\"	Copyright (C) 1998, 2000-2004 Peter Miller;
 .\"	All rights reserved.
 .\"
 .\"	This program is free software; you can redistribute it and/or modify
@@ -61,7 +61,7 @@ It also runs on Windows NT, if you build using
 <a href="http://www.delorie.com/djgpp/">DJGPP</a>,
 see the <a href="windows.html">Windows NT</a> page.
 .br
-<table border=1><tr><td valign=top width="50%">
+<table border=1><tr><td valign=top width="60%">
 <p align=center><b>The File Formats</b></p>
 <p>
 The <i>SRecord</i> package understands a number of file formats:
@@ -146,6 +146,12 @@ The Intel hexadecimal format is understood for both reading and writing.
 (Also known as the Intel MCS-86 Object format.)
 .br
 <dt>
+Intel 16
+<dd>
+The Intel hexadecimal 16 format is understood for both reading and writing.
+(Also known as the INHX16 file format.)
+.br
+<dt>
 MOS Technology
 <dd>
 The MOS Technology hexadecimal format is understood for both reading
@@ -204,6 +210,12 @@ VHDL
 <dd>
 It is possible, for output only, to produce a VHDL definition containing
 the data.  This can be useful for some embedded development systems.
+.br
+<dt>
+Verilog VMEM
+<dd>
+It is possible to write a Verilog VMEM file suitable for loading with
+\f[CW]$readmemh()\fP.  This format is supported for reading and writing.
 <dt>
 Wilson
 <dd>
@@ -215,7 +227,7 @@ This mystery format was added for a mysterious type of EPROM writer.
 If you have a description of other EPROM load file formats that SRecord
 does not yet understand, please let me know, and they can be added.
 </dl>
-</td><td valign=top width="50%">
+</td><td valign=top width="40%">
 .br
 <p align=center><b>The Tools</b></p>
 <p>
@@ -315,7 +327,7 @@ SRecord is written and owned by
 <a href="mailto:millerp@canb.auug.org.au">
 Peter Miller &lt;millerp@canb.auug.org.au&gt;</a>
 and is freely distributable under the terms and conditions of the
-<a href="ftp://prep.ai.mit.edu/pub/gnu/GPL">GNU GPL</a>.
+<a href="http://www.gnu.org/licenses/gpl.txt">GNU GPL</a>.
 <p>
 SRecord is developed using <a href="http://aegis.sourceforge.net/">Aegis</a>,
 a transaction

@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2001-2003 Peter Miller;
+//	Copyright (C) 2001-2004 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -35,6 +35,7 @@
 #include <srec/output/file/formatted_binary.h>
 #include <srec/output/file/four_packed_code.h>
 #include <srec/output/file/intel.h>
+#include <srec/output/file/intel16.h>
 #include <srec/output/file/mos_tech.h>
 #include <srec/output/file/needham.h>
 #include <srec/output/file/os65v.h>
@@ -46,6 +47,7 @@
 #include <srec/output/file/tektronix.h>
 #include <srec/output/file/ti_tagged.h>
 #include <srec/output/file/vhdl.h>
+#include <srec/output/file/vmem.h>
 #include <srec/output/file/wilson.h>
 
 
@@ -103,6 +105,11 @@ srec_arglex::get_output()
 	ofp = new srec_output_file_ascii_hex(fn);
 	break;
 
+    case token_asm_db:
+	token_next();
+	ofp = new srec_output_file_asm(fn);
+	break;
+
     case token_atmel_generic_be:
 	token_next();
 	ofp = new srec_output_file_atmel_generic(fn, true);
@@ -113,9 +120,26 @@ srec_arglex::get_output()
 	ofp = new srec_output_file_atmel_generic(fn, false);
 	break;
 
+    case token_basic_data:
+	token_next();
+	ofp = new srec_output_file_basic(fn);
+	break;
+
     case token_binary:
 	token_next();
 	ofp = new srec_output_file_binary(fn);
+	break;
+
+    case token_c_array:
+	{
+		const char *prefix = "eprom";
+		if (token_next() == token_string)
+		{
+			prefix = value_string();
+			token_next();
+		}
+		ofp = new srec_output_file_c(fn, prefix);
+	}
 	break;
 
     case token_cosmac:
@@ -156,6 +180,11 @@ srec_arglex::get_output()
     case token_intel:
 	token_next();
 	ofp = new srec_output_file_intel(fn);
+	break;
+
+    case token_intel16:
+	token_next();
+	ofp = new srec_output_file_intel16(fn);
 	break;
 
     case token_mos_tech:
@@ -225,26 +254,23 @@ srec_arglex::get_output()
 	}
 	break;
 
-    case token_c_array:
+    case token_vmem:
 	{
-		const char *prefix = "eprom";
-		if (token_next() == token_string)
-		{
-			prefix = value_string();
-			token_next();
-		}
-		ofp = new srec_output_file_c(fn, prefix);
+	    //
+	    // The default number of bits is 32.
+	    // If you change this, you must also change the following files:
+	    //     lib/srec/output/file/vmem.cc
+	    //     man/man1/srec_cat.1
+	    //
+	    int mem_width = 32;
+
+	    if (token_next() == token_number)
+	    {
+		mem_width = value_number();
+		token_next();
+	    }
+	    ofp = new srec_output_file_vmem(fn, mem_width);
 	}
-	break;
-
-    case token_basic_data:
-	token_next();
-	ofp = new srec_output_file_basic(fn);
-	break;
-
-    case token_asm_db:
-	token_next();
-	ofp = new srec_output_file_asm(fn);
 	break;
 
     case token_wilson:

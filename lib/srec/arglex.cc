@@ -38,6 +38,7 @@ using namespace std;
 #include <srec/input/file/four_packed_code.h>
 #include <srec/input/file/guess.h>
 #include <srec/input/file/intel.h>
+#include <srec/input/file/intel16.h>
 #include <srec/input/file/mos_tech.h>
 #include <srec/input/file/needham.h>
 #include <srec/input/file/os65v.h>
@@ -48,6 +49,7 @@ using namespace std;
 #include <srec/input/file/tektronix_extended.h>
 #include <srec/input/file/tektronix.h>
 #include <srec/input/file/ti_tagged.h>
+#include <srec/input/file/vmem.h>
 #include <srec/input/file/wilson.h>
 #include <srec/input/filter/and.h>
 #include <srec/input/filter/byte_swap.h>
@@ -114,6 +116,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
 	{ "-Four_Packed_Code", token_four_packed_code, },
 	{ "-GUess",	token_guess,		},
 	{ "-Intel",	token_intel,		},
+	{ "-INtel_HeXadecimal_16", token_intel16, },
 	{ "-Little_Endian_Checksum", token_checksum_le_bitnot, },
 	{ "-Little_Endian_Checksum_BitNot", token_checksum_le_bitnot, },
 	{ "-Little_Endian_Checksum_Negative", token_checksum_le_negative, },
@@ -154,6 +157,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
 	{ "-Un_Fill",	token_unfill,		},
 	{ "-Un_SPlit",	token_unsplit,		},
 	{ "-VHdl",	token_vhdl,		},
+	{ "-VMem",	token_vmem,		},
 	{ "-WILson",	token_wilson,		},
 	{ "-Within",	token_within,		},
 	{ "-XOR",	token_xor,		},
@@ -544,6 +548,11 @@ srec_arglex::get_input()
 	ifp = new srec_input_file_intel(fn);
 	break;
 
+    case token_intel16:
+    	token_next();
+	ifp = new srec_input_file_intel16(fn);
+	break;
+
     case token_mos_tech:
 	token_next();
 	ifp = new srec_input_file_mos_tech(fn);
@@ -592,6 +601,11 @@ srec_arglex::get_input()
     case token_ti_tagged:
 	token_next();
 	ifp = new srec_input_file_ti_tagged(fn);
+	break;
+
+    case token_vmem:
+	token_next();
+	ifp = new srec_input_file_vmem(fn);
 	break;
 
     case token_wilson:
