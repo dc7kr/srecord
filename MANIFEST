@@ -40,6 +40,7 @@ etc/new.1.11.so	 description of new 1.11 features
 etc/new.1.12.so	 description of new 1.12 features
 etc/new.1.13.so	 description of new 1.13 features
 etc/new.1.14.so	 description of new 1.14 features
+etc/new.1.15.so	 description of new 1.15 features
 etc/new.1.2.so	 description of new 1.2 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
@@ -88,16 +89,21 @@ include/srec/input/file.h	 interface definition for lib/srec/input/file.cc
 include/srec/input/file/ascii_hex.h	 interface definition for include/srec/input/file/ascii_hex.cc
 include/srec/input/file/atmel_generic.h	 interface definition for include/srec/input/file/atmel_generic.cc
 include/srec/input/file/binary.h	 interface definition for srec/input/file/binary.cc
+include/srec/input/file/cosmac.h	 interface definition for include/srec/input/file/cosmac.cc
 include/srec/input/file/dec_binary.h	 interface definition for include/srec/input/file/dec_binary.cc
 include/srec/input/file/emon52.h	 interface definition for include/srec/input/file/emon52.cc
+include/srec/input/file/fairchild.h	 interface definition for include/srec/input/file/fairchild.cc
 include/srec/input/file/fastload.h	 interface definition for include/srec/input/file/fastload.cc
+include/srec/input/file/formatted_binary.h	 interface defn for include/srec/input/file/formatted_binary.cc
 include/srec/input/file/four_packed_code.h	 interface definition for include/srec/input/file/four_packed_code.cc
 include/srec/input/file/guess.h	 interface definition for include/srec/input/file/guess.cc
 include/srec/input/file/intel.h	 interface definition for srec/input/file/intel.cc
 include/srec/input/file/mos_tech.h	 interface definition for include/srec/input/file/mos_tech.cc
+include/srec/input/file/needham.h	 interface definition for include/srec/input/file/needham.cc
 include/srec/input/file/os65v.h	 interface definition for include/srec/input/file/os65v.cc
 include/srec/input/file/signetics.h	 interface definition for include/srec/input/file/signetics.cc
 include/srec/input/file/spasm.h	 interface definition for include/srec/input/file/spasm.cc
+include/srec/input/file/spectrum.h	 interface definition for include/srec/input/file/spectrum.cc
 include/srec/input/file/srecord.h	 interface definition for lib/input/file/srecord.cc
 include/srec/input/file/tektronix.h	 interface definition for lib/srec/input/file/tektronix.cc
 include/srec/input/file/tektronix_extended.h	 interface definition for lib/srec/input/file/tektronix_extended.cc
@@ -140,15 +146,20 @@ include/srec/output/file/atmel_generic.h	 interface definition for include/srec/
 include/srec/output/file/basic.h	 interface definition for include/srec/output/file/basic.cc
 include/srec/output/file/binary.h	 interface definition for lib/srec/output/file/binary.cc
 include/srec/output/file/c.h	 interface definition for lib/srec/output/file/c.cc
+include/srec/output/file/cosmac.h	 interface definition for include/srec/output/file/cosmac.cc
 include/srec/output/file/dec_binary.h	 interface definition for include/srec/output/file/dec_binary.cc
 include/srec/output/file/emon52.h	 interface definition for include/srec/output/file/emon52.cc
+include/srec/output/file/fairchild.h	 interface definition for include/srec/output/file/fairchild.cc
 include/srec/output/file/fastload.h	 interface definition for include/srec/output/file/fastload.cc
+include/srec/output/file/formatted_binary.h	 interface defn for include/srec/output/file/formatted_binary.cc
 include/srec/output/file/four_packed_code.h	 interface definition for include/srec/output/file/four_packed_code.cc
 include/srec/output/file/intel.h	 interface definition for lib/srec/output/file/intel.cc
 include/srec/output/file/mos_tech.h	 interface definition for lib/srec/output/file/mos_tech.cc
+include/srec/output/file/needham.h	 interface definition for include/srec/output/file/needham.cc
 include/srec/output/file/os65v.h	 interface definition for include/srec/output/file/os65v.cc
 include/srec/output/file/signetics.h	 interface definition for include/srec/output/file/signetics.cc
 include/srec/output/file/spasm.h	 interface definition for include/srec/output/file/spasm.cc
+include/srec/output/file/spectrum.h	 interface definition for include/srec/output/file/spectrum.cc
 include/srec/output/file/srecord.h	 interface definition for lib/srec/output/file/srecord.cc
 include/srec/output/file/tektronix.h	 interface definition for lib/srec/output/file/tektronix.cc
 include/srec/output/file/tektronix_extended.h	 interface definition for lib/srec/output/file/tektronix_extended.cc
@@ -156,7 +167,6 @@ include/srec/output/file/ti_tagged.h	 interface definition for include/srec/outp
 include/srec/output/file/vhdl.h	 interface definition for lib/srec/output/file/vhdl.cc
 include/srec/output/file/wilson.h	 interface definition for lib/srec/output/file/wilson.cc
 include/srec/record.h	 interface definition for lib/srec/record.cc
-include/srecord/input/filter/fill.h	 interface definition for lib/srec/input/filter/fill.cc
 lib/common/arglex.cc	
 lib/common/crc16.cc	 functions to impliment the crc16 class
 lib/common/crc32.cc	 functions to impliment the crc32 class
@@ -176,16 +186,21 @@ lib/srec/input/file.cc	 functions to impliment the srec_input_file class
 lib/srec/input/file/ascii_hex.cc	 functions to impliment the srec_input_file_ascii_hex class
 lib/srec/input/file/atmel_generic.cc	 functions to impliment the srec_input_file_atmel_generic class
 lib/srec/input/file/binary.cc	 functions to impliment the srec_input_file_binary class
+lib/srec/input/file/cosmac.cc	 functions to impliment the srec_input_file_cosmac class
 lib/srec/input/file/dec_binary.cc	 functions to impliment the srec_input_file_dec_binary class
 lib/srec/input/file/emon52.cc	 functions to impliment the srec_input_file_emon52 class
+lib/srec/input/file/fairchild.cc	 functions to impliment the srec_input_file_fairchild class
 lib/srec/input/file/fastload.cc	 functions to impliment the srec_input_file_fastload class
+lib/srec/input/file/formatted_binary.cc	 functions to impliment the srec_input_file_formatted_binary class
 lib/srec/input/file/four_packed_code.cc	 functions to impliment the srec_input_file_four_packed_code class
 lib/srec/input/file/guess.cc	 functions to guess the format
 lib/srec/input/file/intel.cc	 functions to impliment the srec_input_file_intel class
 lib/srec/input/file/mos_tech.cc	 functions to impliment the srec_input_file_mos_tech class
+lib/srec/input/file/needham.cc	 functions to impliment the srec_input_file_needham class
 lib/srec/input/file/os65v.cc	 functions to impliment the srec_input_file_os65v class
 lib/srec/input/file/signetics.cc	 functions to impliment the srec_input_file_signetics class
 lib/srec/input/file/spasm.cc	 functions to impliment the srec_input_file_spasm class
+lib/srec/input/file/spectrum.cc	 functions to impliment the srec_input_file_spectrum class
 lib/srec/input/file/srecord.cc	 functions to impliment the srec_input_file_srecord class
 lib/srec/input/file/tektronix.cc	 functions to impliment the srec_input_file_tektronix class
 lib/srec/input/file/tektronix_extended.cc	 functions to impliment the srec_input_file_tektronix_extended class
@@ -228,15 +243,20 @@ lib/srec/output/file/atmel_generic.cc	 functions to impliment the srec_output_fi
 lib/srec/output/file/basic.cc	 functions to impliment the srec_output_file_basic class
 lib/srec/output/file/binary.cc	 functions to impliment the srec_output_file_binary class
 lib/srec/output/file/c.cc	 functions to impliment the srec_output_file_c class
+lib/srec/output/file/cosmac.cc	 functions to impliment the srec_output_file_cosmac class
 lib/srec/output/file/dec_binary.cc	 functions to impliment the srec_output_file_dec_binary class
 lib/srec/output/file/emon52.cc	 functions to impliment the srec_output_file_emon52 class
+lib/srec/output/file/fairchild.cc	 functions to impliment the srec_output_file_fairchild class
 lib/srec/output/file/fastload.cc	 functions to impliment the srec_output_file_fastload class
+lib/srec/output/file/formatted_binary.cc	 functions to impliment the srec_output_file_formatted_binary class
 lib/srec/output/file/four_packed_code.cc	 functions to impliment the srec_output_file_four_packed_code class
 lib/srec/output/file/intel.cc	 functions to impliment the srec_output_file_intel class
 lib/srec/output/file/mos_tech.cc	 functions to impliment the srec_output_file_mos_tech class
+lib/srec/output/file/needham.cc	 functions to impliment the srec_output_file_needham class
 lib/srec/output/file/os65v.cc	 functions to impliment the srec_output_file_os65v class
 lib/srec/output/file/signetics.cc	 functions to impliment the srec_output_file_signetics class
 lib/srec/output/file/spasm.cc	 functions to impliment the srec_output_file_spasm class
+lib/srec/output/file/spectrum.cc	 functions to impliment the srec_output_file_spectrum class
 lib/srec/output/file/srecord.cc	 functions to impliment the srec_output_file_srecord class
 lib/srec/output/file/tektronix.cc	 functions to impliment the srec_output_file_tektronix class
 lib/srec/output/file/tektronix_extended.cc	 functions to impliment the srec_output_file_tektronix_extended class
@@ -255,16 +275,21 @@ man/man1/z_exit.so	 description of exit status for manual entries
 man/man1/z_options.so	 description of option up/down case convention
 man/man5/srec_ascii_hex.5	 manual entry for the srec_ascii_hex.5 command
 man/man5/srec_atmel_generic.5	 manual entry for the srec_atmel_generic.5 command
+man/man5/srec_cosmac.5	 manual entry for the srec_cosmac.5 command
 man/man5/srec_dec_binary.5	 manual entry for srec_dec_binary(5)
 man/man5/srec_emon52.5	 manual entry for the srec_emon52.5 command
+man/man5/srec_fairchild.5	 manual entry for the srec_fairchild.5 command
 man/man5/srec_fastload.5	 manual entry for the srec_fastload.5 command
+man/man5/srec_formatted_binary.5	 manual entry for the srec_formatted_binary.5 command
 man/man5/srec_fpc.5	 manual entry for the srec_fpc.5 command
 man/man5/srec_intel.5	 manual entry for the srec_intel.5 command
 man/man5/srec_mos_tech.5	 manual entry for the srec_mos_tech.5 command
 man/man5/srec_motorola.5	 manual entry for the srec_motorola.5 command
+man/man5/srec_needham.5	 manual entry for the srec_needham.5 command
 man/man5/srec_os65v.5	 manual entry for the srec_os65v.5 command
 man/man5/srec_signetics.5	 manual entry for the srec_signetics.5 command
 man/man5/srec_spasm.5	 manual entry for the srec_spasm.5 command
+man/man5/srec_spectrum.5	 manual entry for the srec_spectrum.5 command
 man/man5/srec_tektronix.5	 manual entry for the srec_tektronix.5 command
 man/man5/srec_tektronix_extended.5	 manual entry for the srec_tektronix_extended.5 command
 man/man5/srec_ti_tagged.5	 manual entry for the srec_ti_tagged.5 command
@@ -343,3 +368,8 @@ test/00/t0078a.sh	 Test the motorola S5 functionality
 test/00/t0079a.sh	 Test the input -max functionality
 test/00/t0080a.sh	 Test the ASM functionality
 test/00/t0081a.sh	 Test the BASIC functionality
+test/00/t0082a.sh	 Test the Needham Hex functionality
+test/00/t0083a.sh	 Test the Cosmac functionality
+test/00/t0085a.sh	 Test the Formatted Binary functionality
+test/00/t0086a.sh	 Test the Spectrum format functionality
+test/00/t0087a.sh	 Test the Fairchild Fairbug functionality

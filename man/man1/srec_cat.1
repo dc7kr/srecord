@@ -87,16 +87,14 @@ A raw binary file will be written.
 A C array declaration will be written.
 The \fIidentifier\fP is the name of the variable to be defined.
 .TP 8n
+\fB\-COsmac\fP
+An RCA Cosmac Elf format file will be written.
+(See \fIsrec_cosmac\fP(5) for a description of this file format.)
+.TP 8n
 \fB\-Dec_Binary\fP
 A DEC Binary (XXDP) format file will be written.
 (See
 .IR srec_dec_binary (5)
-for a description of this file format.)
-.TP 8n
-\fB\-Four_Packed_Code\fP
-This option says to use the PFC format file when writing the file.
-(See
-.IR srec_fpd (5)
 for a description of this file format.)
 .TP 8n
 \fB\-Elektor_Monitor52\fP
@@ -105,11 +103,23 @@ This option says to use the EMON52 format file when writing the file.
 .IR srec_emon52 (5)
 for a description of this file format.)
 .TP 8n
+\fB\-FAIrchild\fP
+This option says to use the Fairchild Fairbug format file when writing the file.
+(See \fIsrec_fairchild\fP(5) for a description of this file format.)
+.TP 8n
 \fB\-Fast_Load\fP
 This option says to use the LSI Logic Fast Load format file when writing
 the file.
+(See \fIsrec_fastload\fP(5) for a description of this file format.)
+.TP 8n
+\fB\-Formatted_Binary\fP
+A Formatted Binary format file will be written.
+(See \fIsrec_formatted_binary\fP(5) for a description of this file format.)
+.TP 8n
+\fB\-Four_Packed_Code\fP
+This option says to use the PFC format file when writing the file.
 (See
-.IR srec_emon52 (5)
+.IR srec_fpd (5)
 for a description of this file format.)
 .TP 8n
 \fB\-Intel\fP
@@ -130,6 +140,11 @@ A Motorola S-Record file will be written.
 .IR srec_motorola (5)
 for a description of this file format.)
 This is the default.
+.TP 8n
+\fB\-Needham_Hexadecimal\fP
+This option says to use the Needham Electronics ASCII file format to
+write the file.  See \fIsrec_needham\fP(5) for a description of this
+file format.
 .TP 8n
 \fB\-Ohio_Scientific\fP
 This option says to use the Ohio Scientific hexadecimal format.
@@ -194,7 +209,7 @@ fully implement the format specification.
 .TP 8n
 \fB-Line_Length\fP \fInumber\fP
 This option may be used to limit the length of the output lines to at
-most \fInumber\P characters.  (Not meaningful for binary file format.)
+most \fInumber\fP characters.  (Not meaningful for binary file format.)
 Defaults to something less than 80 characters, depending on the format.
 .TP 8n
 \fB\-HEAder\fP \fIstring\fP

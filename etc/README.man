@@ -66,6 +66,9 @@ C
 It is also possible to write a C array declaration which contains the data.
 This can be useful when you want to embed download data into C programs.
 This format cannot be read.
+.TP 8n
+Cosmac
+The RCA Cosmac Elf format is understood for both reading and writing.
 .TP
 DEC Binary
 The DEC Binary (XXDP) format is understood for both reading and writing.
@@ -73,8 +76,14 @@ The DEC Binary (XXDP) format is understood for both reading and writing.
 Elektor Monitor (EMON52)
 The EMON52 format is understood for both reading and writing.
 .TP
+Fairchild Fairbug
+The Fairchild Fairbug format is understood for both reading and writing.
+.TP
 LSI Logic Fast Load
 The LSI Logic Fast Load format is understood for both reading and writing.
+.TP
+Formatted Binary
+The Formatted Binary format is understood for both reading and writing.
 .TP
 Four Packed Code (FPC)
 The FPC format is understood for both reading and writing.
@@ -92,6 +101,9 @@ The Motorola hexadecimal S-Record format is understood for both reading
 and writing.
 (Also known as the Exorciser, Exormacs or Exormax format.)
 .TP 8n
+The Needham Electronics ASCII file format is understood for noth reading
+and writing.
+.TP 8n
 OS65V
 The Ohio Scientific hexadecimal format is understood for both reading
 and writing.
@@ -102,6 +114,9 @@ The Signetics format is understood for both reading and writing.
 SPASM
 The SPASM format is used by a variety of PIC programmers; it is understood
 for both reading and writing.
+.TP 8n
+Spectrum
+The Spectrum format is understood for both reading and writing.
 .TP 8n
 Tektronix (Extended)
 The Tektronix hexadecimal format and the Tektronix Extended hexadecimal
@@ -136,7 +151,7 @@ or portions of EPROM load files, for equality.
 The \fIsrec_info\fP program may be used to print summary information
 about EPROM load files.
 .SS The Filters
-The \fISRecord\fP package is made more powerful by the concept of \fInput
+The \fISRecord\fP package is made more powerful by the concept of \fIinput
 filters\fP.  Wherever an input file may be specified, filters may also
 be applied to that input file.  The following filters are available:
 .TP 8n

@@ -29,16 +29,21 @@ using namespace std;
 #include <srec/input/file/ascii_hex.h>
 #include <srec/input/file/atmel_generic.h>
 #include <srec/input/file/binary.h>
+#include <srec/input/file/cosmac.h>
 #include <srec/input/file/dec_binary.h>
 #include <srec/input/file/emon52.h>
+#include <srec/input/file/fairchild.h>
 #include <srec/input/file/fastload.h>
+#include <srec/input/file/formatted_binary.h>
 #include <srec/input/file/four_packed_code.h>
 #include <srec/input/file/guess.h>
 #include <srec/input/file/intel.h>
 #include <srec/input/file/mos_tech.h>
+#include <srec/input/file/needham.h>
 #include <srec/input/file/os65v.h>
 #include <srec/input/file/signetics.h>
 #include <srec/input/file/spasm.h>
+#include <srec/input/file/spectrum.h>
 #include <srec/input/file/srecord.h>
 #include <srec/input/file/tektronix_extended.h>
 #include <srec/input/file/tektronix.h>
@@ -93,6 +98,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
 	{ "-BINary",	token_binary,		},
 	{ "-Byte_Swap",	token_byte_swap,	},
 	{ "-C_Array",	token_c_array,		},
+	{ "-COsmac",	token_cosmac,		},
 	{ "-CRop",	token_crop,		},
 	{ "-Big_Endian_Cyclic_Redundancy_Check_16", token_crc16_be, },
 	{ "-Little_Endian_Cyclic_Redundancy_Check_16", token_crc16_le,},
@@ -101,7 +107,9 @@ srec_arglex::srec_arglex(int argc, char **argv) :
 	{ "-Dec_Binary",	token_dec_binary, },
 	{ "-Elektor_Monitor52",	token_emon52,	},
 	{ "-Exclude",	token_exclude,		},
+	{ "-FAIrchild",	token_fairchild,	},
 	{ "-Fast_Load",	token_fast_load,	},
+	{ "-Formatted_Binary",	token_formatted_binary,	},
 	{ "-Fill",	token_fill,		},
 	{ "-Four_Packed_Code", token_four_packed_code, },
 	{ "-GUess",	token_guess,		},
@@ -119,6 +127,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
 	{ "-MOS_Technologies", token_mos_tech,	},
 	{ "-Motorola",	token_motorola,		},
 	{ "-MULTiple",	token_multiple,		},
+	{ "-Needham_Hexadecimal", token_needham_hex, },
 	{ "-NOT",	token_not,		},
 	{ "-OFfset",	token_offset,		},
 	{ "-Ohio_Scientific", token_ohio_scientific, },
@@ -136,6 +145,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
 	{ "-SPAsm",	token_spasm_be,		}, // is this right?
 	{ "-SPAsm_BigEndian", token_spasm_be,	},
 	{ "-SPAsm_LittleEndian", token_spasm_le, },
+	{ "-SPEctrum",  token_spectrum,		},
 	{ "-SPlit",	token_split,		},
 	{ "-S_record",	token_motorola,		},
 	{ "-Tektronix",	token_tektronix,	},
@@ -489,6 +499,11 @@ srec_arglex::get_input()
 	ifp = new srec_input_file_binary(fn);
 	break;
 
+    case token_cosmac:
+	token_next();
+	ifp = new srec_input_file_cosmac(fn);
+	break;
+
     case token_dec_binary:
 	token_next();
 	ifp = new srec_input_file_dec_binary(fn);
@@ -499,9 +514,19 @@ srec_arglex::get_input()
 	ifp = new srec_input_file_emon52(fn);
 	break;
 
+    case token_fairchild:
+	token_next();
+	ifp = new srec_input_file_fairchild(fn);
+	break;
+
     case token_fast_load:
 	token_next();
 	ifp = new srec_input_file_fastload(fn);
+	break;
+
+    case token_formatted_binary:
+	token_next();
+	ifp = new srec_input_file_formatted_binary(fn);
 	break;
 
     case token_four_packed_code:
@@ -529,6 +554,11 @@ srec_arglex::get_input()
 	ifp = new srec_input_file_os65v(fn);
 	break;
 
+    case token_needham_hex:
+	token_next();
+	ifp = new srec_input_file_needham(fn);
+	break;
+
     case token_signetics:
 	token_next();
 	ifp = new srec_input_file_signetics(fn);
@@ -542,6 +572,11 @@ srec_arglex::get_input()
     case token_spasm_le:
 	token_next();
 	ifp = new srec_input_file_spasm(fn, false);
+	break;
+
+    case token_spectrum:
+	token_next();
+	ifp = new srec_input_file_spectrum(fn);
 	break;
 
     case token_tektronix:

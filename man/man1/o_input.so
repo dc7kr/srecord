@@ -1,6 +1,6 @@
 .\"
 .\"	srecord - manipulate eprom load files
-.\"	Copyright (C) 1998-2002 Peter Miller;
+.\"	Copyright (C) 1998-2003 Peter Miller;
 .\"	All rights reserved.
 .\"
 .\"	This program is free software; you can redistribute it and/or modify
@@ -54,6 +54,10 @@ for a description of this file format.
 This option says the file is a raw binary file, and should be read literally.
 (May also be written \-Raw.)
 .TP 8n
+\fB\-COsmac\fP
+This option says to use the RCA Cosmac Elf format to read the file.
+See \fIsrec_cosmac\fP(5) for a description of this file format.
+.TP 8n
 \fB\-Dec_Binary\fP
 This option says to use the DEC Binary (XXDP) format to read the file.
 See \fIsrec_dec_binary\fP(5) for a description of this file format.
@@ -62,9 +66,17 @@ See \fIsrec_dec_binary\fP(5) for a description of this file format.
 This option says to use the EMON52 format to read the file.
 See \fIsrec_emon52\fP(5) for a description of this file format.
 .TP 8n
+\fB\-FAIrchild\fP
+This option says to use the Fairchild Fairbug format to read the file.
+See \fIsrec_fairchild\fP(5) for a description of this file format.
+.TP 8n
 \fB\-Fast_Load\fP
 This option says to use the LSI Logic Fast Load format to read the file.
 See \fIsrec_fastload\fP(5) for a description of this file format.
+.TP 8n
+\fB\-Formatted_Binary\fP
+This option says to use the Formatted Binary format to read the file.
+See \fIsrec_formatted_binary\fP(5) for a description of this file format.
 .TP 8n
 \fB\-Four_Packed_Code\fP
 This option says to use the FPC format to read the file.
@@ -93,6 +105,11 @@ This option says to use the Motorola S-Record format to read the file.
 See
 .IR srec_motorola (5)
 for a description of this file format.
+.TP 8n
+\fB\-Needham_Hexadecimal\fP
+This option says to use the Needham Electronics ASCII file format to
+read the file.  See \fIsrec_needham\fP(5) for a description of this
+file format.
 .TP 8n
 \fB\-Ohio_Scientific\fP
 This option says to use the Ohio Scientific format.
@@ -331,7 +348,8 @@ This inserts the length of the address range in the specified input file,
 ignoring any holes.  The input specification need not be just a file name,
 it may be anything any other input specification can be.
 .PP
-For example, the \fB-OVER \fIfile\fP option can be though of a short-hand for
+For example, the \fB-OVER\fP \fIfile\fP option can be thought of a
+short-hand for
 \fB( \-min\fP \fIfile\fP \fB\-max\fP \fIfile\fP \fB)\fPi, except that it is
 much easier to type, and also more efficient.
 .PP

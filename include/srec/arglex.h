@@ -52,6 +52,7 @@ public:
 	token_checksum_le_bitnot,
 	token_checksum_le_negative,
 	token_checksum_le_positive,
+	token_cosmac,
 	token_crc16_be,
 	token_crc16_le,
 	token_crc32_be,
@@ -60,8 +61,10 @@ public:
 	token_dec_binary,
 	token_emon52,
 	token_exclude,
+	token_fairchild,
 	token_fast_load,
 	token_fill,
+	token_formatted_binary,
 	token_four_packed_code,
 	token_guess,
 	token_intel,
@@ -77,6 +80,7 @@ public:
 	token_mos_tech,
 	token_motorola,
 	token_multiple,
+	token_needham_hex,
 	token_not,
 	token_offset,
 	token_ohio_scientific,
@@ -91,6 +95,7 @@ public:
 	token_signetics,
 	token_spasm_be,
 	token_spasm_le,
+	token_spectrum,
 	token_split,
 	token_tektronix,
 	token_tektronix_extended,
@@ -208,7 +213,7 @@ private:
       * not return.
       */
     void get_address_nbytes_width(const char *err_msg_caption,
-	    unsigned long &addr, int &nbytes, int &width);
+	unsigned long &addr, int &nbytes, int &width);
 
     /**
       * The stdin_used instance variable is used to remember whether

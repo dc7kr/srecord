@@ -11,6 +11,13 @@ T}	T{
 .ad l
 about eprom load files
 T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham - Needham EMP-series programmer
+T}	T{
+.ad l
+ASCII file format
+T}
 srec_ascii_hex(5)	\*[Page*Of*srec_ascii_hex(5)]	T{
 .ad r
 srec
@@ -38,6 +45,20 @@ srec atmel generic -
 T}	T{
 .ad l
 Atmel Generic file format
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+srec formatted binary - Formatted
+T}	T{
+.ad l
+Binary file format
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+srec formatted
+T}	T{
+.ad l
+binary - Formatted Binary file format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
@@ -74,6 +95,20 @@ T}	T{
 .ad l
 compare two eprom load files for equality
 T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+srec cosmac - RCA
+T}	T{
+.ad l
+Cosmac Elf file format
+T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+cosmac - RCA Cosmac Elf file format
+T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
 SRecord -
@@ -88,12 +123,26 @@ T}	T{
 .ad l
 Elektor Monitor (EMON52) file format
 T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+srec cosmac - RCA Cosmac
+T}	T{
+.ad l
+Elf file format
+T}
 srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
 .ad r
 SRecord - Elektor Monitor (
 T}	T{
 .ad l
 EMON52) file format
+T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham - Needham
+T}	T{
+.ad l
+EMP-series programmer ASCII file format
 T}
 srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 .ad r
@@ -137,6 +186,27 @@ T}	T{
 .ad l
 extended - Tektronix Extended hexadecimal file format
 T}
+srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
+.ad r
+srec fairchild - Fairchild
+T}	T{
+.ad l
+Fairbug file format
+T}
+srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
+.ad r
+srec fairchild -
+T}	T{
+.ad l
+Fairchild Fairbug file format
+T}
+srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+fairchild - Fairchild Fairbug file format
+T}
 srec_fastload(5)	\*[Page*Of*srec_fastload(5)]	T{
 .ad r
 srec fastload - LSI Logic
@@ -165,9 +235,30 @@ T}	T{
 .ad l
 file format
 T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+srec cosmac - RCA Cosmac Elf
+T}	T{
+.ad l
+file format
+T}
+srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
+.ad r
+srec fairchild - Fairchild Fairbug
+T}	T{
+.ad l
+file format
+T}
 srec_fastload(5)	\*[Page*Of*srec_fastload(5)]	T{
 .ad r
 srec fastload - LSI Logic Fast Load
+T}	T{
+.ad l
+file format
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+srec formatted binary - Formatted Binary
 T}	T{
 .ad l
 file format
@@ -182,6 +273,13 @@ T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
 srec motorola - Motorola S-Record hexadecimal
+T}	T{
+.ad l
+file format
+T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham - Needham EMP-series programmer ASCII
 T}	T{
 .ad l
 file format
@@ -217,6 +315,13 @@ T}
 srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 .ad r
 srec spasm - SPASM
+T}	T{
+.ad l
+file format
+T}
+srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
+.ad r
+srec spectrum - Spectrum
 T}	T{
 .ad l
 file format
@@ -298,9 +403,30 @@ T}	T{
 .ad l
 format
 T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+srec cosmac - RCA Cosmac Elf file
+T}	T{
+.ad l
+format
+T}
+srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
+.ad r
+srec fairchild - Fairchild Fairbug file
+T}	T{
+.ad l
+format
+T}
 srec_fastload(5)	\*[Page*Of*srec_fastload(5)]	T{
 .ad r
 srec fastload - LSI Logic Fast Load file
+T}	T{
+.ad l
+format
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+srec formatted binary - Formatted Binary file
 T}	T{
 .ad l
 format
@@ -315,6 +441,13 @@ T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
 srec motorola - Motorola S-Record hexadecimal file
+T}	T{
+.ad l
+format
+T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham - Needham EMP-series programmer ASCII file
 T}	T{
 .ad l
 format
@@ -354,6 +487,13 @@ T}	T{
 .ad l
 format
 T}
+srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
+.ad r
+srec spectrum - Spectrum file
+T}	T{
+.ad l
+format
+T}
 srec_tektronix_extended(5)	\*[Page*Of*srec_tektronix_extended(5)]	T{
 .ad r
 srec tektronix extended - Tektronix Extended hexadecimal file
@@ -388,6 +528,20 @@ srec intel - Intel Hexadecimal object file
 T}	T{
 .ad l
 format specification
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+srec formatted binary -
+T}	T{
+.ad l
+Formatted Binary file format
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+formatted binary - Formatted Binary file format
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
@@ -571,6 +725,20 @@ T}	T{
 .ad l
 Motorola S-Record hexadecimal file format
 T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham -
+T}	T{
+.ad l
+Needham EMP-series programmer ASCII file format
+T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+needham - Needham EMP-series programmer ASCII file format
+T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
 srec intel - Intel Hexadecimal
@@ -585,12 +753,33 @@ T}	T{
 .ad l
 packed code file format
 T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham - Needham EMP-series
+T}	T{
+.ad l
+programmer ASCII file format
+T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+srec cosmac -
+T}	T{
+.ad l
+RCA Cosmac Elf file format
+T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
 srec motorola - Motorola S-
 T}	T{
 .ad l
 Record hexadecimal file format
+T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+srec needham - Needham EMP-
+T}	T{
+.ad l
+series programmer ASCII file format
 T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r
@@ -620,6 +809,20 @@ T}	T{
 .ad l
 specification
 T}
+srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
+.ad r
+srec spectrum -
+T}	T{
+.ad l
+Spectrum file format
+T}
+srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+spectrum - Spectrum file format
+T}
 srec_ascii_hex(5)	\*[Page*Of*srec_ascii_hex(5)]	T{
 .ad r
 
@@ -648,12 +851,33 @@ T}	T{
 .ad l
 srec cmp - compare two eprom load files for equality
 T}
+srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec cosmac - RCA Cosmac Elf file format
+T}
+srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec fairchild - Fairchild Fairbug file format
+T}
 srec_fastload(5)	\*[Page*Of*srec_fastload(5)]	T{
 .ad r
 
 T}	T{
 .ad l
 srec fastload - LSI Logic Fast Load file format
+T}
+srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec formatted binary - Formatted Binary file format
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
@@ -682,6 +906,13 @@ srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 T}	T{
 .ad l
 srec motorola - Motorola S-Record hexadecimal file format
+T}
+srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec needham - Needham EMP-series programmer ASCII file format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
@@ -724,6 +955,13 @@ srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 T}	T{
 .ad l
 srec spasm - SPASM file format
+T}
+srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec spectrum - Spectrum file format
 T}
 srec_tektronix_extended(5)	\*[Page*Of*srec_tektronix_extended(5)]	T{
 .ad r

@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2000-2002 Peter Miller;
+//	Copyright (C) 2000-2003 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -26,14 +26,18 @@
 #include <srec/input/file/binary.h>
 #include <srec/input/file/dec_binary.h>
 #include <srec/input/file/emon52.h>
+#include <srec/input/file/fairchild.h>
 #include <srec/input/file/fastload.h>
+#include <srec/input/file/formatted_binary.h>
 #include <srec/input/file/four_packed_code.h>
 #include <srec/input/file/guess.h>
 #include <srec/input/file/intel.h>
 #include <srec/input/file/mos_tech.h>
+#include <srec/input/file/needham.h>
 #include <srec/input/file/os65v.h>
 #include <srec/input/file/signetics.h>
 #include <srec/input/file/spasm.h>
+#include <srec/input/file/spectrum.h>
 #include <srec/input/file/srecord.h>
 #include <srec/input/file/tektronix.h>
 #include <srec/input/file/tektronix_extended.h>
@@ -61,6 +65,12 @@ create_dec_binary(const char *fn)
 }
 
 static srec_input *
+create_formatted_binary(const char *fn)
+{
+    return new srec_input_file_formatted_binary(fn);
+}
+
+static srec_input *
 create_four_packed_code(const char *fn)
 {
     return new srec_input_file_four_packed_code(fn);
@@ -70,6 +80,12 @@ static srec_input *
 create_emon52(const char *fn)
 {
     return new srec_input_file_emon52(fn);
+}
+
+static srec_input *
+create_fairchild(const char *fn)
+{
+    return new srec_input_file_fairchild(fn);
 }
 
 static srec_input *
@@ -91,6 +107,12 @@ create_mos_tech(const char *fn)
 }
 
 static srec_input *
+create_needham(const char *fn)
+{
+    return new srec_input_file_needham(fn);
+}
+
+static srec_input *
 create_ohio_scientific(const char *fn)
 {
     return new srec_input_file_os65v(fn);
@@ -105,7 +127,15 @@ create_signetics(const char *fn)
 static srec_input *
 create_spasm(const char *fn)
 {
+    // don't we need to test the big-endian and little-endian forms?
+    // but they are indistinguishable.
     return new srec_input_file_spasm(fn);
+}
+
+static srec_input *
+create_spectrum(const char *fn)
+{
+    return new srec_input_file_spectrum(fn);
 }
 
 static srec_input *
@@ -147,13 +177,17 @@ static func_p table[] =
     create_atmel_generic,
     create_dec_binary,
     create_emon52,
+    create_fairchild,
     create_fastload,
+    create_formatted_binary,
     create_four_packed_code,
     create_intel,
     create_mos_tech,
+    create_needham,
     create_ohio_scientific,
     create_signetics,
     create_spasm,
+    create_spectrum,
     create_srecord,
     create_tektronix,
     create_tektronix_extended,

@@ -153,105 +153,114 @@ etc/BUILDING.txt: etc/BUILDING.man etc/version.so
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/BUILDING.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
+etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/README.dvi: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/README.txt: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/README.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
 etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/ref-parts.so \
+		etc/README.man etc/new.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
 		man/man1/srec_cat.1 man/man1/o_input.so \
 		man/man1/o_multiple.so man/man1/z_options.so \
 		man/man1/z_exit.so man/man1/z_copyright.so \
 		man/man1/srec_cmp.1 man/man1/srec_info.1 \
 		man/man1/srec_license.1 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
 		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fastload.5 man/man5/srec_fpc.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel.5 man/man5/srec_mos_tech.5 \
-		man/man5/srec_motorola.5 man/man5/srec_os65v.5 \
-		man/man5/srec_signetics.5 man/man5/srec_spasm.5 \
+		man/man5/srec_motorola.5 man/man5/srec_needham.5 \
+		man/man5/srec_os65v.5 man/man5/srec_signetics.5 \
+		man/man5/srec_spasm.5 man/man5/srec_spectrum.5 \
 		man/man5/srec_tektronix.5 \
 		man/man5/srec_tektronix_extended.5 \
 		man/man5/srec_ti_tagged.5 man/man5/srec_wilson.5 \
-		etc/new-file-format.so etc/ref-index.so 
+		etc/ref-index.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/reference.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/ref-parts.so \
+		etc/README.man etc/new.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
 		man/man1/srec_cat.1 man/man1/o_input.so \
 		man/man1/o_multiple.so man/man1/z_options.so \
 		man/man1/z_exit.so man/man1/z_copyright.so \
 		man/man1/srec_cmp.1 man/man1/srec_info.1 \
 		man/man1/srec_license.1 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
 		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fastload.5 man/man5/srec_fpc.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel.5 man/man5/srec_mos_tech.5 \
-		man/man5/srec_motorola.5 man/man5/srec_os65v.5 \
-		man/man5/srec_signetics.5 man/man5/srec_spasm.5 \
+		man/man5/srec_motorola.5 man/man5/srec_needham.5 \
+		man/man5/srec_os65v.5 man/man5/srec_signetics.5 \
+		man/man5/srec_spasm.5 man/man5/srec_spectrum.5 \
 		man/man5/srec_tektronix.5 \
 		man/man5/srec_tektronix_extended.5 \
 		man/man5/srec_ti_tagged.5 man/man5/srec_wilson.5 \
-		etc/new-file-format.so etc/ref-index.so 
+		etc/ref-index.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/reference.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/ref-parts.so \
+		etc/README.man etc/new.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
 		man/man1/srec_cat.1 man/man1/o_input.so \
 		man/man1/o_multiple.so man/man1/z_options.so \
 		man/man1/z_exit.so man/man1/z_copyright.so \
 		man/man1/srec_cmp.1 man/man1/srec_info.1 \
 		man/man1/srec_license.1 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
 		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fastload.5 man/man5/srec_fpc.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel.5 man/man5/srec_mos_tech.5 \
-		man/man5/srec_motorola.5 man/man5/srec_os65v.5 \
-		man/man5/srec_signetics.5 man/man5/srec_spasm.5 \
+		man/man5/srec_motorola.5 man/man5/srec_needham.5 \
+		man/man5/srec_os65v.5 man/man5/srec_signetics.5 \
+		man/man5/srec_spasm.5 man/man5/srec_spectrum.5 \
 		man/man5/srec_tektronix.5 \
 		man/man5/srec_tektronix_extended.5 \
 		man/man5/srec_ti_tagged.5 man/man5/srec_wilson.5 \
-		etc/new-file-format.so etc/ref-index.so 
+		etc/ref-index.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/reference.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
@@ -326,16 +335,21 @@ lib/srec/arglex.o: lib/srec/arglex.cc include/srec/arglex.h \
 		include/format_printf.h \
 		include/srec/input/file/atmel_generic.h \
 		include/srec/input/file/binary.h \
+		include/srec/input/file/cosmac.h \
 		include/srec/input/file/dec_binary.h \
 		include/srec/input/file/emon52.h \
+		include/srec/input/file/fairchild.h \
 		include/srec/input/file/fastload.h \
+		include/srec/input/file/formatted_binary.h \
 		include/srec/input/file/four_packed_code.h \
 		include/srec/input/file/guess.h \
 		include/srec/input/file/intel.h \
 		include/srec/input/file/mos_tech.h \
+		include/srec/input/file/needham.h \
 		include/srec/input/file/os65v.h \
 		include/srec/input/file/signetics.h \
 		include/srec/input/file/spasm.h \
+		include/srec/input/file/spectrum.h \
 		include/srec/input/file/srecord.h \
 		include/srec/input/file/tektronix_extended.h \
 		include/srec/input/file/tektronix.h \
@@ -378,15 +392,20 @@ lib/srec/arglex_output.o: lib/srec/arglex_output.cc \
 		include/srec/output/file/basic.h \
 		include/srec/output/file/binary.h \
 		include/srec/output/file/c.h \
+		include/srec/output/file/cosmac.h \
 		include/srec/output/file/dec_binary.h \
 		include/srec/output/file/emon52.h \
+		include/srec/output/file/fairchild.h \
 		include/srec/output/file/fastload.h \
+		include/srec/output/file/formatted_binary.h \
 		include/srec/output/file/four_packed_code.h \
 		include/srec/output/file/intel.h \
 		include/srec/output/file/mos_tech.h \
+		include/srec/output/file/needham.h \
 		include/srec/output/file/os65v.h \
 		include/srec/output/file/signetics.h \
 		include/srec/output/file/spasm.h \
+		include/srec/output/file/spectrum.h \
 		include/srec/output/file/srecord.h \
 		include/srec/output/file/tektronix_extended.h \
 		include/srec/output/file/tektronix.h \
@@ -435,6 +454,14 @@ lib/srec/input/file/binary.o: lib/srec/input/file/binary.cc \
 		-c lib/srec/input/file/binary.cc 
 	mv binary.o lib/srec/input/file/binary.o
 
+lib/srec/input/file/cosmac.o: lib/srec/input/file/cosmac.cc \
+		include/srec/input/file/cosmac.h \
+		include/srec/input/file.h include/srec/input.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
+		-c lib/srec/input/file/cosmac.cc 
+	mv cosmac.o lib/srec/input/file/cosmac.o
+
 lib/srec/input/file/dec_binary.o: lib/srec/input/file/dec_binary.cc \
 		include/srec/input/file/dec_binary.h \
 		include/srec/input/file.h include/srec/input.h \
@@ -451,6 +478,14 @@ lib/srec/input/file/emon52.o: lib/srec/input/file/emon52.cc \
 		-c lib/srec/input/file/emon52.cc 
 	mv emon52.o lib/srec/input/file/emon52.o
 
+lib/srec/input/file/fairchild.o: lib/srec/input/file/fairchild.cc \
+		include/srec/input/file/fairchild.h \
+		include/srec/input/file.h include/srec/input.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
+		-c lib/srec/input/file/fairchild.cc 
+	mv fairchild.o lib/srec/input/file/fairchild.o
+
 lib/srec/input/file/fastload.o: lib/srec/input/file/fastload.cc \
 		include/srec/input/file/fastload.h \
 		include/srec/input/file.h include/srec/input.h \
@@ -458,6 +493,15 @@ lib/srec/input/file/fastload.o: lib/srec/input/file/fastload.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
 		-c lib/srec/input/file/fastload.cc 
 	mv fastload.o lib/srec/input/file/fastload.o
+
+lib/srec/input/file/formatted_binary.o: \
+		lib/srec/input/file/formatted_binary.cc \
+		include/srec/input/file/formatted_binary.h \
+		include/srec/input/file.h include/srec/input.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
+		-c lib/srec/input/file/formatted_binary.cc 
+	mv formatted_binary.o lib/srec/input/file/formatted_binary.o
 
 lib/srec/input/file/four_packed_code.o: \
 		lib/srec/input/file/four_packed_code.cc \
@@ -477,14 +521,18 @@ lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc \
 		include/srec/input/file/binary.h \
 		include/srec/input/file/dec_binary.h \
 		include/srec/input/file/emon52.h \
+		include/srec/input/file/fairchild.h \
 		include/srec/input/file/fastload.h \
+		include/srec/input/file/formatted_binary.h \
 		include/srec/input/file/four_packed_code.h \
 		include/srec/input/file/guess.h \
 		include/srec/input/file/intel.h \
 		include/srec/input/file/mos_tech.h \
+		include/srec/input/file/needham.h \
 		include/srec/input/file/os65v.h \
 		include/srec/input/file/signetics.h \
 		include/srec/input/file/spasm.h \
+		include/srec/input/file/spectrum.h \
 		include/srec/input/file/srecord.h \
 		include/srec/input/file/tektronix.h \
 		include/srec/input/file/tektronix_extended.h \
@@ -510,6 +558,14 @@ lib/srec/input/file/mos_tech.o: lib/srec/input/file/mos_tech.cc \
 		-c lib/srec/input/file/mos_tech.cc 
 	mv mos_tech.o lib/srec/input/file/mos_tech.o
 
+lib/srec/input/file/needham.o: lib/srec/input/file/needham.cc \
+		include/srec/input/file/needham.h \
+		include/srec/input/file.h include/srec/input.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
+		-c lib/srec/input/file/needham.cc 
+	mv needham.o lib/srec/input/file/needham.o
+
 lib/srec/input/file/os65v.o: lib/srec/input/file/os65v.cc \
 		include/srec/input/file/os65v.h \
 		include/srec/input/file.h include/srec/input.h \
@@ -533,6 +589,14 @@ lib/srec/input/file/spasm.o: lib/srec/input/file/spasm.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
 		-c lib/srec/input/file/spasm.cc 
 	mv spasm.o lib/srec/input/file/spasm.o
+
+lib/srec/input/file/spectrum.o: lib/srec/input/file/spectrum.cc \
+		include/srec/input/file/spectrum.h \
+		include/srec/input/file.h include/srec/input.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
+		-c lib/srec/input/file/spectrum.cc 
+	mv spectrum.o lib/srec/input/file/spectrum.o
 
 lib/srec/input/file/srecord.o: lib/srec/input/file/srecord.cc \
 		include/srec/input/file/srecord.h \
@@ -878,6 +942,14 @@ lib/srec/output/file/c.o: lib/srec/output/file/c.cc include/interval.h \
 		-c lib/srec/output/file/c.cc 
 	mv c.o lib/srec/output/file/c.o
 
+lib/srec/output/file/cosmac.o: lib/srec/output/file/cosmac.cc \
+		include/srec/output/file/cosmac.h \
+		include/srec/output/file.h include/srec/output.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
+		-c lib/srec/output/file/cosmac.cc 
+	mv cosmac.o lib/srec/output/file/cosmac.o
+
 lib/srec/output/file/dec_binary.o: lib/srec/output/file/dec_binary.cc \
 		include/srec/output/file/dec_binary.h \
 		include/srec/output/file.h include/srec/output.h \
@@ -894,6 +966,14 @@ lib/srec/output/file/emon52.o: lib/srec/output/file/emon52.cc \
 		-c lib/srec/output/file/emon52.cc 
 	mv emon52.o lib/srec/output/file/emon52.o
 
+lib/srec/output/file/fairchild.o: lib/srec/output/file/fairchild.cc \
+		include/srec/output/file/fairchild.h \
+		include/srec/output/file.h include/srec/output.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
+		-c lib/srec/output/file/fairchild.cc 
+	mv fairchild.o lib/srec/output/file/fairchild.o
+
 lib/srec/output/file/fastload.o: lib/srec/output/file/fastload.cc \
 		include/srec/output/file/fastload.h \
 		include/srec/output/file.h include/srec/output.h \
@@ -901,6 +981,15 @@ lib/srec/output/file/fastload.o: lib/srec/output/file/fastload.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
 		-c lib/srec/output/file/fastload.cc 
 	mv fastload.o lib/srec/output/file/fastload.o
+
+lib/srec/output/file/formatted_binary.o: \
+		lib/srec/output/file/formatted_binary.cc \
+		include/srec/output/file/formatted_binary.h \
+		include/srec/output/file.h include/srec/output.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
+		-c lib/srec/output/file/formatted_binary.cc 
+	mv formatted_binary.o lib/srec/output/file/formatted_binary.o
 
 lib/srec/output/file/four_packed_code.o: \
 		lib/srec/output/file/four_packed_code.cc \
@@ -927,6 +1016,14 @@ lib/srec/output/file/mos_tech.o: lib/srec/output/file/mos_tech.cc \
 		-c lib/srec/output/file/mos_tech.cc 
 	mv mos_tech.o lib/srec/output/file/mos_tech.o
 
+lib/srec/output/file/needham.o: lib/srec/output/file/needham.cc \
+		include/srec/output/file/needham.h \
+		include/srec/output/file.h include/srec/output.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
+		-c lib/srec/output/file/needham.cc 
+	mv needham.o lib/srec/output/file/needham.o
+
 lib/srec/output/file/os65v.o: lib/srec/output/file/os65v.cc \
 		include/srec/output/file/os65v.h \
 		include/srec/output/file.h include/srec/output.h \
@@ -950,6 +1047,14 @@ lib/srec/output/file/spasm.o: lib/srec/output/file/spasm.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
 		-c lib/srec/output/file/spasm.cc 
 	mv spasm.o lib/srec/output/file/spasm.o
+
+lib/srec/output/file/spectrum.o: lib/srec/output/file/spectrum.cc \
+		include/srec/output/file/spectrum.h \
+		include/srec/output/file.h include/srec/output.h \
+		include/format_printf.h include/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
+		-c lib/srec/output/file/spectrum.cc 
+	mv spectrum.o lib/srec/output/file/spectrum.o
 
 lib/srec/output/file/srecord.o: lib/srec/output/file/srecord.cc \
 		include/srec/output/file/srecord.h \
@@ -1047,6 +1152,12 @@ $(mandir)/man5/srec_atmel_generic.5: man/man5/srec_atmel_generic.5 \
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
+$(mandir)/man5/srec_cosmac.5: man/man5/srec_cosmac.5 \
+		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
+	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_cosmac.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
 $(mandir)/man5/srec_dec_binary.5: man/man5/srec_dec_binary.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
 	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_dec_binary.5 > tmp
@@ -1058,9 +1169,22 @@ $(mandir)/man5/srec_emon52.5: man/man5/srec_emon52.5 man/man5/.mandir
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
+$(mandir)/man5/srec_fairchild.5: man/man5/srec_fairchild.5 \
+		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
+	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_fairchild.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
 $(mandir)/man5/srec_fastload.5: man/man5/srec_fastload.5 \
 		man/man5/.mandir 
 	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_fastload.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
+$(mandir)/man5/srec_formatted_binary.5: \
+		man/man5/srec_formatted_binary.5 \
+		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
+	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_formatted_binary.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
@@ -1087,6 +1211,12 @@ $(mandir)/man5/srec_motorola.5: man/man5/srec_motorola.5 \
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
+$(mandir)/man5/srec_needham.5: man/man5/srec_needham.5 \
+		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
+	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_needham.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
 $(mandir)/man5/srec_os65v.5: man/man5/srec_os65v.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
 	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_os65v.5 > tmp
@@ -1102,6 +1232,12 @@ $(mandir)/man5/srec_signetics.5: man/man5/srec_signetics.5 \
 $(mandir)/man5/srec_spasm.5: man/man5/srec_spasm.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
 	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_spasm.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
+$(mandir)/man5/srec_spectrum.5: man/man5/srec_spectrum.5 \
+		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
+	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_spectrum.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
@@ -1372,6 +1508,21 @@ t0080a: test/00/t0080a.sh all
 t0081a: test/00/t0081a.sh all
 	$(SH) test/00/t0081a.sh
 
+t0082a: test/00/t0082a.sh all
+	$(SH) test/00/t0082a.sh
+
+t0083a: test/00/t0083a.sh all
+	$(SH) test/00/t0083a.sh
+
+t0085a: test/00/t0085a.sh all
+	$(SH) test/00/t0085a.sh
+
+t0086a: test/00/t0086a.sh all
+	$(SH) test/00/t0086a.sh
+
+t0087a: test/00/t0087a.sh all
+	$(SH) test/00/t0087a.sh
+
 man/man1/.mandir: man/.mandir
 	-$(INSTALL) -m 0755 -d $(mandir)/man1
 	@-test -d $(mandir)/man1 && touch $@
@@ -1434,15 +1585,20 @@ lib_obj = lib/common/arglex.o lib/common/crc16.o lib/common/crc32.o \
 		lib/srec/input/file/ascii_hex.o \
 		lib/srec/input/file/atmel_generic.o \
 		lib/srec/input/file/binary.o \
+		lib/srec/input/file/cosmac.o \
 		lib/srec/input/file/dec_binary.o \
 		lib/srec/input/file/emon52.o \
+		lib/srec/input/file/fairchild.o \
 		lib/srec/input/file/fastload.o \
+		lib/srec/input/file/formatted_binary.o \
 		lib/srec/input/file/four_packed_code.o \
 		lib/srec/input/file/guess.o lib/srec/input/file/intel.o \
 		lib/srec/input/file/mos_tech.o \
+		lib/srec/input/file/needham.o \
 		lib/srec/input/file/os65v.o \
 		lib/srec/input/file/signetics.o \
 		lib/srec/input/file/spasm.o \
+		lib/srec/input/file/spectrum.o \
 		lib/srec/input/file/srecord.o \
 		lib/srec/input/file/tektronix.o \
 		lib/srec/input/file/tektronix_extended.o \
@@ -1479,15 +1635,20 @@ lib_obj = lib/common/arglex.o lib/common/crc16.o lib/common/crc32.o \
 		lib/srec/output/file/atmel_generic.o \
 		lib/srec/output/file/basic.o \
 		lib/srec/output/file/binary.o lib/srec/output/file/c.o \
+		lib/srec/output/file/cosmac.o \
 		lib/srec/output/file/dec_binary.o \
 		lib/srec/output/file/emon52.o \
+		lib/srec/output/file/fairchild.o \
 		lib/srec/output/file/fastload.o \
+		lib/srec/output/file/formatted_binary.o \
 		lib/srec/output/file/four_packed_code.o \
 		lib/srec/output/file/intel.o \
 		lib/srec/output/file/mos_tech.o \
+		lib/srec/output/file/needham.o \
 		lib/srec/output/file/os65v.o \
 		lib/srec/output/file/signetics.o \
 		lib/srec/output/file/spasm.o \
+		lib/srec/output/file/spectrum.o \
 		lib/srec/output/file/srecord.o \
 		lib/srec/output/file/tektronix.o \
 		lib/srec/output/file/tektronix_extended.o \
@@ -1519,7 +1680,8 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0051a t0052a t0053a t0055a t0056a t0057a t0058a t0059a \
 		t0060a t0061a t0062a t0063a t0065a t0066a t0067a t0068a \
 		t0069a t0070a t0071a t0072a t0073a t0075a t0076a t0077a \
-		t0078a t0079a t0080a t0081a 
+		t0078a t0079a t0080a t0081a t0082a t0083a t0085a t0086a \
+		t0087a 
 	@echo Passed All Tests
 
 clean-obj:
@@ -1533,15 +1695,19 @@ clean-obj:
 	rm -f lib/srec/arglex_output.o lib/srec/input.o
 	rm -f lib/srec/input/file.o lib/srec/input/file/ascii_hex.o
 	rm -f lib/srec/input/file/atmel_generic.o
-	rm -f lib/srec/input/file/binary.o
+	rm -f lib/srec/input/file/binary.o lib/srec/input/file/cosmac.o
 	rm -f lib/srec/input/file/dec_binary.o
 	rm -f lib/srec/input/file/emon52.o
+	rm -f lib/srec/input/file/fairchild.o
 	rm -f lib/srec/input/file/fastload.o
+	rm -f lib/srec/input/file/formatted_binary.o
 	rm -f lib/srec/input/file/four_packed_code.o
 	rm -f lib/srec/input/file/guess.o lib/srec/input/file/intel.o
-	rm -f lib/srec/input/file/mos_tech.o lib/srec/input/file/os65v.o
+	rm -f lib/srec/input/file/mos_tech.o
+	rm -f lib/srec/input/file/needham.o lib/srec/input/file/os65v.o
 	rm -f lib/srec/input/file/signetics.o
-	rm -f lib/srec/input/file/spasm.o lib/srec/input/file/srecord.o
+	rm -f lib/srec/input/file/spasm.o lib/srec/input/file/spectrum.o
+	rm -f lib/srec/input/file/srecord.o
 	rm -f lib/srec/input/file/tektronix.o
 	rm -f lib/srec/input/file/tektronix_extended.o
 	rm -f lib/srec/input/file/ti_tagged.o
@@ -1572,15 +1738,20 @@ clean-obj:
 	rm -f lib/srec/output/file/asm.o
 	rm -f lib/srec/output/file/atmel_generic.o
 	rm -f lib/srec/output/file/basic.o lib/srec/output/file/binary.o
-	rm -f lib/srec/output/file/c.o lib/srec/output/file/dec_binary.o
+	rm -f lib/srec/output/file/c.o lib/srec/output/file/cosmac.o
+	rm -f lib/srec/output/file/dec_binary.o
 	rm -f lib/srec/output/file/emon52.o
+	rm -f lib/srec/output/file/fairchild.o
 	rm -f lib/srec/output/file/fastload.o
+	rm -f lib/srec/output/file/formatted_binary.o
 	rm -f lib/srec/output/file/four_packed_code.o
 	rm -f lib/srec/output/file/intel.o
 	rm -f lib/srec/output/file/mos_tech.o
+	rm -f lib/srec/output/file/needham.o
 	rm -f lib/srec/output/file/os65v.o
 	rm -f lib/srec/output/file/signetics.o
 	rm -f lib/srec/output/file/spasm.o
+	rm -f lib/srec/output/file/spectrum.o
 	rm -f lib/srec/output/file/srecord.o
 	rm -f lib/srec/output/file/tektronix.o
 	rm -f lib/srec/output/file/tektronix_extended.o
@@ -1607,15 +1778,20 @@ install-man-yes: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man1/srec_license.1 \
 		$(mandir)/man5/srec_ascii_hex.5 \
 		$(mandir)/man5/srec_atmel_generic.5 \
+		$(mandir)/man5/srec_cosmac.5 \
 		$(mandir)/man5/srec_dec_binary.5 \
 		$(mandir)/man5/srec_emon52.5 \
+		$(mandir)/man5/srec_fairchild.5 \
 		$(mandir)/man5/srec_fastload.5 \
+		$(mandir)/man5/srec_formatted_binary.5 \
 		$(mandir)/man5/srec_fpc.5 $(mandir)/man5/srec_intel.5 \
 		$(mandir)/man5/srec_mos_tech.5 \
 		$(mandir)/man5/srec_motorola.5 \
+		$(mandir)/man5/srec_needham.5 \
 		$(mandir)/man5/srec_os65v.5 \
 		$(mandir)/man5/srec_signetics.5 \
 		$(mandir)/man5/srec_spasm.5 \
+		$(mandir)/man5/srec_spectrum.5 \
 		$(mandir)/man5/srec_tektronix.5 \
 		$(mandir)/man5/srec_tektronix_extended.5 \
 		$(mandir)/man5/srec_ti_tagged.5 \

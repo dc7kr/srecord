@@ -5,11 +5,11 @@
 #
 Summary: manipulate EPROM load files
 Name: srecord
-Version: 1.14
+Version: 1.15
 Release: 1
 Copyright: GPL
 Group: Development/Tools
-Source: http://srecord.sourceforge.net/srecord-1.14.tar.gz
+Source: http://srecord.sourceforge.net/srecord-1.15.tar.gz
 URL: http://srecord.sourceforge.net/
 BuildRoot: /tmp/srecord-build-root
 
@@ -57,16 +57,21 @@ make RPM_BUILD_ROOT=$RPM_BUILD_ROOT install
 /usr/man/man1/srec_license.1*
 /usr/man/man5/srec_ascii_hex.5*
 /usr/man/man5/srec_atmel_generic.5*
+/usr/man/man5/srec_cosmac.5*
 /usr/man/man5/srec_dec_binary.5*
 /usr/man/man5/srec_emon52.5*
+/usr/man/man5/srec_fairchild.5*
 /usr/man/man5/srec_fastload.5*
+/usr/man/man5/srec_formatted_binary.5*
 /usr/man/man5/srec_fpc.5*
 /usr/man/man5/srec_intel.5*
 /usr/man/man5/srec_mos_tech.5*
 /usr/man/man5/srec_motorola.5*
+/usr/man/man5/srec_needham.5*
 /usr/man/man5/srec_os65v.5*
 /usr/man/man5/srec_signetics.5*
 /usr/man/man5/srec_spasm.5*
+/usr/man/man5/srec_spectrum.5*
 /usr/man/man5/srec_tektronix.5*
 /usr/man/man5/srec_tektronix_extended.5*
 /usr/man/man5/srec_ti_tagged.5*

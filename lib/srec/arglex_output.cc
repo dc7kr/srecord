@@ -27,15 +27,20 @@
 #include <srec/output/file/basic.h>
 #include <srec/output/file/binary.h>
 #include <srec/output/file/c.h>
+#include <srec/output/file/cosmac.h>
 #include <srec/output/file/dec_binary.h>
 #include <srec/output/file/emon52.h>
+#include <srec/output/file/fairchild.h>
 #include <srec/output/file/fastload.h>
+#include <srec/output/file/formatted_binary.h>
 #include <srec/output/file/four_packed_code.h>
 #include <srec/output/file/intel.h>
 #include <srec/output/file/mos_tech.h>
+#include <srec/output/file/needham.h>
 #include <srec/output/file/os65v.h>
 #include <srec/output/file/signetics.h>
 #include <srec/output/file/spasm.h>
+#include <srec/output/file/spectrum.h>
 #include <srec/output/file/srecord.h>
 #include <srec/output/file/tektronix_extended.h>
 #include <srec/output/file/tektronix.h>
@@ -113,6 +118,11 @@ srec_arglex::get_output()
 	ofp = new srec_output_file_binary(fn);
 	break;
 
+    case token_cosmac:
+	token_next();
+	ofp = new srec_output_file_cosmac(fn);
+	break;
+
     case token_dec_binary:
 	token_next();
 	ofp = new srec_output_file_dec_binary(fn);
@@ -123,9 +133,19 @@ srec_arglex::get_output()
 	ofp = new srec_output_file_emon52(fn);
 	break;
 
+    case token_fairchild:
+	token_next();
+	ofp = new srec_output_file_fairchild(fn);
+	break;
+
     case token_fast_load:
 	token_next();
 	ofp = new srec_output_file_fastload(fn);
+	break;
+
+    case token_formatted_binary:
+	token_next();
+	ofp = new srec_output_file_formatted_binary(fn);
 	break;
 
     case token_four_packed_code:
@@ -141,6 +161,11 @@ srec_arglex::get_output()
     case token_mos_tech:
 	token_next();
 	ofp = new srec_output_file_mos_tech(fn);
+	break;
+
+    case token_needham_hex:
+	token_next();
+	ofp = new srec_output_file_needham(fn);
 	break;
 
     case token_ohio_scientific:
@@ -161,6 +186,11 @@ srec_arglex::get_output()
     case token_spasm_le:
 	token_next();
 	ofp = new srec_output_file_spasm(fn, false);
+	break;
+
+    case token_spectrum:
+	token_next();
+	ofp = new srec_output_file_spectrum(fn);
 	break;
 
     case token_tektronix:
