@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2000-2004 Peter Miller;
+//	Copyright (C) 2004 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -17,31 +17,16 @@
 //	along with this program; if not, write to the Free Software
 //	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the srec_cat_arglex3 class
+// MANIFEST: interface definition for include/r250.cc
 //
 
-#pragma implementation "srec_cat_arglex3"
+#ifndef INCLUDE_R250_H
+#define INCLUDE_R250_H
 
-#include <arglex3.h>
+/**
+  * The r250 function is used to produce a 32-bit random number.
+  * It repeats every 2**256 samples, long enough for most purposes.
+  */
+unsigned long r250(void);
 
-
-srec_cat_arglex3::srec_cat_arglex3(int argc, char **argv) :
-	srec_arglex(argc, argv)
-{
-	static const table_ty table[] =
-	{
-		{ "-Address_Length", token_address_length, },
-		{ "-Data_Only", token_data_only, },
-		{ "-Line_Length", token_line_length, },
-		{ "-HEAder", token_header, },
-		{ "-Start_Address", token_start_address, },
-		ARGLEX_END_MARKER
-	};
-
-	table_set(table);
-}
-
-
-srec_cat_arglex3::~srec_cat_arglex3()
-{
-}
+#endif // INCLUDE_R250_H

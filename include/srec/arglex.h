@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2003 Peter Miller;
+//	Copyright (C) 1998-2004 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -38,6 +38,7 @@ public:
     enum
     {
 	token_and = arglex::token_MAX,
+	token_aomf,
 	token_ascii_hex,
 	token_asm_db,
 	token_atmel_generic_be,
@@ -90,6 +91,7 @@ public:
 	token_over,
 	token_paren_begin,
 	token_paren_end,
+	token_random_fill,
 	token_round_down,
 	token_round_nearest,
 	token_round_up,
@@ -143,18 +145,18 @@ public:
       */
     class srec_output *get_output();
 
+    /**
+      * The get_number method is used to parse a numeric value fromthe
+      * command line.
+      */
+    unsigned long get_number(const char *caption);
+
 private:
     /**
       * The can_get_number method is used to determine if it is possible
       * to parse a number from the next token on the command line.
       */
     bool can_get_number() const;
-
-    /**
-      * The get_number method is used to parse a numeric value fromthe
-      * command line.
-      */
-    unsigned long get_number(const char *caption);
 
     /**
       * The get_interval_inner method is used to parse a single

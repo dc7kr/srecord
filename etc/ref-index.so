@@ -11,6 +11,13 @@ T}	T{
 .ad l
 about eprom load files
 T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+SRecord - Intel
+T}	T{
+.ad l
+Absolute Object Module Format
+T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
 srec needham - Needham EMP-series programmer
@@ -319,6 +326,13 @@ T}	T{
 .ad l
 file format
 T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec os65v - OS65V Loader
+T}	T{
+.ad l
+file format
+T}
 srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 .ad r
 srec spasm - SPASM
@@ -494,9 +508,23 @@ T}	T{
 .ad l
 format
 T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+SRecord - Intel Absolute Object Module
+T}	T{
+.ad l
+Format
+T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r
 SRecord - Signetics file
+T}	T{
+.ad l
+format
+T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec os65v - OS65V Loader file
 T}	T{
 .ad l
 format
@@ -676,6 +704,13 @@ T}	T{
 .ad l
 intel16 - Intel Hexadecimal 16-bit file format specification
 T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+SRecord -
+T}	T{
+.ad l
+Intel Absolute Object Module Format
+T}
 srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
 .ad r
 srec intel16 -
@@ -696,6 +731,13 @@ srec
 T}	T{
 .ad l
 intel - Intel Hexadecimal object file format specification
+T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec os65v - OS65V
+T}	T{
+.ad l
+Loader file format
 T}
 srec_fastload(5)	\*[Page*Of*srec_fastload(5)]	T{
 .ad r
@@ -745,6 +787,13 @@ srec cat -
 T}	T{
 .ad l
 manipulate eprom load files
+T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+SRecord - Intel Absolute Object
+T}	T{
+.ad l
+Module Format
 T}
 srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
 .ad r
@@ -801,6 +850,27 @@ srec intel - Intel Hexadecimal
 T}	T{
 .ad l
 object file format specification
+T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+SRecord - Intel Absolute
+T}	T{
+.ad l
+Object Module Format
+T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec os65v -
+T}	T{
+.ad l
+OS65V Loader file format
+T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+os65v - OS65V Loader file format
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
@@ -1012,12 +1082,26 @@ T}	T{
 .ad l
 S-Record hexadecimal file format
 T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+SRecord - Intel Absolute Object Module Format
+T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r
 
 T}	T{
 .ad l
 SRecord - Signetics file format
+T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec os65v - OS65V Loader file format
 T}
 srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 .ad r
@@ -1145,6 +1229,13 @@ T}	T{
 .ad l
 two eprom load files for equality
 T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec os65v - OS65
+T}	T{
+.ad l
+V Loader file format
+T}
 srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
 .ad r
 srec vmem -
@@ -1158,6 +1249,13 @@ srec
 T}	T{
 .ad l
 vmem - vmem file format
+T}
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
+.ad r
+srec os65
+T}	T{
+.ad l
+v - OS65V Loader file format
 T}
 srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 .ad r

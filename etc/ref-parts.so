@@ -2,6 +2,7 @@
 .so man/man1/srec_cmp.1
 .so man/man1/srec_info.1
 .so man/man1/srec_license.1
+.so man/man5/srec_aomf.5
 .so man/man5/srec_ascii_hex.5
 .so man/man5/srec_atmel_generic.5
 .so man/man5/srec_cosmac.5

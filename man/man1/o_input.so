@@ -1,6 +1,6 @@
 .\"
 .\"	srecord - manipulate eprom load files
-.\"	Copyright (C) 1998-2003 Peter Miller;
+.\"	Copyright (C) 1998-2004 Peter Miller;
 .\"	All rights reserved.
 .\"
 .\"	This program is free software; you can redistribute it and/or modify
@@ -37,6 +37,10 @@ The
 is specified by the argument \fIafter\fP the file name.
 The format defaults to Motorola S-Record if not specified.
 The format specified are:
+.TP 8n
+\fB\-Absolute_Object_Module_Format\fP
+This option says to use the Intel Absolute Object Module Format (AOMF) to read
+the file.  (See \fIsrec_aomf\fP(5) for a description of this file format.)
 .TP 8n
 \fB\-Ascii-Hex\fP
 This option says to use the Ascii-Hex format to read the file.
@@ -239,6 +243,10 @@ This filter may be used to create gaps in the data with bytes equal
 to \fIvalue\fP.  You can think of it as reversing the effects of the
 \fB\-Fill\fP filter.  The gaps will only be created if the are at least
 \fImin-run-length\fP bytes in a row (defaults to 1).
+.TP 8n
+\fB\-Random_Fill\fP \fIaddress-range\fP
+This filter may be used to fill any gaps in the data with random bytes.
+The fill will only occur in the address range given.
 .TP 8n
 \fB\-AND\fP \fIvalue\fP
 This filter may be used to bit-wise AND a \fIvalue\fP to every data byte.

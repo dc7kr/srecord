@@ -71,6 +71,10 @@ DESCRIPTION
        Intel   The Intel hexadecimal format is understood for both reading and
                writing.  (Also known as the Intel MCS-86 Object format.)
 
+       Intel AOMF
+               The Intel Absolute Object Module Format (AOMF) is understood
+               for both reading and writing.
+
        Intel 16
                The Intel hexadecimal 16 format is understood for both reading
                and writing.  (Also known as the INHX16 file format.)
@@ -156,6 +160,11 @@ DESCRIPTION
 
        CRC     The crc filters may be used to insert a CRC into the data.
 
+       checksum
+               The checksum filters may be used to insert a checksum into the
+               data.  Positive, negative and bit-not checksums are available,
+               as well as big-endian and little-endian byte orders.
+
        crop    The crop filter may be used to isolate an input address range,
                or ranges, and discard the rest.
 
@@ -164,6 +173,13 @@ DESCRIPTION
 
        fill    The fill filter may be used to fill any holes in the data with
                a nominated value.
+
+       unfill  The unfill filter may be used to make holes in the data at
+               bytes with a nominated value.
+
+       random fill
+               The random fill filter may be used to fill holes in the data
+               with random byte values.
 
        length  The length filter may be used to insert the data length into
                the data.
@@ -192,12 +208,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.18.README   # Description, from the tar file
-           File:   srecord-1.18.lsm      # Description, LSM format
-           File:   srecord-1.18.spec     # RedHat package specification
-
-           File:   srecord-1.18.tar.gz   # the complete source
-           File:   srecord-1.18.pdf      # Reference Manual
+           File:   srecord-1.19.README   # Description, from the tar file
+           File:   srecord-1.19.lsm      # Description, LSM format
+           File:   srecord-1.19.spec     # RedHat package specification
+           File:   srecord-1.19.tar.gz   # the complete source
+           File:   srecord-1.19.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -206,11 +221,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.18.README   # Description, from the tar file
-           File:   srecord-1.18.lsm      # Description, LSM format
-           File:   srecord-1.18.spec     # RedHat package specification
-           File:   srecord-1.18.tar.gz   # the complete source
-           File:   srecord-1.18.pdf      # Reference Manual
+           File:   srecord-1.19.README   # Description, from the tar file
+           File:   srecord-1.19.lsm      # Description, LSM format
+           File:   srecord-1.19.spec     # RedHat package specification
+           File:   srecord-1.19.tar.gz   # the complete source
+           File:   srecord-1.19.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -240,7 +255,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.18
+       srecord version 1.19
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004 Peter Miller;
        All rights reserved.
 
@@ -269,6 +284,16 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.19 (3-Jan-2004)
+       * It is now possible to set the start address in the output using the
+       srec_cat -Start_Address command line option.
+
+       * The Intel Absolute Object Module Format is now supported for reading
+       and writing.
+
+       * There is a new srec_cat -Random_Fill filter, like the srec_cat -Fill
+       filter except that it uses random values.
 
    Version 1.18 (1-Jan-2004)
        * The VMEM format is now able to output data for 64 and 128 bits wide
