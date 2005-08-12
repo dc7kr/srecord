@@ -1,6 +1,6 @@
 .\"
 .\"	srecord - manipulate eprom load files
-.\"	Copyright (C) 1998-2004 Peter Miller;
+.\"	Copyright (C) 1998-2005 Peter Miller;
 .\"	All rights reserved.
 .\"
 .\"	This program is free software; you can redistribute it and/or modify
@@ -24,7 +24,7 @@ Input files may be qualified in a number of ways: you may specify their
 format and you may specify filters to apply to them.
 An input file specification looks like this:
 .RS
-\fIfilename\fP [ \fIformat\fP ][ \fIfilter\fP \&... ]
+\fIfilename\fP [ \fIformat\fP ][ \-ignore-checksums ][ \fIfilter\fP \&... ]
 .RE
 .PP
 The
@@ -109,12 +109,20 @@ See
 .IR srec_mos_tech (5)
 for a description of this file format.
 .TP 8n
-\fB\-Motorola\fP
+\fB\-Motorola\fP [ \fIwidth\fP ]
+.RS
 This option says to use the Motorola S-Record format to read the file.
 (May also be written \-S-Record.)
 See
 .IR srec_motorola (5)
 for a description of this file format.
+.PP
+The optional \fIwidth\fP argument describes the number of bytes which
+form each address multiple.  For normal uses the default of one (1) byte
+is appropriate.  Some systems with 16-bit or 32-bit targets mutilate the
+addresses in the file; this option will correct for that.
+Unlike most other parameters, this one cannot be guessed.
+.RE
 .TP 8n
 \fB\-Needham_Hexadecimal\fP
 This option says to use the Needham Electronics ASCII file format to
@@ -171,6 +179,8 @@ This option says to use the wilson format to read the file.
 See
 .IR srec_wilson (5)
 for a description of this file format.
+.SS Ignore Checksums
+.so o_ignore_checksums.so
 .SS Input Filters
 You may specify zero or more \fIfilters\fP to be applied.
 Filters are applied in the order the user specifies.
@@ -209,8 +219,13 @@ checksum of the data into the data.  Otherwise similar to the above.
 This filter may be used to insert the simple checksum of the data into
 the data.  Otherwise similar to the above.
 .TP 8n
-\fB\-Byte_Swap\fP
+\fB\-Byte_Swap\fP [ \fIwidth\fP ]
 This filter may be used to swap pairs of odd and even bytes.
+By specifying a width (in bytes) it is possible to reverse the order
+of 4 and 8 bytes, the default is 2 bytes.  (Widths in excess of 8 are
+assumed to be number of bits.)
+It is not possuble to swap non-power-of-two addresses.
+To change the alignment, use the offset filter before and after.
 .TP 8n
 \fB\-Big_Endian_CRC16\fP \fIaddress\fP
 This filter may be used to insert an industry standard 16-bit CRC checksum

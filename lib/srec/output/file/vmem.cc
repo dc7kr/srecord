@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2000-2004 Peter Miller;
+//	Copyright (C) 2000-2005 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -23,8 +23,18 @@
 #pragma implementation "srec_output_file_vmem"
 
 #include <cctype>
+#include <srec/arglex.h>
 #include <srec/output/file/vmem.h>
 #include <srec/record.h>
+
+
+//
+// The default number of bits is 32.
+// If you change this, you must also change the following files:
+//     lib/srec/output/file/vmem.cc
+//     man/man1/srec_cat.1
+//
+#define DEFAULT_MEM_WIDTH 32
 
 
 //
@@ -65,7 +75,6 @@ calc_width_shift(int x)
     }
 
     //
-    //
     // The default number of bits is 32.
     // If you change this, you must also change the following files:
     //     man/man1/srec_cat.1
@@ -82,15 +91,28 @@ calc_width_mask(int x)
 }
 
 
-srec_output_file_vmem::srec_output_file_vmem(const char *filename,
-                                             const int memory_width) :
+srec_output_file_vmem::srec_output_file_vmem(const char *filename) :
     srec_output_file(filename),
     address(0),
     column(0),
     pref_block_size(16),
-    width_shift(calc_width_shift(memory_width)),
-    width_mask(calc_width_mask(memory_width))
+    width_shift(calc_width_shift(DEFAULT_MEM_WIDTH)),
+    width_mask(calc_width_mask(DEFAULT_MEM_WIDTH))
 {
+}
+
+
+void
+srec_output_file_vmem::command_line(srec_arglex *cmdln)
+{
+    if (cmdln->token_cur() == arglex::token_number)
+    {
+	int n = cmdln->value_number();
+	cmdln->token_next();
+
+	width_shift = calc_width_shift(n);
+	width_mask = calc_width_mask(n);
+    }
 }
 
 
@@ -170,6 +192,11 @@ srec_output_file_vmem::write_byte_at(unsigned long new_addr, unsigned value)
 	    write_byte(0xFF);
 	else
 	{
+	    if (column)
+	    {
+		put_char('\n');
+		column = 0;
+	    }
 	    // Round down, which provokes the beginning padding, when required.
 	    unsigned long zero = new_addr & ~(unsigned long)width_mask;
 	    if (address == zero)

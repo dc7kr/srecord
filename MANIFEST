@@ -27,7 +27,7 @@ etc/README.man	 source of the README file
 etc/archive.cook	 How to build the release sets
 etc/autoconf.cook	 instructions to cook, how to use GNU Autoconf
 etc/change_log.man	 source of the README file
-etc/configure.in	 how to configure srecord, input to the GNU autoconf program
+etc/configure.ac	 how to configure srecord, input to the GNU autoconf program
 etc/documentation.cook	 instructions to Cook: how to build the documentation
 etc/download.html	 input for archive/srecord.html
 etc/doxygen.cfg	 etc/doxygen.cfg
@@ -50,6 +50,7 @@ etc/new.1.19.so	 description of new 1.19 features
 etc/new.1.2.so	 description of new 1.2 features
 etc/new.1.20.so	 description of new 1.20 features
 etc/new.1.21.so	 description of new 1.21 features
+etc/new.1.22.so	 description of new 1.22 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
 etc/new.1.5.so	 description of new 1.5 features
@@ -294,6 +295,7 @@ lib/srec/output/file/vhdl.cc	 functions to impliment the srec_output_file_vhdl c
 lib/srec/output/file/vmem.cc	 functions to impliment the srec_output_file_vmem class
 lib/srec/output/file/wilson.cc	 functions to impliment the srec_output_file_wilson class
 lib/srec/record.cc	 functions to impliment the srec_record class
+man/man1/o_ignore_checksums.so	 man/man1/o_ignore_checksums.so
 man/man1/o_input.so	 describe input file specifiers
 man/man1/o_multiple.so	 document describing the -multiple option
 man/man1/srec_cat.1	 manual entry for the srec_cat command
@@ -415,3 +417,7 @@ test/00/t0092a.sh	 Test the AOMF functionality
 test/00/t0093a.sh	 Test the AOMF functionality
 test/00/t0095a.sh	 Test the stewie functionality
 test/00/t0096a.sh	 Test the CRLF functionality
+test/00/t0097a.sh	 Test the basic srecord functionality
+test/00/t0098a.sh	 Test the vmem functionality
+test/00/t0099a.sh	 Test the motorola address shift functionality
+test/01/t0100a.sh	 Test the byte swap filter functionality

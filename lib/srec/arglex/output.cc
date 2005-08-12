@@ -91,7 +91,7 @@ srec_arglex::get_output()
     //
     // determine the file format
     //
-    srec_output *ofp;
+    srec_output *ofp = 0;
     switch (token_cur())
     {
     case token_motorola:
@@ -138,15 +138,8 @@ srec_arglex::get_output()
 	break;
 
     case token_c_array:
-	{
-		const char *prefix = "eprom";
-		if (token_next() == token_string)
-		{
-			prefix = value_string();
-			token_next();
-		}
-		ofp = new srec_output_file_c(fn, prefix);
-	}
+	token_next();
+	ofp = new srec_output_file_c(fn);
 	break;
 
     case token_cosmac:
@@ -250,39 +243,13 @@ srec_arglex::get_output()
 	break;
 
     case token_vhdl:
-	{
-		const char *prefix = "eprom";
-		int bytes_per_word = 1;
-		if (token_next() == token_number)
-		{
-			bytes_per_word = value_number();
-		}
-		if (token_next() == token_string)
-		{
-			prefix = value_string();
-			token_next();
-		}
-		ofp = new srec_output_file_vhdl(fn, bytes_per_word, prefix);
-	}
+	token_next();
+	ofp = new srec_output_file_vhdl(fn);
 	break;
 
     case token_vmem:
-	{
-	    //
-	    // The default number of bits is 32.
-	    // If you change this, you must also change the following files:
-	    //     lib/srec/output/file/vmem.cc
-	    //     man/man1/srec_cat.1
-	    //
-	    int mem_width = 32;
-
-	    if (token_next() == token_number)
-	    {
-		mem_width = value_number();
-		token_next();
-	    }
-	    ofp = new srec_output_file_vmem(fn, mem_width);
-	}
+	token_next();
+	ofp = new srec_output_file_vmem(fn);
 	break;
 
     case token_wilson:
@@ -290,6 +257,12 @@ srec_arglex::get_output()
 	ofp = new srec_output_file_wilson(fn);
 	break;
     }
+
+    //
+    // Parse extra command line options for this format, if any.
+    //
+    //assert(ofp);
+    ofp->command_line(this);
 
     //
     // return the stream determined

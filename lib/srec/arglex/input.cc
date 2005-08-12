@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2004 Peter Miller;
+//	Copyright (C) 1998-2005 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -261,6 +261,20 @@ srec_arglex::get_input()
     }
 
     //
+    // Process any additional format-specfic command line options.
+    //
+    ifp->command_line(this);
+
+    //
+    // Ignore checksums if asked to.
+    //
+    if (token_cur() == token_ignore_checksums)
+    {
+	ifp->disable_checksum_validation();
+	token_next();
+    }
+
+    //
     // apply any filters specified
     //
     for (;;)
@@ -270,12 +284,12 @@ srec_arglex::get_input()
 	case token_byte_swap:
 	    token_next();
 	    ifp = new srec_input_filter_byte_swap(ifp);
-	    continue;
+	    break;
 
 	case token_not:
 	    token_next();
 	    ifp = new srec_input_filter_not(ifp);
-	    continue;
+	    break;
 
 	case token_crc16_be:
 	    {
@@ -284,7 +298,7 @@ srec_arglex::get_input()
 		get_address("-Big_Endian_CRC16", address);
 		ifp = new srec_input_filter_crc16(ifp, address, 0);
 	    }
-	    continue;
+	    break;
 
 	case token_crc16_le:
 	    {
@@ -293,7 +307,7 @@ srec_arglex::get_input()
 		get_address("-Little_Endian_CRC16", address);
 		ifp = new srec_input_filter_crc16(ifp, address, 1);
 	    }
-	    continue;
+	    break;
 
 	case token_crc32_be:
 	    {
@@ -302,7 +316,7 @@ srec_arglex::get_input()
 		get_address("-Big_Endian_CRC32", address);
 		ifp = new srec_input_filter_crc32(ifp, address, 0);
 	    }
-	    continue;
+	    break;
 
 	case token_crc32_le:
 	    {
@@ -311,18 +325,17 @@ srec_arglex::get_input()
 		get_address("-Little_Endian_CRC32", address);
 		ifp = new srec_input_filter_crc32(ifp, address, 1);
 	    }
-	    continue;
+	    break;
 
 	case token_crop:
 	    token_next();
-	    ifp = new srec_input_filter_crop(ifp,
-		    get_interval("-Crop"));
-	    continue;
+	    ifp = new srec_input_filter_crop(ifp, get_interval("-Crop"));
+	    break;
 
 	case token_exclude:
 	    token_next();
 	    ifp = new srec_input_filter_crop(ifp, -get_interval("-Exclude"));
-	    continue;
+	    break;
 
 	case token_fill:
 	    {
@@ -342,7 +355,7 @@ srec_arglex::get_input()
 		interval range = get_interval("-Fill");
 		ifp = new srec_input_filter_fill(ifp, filler, range);
 	    }
-	    continue;
+	    break;
 
 	case token_random_fill:
 	    {
@@ -350,7 +363,7 @@ srec_arglex::get_input()
 		interval range = get_interval("-Random_Fill");
 		ifp = new srec_input_filter_random_fill(ifp, range);
 	    }
-	    continue;
+	    break;
 
 	case token_and:
 	    {
@@ -369,7 +382,7 @@ srec_arglex::get_input()
 		}
 		ifp = new srec_input_filter_and(ifp, filler);
 	    }
-	    continue;
+	    break;
 
 	case token_xor:
 	    {
@@ -388,7 +401,7 @@ srec_arglex::get_input()
 		}
 		ifp = new srec_input_filter_xor(ifp, filler);
 	    }
-	    continue;
+	    break;
 
 	case token_or:
 	    {
@@ -407,7 +420,7 @@ srec_arglex::get_input()
 		}
 		ifp = new srec_input_filter_or(ifp, filler);
 	    }
-	    continue;
+	    break;
 
 	case token_length:
 	    cerr << "Use --big-endian-length or --little-endian-length" << endl;
@@ -421,7 +434,7 @@ srec_arglex::get_input()
 		get_address_and_nbytes("-Big_Endian_Length", address, nbytes);
 		ifp = new srec_input_filter_length(ifp, address, nbytes, 0);
 	    }
-	    continue;
+	    break;
 
 	case token_length_le:
 	    {
@@ -436,7 +449,7 @@ srec_arglex::get_input()
 		);
 		ifp = new srec_input_filter_length(ifp, address, nbytes, 1);
 	    }
-	    continue;
+	    break;
 
 	case token_maximum:
 	    cerr << "Use --big-endian-maximum or --little-endian-maximum"
@@ -451,7 +464,7 @@ srec_arglex::get_input()
 		get_address_and_nbytes("-Big_Endian_MAximum", address, nbytes);
 		ifp = new srec_input_filter_maximum(ifp, address, nbytes, 0);
 	    }
-	    continue;
+	    break;
 
 	case token_maximum_le:
 	    {
@@ -466,7 +479,7 @@ srec_arglex::get_input()
 		);
 		ifp = new srec_input_filter_maximum(ifp, address, nbytes, 1);
 	    }
-	    continue;
+	    break;
 
 	case token_minimum:
 	    cerr << "Use --big-endian-minimum or --little-endian-minimum"
@@ -481,7 +494,7 @@ srec_arglex::get_input()
 		get_address_and_nbytes("-Big_Endian_MInimum", address, nbytes);
 		ifp = new srec_input_filter_minimum(ifp, address, nbytes, 0);
 	    }
-	    continue;
+	    break;
 
 	case token_minimum_le:
 	    {
@@ -496,7 +509,7 @@ srec_arglex::get_input()
 		);
 		ifp = new srec_input_filter_minimum(ifp, address, nbytes, 1);
 	    }
-	    continue;
+	    break;
 
 	case token_checksum_be_bitnot:
 	    {
@@ -520,7 +533,7 @@ srec_arglex::get_input()
 			width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_checksum_le_bitnot:
 	    {
@@ -544,7 +557,7 @@ srec_arglex::get_input()
 		       	width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_checksum_be_negative:
 	    {
@@ -568,7 +581,7 @@ srec_arglex::get_input()
 			width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_checksum_le_negative:
 	    {
@@ -592,7 +605,7 @@ srec_arglex::get_input()
 		       	width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_checksum_be_positive:
 	    {
@@ -616,7 +629,7 @@ srec_arglex::get_input()
 		       	width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_checksum_le_positive:
 	    {
@@ -640,7 +653,7 @@ srec_arglex::get_input()
 		       	width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_offset:
 	    {
@@ -654,7 +667,7 @@ srec_arglex::get_input()
 		unsigned long amount = get_number("address offset");
 		ifp = new srec_input_filter_offset(ifp, amount);
 	    }
-	    continue;
+	    break;
 
 	case token_split:
 	    {
@@ -702,7 +715,7 @@ srec_arglex::get_input()
 			split_width
 		    );
 	    }
-	    continue;
+	    break;
 
 	case token_unfill:
 	    {
@@ -732,7 +745,7 @@ srec_arglex::get_input()
 		ifp =
 		    new srec_input_filter_unfill(ifp, fill_value, fill_minimum);
 	    }
-	    continue;
+	    break;
 
 	case token_unsplit:
 	    {
@@ -781,16 +794,19 @@ srec_arglex::get_input()
 			split_width
 		    );
 	    }
-	    continue;
+	    break;
 
 	default:
-	    break;
+	    //
+	    // return the input stream determined
+	    //
+	    return ifp;
 	}
-	break;
+
+	//
+	// Process any filter-specific command line options.
+	//
+	ifp->command_line(this);
     }
 
-    //
-    // return the input stream determined
-    //
-    return ifp;
 }

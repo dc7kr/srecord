@@ -89,9 +89,13 @@ A series of BASIC DATA statements will be written.
 \fB\-Binary\fP
 A raw binary file will be written.
 .TP 8n
-\fB\-C-Array\fP \fIidentifier\fP
+\fB\-C-Array\fP [ \fIidentifier\fP ][ \-INClude ][ \-No-CONST ]
 A C array declaration will be written.
 The \fIidentifier\fP is the name of the variable to be defined.
+The \-INClude options asks for an include file to be generated as well.
+The \-No-CONST options asks for the variables to not use the const
+keyword (they are declared contant be default, so that they are placed
+into the read-only segment in embedded systems).
 .TP 8n
 \fB\-COsmac\fP
 An RCA Cosmac Elf format file will be written.
@@ -143,7 +147,8 @@ An Mos Technologies format file will be written.
 .IR srec_mos_tech (5)
 for a description of this file format.)
 .TP 8n
-\fB\-Motorola\fP
+\fB\-Motorola\fP [ \fIwidth\fP ]
+.RS
 A Motorola S-Record file will be written.
 (See
 .IR srec_motorola (5)
@@ -153,6 +158,13 @@ By default, the smallest possible address length is emitted,
 this will be S19 for data in the first 64KB;
 if you wish to force S28 use the \fB--address-length=3\fP option;
 if you wish to force S37 use the \fB--address-length=4\fP option
+.PP
+The optional \fIwidth\fP argument describes the number of bytes which
+form each address multiple.  For normal uses the default of one (1) byte
+is appropriate.  Some systems with 16-bit or 32-bit targets mutilate the
+addresses in the file; this option will imitate that ehaviour.
+Unlike most other parameters, this one cannot be guessed.
+.RE
 .TP 8n
 \fB\-Needham_Hexadecimal\fP
 This option says to use the Needham Electronics ASCII file format to
@@ -206,6 +218,7 @@ The \fIbytes-per-word\fP defaaults to one,
 the \fIname\fP defaults to \f[CW]eprom\fP.
 The \fIetc/x_defs_pack.vhd\fP file in the source distribution contains an
 example ROM definitions pack for the type-independent output.
+You may need to use the \-byte-swap filter to get the byte order you want.
 .TP 8n
 \fB\-VMem\fP [ \fImemory-width\fP ]
 A Verilog VMEM format file will be written.
@@ -218,6 +231,7 @@ The \fImemory-width\fP may be 8, 16, 32, 64 or 128 bits;
 .\"
 defaults to 32 if unspecified.
 (See \fIsrec_vmem\fP(5) for a description of this file format.)
+You may need to use the \-byte-swap filter to get the byte order you want.
 .TP 8n
 \fB\-WILson\fP
 A wilson format file will be written.
@@ -237,6 +251,9 @@ fully implement the format specification.
 This option may be used to suppress all output except data fields.
 This helps when talking to brain-dead EPROM programmers which do not
 fully implement the format specification.
+.TP 8n
+\fB\-IGnore_Checksums\fP
+.so o_ignore_checksums.so
 .TP 8n
 .B \-CRLF
 This option may be used to specify CRLF line termination for text

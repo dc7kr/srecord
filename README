@@ -208,11 +208,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.21.README   # Description, from the tar file
-           File:   srecord-1.21.lsm      # Description, LSM format
-           File:   srecord-1.21.spec     # RedHat package specification
-           File:   srecord-1.21.tar.gz   # the complete source
-           File:   srecord-1.21.pdf      # Reference Manual
+           File:   srecord-1.22.README   # Description, from the tar file
+           File:   srecord-1.22.lsm      # Description, LSM format
+           File:   srecord-1.22.spec     # RedHat package specification
+           File:   srecord-1.22.tar.gz   # the complete source
+           File:   srecord-1.22.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -221,11 +221,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.21.README   # Description, from the tar file
-           File:   srecord-1.21.lsm      # Description, LSM format
-           File:   srecord-1.21.spec     # RedHat package specification
-           File:   srecord-1.21.tar.gz   # the complete source
-           File:   srecord-1.21.pdf      # Reference Manual
+           File:   srecord-1.22.README   # Description, from the tar file
+           File:   srecord-1.22.lsm      # Description, LSM format
+           File:   srecord-1.22.spec     # RedHat package specification
+           File:   srecord-1.22.tar.gz   # the complete source
+           File:   srecord-1.22.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -255,7 +255,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.21
+       srecord version 1.22
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Peter
        Miller; All rights reserved.
 
@@ -284,6 +284,31 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.22 (12-Aug-2005)
+       * The -byte-swap filter now has an optional width argument, to specify
+       the address width to swap.  The default is two bytes.
+
+       * The motorola file format now accepts an additional 'width' command
+       line argument, so you can have 16-bit and 32-bit address multiples.
+
+       * A bug has been fixed in the VMEM output format. It was failing to
+       correctly set the next address in some cases.  This fixes SourceForge
+       bug 1119786.
+
+       * The -C-Array output format now uses the const keyword by default, you
+       can turn it off with the -no-const option.  The -C-Array output format
+       can now generate an additional include file if you use the -INClude
+       option.  This answers SourceForge feature request 942132.
+
+       * A fix for the "undefined symbols" problem when using g++ 3.x on
+       Cygwin and MacOsX has been added to the ./configure script.
+
+       * There is a new -ignore-checksum command line option.  The -ignore-
+       checksums option may be used to disable checksum validation of input
+       files, for those formats which have checksums at all.  Note that trhe
+       checksum values are still read in and parsed (so it is still an error
+       if they are missing) but their values are not checked.
 
    Version 1.21 (7-Feb-2005)
        * More Doxygen comments have been added to the class header files.

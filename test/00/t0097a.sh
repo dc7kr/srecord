@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #	srecord - manipulate eprom load files
-#	Copyright (C) 1998, 1999 Peter Miller;
+#	Copyright (C) 2005 Peter Miller;
 #	All rights reserved.
 #
 #	This program is free software; you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 #	along with this program; if not, write to the Free Software
 #	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 #
-# MANIFEST: Test the c-array format functionality
+# MANIFEST: Test the basic srecord functionality
 #
 here=`pwd`
 if test $? -ne 0 ; then exit 2; fi
@@ -36,7 +36,7 @@ fail()
 {
 	cd $here
 	rm -rf $work
-	echo 'FAILED test of the c-array format functionality'
+	echo 'FAILED test of the basic srecord functionality'
 	exit 1
 }
 
@@ -44,7 +44,7 @@ no_result()
 {
 	cd $here
 	rm -rf $work
-	echo 'NO RESULT for test of the c-array format functionality'
+	echo 'NO RESULT for test of the basic srecord functionality'
 	exit 2
 }
 
@@ -57,33 +57,24 @@ cd $work
 if test $? -ne 0; then no_result; fi
 
 cat > test.in << 'fubar'
-S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
-S5030001FB
-S9030000FC
+S006000048445200
+S1230000285F245F2212226A000424290008237C0002000800082629001853812341001800
+S117002041E900084E42234300182342000824A900144ED400
+S503000200
+S903000000
 fubar
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-/* HDR */
-const unsigned char bogus[] =
-{
-0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21,
-0x0A,
-};
-const unsigned long bogus_termination = 0x00000000;
-const unsigned long bogus_start       = 0x00000000;
-const unsigned long bogus_finish      = 0x0000000E;
-const unsigned long bogus_length      = 0x0000000E;
-
-#define BOGUS_TERMINATION 0x00000000
-#define BOGUS_START       0x00000000
-#define BOGUS_FINISH      0x0000000E
-#define BOGUS_LENGTH      0x0000000E
+S00600004844521B
+S1230000285F245F2212226A000424290008237C0002000800082629001853812341001851
+S117002041E900084E42234300182342000824A900144ED418
+S5030002FA
+S9030000FC
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -c-array bogus
+$bin/srec_cat test.in --ignore-checksums -o test.out
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out

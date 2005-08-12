@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #	srecord - manipulate eprom load files
-#	Copyright (C) 1998, 1999 Peter Miller;
+#	Copyright (C) 2005 Peter Miller;
 #	All rights reserved.
 #
 #	This program is free software; you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 #	along with this program; if not, write to the Free Software
 #	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 #
-# MANIFEST: Test the c-array format functionality
+# MANIFEST: Test the vmem functionality
 #
 here=`pwd`
 if test $? -ne 0 ; then exit 2; fi
@@ -36,7 +36,7 @@ fail()
 {
 	cd $here
 	rm -rf $work
-	echo 'FAILED test of the c-array format functionality'
+	echo 'FAILED test of the vmem functionality'
 	exit 1
 }
 
@@ -44,7 +44,7 @@ no_result()
 {
 	cd $here
 	rm -rf $work
-	echo 'NO RESULT for test of the c-array format functionality'
+	echo 'NO RESULT for test of the vmem functionality'
 	exit 2
 }
 
@@ -57,34 +57,29 @@ cd $work
 if test $? -ne 0; then no_result; fi
 
 cat > test.in << 'fubar'
-S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
-S5030001FB
-S9030000FC
+:1000A0000302050C3000800C010C2600E307560A01
+:1000B0000302020C2600030210022700E3075E0A77
+:0600C000F002530A500A91
+:0203FE00500AA3
+:00000001FF
 fubar
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-/* HDR */
-const unsigned char bogus[] =
-{
-0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x2C, 0x20, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21,
-0x0A,
-};
-const unsigned long bogus_termination = 0x00000000;
-const unsigned long bogus_start       = 0x00000000;
-const unsigned long bogus_finish      = 0x0000000E;
-const unsigned long bogus_length      = 0x0000000E;
-
-#define BOGUS_TERMINATION 0x00000000
-#define BOGUS_START       0x00000000
-#define BOGUS_FINISH      0x0000000E
-#define BOGUS_LENGTH      0x0000000E
+/* http://srecord.sourceforge.net/ */
+@00000050 0203 0C05 0030 0C80 0C01 0026 07E3 0A56
+@00000058 0203 0C02 0026 0203 0210 0027 07E3 0A5E
+@00000060 02F0 0A53 0A50
+@000001FF 0A50
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -c-array bogus
-if test $? -ne 0; then fail; fi
+$bin/srec_cat test.in -intel -byteswap -o test.out -vmem 16 > LOG 2>&1
+if test $? -ne 0
+then
+    cat LOG
+    fail
+fi
 
 diff test.ok test.out
 if test $? -ne 0; then fail; fi

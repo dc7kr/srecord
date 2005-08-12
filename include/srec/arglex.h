@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2004 Peter Miller;
+//	Copyright (C) 1998-2005 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -53,6 +53,8 @@ public:
 	token_checksum_le_bitnot,
 	token_checksum_le_negative,
 	token_checksum_le_positive,
+	token_constant,
+	token_constant_not,
 	token_cosmac,
 	token_crc16_be,
 	token_crc16_le,
@@ -68,6 +70,9 @@ public:
 	token_formatted_binary,
 	token_four_packed_code,
 	token_guess,
+	token_ignore_checksums,
+	token_include,
+	token_include_not,
 	token_intel,
 	token_intel16,
 	token_length,
@@ -152,13 +157,13 @@ public:
       */
     unsigned long get_number(const char *caption);
 
-private:
     /**
       * The can_get_number method is used to determine if it is possible
       * to parse a number from the next token on the command line.
       */
     bool can_get_number() const;
 
+private:
     /**
       * The get_interval_inner method is used to parse a single
       * interval from the command line (usually, a pair of number

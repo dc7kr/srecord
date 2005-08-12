@@ -1,4 +1,4 @@
-/* include/config.h.in.  Generated from etc/configure.in by autoheader.  */
+/* include/config.h.in.  Generated from etc/configure.ac by autoheader.  */
 
 /*
  *	srecord - manipulate eprom load files
