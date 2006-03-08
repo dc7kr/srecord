@@ -5,13 +5,15 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.23
+Version: 1.24
 Release: 1
 License: GPL
 Group: Development/Tools
 Source: http://srecord.sourceforge.net/%{name}-%{version}.tar.gz
 URL: http://srecord.sourceforge.net/
-BuildRoot: %{_tmppath}/%{name}-%{version}-root
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+BuildRequires:  diffutils, sharutils, groff
 
 %description
 The SRecord package is a collection of powerful tools for manipulating
@@ -39,26 +41,28 @@ file formats.
 
 %prep
 %setup -q
-%configure
 
 
 %build
+%configure
 make
 
 
 %install
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf "$RPM_BUILD_ROOT"
-%makeinstall
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
 
-strip $RPM_BUILD_ROOT%{_bindir}/*
+
+%check || :
+make sure
 
 
 %clean
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != / ] && rm -rf "$RPM_BUILD_ROOT"
+rm -rf $RPM_BUILD_ROOT
 
 
 %files
-%defattr (-,root,root)
+%defattr (-,root,root,-)
 %doc LICENSE BUILDING README
 %{_bindir}/srec_cat
 %{_bindir}/srec_cmp

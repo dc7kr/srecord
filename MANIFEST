@@ -1,7 +1,7 @@
 Filename	Description
 ----------	-------------
 MANIFEST	This file.
-config	 project configuration for Aegis
+aegis.conf	 project configuration for Aegis
 etc/BUILDING.man	 source of the BUILDING file
 etc/CHANGES.1.0	Change history of srecord
 etc/CHANGES.1.1	Change history of srecord
@@ -52,6 +52,7 @@ etc/new.1.20.so	 description of new 1.20 features
 etc/new.1.21.so	 description of new 1.21 features
 etc/new.1.22.so	 description of new 1.22 features
 etc/new.1.23.so	 description of new 1.23 features
+etc/new.1.24.so	 description of new 1.24 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
 etc/new.1.5.so	 description of new 1.5 features

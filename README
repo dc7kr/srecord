@@ -208,11 +208,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.23.README   # Description, from the tar file
-           File:   srecord-1.23.lsm      # Description, LSM format
-           File:   srecord-1.23.spec     # RedHat package specification
-           File:   srecord-1.23.tar.gz   # the complete source
-           File:   srecord-1.23.pdf      # Reference Manual
+           File:   srecord-1.24.README   # Description, from the tar file
+           File:   srecord-1.24.lsm      # Description, LSM format
+           File:   srecord-1.24.spec     # RedHat package specification
+           File:   srecord-1.24.tar.gz   # the complete source
+           File:   srecord-1.24.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -221,11 +221,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.23.README   # Description, from the tar file
-           File:   srecord-1.23.lsm      # Description, LSM format
-           File:   srecord-1.23.spec     # RedHat package specification
-           File:   srecord-1.23.tar.gz   # the complete source
-           File:   srecord-1.23.pdf      # Reference Manual
+           File:   srecord-1.24.README   # Description, from the tar file
+           File:   srecord-1.24.lsm      # Description, LSM format
+           File:   srecord-1.24.spec     # RedHat package specification
+           File:   srecord-1.24.tar.gz   # the complete source
+           File:   srecord-1.24.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -255,9 +255,9 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.23
-       Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005 Peter
-       Miller; All rights reserved.
+       srecord version 1.24
+       Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+       Peter Miller; All rights reserved.
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -279,11 +279,68 @@ AUTHOR
        Peter Miller   E-Mail:   millerp@canb.auug.org.au
        /\/\*          WWW:      http://www.canb.auug.org.au/~millerp/
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.24 (8-Mar-2006)
+       * Additional information has been added to the lseek error when they
+       try to seek to addresses >= 2**31
+
+       * The CRC 16 filters have been enhanced to accept an argument to
+       specify whether CCITT or XMODEM calculations are to be performed.
 
    Version 1.23 (23-Sep-2005)
        * A segfault has been fixed on x86_64 when running the regression test
