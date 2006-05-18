@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #	srecord - manipulate eprom load files
-#	Copyright (C) 2000, 2003, 2006 Peter Miller;
+#	Copyright (C) 2006 Peter Miller;
 #	All rights reserved.
 #
 #	This program is free software; you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 #	along with this program; if not, write to the Free Software
 #	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 #
-# MANIFEST: Test the mos-tech format functionality
+# MANIFEST: Test the srec_output_file_asm functionality
 #
 here=`pwd`
 if test $? -ne 0 ; then exit 2; fi
@@ -36,7 +36,7 @@ fail()
 {
 	cd $here
 	rm -rf $work
-	echo 'FAILED test of the mos-tech format functionality'
+	echo 'FAILED test of the srec_output_file_asm functionality'
 	exit 1
 }
 
@@ -44,7 +44,7 @@ no_result()
 {
 	cd $here
 	rm -rf $work
-	echo 'NO RESULT for test of the mos-tech format functionality'
+	echo 'NO RESULT for test of the srec_output_file_asm functionality'
 	exit 2
 }
 
@@ -56,50 +56,30 @@ if test $? -ne 0; then no_result; fi
 cd $work
 if test $? -ne 0; then no_result; fi
 
-# --------------------------------------------------------------------------
-#
-# make sure we can write the format
-#
 cat > test.in << 'fubar'
 S00600004844521B
 S111000048656C6C6F2C20576F726C64210A7B
 S5030001FB
-S9030000FC
 fubar
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-;0E000048656C6C6F2C20576F726C64210A0481
-;00
+; HDR
+; To avoid this next ORG directive, use the --offset -0x64 filter.
+	ORG	100
+	DB	72,101,108,108,111,44,32,87,111,114,108,100,33,10
+; To avoid this next ORG directive, use the --fill filter.
+	ORG	150
+	DB	72,101,108,108,111,44,32,87,111,114,108,100,33,10
+; upper bound = 0x00A4
+; lower bound = 0x0064
+; length =      0x0040
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -mos-tech
-if test $? -ne 0; then fail; fi
-
-diff test.ok test.out
-if test $? -ne 0; then fail; fi
-
-
-# --------------------------------------------------------------------------
-#
-# make sure we can read the format
-#
-cat > test.in << 'fubar'
-;0E000048656C6C6F2C20576F726C64210A0481
-;00
-fubar
-if test $? -ne 0; then no_result; fi
-
-cat > test.ok << 'fubar'
-S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
-S5030001FB
-fubar
-if test $? -ne 0; then no_result; fi
-
-$bin/srec_cat test.in -mos-tech -o test.out -header HDR
-if test $? -ne 0; then fail; fi
+$bin/srec_cat test.in -offset 100 test.in -offset 150 \
+	-o test.out -asm > log 2>&1
+if test $? -ne 0; then cat log; fail; fi
 
 diff test.ok test.out
 if test $? -ne 0; then fail; fi

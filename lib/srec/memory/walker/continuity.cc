@@ -1,6 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998, 1999, 2002, 2006 Peter Miller;
+//	Copyright (C) 2006 Peter Miller;
 //	All rights reserved.
 //
 //	This program is free software; you can redistribute it and/or modify
@@ -17,59 +17,47 @@
 //	along with this program; if not, write to the Free Software
 //	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the progname class
+// MANIFEST: functions to impliment the srec_memory_walker_continuity class
 //
 
-#include <cstring>
+#pragma implementation "srec_memory_walker_continuity"
 
-#include <progname.h>
-
-
-static char *progname;
+#include <srec/memory/walker/continuity.h>
 
 
-void
-progname_set(char *s)
+srec_memory_walker_continuity::~srec_memory_walker_continuity()
 {
-    for (;;)
-    {
-	char            *cp1;
-	char            *cp2;
-	
-	cp1 = strrchr(s, '/');
-	if (!cp1)
-	    cp1 = s;
-	else
-	{
-	    if (!cp1[1])
-	    {
-		*cp1 = 0;
-		continue;
-	    }
-	    ++cp1;
-	}
-
-	cp2 = strrchr(s, '\\');
-	if (!cp2)
-	    cp2 = s;
-	else
-	{
-	    if (!cp2[1])
-	    {
-		*cp2 = 0;
-		continue;
-	    }
-	    ++cp2;
-	}
-
-	progname = (cp1 > cp2 ? cp1 : cp2);
-	return;
-    }
 }
 
 
-const char *
-progname_get()
+srec_memory_walker_continuity::srec_memory_walker_continuity() :
+    current_address(0),
+    data_seen(false),
+    nholes(0)
 {
-    return (progname ? progname : "???");
+}
+
+
+void
+srec_memory_walker_continuity::observe(unsigned long addr, const void *data,
+    int nbytes)
+{
+    if (data_seen)
+    {
+	if (current_address != addr)
+	    ++nholes;
+    }
+    else
+    {
+	data_seen = true;
+    }
+    current_address = addr + nbytes;
+}
+
+
+bool
+srec_memory_walker_continuity::is_continuous()
+    const
+{
+    return (data_seen && nholes == 0);
 }

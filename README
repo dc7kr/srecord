@@ -208,11 +208,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.24.README   # Description, from the tar file
-           File:   srecord-1.24.lsm      # Description, LSM format
-           File:   srecord-1.24.spec     # RedHat package specification
-           File:   srecord-1.24.tar.gz   # the complete source
-           File:   srecord-1.24.pdf      # Reference Manual
+           File:   srecord-1.25.README   # Description, from the tar file
+           File:   srecord-1.25.lsm      # Description, LSM format
+           File:   srecord-1.25.spec     # RedHat package specification
+           File:   srecord-1.25.tar.gz   # the complete source
+           File:   srecord-1.25.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -221,11 +221,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.24.README   # Description, from the tar file
-           File:   srecord-1.24.lsm      # Description, LSM format
-           File:   srecord-1.24.spec     # RedHat package specification
-           File:   srecord-1.24.tar.gz   # the complete source
-           File:   srecord-1.24.pdf      # Reference Manual
+           File:   srecord-1.25.README   # Description, from the tar file
+           File:   srecord-1.25.lsm      # Description, LSM format
+           File:   srecord-1.25.spec     # RedHat package specification
+           File:   srecord-1.25.tar.gz   # the complete source
+           File:   srecord-1.25.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -255,7 +255,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.24
+       srecord version 1.25
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006
        Peter Miller; All rights reserved.
 
@@ -334,6 +334,13 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.25 (18-May-2006)
+       * The assembler output has been enhanced to produce ORG directives, if
+       necessary, to change the data address.
+
+       * The srec_cat(1) command now only writes a start address into the
+       output if there was a start address present in the input.
 
    Version 1.24 (8-Mar-2006)
        * Additional information has been added to the lseek error when they

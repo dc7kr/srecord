@@ -53,6 +53,7 @@ etc/new.1.21.so	 description of new 1.21 features
 etc/new.1.22.so	 description of new 1.22 features
 etc/new.1.23.so	 description of new 1.23 features
 etc/new.1.24.so	 description of new 1.24 features
+etc/new.1.25.so	 description of new 1.25 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
 etc/new.1.5.so	 description of new 1.5 features
@@ -151,6 +152,7 @@ include/srec/memory.h	 interface definition for lib/srec/memory.cc
 include/srec/memory/chunk.h	 interface definition for lib/srec/memory/chunk.cc
 include/srec/memory/walker.h	 interface definition for lib/srec/memory/walker.cc
 include/srec/memory/walker/compare.h	 interface definition for include/srec/memory/walker/compare.cc
+include/srec/memory/walker/continuity.h	 interface definition for include/srec/memory/walker/continuity.cc
 include/srec/memory/walker/crc16.h	 interface definition for include/srec/memory/walker/crc16.cc
 include/srec/memory/walker/crc32.h	 interface definition for include/srec/memory/walker/crc32.cc
 include/srec/memory/walker/writer.h	 interface definition for lib/srec/memory/walker/writer.cc
@@ -261,6 +263,7 @@ lib/srec/memory.cc	 functions to impliment the srec_memory class
 lib/srec/memory/chunk.cc	 functions to impliment the srec_memory_chunk class
 lib/srec/memory/walker.cc	 functions to impliment the srec_memory_walker class
 lib/srec/memory/walker/compare.cc	 functions to impliment the srec_memory_walker_compare class
+lib/srec/memory/walker/continuity.cc	 functions to impliment the srec_memory_walker_continuity class
 lib/srec/memory/walker/crc16.cc	 functions to impliment the srec_memory_walker_crc16 class
 lib/srec/memory/walker/crc32.cc	 functions to impliment the srec_memory_walker_crc32 class
 lib/srec/memory/walker/writer.cc	 functions to impliment the srec_memory_walker_writer class
@@ -423,3 +426,5 @@ test/00/t0097a.sh	 Test the basic srecord functionality
 test/00/t0098a.sh	 Test the vmem functionality
 test/00/t0099a.sh	 Test the motorola address shift functionality
 test/01/t0100a.sh	 Test the byte swap filter functionality
+test/01/t0101a.sh	 Test the intel hex functionality
+test/01/t0102a.sh	 Test the srec_output_file_asm functionality
