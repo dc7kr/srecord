@@ -54,6 +54,7 @@ etc/new.1.22.so	 description of new 1.22 features
 etc/new.1.23.so	 description of new 1.23 features
 etc/new.1.24.so	 description of new 1.24 features
 etc/new.1.25.so	 description of new 1.25 features
+etc/new.1.26.so	 description of new 1.26 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
 etc/new.1.5.so	 description of new 1.5 features
@@ -74,6 +75,7 @@ etc/spec.sh	 shell script to generate RedHat spec file
 etc/srecord.gif.uue	 srecord icon
 etc/srecord.lsm	 input for archive/srecord-N.N.lsm
 etc/ssp.awk	 awk script to supress multiple blank lines
+etc/tags.cook	 tags.cook
 etc/template/c	New file template.
 etc/template/cc	New file template.
 etc/template/generic	New file template.
@@ -428,3 +430,4 @@ test/00/t0099a.sh	 Test the motorola address shift functionality
 test/01/t0100a.sh	 Test the byte swap filter functionality
 test/01/t0101a.sh	 Test the intel hex functionality
 test/01/t0102a.sh	 Test the srec_output_file_asm functionality
+test/01/t0103a.sh	 Test the cmd line parsing functionality
