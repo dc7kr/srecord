@@ -1,7 +1,6 @@
 #
 #	srecord - manipulate eprom load files
-#	Copyright (C) 1998, 2002 Peter Miller;
-#	All rights reserved.
+#	Copyright (C) 1998, 2002, 2006 Peter Miller
 #
 #	This program is free software; you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -39,7 +38,7 @@
 #
 # The configure script generates 2 files:
 #	1. This Makefile
-#	2. common/config.h
+#	2. lib/config.h
 # If you change this Makefile, you may also need to change these files.
 # To see what is configured by the configure script, search for @ in the
 # Makefile.in file.
@@ -150,23 +149,10 @@ etc/BUILDING.dvi: etc/BUILDING.man etc/version.so
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/BUILDING.txt: etc/BUILDING.man etc/version.so
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/BUILDING.man | \
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/BUILDING.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
-		$(GROFF) -t -man > $@ 
-
-etc/README.dvi: etc/README.man etc/version.so etc/new.so \
+etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.27.so \
 		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
 		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
 		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
@@ -176,49 +162,76 @@ etc/README.dvi: etc/README.man etc/version.so etc/new.so \
 		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
 		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
 		etc/new.1.2.so etc/new.1.1.so 
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
+		$(GROFF) -t -man > $@ 
+
+etc/README.dvi: etc/README.man etc/version.so etc/new.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/README.txt: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/README.man | \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
 etc/change_log.ps: etc/change_log.man etc/version.so etc/new.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/change_log.dvi: etc/change_log.man etc/version.so etc/new.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/change_log.txt: etc/change_log.man etc/version.so etc/new.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
+		$(GROFF) -Tascii -t -man > $@ 
+
+etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
+		etc/README.man etc/new.so etc/new.1.27.so \
 		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
 		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
 		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
@@ -227,31 +240,18 @@ etc/change_log.txt: etc/change_log.man etc/version.so etc/new.so \
 		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
 		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
 		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/change_log.man | \
-		$(GROFF) -Tascii -t -man > $@ 
-
-etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
-		etc/ref-parts.so man/man1/srec_cat.1 \
-		man/man1/o_input.so man/man1/o_ignore_checksums.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
+		man/man1/srec_cat.1 man/man1/o_input.so \
+		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_info.1 man/man1/srec_license.1 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel16.5 man/man5/srec_intel.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
@@ -266,26 +266,27 @@ etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -t -man > $@ 
 
 etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
-		etc/ref-parts.so man/man1/srec_cat.1 \
-		man/man1/o_input.so man/man1/o_ignore_checksums.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
+		man/man1/srec_cat.1 man/man1/o_input.so \
+		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_info.1 man/man1/srec_license.1 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel16.5 man/man5/srec_intel.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
@@ -300,26 +301,27 @@ etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
-		etc/ref-parts.so man/man1/srec_cat.1 \
-		man/man1/o_input.so man/man1/o_ignore_checksums.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
+		man/man1/srec_cat.1 man/man1/o_input.so \
+		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_info.1 man/man1/srec_license.1 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel16.5 man/man5/srec_intel.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
@@ -330,1198 +332,1026 @@ etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
 		man/man5/srec_tektronix_extended.5 \
 		man/man5/srec_ti_tagged.5 man/man5/srec_vmem.5 \
 		man/man5/srec_wilson.5 etc/ref-index.so 
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. etc/reference.man | \
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/reference.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-lib/common/arglex.o: lib/common/arglex.cc include/arglex.h \
-		include/progname.h lib/common/versn_stamp.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/arglex.cc 
-	mv arglex.o lib/common/arglex.o
+lib/arglex.o: lib/arglex.cc lib/arglex.h lib/progname.h lib/quit.h \
+		lib/format_printf.h lib/versn_stamp.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/arglex.cc
+	mv arglex.o lib/arglex.o
 
-lib/common/crc16.o: lib/common/crc16.cc include/crc16.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/crc16.cc 
-	mv crc16.o lib/common/crc16.o
+lib/crc16.o: lib/crc16.cc lib/crc16.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/crc16.cc
+	mv crc16.o lib/crc16.o
 
-lib/common/crc32.o: lib/common/crc32.cc include/crc32.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/crc32.cc 
-	mv crc32.o lib/common/crc32.o
+lib/crc32.o: lib/crc32.cc lib/crc32.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/crc32.cc
+	mv crc32.o lib/crc32.o
 
-lib/common/interval.o: lib/common/interval.cc include/interval.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/interval.cc 
-	mv interval.o lib/common/interval.o
+lib/interval.o: lib/interval.cc lib/interval.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval.cc
+	mv interval.o lib/interval.o
 
-lib/common/progname.o: lib/common/progname.cc include/progname.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/progname.cc 
-	mv progname.o lib/common/progname.o
+lib/progname.o: lib/progname.cc lib/progname.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/progname.cc
+	mv progname.o lib/progname.o
 
-lib/common/quit.o: lib/common/quit.cc include/quit.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/quit.cc 
-	mv quit.o lib/common/quit.o
+lib/quit.o: lib/quit.cc lib/quit.h lib/format_printf.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit.cc
+	mv quit.o lib/quit.o
 
-lib/common/quit/exception.o: lib/common/quit/exception.cc \
-		include/quit/exception.h include/quit.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common/quit -Iinclude -c \
-		lib/common/quit/exception.cc 
-	mv exception.o lib/common/quit/exception.o
+lib/quit/exception.o: lib/quit/exception.cc lib/quit/exception.h \
+		lib/quit.h lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit/exception.cc
+	mv exception.o lib/quit/exception.o
 
-lib/common/quit/normal.o: lib/common/quit/normal.cc include/progname.h \
-		include/quit/normal.h include/quit.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common/quit -Iinclude -c \
-		lib/common/quit/normal.cc 
-	mv normal.o lib/common/quit/normal.o
+lib/quit/normal.o: lib/quit/normal.cc lib/progname.h lib/quit/normal.h \
+		lib/quit.h lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit/normal.cc
+	mv normal.o lib/quit/normal.o
 
-lib/common/quit/prefix.o: lib/common/quit/prefix.cc \
-		include/quit/prefix.h include/quit.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common/quit -Iinclude -c \
-		lib/common/quit/prefix.cc 
-	mv prefix.o lib/common/quit/prefix.o
+lib/quit/prefix.o: lib/quit/prefix.cc lib/quit/prefix.h lib/quit.h \
+		lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit/prefix.cc
+	mv prefix.o lib/quit/prefix.o
 
-lib/common/r250.o: lib/common/r250.cc include/r250.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/r250.cc 
-	mv r250.o lib/common/r250.o
+lib/r250.o: lib/r250.cc lib/r250.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/r250.cc
+	mv r250.o lib/r250.o
 
-lib/common/versn_stamp.o: lib/common/versn_stamp.cc \
-		lib/common/versn_stamp.h include/patchlevel.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/versn_stamp.cc 
-	mv versn_stamp.o lib/common/versn_stamp.o
-
-lib/common/vsnprintf.o: lib/common/vsnprintf.cc include/config.h \
-		include/config.messy.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/common -Iinclude -c \
-		lib/common/vsnprintf.cc 
-	mv vsnprintf.o lib/common/vsnprintf.o
-
-lib/srec/arglex.o: lib/srec/arglex.cc include/srec/arglex.h \
-		include/arglex.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec -Iinclude -c \
-		lib/srec/arglex.cc 
+lib/srec/arglex.o: lib/srec/arglex.cc lib/srec/arglex.h lib/arglex.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex.cc
 	mv arglex.o lib/srec/arglex.o
 
 lib/srec/arglex/get_interval.o: lib/srec/arglex/get_interval.cc \
-		include/interval.h include/srec/arglex.h \
-		include/arglex.h include/srec/input.h \
-		include/format_printf.h include/srec/input/interval.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/arglex -Iinclude -c \
-		lib/srec/arglex/get_interval.cc 
+		lib/interval.h lib/srec/arglex.h lib/arglex.h \
+		lib/srec/input.h lib/format_printf.h \
+		lib/srec/input/interval.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_interval.cc
 	mv get_interval.o lib/srec/arglex/get_interval.o
 
 lib/srec/arglex/get_number.o: lib/srec/arglex/get_number.cc \
-		include/interval.h include/srec/arglex.h \
-		include/arglex.h include/srec/input.h \
-		include/format_printf.h include/srec/input/interval.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/arglex -Iinclude -c \
-		lib/srec/arglex/get_number.cc 
+		lib/interval.h lib/srec/arglex.h lib/arglex.h \
+		lib/srec/input.h lib/format_printf.h \
+		lib/srec/input/interval.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_number.cc
 	mv get_number.o lib/srec/arglex/get_number.o
 
-lib/srec/arglex/input.o: lib/srec/arglex/input.cc include/srec/arglex.h \
-		include/arglex.h include/srec/input/file/aomf.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h \
-		include/srec/input/file/ascii_hex.h \
-		include/srec/input/file/atmel_generic.h \
-		include/srec/input/file/binary.h \
-		include/srec/input/file/cosmac.h \
-		include/srec/input/file/dec_binary.h \
-		include/srec/input/file/emon52.h \
-		include/srec/input/file/fairchild.h \
-		include/srec/input/file/fastload.h \
-		include/srec/input/file/formatted_binary.h \
-		include/srec/input/file/four_packed_code.h \
-		include/srec/input/file/guess.h \
-		include/srec/input/file/intel.h \
-		include/srec/input/file/intel16.h \
-		include/srec/input/file/mos_tech.h \
-		include/srec/input/file/needham.h \
-		include/srec/input/file/os65v.h \
-		include/srec/input/file/signetics.h \
-		include/srec/input/file/spasm.h \
-		include/srec/input/file/spectrum.h \
-		include/srec/input/file/srecord.h \
-		include/srec/input/file/stewie.h \
-		include/srec/input/file/tektronix_extended.h \
-		include/srec/input/file/tektronix.h \
-		include/srec/input/file/ti_tagged.h \
-		include/srec/input/file/vmem.h \
-		include/srec/input/file/wilson.h \
-		include/srec/input/filter/and.h \
-		include/srec/input/filter.h \
-		include/srec/input/filter/byte_swap.h \
-		include/srec/record.h \
-		include/srec/input/filter/checksum/bitnot.h \
-		include/srec/input/filter/checksum.h include/interval.h \
-		include/srec/input/filter/checksum/negative.h \
-		include/srec/input/filter/checksum/positive.h \
-		include/srec/input/filter/crc16.h \
-		include/srec/input/filter/crc32.h \
-		include/srec/input/filter/crop.h \
-		include/srec/input/filter/fill.h \
-		include/srec/input/filter/length.h \
-		include/srec/input/filter/maximum.h \
-		include/srec/input/filter/minimum.h \
-		include/srec/input/filter/not.h \
-		include/srec/input/filter/offset.h \
-		include/srec/input/filter/or.h \
-		include/srec/input/filter/random_fill.h \
-		include/srec/input/filter/split.h \
-		include/srec/input/filter/unfill.h \
-		include/srec/input/filter/unsplit.h \
-		include/srec/input/filter/xor.h \
-		include/srec/input/interval.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/arglex -Iinclude -c \
-		lib/srec/arglex/input.cc 
+lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/srec/arglex.h \
+		lib/arglex.h lib/srec/input/file/aomf.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/input/file/ascii_hex.h \
+		lib/srec/input/file/atmel_generic.h \
+		lib/srec/input/file/binary.h \
+		lib/srec/input/file/cosmac.h \
+		lib/srec/input/file/dec_binary.h \
+		lib/srec/input/file/emon52.h \
+		lib/srec/input/file/fairchild.h \
+		lib/srec/input/file/fastload.h \
+		lib/srec/input/file/formatted_binary.h \
+		lib/srec/input/file/four_packed_code.h \
+		lib/srec/input/file/guess.h lib/srec/input/file/intel.h \
+		lib/srec/input/file/intel16.h \
+		lib/srec/input/file/mos_tech.h \
+		lib/srec/input/file/needham.h \
+		lib/srec/input/file/os65v.h \
+		lib/srec/input/file/signetics.h \
+		lib/srec/input/file/spasm.h \
+		lib/srec/input/file/spectrum.h \
+		lib/srec/input/file/srecord.h \
+		lib/srec/input/file/stewie.h \
+		lib/srec/input/file/tektronix_extended.h \
+		lib/srec/input/file/tektronix.h \
+		lib/srec/input/file/ti_tagged.h \
+		lib/srec/input/file/vmem.h lib/srec/input/file/wilson.h \
+		lib/srec/input/filter/and.h lib/srec/input/filter.h \
+		lib/srec/input/filter/byte_swap.h lib/srec/record.h \
+		lib/srec/input/filter/checksum/bitnot.h \
+		lib/srec/input/filter/checksum.h lib/interval.h \
+		lib/srec/input/filter/checksum/negative.h \
+		lib/srec/input/filter/checksum/positive.h \
+		lib/srec/input/filter/crc16.h \
+		lib/srec/input/filter/crc32.h \
+		lib/srec/input/filter/crop.h \
+		lib/srec/input/filter/fill.h \
+		lib/srec/input/filter/length.h \
+		lib/srec/input/filter/maximum.h \
+		lib/srec/input/filter/minimum.h \
+		lib/srec/input/filter/not.h \
+		lib/srec/input/filter/offset.h \
+		lib/srec/input/filter/or.h \
+		lib/srec/input/filter/random_fill.h \
+		lib/srec/input/filter/sequence.h \
+		lib/srec/input/filter/split.h \
+		lib/srec/input/filter/unfill.h \
+		lib/srec/input/filter/unsplit.h \
+		lib/srec/input/filter/xor.h lib/srec/input/interval.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/input.cc
 	mv input.o lib/srec/arglex/input.o
 
-lib/srec/arglex/output.o: lib/srec/arglex/output.cc \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/output/file/aomf.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h \
-		include/srec/output/file/ascii_hex.h \
-		include/srec/output/file/asm.h include/interval.h \
-		include/srec/output/file/atmel_generic.h \
-		include/srec/output/file/basic.h \
-		include/srec/output/file/binary.h \
-		include/srec/output/file/c.h \
-		include/srec/output/file/cosmac.h \
-		include/srec/output/file/dec_binary.h \
-		include/srec/output/file/emon52.h \
-		include/srec/output/file/fairchild.h \
-		include/srec/output/file/fastload.h \
-		include/srec/output/file/formatted_binary.h \
-		include/srec/output/file/four_packed_code.h \
-		include/srec/output/file/intel.h \
-		include/srec/output/file/intel16.h \
-		include/srec/output/file/mos_tech.h \
-		include/srec/output/file/needham.h \
-		include/srec/output/file/os65v.h \
-		include/srec/output/file/signetics.h \
-		include/srec/output/file/spasm.h \
-		include/srec/output/file/spectrum.h \
-		include/srec/output/file/srecord.h \
-		include/srec/output/file/stewie.h \
-		include/srec/output/file/tektronix_extended.h \
-		include/srec/output/file/tektronix.h \
-		include/srec/output/file/ti_tagged.h \
-		include/srec/output/file/vhdl.h \
-		include/srec/output/file/vmem.h \
-		include/srec/output/file/wilson.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/arglex -Iinclude -c \
-		lib/srec/arglex/output.cc 
+lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/srec/arglex.h \
+		lib/arglex.h lib/srec/output/file/aomf.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/output/file/ascii_hex.h \
+		lib/srec/output/file/asm.h lib/interval.h \
+		lib/srec/output/file/atmel_generic.h \
+		lib/srec/output/file/basic.h \
+		lib/srec/output/file/binary.h lib/srec/output/file/c.h \
+		lib/srec/output/file/cosmac.h \
+		lib/srec/output/file/dec_binary.h \
+		lib/srec/output/file/emon52.h \
+		lib/srec/output/file/fairchild.h \
+		lib/srec/output/file/fastload.h \
+		lib/srec/output/file/formatted_binary.h \
+		lib/srec/output/file/four_packed_code.h \
+		lib/srec/output/file/intel.h \
+		lib/srec/output/file/intel16.h \
+		lib/srec/output/file/mos_tech.h \
+		lib/srec/output/file/needham.h \
+		lib/srec/output/file/os65v.h \
+		lib/srec/output/file/signetics.h \
+		lib/srec/output/file/spasm.h \
+		lib/srec/output/file/spectrum.h \
+		lib/srec/output/file/srecord.h \
+		lib/srec/output/file/stewie.h \
+		lib/srec/output/file/tektronix_extended.h \
+		lib/srec/output/file/tektronix.h \
+		lib/srec/output/file/ti_tagged.h \
+		lib/srec/output/file/vhdl.h lib/srec/output/file/vmem.h \
+		lib/srec/output/file/wilson.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/output.cc
 	mv output.o lib/srec/arglex/output.o
 
-lib/srec/input.o: lib/srec/input.cc include/srec/input.h \
-		include/format_printf.h include/srec/record.h \
-		include/quit/prefix.h include/quit.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec -Iinclude -c \
-		lib/srec/input.cc 
+lib/srec/input.o: lib/srec/input.cc lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h lib/quit/prefix.h \
+		lib/quit.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input.cc
 	mv input.o lib/srec/input.o
 
-lib/srec/input/file.o: lib/srec/input/file.cc include/srec/input/file.h \
-		include/srec/input.h include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input -Iinclude -c \
-		lib/srec/input/file.cc 
+lib/srec/input/file.o: lib/srec/input/file.cc lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file.cc
 	mv file.o lib/srec/input/file.o
 
 lib/srec/input/file/aomf.o: lib/srec/input/file/aomf.cc \
-		include/srec/input/file/aomf.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/aomf.cc 
+		lib/srec/input/file/aomf.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/aomf.cc
 	mv aomf.o lib/srec/input/file/aomf.o
 
 lib/srec/input/file/ascii_hex.o: lib/srec/input/file/ascii_hex.cc \
-		include/srec/input/file/ascii_hex.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/ascii_hex.cc 
+		lib/srec/input/file/ascii_hex.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ascii_hex.cc
 	mv ascii_hex.o lib/srec/input/file/ascii_hex.o
 
 lib/srec/input/file/atmel_generic.o: \
 		lib/srec/input/file/atmel_generic.cc \
-		include/srec/input/file/atmel_generic.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/atmel_generic.cc 
+		lib/srec/input/file/atmel_generic.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/file/atmel_generic.cc 
 	mv atmel_generic.o lib/srec/input/file/atmel_generic.o
 
 lib/srec/input/file/binary.o: lib/srec/input/file/binary.cc \
-		include/srec/input/file/binary.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/binary.cc 
+		lib/srec/input/file/binary.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/binary.cc
 	mv binary.o lib/srec/input/file/binary.o
 
 lib/srec/input/file/cosmac.o: lib/srec/input/file/cosmac.cc \
-		include/srec/input/file/cosmac.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/cosmac.cc 
+		lib/srec/input/file/cosmac.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/cosmac.cc
 	mv cosmac.o lib/srec/input/file/cosmac.o
 
 lib/srec/input/file/dec_binary.o: lib/srec/input/file/dec_binary.cc \
-		include/srec/input/file/dec_binary.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/dec_binary.cc 
+		lib/srec/input/file/dec_binary.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/dec_binary.cc
 	mv dec_binary.o lib/srec/input/file/dec_binary.o
 
 lib/srec/input/file/emon52.o: lib/srec/input/file/emon52.cc \
-		include/srec/input/file/emon52.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/emon52.cc 
+		lib/srec/input/file/emon52.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/emon52.cc
 	mv emon52.o lib/srec/input/file/emon52.o
 
 lib/srec/input/file/fairchild.o: lib/srec/input/file/fairchild.cc \
-		include/srec/input/file/fairchild.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/fairchild.cc 
+		lib/srec/input/file/fairchild.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/fairchild.cc
 	mv fairchild.o lib/srec/input/file/fairchild.o
 
 lib/srec/input/file/fastload.o: lib/srec/input/file/fastload.cc \
-		include/srec/input/file/fastload.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/fastload.cc 
+		lib/srec/input/file/fastload.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/fastload.cc
 	mv fastload.o lib/srec/input/file/fastload.o
 
 lib/srec/input/file/formatted_binary.o: \
 		lib/srec/input/file/formatted_binary.cc \
-		include/srec/input/file/formatted_binary.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/formatted_binary.cc 
+		lib/srec/input/file/formatted_binary.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/file/formatted_binary.cc 
 	mv formatted_binary.o lib/srec/input/file/formatted_binary.o
 
 lib/srec/input/file/four_packed_code.o: \
 		lib/srec/input/file/four_packed_code.cc \
-		include/srec/input/file/four_packed_code.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/four_packed_code.cc 
+		lib/srec/input/file/four_packed_code.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/file/four_packed_code.cc 
 	mv four_packed_code.o lib/srec/input/file/four_packed_code.o
 
 lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc \
-		include/quit/exception.h include/quit.h \
-		include/format_printf.h include/srec/input/file/aomf.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/srec/input/file/ascii_hex.h \
-		include/srec/input/file/atmel_generic.h \
-		include/srec/input/file/binary.h \
-		include/srec/input/file/dec_binary.h \
-		include/srec/input/file/emon52.h \
-		include/srec/input/file/fairchild.h \
-		include/srec/input/file/fastload.h \
-		include/srec/input/file/formatted_binary.h \
-		include/srec/input/file/four_packed_code.h \
-		include/srec/input/file/guess.h \
-		include/srec/input/file/intel.h \
-		include/srec/input/file/intel16.h \
-		include/srec/input/file/mos_tech.h \
-		include/srec/input/file/needham.h \
-		include/srec/input/file/os65v.h \
-		include/srec/input/file/signetics.h \
-		include/srec/input/file/spasm.h \
-		include/srec/input/file/spectrum.h \
-		include/srec/input/file/srecord.h \
-		include/srec/input/file/stewie.h \
-		include/srec/input/file/tektronix.h \
-		include/srec/input/file/tektronix_extended.h \
-		include/srec/input/file/ti_tagged.h \
-		include/srec/input/file/vmem.h \
-		include/srec/input/file/wilson.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/guess.cc 
+		lib/quit/exception.h lib/quit.h lib/format_printf.h \
+		lib/srec/input/file/aomf.h lib/srec/input/file.h \
+		lib/srec/input.h lib/srec/input/file/ascii_hex.h \
+		lib/srec/input/file/atmel_generic.h \
+		lib/srec/input/file/binary.h \
+		lib/srec/input/file/dec_binary.h \
+		lib/srec/input/file/emon52.h \
+		lib/srec/input/file/fairchild.h \
+		lib/srec/input/file/fastload.h \
+		lib/srec/input/file/formatted_binary.h \
+		lib/srec/input/file/four_packed_code.h \
+		lib/srec/input/file/guess.h lib/srec/input/file/intel.h \
+		lib/srec/input/file/intel16.h \
+		lib/srec/input/file/mos_tech.h \
+		lib/srec/input/file/needham.h \
+		lib/srec/input/file/os65v.h \
+		lib/srec/input/file/signetics.h \
+		lib/srec/input/file/spasm.h \
+		lib/srec/input/file/spectrum.h \
+		lib/srec/input/file/srecord.h \
+		lib/srec/input/file/stewie.h \
+		lib/srec/input/file/tektronix.h \
+		lib/srec/input/file/tektronix_extended.h \
+		lib/srec/input/file/ti_tagged.h \
+		lib/srec/input/file/vmem.h lib/srec/input/file/wilson.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/guess.cc
 	mv guess.o lib/srec/input/file/guess.o
 
 lib/srec/input/file/intel.o: lib/srec/input/file/intel.cc \
-		include/srec/input/file/intel.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/intel.cc 
+		lib/srec/input/file/intel.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/intel.cc
 	mv intel.o lib/srec/input/file/intel.o
 
 lib/srec/input/file/intel16.o: lib/srec/input/file/intel16.cc \
-		include/srec/input/file/intel16.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/intel16.cc 
+		lib/srec/input/file/intel16.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/intel16.cc
 	mv intel16.o lib/srec/input/file/intel16.o
 
 lib/srec/input/file/mos_tech.o: lib/srec/input/file/mos_tech.cc \
-		include/srec/input/file/mos_tech.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/mos_tech.cc 
+		lib/srec/input/file/mos_tech.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/mos_tech.cc
 	mv mos_tech.o lib/srec/input/file/mos_tech.o
 
 lib/srec/input/file/needham.o: lib/srec/input/file/needham.cc \
-		include/srec/input/file/needham.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/needham.cc 
+		lib/srec/input/file/needham.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/needham.cc
 	mv needham.o lib/srec/input/file/needham.o
 
 lib/srec/input/file/os65v.o: lib/srec/input/file/os65v.cc \
-		include/srec/input/file/os65v.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/os65v.cc 
+		lib/srec/input/file/os65v.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/os65v.cc
 	mv os65v.o lib/srec/input/file/os65v.o
 
 lib/srec/input/file/signetics.o: lib/srec/input/file/signetics.cc \
-		include/srec/input/file/signetics.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/signetics.cc 
+		lib/srec/input/file/signetics.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/signetics.cc
 	mv signetics.o lib/srec/input/file/signetics.o
 
 lib/srec/input/file/spasm.o: lib/srec/input/file/spasm.cc \
-		include/srec/input/file/spasm.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/spasm.cc 
+		lib/srec/input/file/spasm.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/spasm.cc
 	mv spasm.o lib/srec/input/file/spasm.o
 
 lib/srec/input/file/spectrum.o: lib/srec/input/file/spectrum.cc \
-		include/srec/input/file/spectrum.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/spectrum.cc 
+		lib/srec/input/file/spectrum.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/spectrum.cc
 	mv spectrum.o lib/srec/input/file/spectrum.o
 
 lib/srec/input/file/srecord.o: lib/srec/input/file/srecord.cc \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/input/file/srecord.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/srecord.cc 
+		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/input/file/srecord.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/srecord.cc
 	mv srecord.o lib/srec/input/file/srecord.o
 
 lib/srec/input/file/stewie.o: lib/srec/input/file/stewie.cc \
-		include/srec/input/file/stewie.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/stewie.cc 
+		lib/srec/input/file/stewie.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/stewie.cc
 	mv stewie.o lib/srec/input/file/stewie.o
 
 lib/srec/input/file/tektronix.o: lib/srec/input/file/tektronix.cc \
-		include/srec/input/file/tektronix.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/tektronix.cc 
+		lib/srec/input/file/tektronix.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/tektronix.cc
 	mv tektronix.o lib/srec/input/file/tektronix.o
 
 lib/srec/input/file/tektronix_extended.o: \
 		lib/srec/input/file/tektronix_extended.cc \
-		include/srec/input/file/tektronix_extended.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/tektronix_extended.cc 
+		lib/srec/input/file/tektronix_extended.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/file/tektronix_extended.cc 
 	mv tektronix_extended.o lib/srec/input/file/tektronix_extended.o
 
 lib/srec/input/file/ti_tagged.o: lib/srec/input/file/ti_tagged.cc \
-		include/srec/input/file/ti_tagged.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/ti_tagged.cc 
+		lib/srec/input/file/ti_tagged.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ti_tagged.cc
 	mv ti_tagged.o lib/srec/input/file/ti_tagged.o
 
 lib/srec/input/file/vmem.o: lib/srec/input/file/vmem.cc \
-		include/srec/input/file/vmem.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/vmem.cc 
+		lib/srec/input/file/vmem.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/vmem.cc
 	mv vmem.o lib/srec/input/file/vmem.o
 
 lib/srec/input/file/wilson.o: lib/srec/input/file/wilson.cc \
-		include/srec/input/file/wilson.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/file -Iinclude \
-		-c lib/srec/input/file/wilson.cc 
+		lib/srec/input/file/wilson.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/wilson.cc
 	mv wilson.o lib/srec/input/file/wilson.o
 
 lib/srec/input/filter.o: lib/srec/input/filter.cc \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input -Iinclude -c \
-		lib/srec/input/filter.cc 
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter.cc
 	mv filter.o lib/srec/input/filter.o
 
 lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc \
-		include/srec/input/filter/and.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/and.cc 
+		lib/srec/input/filter/and.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/and.cc
 	mv and.o lib/srec/input/filter/and.o
 
 lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/input/filter/byte_swap.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/byte_swap.cc 
+		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/input/filter/byte_swap.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/byte_swap.cc 
 	mv byte_swap.o lib/srec/input/filter/byte_swap.o
 
 lib/srec/input/filter/checksum.o: lib/srec/input/filter/checksum.cc \
-		include/interval.h include/srec/input/filter/checksum.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/checksum.cc 
+		lib/interval.h lib/srec/input/filter/checksum.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/checksum.cc
 	mv checksum.o lib/srec/input/filter/checksum.o
 
 lib/srec/input/filter/checksum/bitnot.o: \
 		lib/srec/input/filter/checksum/bitnot.cc \
-		include/srec/input/filter/checksum/bitnot.h \
-		include/srec/input/filter/checksum.h include/interval.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter/checksum \
-		-Iinclude -c lib/srec/input/filter/checksum/bitnot.cc 
+		lib/srec/input/filter/checksum/bitnot.h \
+		lib/srec/input/filter/checksum.h lib/interval.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/checksum/bitnot.cc 
 	mv bitnot.o lib/srec/input/filter/checksum/bitnot.o
 
 lib/srec/input/filter/checksum/negative.o: \
 		lib/srec/input/filter/checksum/negative.cc \
-		include/srec/input/filter/checksum/negative.h \
-		include/srec/input/filter/checksum.h include/interval.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter/checksum \
-		-Iinclude -c lib/srec/input/filter/checksum/negative.cc 
+		lib/srec/input/filter/checksum/negative.h \
+		lib/srec/input/filter/checksum.h lib/interval.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/checksum/negative.cc 
 	mv negative.o lib/srec/input/filter/checksum/negative.o
 
 lib/srec/input/filter/checksum/positive.o: \
 		lib/srec/input/filter/checksum/positive.cc \
-		include/srec/input/filter/checksum/positive.h \
-		include/srec/input/filter/checksum.h include/interval.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter/checksum \
-		-Iinclude -c lib/srec/input/filter/checksum/positive.cc 
+		lib/srec/input/filter/checksum/positive.h \
+		lib/srec/input/filter/checksum.h lib/interval.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/checksum/positive.cc 
 	mv positive.o lib/srec/input/filter/checksum/positive.o
 
 lib/srec/input/filter/crc16.o: lib/srec/input/filter/crc16.cc \
-		include/srec/input/filter/crc16.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/memory.h \
-		include/srec/memory/chunk.h \
-		include/srec/memory/walker/crc16.h include/crc16.h \
-		include/srec/memory/walker.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/crc16.cc 
+		lib/srec/input/filter/crc16.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/memory/walker/crc16.h \
+		lib/crc16.h lib/srec/memory/walker.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crc16.cc
 	mv crc16.o lib/srec/input/filter/crc16.o
 
 lib/srec/input/filter/crc32.o: lib/srec/input/filter/crc32.cc \
-		include/srec/input/filter/crc32.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/memory.h \
-		include/srec/memory/chunk.h \
-		include/srec/memory/walker/crc32.h include/crc32.h \
-		include/srec/memory/walker.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/crc32.cc 
+		lib/srec/input/filter/crc32.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/memory/walker/crc32.h \
+		lib/crc32.h lib/srec/memory/walker.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crc32.cc
 	mv crc32.o lib/srec/input/filter/crc32.o
 
 lib/srec/input/filter/crop.o: lib/srec/input/filter/crop.cc \
-		include/interval.h include/srec/input/filter/crop.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/crop.cc 
+		lib/interval.h lib/srec/input/filter/crop.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crop.cc
 	mv crop.o lib/srec/input/filter/crop.o
 
 lib/srec/input/filter/fill.o: lib/srec/input/filter/fill.cc \
-		include/interval.h include/srec/input/filter/fill.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/fill.cc 
+		lib/interval.h lib/srec/input/filter/fill.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/fill.cc
 	mv fill.o lib/srec/input/filter/fill.o
 
 lib/srec/input/filter/length.o: lib/srec/input/filter/length.cc \
-		include/interval.h include/srec/input/filter/length.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/length.cc 
+		lib/interval.h lib/srec/input/filter/length.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/length.cc
 	mv length.o lib/srec/input/filter/length.o
 
 lib/srec/input/filter/maximum.o: lib/srec/input/filter/maximum.cc \
-		include/interval.h include/srec/input/filter/maximum.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/maximum.cc 
+		lib/interval.h lib/srec/input/filter/maximum.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/maximum.cc
 	mv maximum.o lib/srec/input/filter/maximum.o
 
 lib/srec/input/filter/minimum.o: lib/srec/input/filter/minimum.cc \
-		include/srec/input/filter/minimum.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/minimum.cc 
+		lib/srec/input/filter/minimum.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/minimum.cc
 	mv minimum.o lib/srec/input/filter/minimum.o
 
 lib/srec/input/filter/not.o: lib/srec/input/filter/not.cc \
-		include/srec/input/filter/not.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/not.cc 
+		lib/srec/input/filter/not.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/not.cc
 	mv not.o lib/srec/input/filter/not.o
 
 lib/srec/input/filter/offset.o: lib/srec/input/filter/offset.cc \
-		include/srec/input/filter/offset.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/offset.cc 
+		lib/srec/input/filter/offset.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/offset.cc
 	mv offset.o lib/srec/input/filter/offset.o
 
 lib/srec/input/filter/or.o: lib/srec/input/filter/or.cc \
-		include/srec/input/filter/or.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/or.cc 
+		lib/srec/input/filter/or.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/or.cc
 	mv or.o lib/srec/input/filter/or.o
 
 lib/srec/input/filter/random_fill.o: \
-		lib/srec/input/filter/random_fill.cc include/interval.h \
-		include/r250.h include/srec/input/filter/random_fill.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/random_fill.cc 
+		lib/srec/input/filter/random_fill.cc lib/interval.h \
+		lib/r250.h lib/srec/input/filter/random_fill.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/random_fill.cc 
 	mv random_fill.o lib/srec/input/filter/random_fill.o
 
+lib/srec/input/filter/sequence.o: lib/srec/input/filter/sequence.cc \
+		lib/srec/input/filter/sequence.h \
+		lib/srec/input/filter.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/sequence.cc
+	mv sequence.o lib/srec/input/filter/sequence.o
+
 lib/srec/input/filter/split.o: lib/srec/input/filter/split.cc \
-		include/srec/input/filter/split.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/split.cc 
+		lib/srec/input/filter/split.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/split.cc
 	mv split.o lib/srec/input/filter/split.o
 
 lib/srec/input/filter/unfill.o: lib/srec/input/filter/unfill.cc \
-		include/srec/input/filter/unfill.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/unfill.cc 
+		lib/srec/input/filter/unfill.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/unfill.cc
 	mv unfill.o lib/srec/input/filter/unfill.o
 
 lib/srec/input/filter/unsplit.o: lib/srec/input/filter/unsplit.cc \
-		include/srec/input/filter/unsplit.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/unsplit.cc 
+		lib/srec/input/filter/unsplit.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/unsplit.cc
 	mv unsplit.o lib/srec/input/filter/unsplit.o
 
 lib/srec/input/filter/xor.o: lib/srec/input/filter/xor.cc \
-		include/srec/input/filter/xor.h \
-		include/srec/input/filter.h include/srec/input.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input/filter \
-		-Iinclude -c lib/srec/input/filter/xor.cc 
+		lib/srec/input/filter/xor.h lib/srec/input/filter.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/xor.cc
 	mv xor.o lib/srec/input/filter/xor.o
 
-lib/srec/input/interval.o: lib/srec/input/interval.cc \
-		include/interval.h include/srec/input.h \
-		include/format_printf.h include/srec/input/interval.h \
-		include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/input -Iinclude -c \
-		lib/srec/input/interval.cc 
+lib/srec/input/interval.o: lib/srec/input/interval.cc lib/interval.h \
+		lib/srec/input.h lib/format_printf.h \
+		lib/srec/input/interval.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/interval.cc
 	mv interval.o lib/srec/input/interval.o
 
-lib/srec/memory.o: lib/srec/memory.cc include/srec/input.h \
-		include/format_printf.h include/srec/memory.h \
-		include/srec/memory/chunk.h \
-		include/srec/memory/walker/compare.h include/interval.h \
-		include/srec/memory/walker.h \
-		include/srec/memory/walker/continuity.h \
-		include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec -Iinclude -c \
-		lib/srec/memory.cc 
+lib/srec/memory.o: lib/srec/memory.cc lib/srec/input.h \
+		lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h \
+		lib/srec/memory/walker/compare.h lib/interval.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/continuity.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory.cc
 	mv memory.o lib/srec/memory.o
 
 lib/srec/memory/chunk.o: lib/srec/memory/chunk.cc \
-		include/srec/memory/chunk.h \
-		include/srec/memory/walker.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory -Iinclude -c \
-		lib/srec/memory/chunk.cc 
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/chunk.cc
 	mv chunk.o lib/srec/memory/chunk.o
 
 lib/srec/memory/walker.o: lib/srec/memory/walker.cc \
-		include/srec/memory/walker.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory -Iinclude -c \
-		lib/srec/memory/walker.cc 
+		lib/srec/memory/walker.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker.cc
 	mv walker.o lib/srec/memory/walker.o
 
 lib/srec/memory/walker/compare.o: lib/srec/memory/walker/compare.cc \
-		include/srec/memory.h include/srec/memory/chunk.h \
-		include/srec/memory/walker/compare.h include/interval.h \
-		include/srec/memory/walker.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory/walker \
-		-Iinclude -c lib/srec/memory/walker/compare.cc 
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker/compare.h lib/interval.h \
+		lib/srec/memory/walker.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/compare.cc
 	mv compare.o lib/srec/memory/walker/compare.o
 
 lib/srec/memory/walker/continuity.o: \
 		lib/srec/memory/walker/continuity.cc \
-		include/srec/memory/walker/continuity.h \
-		include/srec/memory/walker.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory/walker \
-		-Iinclude -c lib/srec/memory/walker/continuity.cc 
+		lib/srec/memory/walker/continuity.h \
+		lib/srec/memory/walker.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/memory/walker/continuity.cc 
 	mv continuity.o lib/srec/memory/walker/continuity.o
 
 lib/srec/memory/walker/crc16.o: lib/srec/memory/walker/crc16.cc \
-		include/srec/memory/walker/crc16.h include/crc16.h \
-		include/srec/memory/walker.h include/srec/output.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory/walker \
-		-Iinclude -c lib/srec/memory/walker/crc16.cc 
+		lib/srec/memory/walker/crc16.h lib/crc16.h \
+		lib/srec/memory/walker.h lib/srec/output.h \
+		lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/crc16.cc
 	mv crc16.o lib/srec/memory/walker/crc16.o
 
 lib/srec/memory/walker/crc32.o: lib/srec/memory/walker/crc32.cc \
-		include/srec/memory/walker/crc32.h include/crc32.h \
-		include/srec/memory/walker.h include/srec/output.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory/walker \
-		-Iinclude -c lib/srec/memory/walker/crc32.cc 
+		lib/srec/memory/walker/crc32.h lib/crc32.h \
+		lib/srec/memory/walker.h lib/srec/output.h \
+		lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/crc32.cc
 	mv crc32.o lib/srec/memory/walker/crc32.o
 
 lib/srec/memory/walker/writer.o: lib/srec/memory/walker/writer.cc \
-		include/srec/memory/walker/writer.h \
-		include/srec/memory/walker.h include/srec/output.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/memory/walker \
-		-Iinclude -c lib/srec/memory/walker/writer.cc 
+		lib/srec/memory/walker/writer.h \
+		lib/srec/memory/walker.h lib/srec/output.h \
+		lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/writer.cc
 	mv writer.o lib/srec/memory/walker/writer.o
 
-lib/srec/output.o: lib/srec/output.cc include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec -Iinclude -c \
-		lib/srec/output.cc 
+lib/srec/output.o: lib/srec/output.cc lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output.cc
 	mv output.o lib/srec/output.o
 
-lib/srec/output/file.o: lib/srec/output/file.cc \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output -Iinclude -c \
-		lib/srec/output/file.cc 
+lib/srec/output/file.o: lib/srec/output/file.cc lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file.cc
 	mv file.o lib/srec/output/file.o
 
 lib/srec/output/file/aomf.o: lib/srec/output/file/aomf.cc \
-		include/srec/output/file/aomf.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/aomf.cc 
+		lib/srec/output/file/aomf.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/aomf.cc
 	mv aomf.o lib/srec/output/file/aomf.o
 
 lib/srec/output/file/ascii_hex.o: lib/srec/output/file/ascii_hex.cc \
-		include/srec/output/file/ascii_hex.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/ascii_hex.cc 
+		lib/srec/output/file/ascii_hex.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ascii_hex.cc
 	mv ascii_hex.o lib/srec/output/file/ascii_hex.o
 
-lib/srec/output/file/asm.o: lib/srec/output/file/asm.cc \
-		include/interval.h include/srec/output/file/asm.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/asm.cc 
+lib/srec/output/file/asm.o: lib/srec/output/file/asm.cc lib/interval.h \
+		lib/srec/output/file/asm.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/asm.cc
 	mv asm.o lib/srec/output/file/asm.o
 
 lib/srec/output/file/atmel_generic.o: \
 		lib/srec/output/file/atmel_generic.cc \
-		include/srec/output/file/atmel_generic.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/atmel_generic.cc 
+		lib/srec/output/file/atmel_generic.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/output/file/atmel_generic.cc 
 	mv atmel_generic.o lib/srec/output/file/atmel_generic.o
 
 lib/srec/output/file/basic.o: lib/srec/output/file/basic.cc \
-		include/interval.h include/srec/output/file/basic.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/basic.cc 
+		lib/interval.h lib/srec/output/file/basic.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/basic.cc
 	mv basic.o lib/srec/output/file/basic.o
 
 lib/srec/output/file/binary.o: lib/srec/output/file/binary.cc \
-		include/srec/output/file/binary.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/binary.cc 
+		lib/srec/output/file/binary.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/binary.cc
 	mv binary.o lib/srec/output/file/binary.o
 
-lib/srec/output/file/c.o: lib/srec/output/file/c.cc include/interval.h \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/output/file/c.h include/srec/output/file.h \
-		include/srec/output.h include/format_printf.h \
-		include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/c.cc 
+lib/srec/output/file/c.o: lib/srec/output/file/c.cc lib/interval.h \
+		lib/srec/arglex.h lib/arglex.h lib/srec/output/file/c.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/c.cc
 	mv c.o lib/srec/output/file/c.o
 
 lib/srec/output/file/cosmac.o: lib/srec/output/file/cosmac.cc \
-		include/srec/output/file/cosmac.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/cosmac.cc 
+		lib/srec/output/file/cosmac.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/cosmac.cc
 	mv cosmac.o lib/srec/output/file/cosmac.o
 
 lib/srec/output/file/dec_binary.o: lib/srec/output/file/dec_binary.cc \
-		include/srec/output/file/dec_binary.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/dec_binary.cc 
+		lib/srec/output/file/dec_binary.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/output/file/dec_binary.cc 
 	mv dec_binary.o lib/srec/output/file/dec_binary.o
 
 lib/srec/output/file/emon52.o: lib/srec/output/file/emon52.cc \
-		include/srec/output/file/emon52.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/emon52.cc 
+		lib/srec/output/file/emon52.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/emon52.cc
 	mv emon52.o lib/srec/output/file/emon52.o
 
 lib/srec/output/file/fairchild.o: lib/srec/output/file/fairchild.cc \
-		include/srec/output/file/fairchild.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/fairchild.cc 
+		lib/srec/output/file/fairchild.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/fairchild.cc
 	mv fairchild.o lib/srec/output/file/fairchild.o
 
 lib/srec/output/file/fastload.o: lib/srec/output/file/fastload.cc \
-		include/srec/output/file/fastload.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/fastload.cc 
+		lib/srec/output/file/fastload.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/fastload.cc
 	mv fastload.o lib/srec/output/file/fastload.o
 
 lib/srec/output/file/formatted_binary.o: \
 		lib/srec/output/file/formatted_binary.cc \
-		include/srec/output/file/formatted_binary.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/formatted_binary.cc 
+		lib/srec/output/file/formatted_binary.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/output/file/formatted_binary.cc 
 	mv formatted_binary.o lib/srec/output/file/formatted_binary.o
 
 lib/srec/output/file/four_packed_code.o: \
 		lib/srec/output/file/four_packed_code.cc \
-		include/srec/output/file/four_packed_code.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/four_packed_code.cc 
+		lib/srec/output/file/four_packed_code.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/output/file/four_packed_code.cc 
 	mv four_packed_code.o lib/srec/output/file/four_packed_code.o
 
 lib/srec/output/file/intel.o: lib/srec/output/file/intel.cc \
-		include/srec/output/file/intel.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/intel.cc 
+		lib/srec/output/file/intel.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel.cc
 	mv intel.o lib/srec/output/file/intel.o
 
 lib/srec/output/file/intel16.o: lib/srec/output/file/intel16.cc \
-		include/srec/output/file/intel16.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/intel16.cc 
+		lib/srec/output/file/intel16.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel16.cc
 	mv intel16.o lib/srec/output/file/intel16.o
 
 lib/srec/output/file/mos_tech.o: lib/srec/output/file/mos_tech.cc \
-		include/srec/output/file/mos_tech.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/mos_tech.cc 
+		lib/srec/output/file/mos_tech.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/mos_tech.cc
 	mv mos_tech.o lib/srec/output/file/mos_tech.o
 
 lib/srec/output/file/needham.o: lib/srec/output/file/needham.cc \
-		include/srec/output/file/needham.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/needham.cc 
+		lib/srec/output/file/needham.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/needham.cc
 	mv needham.o lib/srec/output/file/needham.o
 
 lib/srec/output/file/os65v.o: lib/srec/output/file/os65v.cc \
-		include/srec/output/file/os65v.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/os65v.cc 
+		lib/srec/output/file/os65v.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/os65v.cc
 	mv os65v.o lib/srec/output/file/os65v.o
 
 lib/srec/output/file/signetics.o: lib/srec/output/file/signetics.cc \
-		include/srec/output/file/signetics.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/signetics.cc 
+		lib/srec/output/file/signetics.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/signetics.cc
 	mv signetics.o lib/srec/output/file/signetics.o
 
 lib/srec/output/file/spasm.o: lib/srec/output/file/spasm.cc \
-		include/srec/output/file/spasm.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/spasm.cc 
+		lib/srec/output/file/spasm.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/spasm.cc
 	mv spasm.o lib/srec/output/file/spasm.o
 
 lib/srec/output/file/spectrum.o: lib/srec/output/file/spectrum.cc \
-		include/srec/output/file/spectrum.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/spectrum.cc 
+		lib/srec/output/file/spectrum.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/spectrum.cc
 	mv spectrum.o lib/srec/output/file/spectrum.o
 
 lib/srec/output/file/srecord.o: lib/srec/output/file/srecord.cc \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/output/file/srecord.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/srecord.cc 
+		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/output/file/srecord.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/srecord.cc
 	mv srecord.o lib/srec/output/file/srecord.o
 
 lib/srec/output/file/stewie.o: lib/srec/output/file/stewie.cc \
-		include/srec/output/file/stewie.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/stewie.cc 
+		lib/srec/output/file/stewie.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/stewie.cc
 	mv stewie.o lib/srec/output/file/stewie.o
 
 lib/srec/output/file/tektronix.o: lib/srec/output/file/tektronix.cc \
-		include/srec/output/file/tektronix.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/tektronix.cc 
+		lib/srec/output/file/tektronix.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/tektronix.cc
 	mv tektronix.o lib/srec/output/file/tektronix.o
 
 lib/srec/output/file/tektronix_extended.o: \
 		lib/srec/output/file/tektronix_extended.cc \
-		include/srec/output/file/tektronix_extended.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/tektronix_extended.cc 
+		lib/srec/output/file/tektronix_extended.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/output/file/tektronix_extended.cc 
 	mv tektronix_extended.o lib/srec/output/file/tektronix_extended.o
 
 lib/srec/output/file/ti_tagged.o: lib/srec/output/file/ti_tagged.cc \
-		include/srec/output/file/ti_tagged.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/ti_tagged.cc 
+		lib/srec/output/file/ti_tagged.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ti_tagged.cc
 	mv ti_tagged.o lib/srec/output/file/ti_tagged.o
 
 lib/srec/output/file/vhdl.o: lib/srec/output/file/vhdl.cc \
-		include/srec/arglex.h include/arglex.h \
-		include/interval.h include/srec/output/file/vhdl.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h \
-		include/progname.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/vhdl.cc 
+		lib/srec/arglex.h lib/arglex.h lib/interval.h \
+		lib/srec/output/file/vhdl.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h \
+		lib/progname.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vhdl.cc
 	mv vhdl.o lib/srec/output/file/vhdl.o
 
 lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/output/file/vmem.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/vmem.cc 
+		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/output/file/vmem.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
 	mv vmem.o lib/srec/output/file/vmem.o
 
 lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc \
-		include/srec/output/file/wilson.h \
-		include/srec/output/file.h include/srec/output.h \
-		include/format_printf.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec/output/file -Iinclude \
-		-c lib/srec/output/file/wilson.cc 
+		lib/srec/output/file/wilson.h lib/srec/output/file.h \
+		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/wilson.cc
 	mv wilson.o lib/srec/output/file/wilson.o
 
-lib/srec/record.o: lib/srec/record.cc include/srec/record.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Ilib/srec -Iinclude -c \
-		lib/srec/record.cc 
+lib/srec/record.o: lib/srec/record.cc lib/srec/record.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/record.cc
 	mv record.o lib/srec/record.o
 
+lib/versn_stamp.o: lib/versn_stamp.cc lib/versn_stamp.h lib/patchlevel.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/versn_stamp.cc
+	mv versn_stamp.o lib/versn_stamp.o
+
+lib/vsnprintf.o: lib/vsnprintf.cc lib/config.h lib/config.messy.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/vsnprintf.cc
+	mv vsnprintf.o lib/vsnprintf.o
+
 $(mandir)/man1/srec_cat.1: man/man1/srec_cat.1 man/man1/o_input.so \
-		man/man1/o_ignore_checksums.so man/man1/o_multiple.so \
+		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
 		man/man1/z_options.so man/man1/z_exit.so \
 		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
-	$(SOELIM) -Iman/man1 -Ietc man/man1/srec_cat.1 > tmp
+	$(SOELIM) -I. -Ietc man/man1/srec_cat.1 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man1/srec_cmp.1: man/man1/srec_cmp.1 man/man1/o_input.so \
-		man/man1/o_ignore_checksums.so man/man1/o_multiple.so \
+		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
 		man/man1/z_options.so man/man1/z_exit.so \
 		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
-	$(SOELIM) -Iman/man1 -Ietc man/man1/srec_cmp.1 > tmp
+	$(SOELIM) -I. -Ietc man/man1/srec_cmp.1 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man1/srec_info.1: man/man1/srec_info.1 man/man1/o_input.so \
-		man/man1/o_ignore_checksums.so man/man1/o_multiple.so \
+		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
 		man/man1/z_options.so man/man1/z_exit.so \
 		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
-	$(SOELIM) -Iman/man1 -Ietc man/man1/srec_info.1 > tmp
+	$(SOELIM) -I. -Ietc man/man1/srec_info.1 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man1/srec_license.1: man/man1/srec_license.1 man/man1/.mandir
-	$(SOELIM) -Iman/man1 -Ietc man/man1/srec_license.1 > tmp
+	$(SOELIM) -I. -Ietc man/man1/srec_license.1 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_aomf.5: man/man5/srec_aomf.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_aomf.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_aomf.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_ascii_hex.5: man/man5/srec_ascii_hex.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_ascii_hex.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_ascii_hex.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_atmel_generic.5: man/man5/srec_atmel_generic.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_atmel_generic.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_atmel_generic.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_cosmac.5: man/man5/srec_cosmac.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_cosmac.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_cosmac.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_dec_binary.5: man/man5/srec_dec_binary.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_dec_binary.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_dec_binary.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_emon52.5: man/man5/srec_emon52.5 man/man5/.mandir
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_emon52.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_emon52.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_fairchild.5: man/man5/srec_fairchild.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_fairchild.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_fairchild.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_fastload.5: man/man5/srec_fastload.5 \
 		man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_fastload.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_fastload.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_formatted_binary.5: \
 		man/man5/srec_formatted_binary.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_formatted_binary.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_formatted_binary.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_fpc.5: man/man5/srec_fpc.5 man/man5/.mandir
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_fpc.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_fpc.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_intel.5: man/man5/srec_intel.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_intel.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_intel.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_intel16.5: man/man5/srec_intel16.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_intel16.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_intel16.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_mos_tech.5: man/man5/srec_mos_tech.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_mos_tech.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_mos_tech.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_motorola.5: man/man5/srec_motorola.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_motorola.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_motorola.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_needham.5: man/man5/srec_needham.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_needham.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_needham.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_os65v.5: man/man5/srec_os65v.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_os65v.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_os65v.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_signetics.5: man/man5/srec_signetics.5 \
 		man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_signetics.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_signetics.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_spasm.5: man/man5/srec_spasm.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_spasm.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_spasm.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_spectrum.5: man/man5/srec_spectrum.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_spectrum.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_spectrum.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_stewie.5: man/man5/srec_stewie.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_stewie.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_stewie.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_tektronix.5: man/man5/srec_tektronix.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_tektronix.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_tektronix.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_tektronix_extended.5: \
 		man/man5/srec_tektronix_extended.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_tektronix_extended.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_tektronix_extended.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_ti_tagged.5: man/man5/srec_ti_tagged.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_ti_tagged.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_ti_tagged.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_vmem.5: man/man5/srec_vmem.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_vmem.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_vmem.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 $(mandir)/man5/srec_wilson.5: man/man5/srec_wilson.5 \
 		man/man1/z_copyright.so etc/version.so man/man5/.mandir 
-	$(SOELIM) -Iman/man5 -Ietc man/man5/srec_wilson.5 > tmp
+	$(SOELIM) -I. -Ietc man/man5/srec_wilson.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
 prog/srec_cat/arglex3.o: prog/srec_cat/arglex3.cc \
-		prog/srec_cat/arglex3.h include/srec/arglex.h \
-		include/arglex.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Iprog/srec_cat -Iinclude -c \
-		prog/srec_cat/arglex3.cc 
+		prog/srec_cat/arglex3.h lib/srec/arglex.h lib/arglex.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_cat/arglex3.cc
 	mv arglex3.o prog/srec_cat/arglex3.o
 
-prog/srec_cat/main.o: prog/srec_cat/main.cc prog/srec_cat/arglex3.h \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/memory.h \
-		include/srec/memory/chunk.h \
-		include/srec/memory/walker/writer.h \
-		include/srec/memory/walker.h include/srec/output.h \
-		include/srec/output/file.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Iprog/srec_cat -Iinclude -c \
-		prog/srec_cat/main.cc 
+prog/srec_cat/main.o: prog/srec_cat/main.cc lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/memory/walker/writer.h \
+		lib/srec/memory/walker.h lib/srec/output.h \
+		lib/srec/output/file.h prog/srec_cat/arglex3.h \
+		lib/srec/arglex.h lib/arglex.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_cat/main.cc
 	mv main.o prog/srec_cat/main.o
 
-prog/srec_cmp/main.o: prog/srec_cmp/main.cc include/srec/arglex.h \
-		include/arglex.h include/srec/input/file.h \
-		include/srec/input.h include/format_printf.h \
-		include/srec/memory.h include/srec/memory/chunk.h \
-		include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Iprog/srec_cmp -Iinclude -c \
-		prog/srec_cmp/main.cc 
+prog/srec_cmp/main.o: prog/srec_cmp/main.cc lib/srec/arglex.h \
+		lib/arglex.h lib/srec/input/file.h lib/srec/input.h \
+		lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_cmp/main.cc
 	mv main.o prog/srec_cmp/main.o
 
-prog/srec_info/main.o: prog/srec_info/main.cc include/interval.h \
-		include/srec/arglex.h include/arglex.h \
-		include/srec/input/file.h include/srec/input.h \
-		include/format_printf.h include/srec/memory.h \
-		include/srec/memory/chunk.h include/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Iprog/srec_info -Iinclude -c \
-		prog/srec_info/main.cc 
+prog/srec_info/main.o: prog/srec_info/main.cc lib/interval.h \
+		lib/srec/arglex.h lib/arglex.h lib/srec/input/file.h \
+		lib/srec/input.h lib/format_printf.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_info/main.cc
 	mv main.o prog/srec_info/main.o
 
 t0001a: test/00/t0001a.sh all
@@ -1791,6 +1621,9 @@ t0102a: test/01/t0102a.sh all
 t0103a: test/01/t0103a.sh all
 	$(SH) test/01/t0103a.sh
 
+t0105a: test/01/t0105a.sh all
+	$(SH) test/01/t0105a.sh
+
 man/man1/.mandir: man/.mandir
 	-$(INSTALL) -m 0755 -d $(mandir)/man1
 	@-test -d $(mandir)/man1 && touch $@
@@ -1843,13 +1676,10 @@ doc-yes: etc/reference.ps
 
 doc-no:
 
-lib_obj = lib/common/arglex.o lib/common/crc16.o lib/common/crc32.o \
-		lib/common/interval.o lib/common/progname.o \
-		lib/common/quit.o lib/common/quit/exception.o \
-		lib/common/quit/normal.o lib/common/quit/prefix.o \
-		lib/common/r250.o lib/common/versn_stamp.o \
-		lib/common/vsnprintf.o lib/srec/arglex.o \
-		lib/srec/arglex/get_interval.o \
+lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
+		lib/progname.o lib/quit.o lib/quit/exception.o \
+		lib/quit/normal.o lib/quit/prefix.o lib/r250.o \
+		lib/srec/arglex.o lib/srec/arglex/get_interval.o \
 		lib/srec/arglex/get_number.o lib/srec/arglex/input.o \
 		lib/srec/arglex/output.o lib/srec/input.o \
 		lib/srec/input/file.o lib/srec/input/file/aomf.o \
@@ -1894,6 +1724,7 @@ lib_obj = lib/common/arglex.o lib/common/crc16.o lib/common/crc32.o \
 		lib/srec/input/filter/offset.o \
 		lib/srec/input/filter/or.o \
 		lib/srec/input/filter/random_fill.o \
+		lib/srec/input/filter/sequence.o \
 		lib/srec/input/filter/split.o \
 		lib/srec/input/filter/unfill.o \
 		lib/srec/input/filter/unsplit.o \
@@ -1932,7 +1763,8 @@ lib_obj = lib/common/arglex.o lib/common/crc16.o lib/common/crc32.o \
 		lib/srec/output/file/tektronix_extended.o \
 		lib/srec/output/file/ti_tagged.o \
 		lib/srec/output/file/vhdl.o lib/srec/output/file/vmem.o \
-		lib/srec/output/file/wilson.o lib/srec/record.o 
+		lib/srec/output/file/wilson.o lib/srec/record.o \
+		lib/versn_stamp.o lib/vsnprintf.o 
 
 lib/libsrecord.a: $(lib_obj)
 	rm -f $@
@@ -1960,18 +1792,17 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0069a t0070a t0071a t0072a t0073a t0075a t0076a t0077a \
 		t0078a t0079a t0080a t0081a t0082a t0083a t0085a t0086a \
 		t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a \
-		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a 
+		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a \
+		t0105a 
 	@echo Passed All Tests
 
 clean-obj:
 	rm -f core y.tab.c y.tab.h y.output .bin .bindir
-	rm -f lib/libsrecord.a lib/common/arglex.o lib/common/crc16.o
-	rm -f lib/common/crc32.o lib/common/interval.o
-	rm -f lib/common/progname.o lib/common/quit.o
-	rm -f lib/common/quit/exception.o lib/common/quit/normal.o
-	rm -f lib/common/quit/prefix.o lib/common/r250.o
-	rm -f lib/common/versn_stamp.o lib/common/vsnprintf.o
-	rm -f lib/srec/arglex.o lib/srec/arglex/get_interval.o
+	rm -f lib/libsrecord.a lib/arglex.o lib/crc16.o lib/crc32.o
+	rm -f lib/interval.o lib/progname.o lib/quit.o
+	rm -f lib/quit/exception.o lib/quit/normal.o lib/quit/prefix.o
+	rm -f lib/r250.o lib/srec/arglex.o
+	rm -f lib/srec/arglex/get_interval.o
 	rm -f lib/srec/arglex/get_number.o lib/srec/arglex/input.o
 	rm -f lib/srec/arglex/output.o lib/srec/input.o
 	rm -f lib/srec/input/file.o lib/srec/input/file/aomf.o
@@ -2010,6 +1841,7 @@ clean-obj:
 	rm -f lib/srec/input/filter/not.o lib/srec/input/filter/offset.o
 	rm -f lib/srec/input/filter/or.o
 	rm -f lib/srec/input/filter/random_fill.o
+	rm -f lib/srec/input/filter/sequence.o
 	rm -f lib/srec/input/filter/split.o
 	rm -f lib/srec/input/filter/unfill.o
 	rm -f lib/srec/input/filter/unsplit.o
@@ -2047,15 +1879,16 @@ clean-obj:
 	rm -f lib/srec/output/file/ti_tagged.o
 	rm -f lib/srec/output/file/vhdl.o lib/srec/output/file/vmem.o
 	rm -f lib/srec/output/file/wilson.o lib/srec/record.o
-	rm -f man/man1/.mandir man/.mandir man/man5/.mandir
-	rm -f prog/srec_cat/arglex3.o prog/srec_cat/main.o
-	rm -f prog/srec_cmp/main.o prog/srec_info/main.o
+	rm -f lib/versn_stamp.o lib/vsnprintf.o man/man1/.mandir
+	rm -f man/.mandir man/man5/.mandir prog/srec_cat/arglex3.o
+	rm -f prog/srec_cat/main.o prog/srec_cmp/main.o
+	rm -f prog/srec_info/main.o
 
 clean: clean-obj
 	rm -f bin/srec_cat bin/srec_cmp bin/srec_info
 
 distclean: clean
-	rm -f Makefile include/config.h
+	rm -f Makefile lib/config.h
 	rm -f config.status config.cache config.log
 
 install-bin: $(bindir)/srec_cat $(bindir)/srec_cmp $(bindir)/srec_info

@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2000-2005 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2000-2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,12 +19,11 @@
 // MANIFEST: functions to impliment the srec_output_file_vmem class
 //
 
-#pragma implementation "srec_output_file_vmem"
 
 #include <cctype>
-#include <srec/arglex.h>
-#include <srec/output/file/vmem.h>
-#include <srec/record.h>
+#include <lib/srec/arglex.h>
+#include <lib/srec/output/file/vmem.h>
+#include <lib/srec/record.h>
 
 
 //

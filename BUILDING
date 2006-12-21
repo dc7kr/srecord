@@ -34,9 +34,9 @@ SITE CONFIGURATION
 
         The configure shell script attempts to guess correct values for
         various system-dependent variables used during compilation, and
-        creates the Makefile and include/config.h files.  It also creates a
-        shell script config.status that you can run in the future to recreate
-        the current configuration.
+        creates the Makefile and lib/config.h files.  It also creates a shell
+        script config.status that you can run in the future to recreate the
+        current configuration.
 
         Normally, you just cd to the directory containing SRecord's source
         code and then type
@@ -162,7 +162,7 @@ BUILDING SRECORD
                 ...lots of output...
                 %
         command.  To remove all of the above files, and also remove the
-        Makefile and include/config.h and config.status files, use the
+        Makefile and lib/config.h and config.status files, use the
                 % make distclean
                 ...lots of output...
                 %
@@ -236,16 +236,16 @@ GETTING HELP
         When reporting problems, please include the version number given by
         the
                 % srec_cat -version
-                srecord version 1.26.D001
+                srecord version 1.27.D001
                 ...warranty disclaimer...
                 %
         command.  Please do not send this example; run the program for the
         exact version number.
 
 COPYRIGHT
-        srecord version 1.26
+        srecord version 1.27
         Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-        Peter Miller; All rights reserved.
+        Peter Miller
 
         The SRecord package is distributed in the hope that it will be useful,
         but WITHOUT ANY WARRANTY; without even the implied warranty of

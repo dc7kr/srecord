@@ -208,11 +208,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.26.README   # Description, from the tar file
-           File:   srecord-1.26.lsm      # Description, LSM format
-           File:   srecord-1.26.spec     # RedHat package specification
-           File:   srecord-1.26.tar.gz   # the complete source
-           File:   srecord-1.26.pdf      # Reference Manual
+           File:   srecord-1.27.README   # Description, from the tar file
+           File:   srecord-1.27.lsm      # Description, LSM format
+           File:   srecord-1.27.spec     # RedHat package specification
+           File:   srecord-1.27.tar.gz   # the complete source
+           File:   srecord-1.27.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -221,11 +221,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.26.README   # Description, from the tar file
-           File:   srecord-1.26.lsm      # Description, LSM format
-           File:   srecord-1.26.spec     # RedHat package specification
-           File:   srecord-1.26.tar.gz   # the complete source
-           File:   srecord-1.26.pdf      # Reference Manual
+           File:   srecord-1.27.README   # Description, from the tar file
+           File:   srecord-1.27.lsm      # Description, LSM format
+           File:   srecord-1.27.spec     # RedHat package specification
+           File:   srecord-1.27.tar.gz   # the complete source
+           File:   srecord-1.27.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -255,9 +255,9 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.26
+       srecord version 1.27
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-       Peter Miller; All rights reserved.
+       Peter Miller
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -279,69 +279,26 @@ AUTHOR
        Peter Miller   E-Mail:   millerp@canb.auug.org.au
        /\/\*          WWW:      http://www.canb.auug.org.au/~millerp/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
+   Version 1.27 (21-Dec-2006)
+       * [SourceForge Feature Request 1597637] There is a new warning issued
+       when input data records are not in strictly ascending address order.
+       There is a new command line option to silence the warning.
+
+       * [SourceForge  Feature Request 1592348] The command line processing of
+       all srrecord commands now understands @file command line options,
+       filled with additional space separated strings witch will be treated as
+       of they were command line options.  This gets around absurdly short
+       command line length limits in some operating systems.
 
    Version 1.26 (26-May-2006)
        * It is now possible to place parenteses on the command line in more
        places to clariy your intent.
-
-       My thanks to Craig McQueen <craig_mcqueen@aapl.com.au> for reporting
-       this problem.
 
        * This change prepares SRecord for the next public release.
 

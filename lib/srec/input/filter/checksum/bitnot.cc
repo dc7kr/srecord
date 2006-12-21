@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2000-2002 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2000-2002, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,9 +19,8 @@
 // MANIFEST: functions to impliment the srec_input_filter_checksum_bitnot class
 //
 
-#pragma implementation "srec_input_filter_checksum_bitnot"
 
-#include <srec/input/filter/checksum/bitnot.h>
+#include <lib/srec/input/filter/checksum/bitnot.h>
 
 
 srec_input_filter_checksum_bitnot::srec_input_filter_checksum_bitnot(

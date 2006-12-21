@@ -1,7 +1,6 @@
 .\"
 .\"	srecord - manipulate eprom load files
-.\"	Copyright (C) 2001, 2002, 2004 Peter Miller;
-.\"	All rights reserved.
+.\"	Copyright (C) 2001, 2002, 2004, 2006 Peter Miller
 .\"
 .\"	This program is free software; you can redistribute it and/or modify
 .\"	it under the terms of the GNU General Public License as published by
@@ -17,7 +16,7 @@
 .\"	along with this program; if not, write to the Free Software
 .\"	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 .\"
-.\" MANIFEST: etc/new-file-format.o
+.\" MANIFEST: Documentation about how to add a new file format
 .\"
 .TH "New Format" "SRecord" "SRecord" "Reference Manual"
 .SH NAME
@@ -27,7 +26,7 @@ How to add a new file format
 This section describes how to add a new file format.  It's mostly a
 set of reminders for the maintainer.  If you want a format added
 to the distribution, use this method and e-mail the maintainer a patch
-(generated with diff -u -r, usually) and it can be added to the sources
+(generated with \f[CW]diff -u -r\fP, usually) and it can be added to the sources
 if appropriate.
 .SS New Files
 The following files need to be create for a new format.
@@ -35,19 +34,19 @@ The following files need to be create for a new format.
 lib/srec/output/file/\fIname\fP.cc
 This file is how to write the new format.
 Take a look at the other files in the same directory
-for examples.  Also check out \fIinclude/srec/output/file.h\fP and
-\fIinclude/srec/output.h\fP for various helper methods.
+for examples.  Also check out \fIlib/srec/output/file.h\fP and
+\fIlib/srec/output.h\fP for various helper methods.
 .TP 8n
-include/srec/output/file/\fIname\fP.h
+lib/srec/output/file/\fIname\fP.h
 This is the class declaration for the above file.
 .TP 8n
 lib/srec/input/file/\fIname\fP.cc
 This file is how to read the new format.
 Take a look at the other files in the same directory
-for examples.  Also check out \fIinclude/srec/input/file.h\fP and
-\fIinclude/srec/input.h\fP for various helper methods.
+for examples.  Also check out \fIlib/srec/input/file.h\fP and
+\fIlib/srec/input.h\fP for various helper methods.
 .TP 8n
-include/srec/input/file/\fIname\fP.h
+lib/srec/input/file/\fIname\fP.h
 This is the class declaration for the above file.
 .TP 8n
 man/man5/srec_\fIname\fP.5
@@ -64,7 +63,7 @@ etc/srecord.html
 Mention the new format in the section of this file which describes
 the supported file formats.
 .TP 8n
-include/srec/arglex.h
+lib/srec/arglex.h
 Add the new format to the command line argument type enum.
 .TP 8n
 lib/srec/arglex.cc

@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998, 1999, 2001-2005 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998, 1999, 2001-2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,17 +19,18 @@
 // MANIFEST: operating system entry point
 //
 
-#include <arglex3.h>
-#include <srec/input/file.h>
-#include <srec/memory.h>
-#include <srec/memory/walker/writer.h>
-#include <srec/output.h>
-#include <srec/output/file.h>
-
 #include <iostream>
 using namespace std;
 #include <cstdlib>
 #include <vector>
+
+#include <lib/srec/input/file.h>
+#include <lib/srec/memory.h>
+#include <lib/srec/memory/walker/writer.h>
+#include <lib/srec/output.h>
+#include <lib/srec/output/file.h>
+
+#include <prog/srec_cat/arglex3.h>
 
 
 int
@@ -43,7 +43,7 @@ main(int argc, char **argv)
     srec_output *outfile = 0;
     int line_length = 0;
     int address_length = 0;
-    const char *header = 0;
+    std::string header;
     bool header_set = false;
     unsigned long start_address = 0;
     bool start_address_set = false;
@@ -52,8 +52,8 @@ main(int argc, char **argv)
 	switch (cmdline.token_cur())
 	{
 	default:
-	    cmdline.bad_argument();
-	    // NOTREACHED
+	    cmdline.default_command_line_processing();
+            continue;
 
 	case srec_arglex::token_string:
 	case srec_arglex::token_stdio:
@@ -102,10 +102,6 @@ main(int argc, char **argv)
 	    srec_output_file::crlf();
 	    break;
 
-	case srec_cat_arglex3::token_multiple:
-	    srec_memory::allow_overwriting();
-	    break;
-
 	case srec_cat_arglex3::token_header:
 	    if (cmdline.token_next() != arglex::token_string)
 	    {
@@ -121,10 +117,6 @@ main(int argc, char **argv)
 	    start_address = cmdline.get_number("-Start_Address");
 	    start_address_set = true;
 	    continue;
-
-	case srec_arglex::token_ignore_checksums:
-	    srec_input_file::ignore_all_checksums();
-	    break;
 	}
 	cmdline.token_next();
     }
@@ -149,7 +141,7 @@ main(int argc, char **argv)
     //
     srec_memory *mp = new srec_memory();
     if (header_set)
-	mp->set_header(header);
+	mp->set_header(header.c_str());
     for (infile_t::iterator it = infile.begin(); it != infile.end(); ++it)
     {
 	srec_input *ifp = *it;

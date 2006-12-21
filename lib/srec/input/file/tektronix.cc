@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2003, 2005, 2006 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998-2003, 2005, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,10 +19,9 @@
 // MANIFEST: functions to impliment the srec_input_file_tektronix class
 //
 
-#pragma implementation "srec_input_file_tektronix"
 
-#include <srec/input/file/tektronix.h>
-#include <srec/record.h>
+#include <lib/srec/input/file/tektronix.h>
+#include <lib/srec/record.h>
 
 
 srec_input_file_tektronix::srec_input_file_tektronix(const char *filename) :

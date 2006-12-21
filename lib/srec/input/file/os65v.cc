@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2002 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2002, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,10 +19,9 @@
 // MANIFEST: functions to impliment the srec_input_file_os65v class
 //
 
-#pragma implementation "srec_input_file_os65v"
 
-#include <srec/input/file/os65v.h>
-#include <srec/record.h>
+#include <lib/srec/input/file/os65v.h>
+#include <lib/srec/record.h>
 
 
 srec_input_file_os65v::~srec_input_file_os65v()

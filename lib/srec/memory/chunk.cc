@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998, 1999, 2001-2003 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998, 1999, 2001-2003, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,11 +19,10 @@
 // MANIFEST: functions to impliment the srec_memory_chunk class
 //
 
-#pragma implementation "srec_memory_chunk"
 
 #include <cstring>
-#include <srec/memory/chunk.h>
-#include <srec/memory/walker.h>
+#include <lib/srec/memory/chunk.h>
+#include <lib/srec/memory/walker.h>
 
 
 srec_memory_chunk::srec_memory_chunk(unsigned long arg) :

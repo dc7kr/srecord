@@ -1,6 +1,7 @@
 //
 //	srecord - manipulate eprom load files
 //	Copyright (C) 2000 Hendrik De Vloed - hendrik.devloed@rug.ac.be
+//	Copyright (C) 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -19,13 +20,11 @@
 // MANIFEST: functions to impliment the srec_output_file_vhdl class
 //
 
-#pragma implementation "srec_output_file_vhdl"
-
-#include <srec/arglex.h>
-#include <interval.h>
-#include <srec/output/file/vhdl.h>
-#include <srec/record.h>
-#include <progname.h>
+#include <lib/srec/arglex.h>
+#include <lib/interval.h>
+#include <lib/srec/output/file/vhdl.h>
+#include <lib/srec/record.h>
+#include <lib/progname.h>
 
 
 srec_output_file_vhdl::srec_output_file_vhdl(const char *filename) :

@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998, 1999, 2002, 2003 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998, 1999, 2002, 2003, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,10 +19,9 @@
 // MANIFEST: functions to impliment the srec_memory_walker_writer class
 //
 
-#pragma implementation "srec_memory_walker_writer"
 
-#include <srec/memory/walker/writer.h>
-#include <srec/output.h>
+#include <lib/srec/memory/walker/writer.h>
+#include <lib/srec/output.h>
 
 
 srec_memory_walker_writer::srec_memory_walker_writer(srec_output *arg) :

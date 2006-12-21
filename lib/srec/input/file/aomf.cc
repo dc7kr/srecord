@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2004, 2005 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2004-2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,10 +19,9 @@
 // MANIFEST: functions to impliment the srec_input_file_aomf class
 //
 
-#pragma implementation "srec_input_file_aomf"
 
-#include <srec/input/file/aomf.h>
-#include <srec/record.h>
+#include <lib/srec/input/file/aomf.h>
+#include <lib/srec/record.h>
 
 
 #define O96_Mod_Hdr                             0x02

@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2003, 2006 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998-2003, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,13 +19,12 @@
 // MANIFEST: functions to impliment the srec_memory class
 //
 
-#pragma implementation "srec_memory"
 
-#include <srec/input.h>
-#include <srec/memory.h>
-#include <srec/memory/walker/compare.h>
-#include <srec/memory/walker/continuity.h>
-#include <srec/record.h>
+#include <lib/srec/input.h>
+#include <lib/srec/memory.h>
+#include <lib/srec/memory/walker/compare.h>
+#include <lib/srec/memory/walker/continuity.h>
+#include <lib/srec/record.h>
 
 
 bool srec_memory::overwrite = false;
@@ -280,6 +278,11 @@ srec_memory::reader(srec_input *ifp, bool barf)
 	    break;
 
 	case srec_record::type_data:
+            //
+            // For each data byte, we have to check for duplicates.  We
+            // issue warnings for redundant settings, and we issue error
+            // for contradictory settings.
+            //
 	    for (int j = 0; j < record.get_length(); ++j)
 	    {
 		srec_record::address_t address = record.get_address() + j;

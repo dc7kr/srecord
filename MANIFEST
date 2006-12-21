@@ -35,7 +35,7 @@ etc/doxygen.cook	 etc/doxygen.cook
 etc/index.html	 input for archive/index.html
 etc/mailing-list.html	 input for archive/mailing-list.html
 etc/metrics.cook	 metrics.cook
-etc/new-file-format.so	 etc/new-file-format.o
+etc/new-file-format.so	 Documentation about how to add a new file format
 etc/new.1.1.so	 description of new 1.1 features
 etc/new.1.10.so	 description of new 1.10 features
 etc/new.1.11.so	 description of new 1.11 features
@@ -55,6 +55,7 @@ etc/new.1.23.so	 description of new 1.23 features
 etc/new.1.24.so	 description of new 1.24 features
 etc/new.1.25.so	 description of new 1.25 features
 etc/new.1.26.so	 description of new 1.26 features
+etc/new.1.27.so	 description of new 1.27 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
 etc/new.1.5.so	 description of new 1.5 features
@@ -72,8 +73,8 @@ etc/ref-toc.so	 table of contents macros
 etc/reference.man	 Reference Manual
 etc/rpm-build.sh	 shell script to rpm-build
 etc/spec.sh	 shell script to generate RedHat spec file
-etc/srecord.gif.uue	 srecord icon
 etc/srecord.lsm	 input for archive/srecord-N.N.lsm
+etc/srecord.png.uue	 etc/srecord.png.uue
 etc/ssp.awk	 awk script to supress multiple blank lines
 etc/tags.cook	 tags.cook
 etc/template/c	New file template.
@@ -85,226 +86,230 @@ etc/template/sh	New file template.
 etc/template/test	New file template.
 etc/windows.html	 input for archive/srecord.html
 etc/x_defs_pack.vhd	
-include/arglex.h	 interface definition for the lib/common/arglex.cc file
-include/config.messy.h	 interface definition for include/config.messy.cc
-include/crc16.h	 interface definition for include/crc16.cc
-include/crc32.h	 interface definition for include/crc32.cc
-include/format_printf.h	 printf formatting attribute insulation
-include/interval.h	 interface definition for lib/common/interval.cc
-include/progname.h	 interface definition for lib/common/progname.cc
-include/quit.h	 interface definition for lib/quit.cc
-include/quit/exception.h	 interface definition for lib/quit/exception.cc
-include/quit/normal.h	 interface definition for include/quit/normal.cc
-include/quit/prefix.h	 interface definition for include/quit/prefix.cc
-include/r250.h	 interface definition for include/r250.cc
-include/srec/arglex.h	 interface definition for lib/srec/arglex.cc
-include/srec/input.h	 interface definition for lib/srec/input.cc
-include/srec/input/file.h	 interface definition for lib/srec/input/file.cc
-include/srec/input/file/aomf.h	 interface definition for include/srec/input/file/aomf.cc
-include/srec/input/file/ascii_hex.h	 interface definition for include/srec/input/file/ascii_hex.cc
-include/srec/input/file/atmel_generic.h	 interface definition for include/srec/input/file/atmel_generic.cc
-include/srec/input/file/binary.h	 interface definition for srec/input/file/binary.cc
-include/srec/input/file/cosmac.h	 interface definition for include/srec/input/file/cosmac.cc
-include/srec/input/file/dec_binary.h	 interface definition for include/srec/input/file/dec_binary.cc
-include/srec/input/file/emon52.h	 interface definition for include/srec/input/file/emon52.cc
-include/srec/input/file/fairchild.h	 interface definition for include/srec/input/file/fairchild.cc
-include/srec/input/file/fastload.h	 interface definition for include/srec/input/file/fastload.cc
-include/srec/input/file/formatted_binary.h	 interface defn for include/srec/input/file/formatted_binary.cc
-include/srec/input/file/four_packed_code.h	 interface definition for include/srec/input/file/four_packed_code.cc
-include/srec/input/file/guess.h	 interface definition for include/srec/input/file/guess.cc
-include/srec/input/file/intel.h	 interface definition for srec/input/file/intel.cc
-include/srec/input/file/intel16.h	 interface definition for include/srec/input/file/intel16.cc
-include/srec/input/file/mos_tech.h	 interface definition for include/srec/input/file/mos_tech.cc
-include/srec/input/file/needham.h	 interface definition for include/srec/input/file/needham.cc
-include/srec/input/file/os65v.h	 interface definition for include/srec/input/file/os65v.cc
-include/srec/input/file/signetics.h	 interface definition for include/srec/input/file/signetics.cc
-include/srec/input/file/spasm.h	 interface definition for include/srec/input/file/spasm.cc
-include/srec/input/file/spectrum.h	 interface definition for include/srec/input/file/spectrum.cc
-include/srec/input/file/srecord.h	 interface definition for lib/input/file/srecord.cc
-include/srec/input/file/stewie.h	 interface definition for lib/input/file/stewie.cc
-include/srec/input/file/tektronix.h	 interface definition for lib/srec/input/file/tektronix.cc
-include/srec/input/file/tektronix_extended.h	 interface definition for lib/srec/input/file/tektronix_extended.cc
-include/srec/input/file/ti_tagged.h	 interface definition for lib/srec/input/file/ti_tagged.cc
-include/srec/input/file/vmem.h	 interface definition for include/srec/input/file/vmem.cc
-include/srec/input/file/wilson.h	 interface definition for lib/srec/input/file/wilson.cc
-include/srec/input/filter.h	 interface definition for lib/srec/input/filter.cc
-include/srec/input/filter/and.h	 interface definition for include/srec/input/filter/and.cc
-include/srec/input/filter/byte_swap.h	 interface definition for lib/srec/input/filter/byte_swap.cc
-include/srec/input/filter/checksum.h	 interface definition for lib/srec/input/filter/checksum.cc
-include/srec/input/filter/checksum/bitnot.h	 interface definition for lib/srec/input/filter/checksum/bitnot.cc
-include/srec/input/filter/checksum/negative.h	 interface definition for lib/srec/input/filter/checksum/negative.cc
-include/srec/input/filter/checksum/positive.h	 interface definition for lib/srec/input/filter/checksum/positive.cc
-include/srec/input/filter/crc16.h	 interface definition for include/srec/input/filter/crc16.cc
-include/srec/input/filter/crc32.h	 interface definition for include/srec/input/filter/crc32.cc
-include/srec/input/filter/crop.h	 interface definition for lib/srec/input/filter/crop.cc
-include/srec/input/filter/fill.h	 interface definition for lib/srec/input/filter/fill.cc
-include/srec/input/filter/length.h	 interface definition for lib/srec/input/filter/length.cc
-include/srec/input/filter/maximum.h	 interface definition for lib/srec/input/filter/maximum.cc
-include/srec/input/filter/minimum.h	 interface definition for lib/srec/input/filter/minimum.cc
-include/srec/input/filter/not.h	 interface definition for lib/srec/input/filter/not.cc
-include/srec/input/filter/offset.h	 interface definition for lib/srec/input/filter/offset.cc
-include/srec/input/filter/or.h	 interface definition for lib/srec/input/filter/or.cc
-include/srec/input/filter/random_fill.h	 interface definition for lib/srec/input/filter/fill.cc
-include/srec/input/filter/split.h	 interface definition for lib/srec/input/filter/split.cc
-include/srec/input/filter/unfill.h	 interface definition for include/srec/input/filter/unfill.cc
-include/srec/input/filter/unsplit.h	 interface definition for lib/srec/input/filter/unsplit.cc
-include/srec/input/filter/xor.h	 interface definition for include/srec/input/filter/xor.cc
-include/srec/input/interval.h	 interface definition for lib/srec/input/interval.cc
-include/srec/memory.h	 interface definition for lib/srec/memory.cc
-include/srec/memory/chunk.h	 interface definition for lib/srec/memory/chunk.cc
-include/srec/memory/walker.h	 interface definition for lib/srec/memory/walker.cc
-include/srec/memory/walker/compare.h	 interface definition for include/srec/memory/walker/compare.cc
-include/srec/memory/walker/continuity.h	 interface definition for include/srec/memory/walker/continuity.cc
-include/srec/memory/walker/crc16.h	 interface definition for include/srec/memory/walker/crc16.cc
-include/srec/memory/walker/crc32.h	 interface definition for include/srec/memory/walker/crc32.cc
-include/srec/memory/walker/writer.h	 interface definition for lib/srec/memory/walker/writer.cc
-include/srec/output.h	 interface definition for lib/srec/output.cc
-include/srec/output/file.h	 interface definition for lib/srec/output/file.cc
-include/srec/output/file/aomf.h	 interface definition for include/srec/output/file/aomf.cc
-include/srec/output/file/ascii_hex.h	 interface definition for lib/srec/output/file/ascii_hex.cc
-include/srec/output/file/asm.h	 interface definition for include/srec/output/file/asm.cc
-include/srec/output/file/atmel_generic.h	 interface definition for include/srec/output/file/atmel_generic.cc
-include/srec/output/file/basic.h	 interface definition for include/srec/output/file/basic.cc
-include/srec/output/file/binary.h	 interface definition for lib/srec/output/file/binary.cc
-include/srec/output/file/c.h	 interface definition for lib/srec/output/file/c.cc
-include/srec/output/file/cosmac.h	 interface definition for include/srec/output/file/cosmac.cc
-include/srec/output/file/dec_binary.h	 interface definition for include/srec/output/file/dec_binary.cc
-include/srec/output/file/emon52.h	 interface definition for include/srec/output/file/emon52.cc
-include/srec/output/file/fairchild.h	 interface definition for include/srec/output/file/fairchild.cc
-include/srec/output/file/fastload.h	 interface definition for include/srec/output/file/fastload.cc
-include/srec/output/file/formatted_binary.h	 interface defn for include/srec/output/file/formatted_binary.cc
-include/srec/output/file/four_packed_code.h	 interface definition for include/srec/output/file/four_packed_code.cc
-include/srec/output/file/intel.h	 interface definition for lib/srec/output/file/intel.cc
-include/srec/output/file/intel16.h	 interface definition for include/srec/output/file/intel16.cc
-include/srec/output/file/mos_tech.h	 interface definition for lib/srec/output/file/mos_tech.cc
-include/srec/output/file/needham.h	 interface definition for include/srec/output/file/needham.cc
-include/srec/output/file/os65v.h	 interface definition for include/srec/output/file/os65v.cc
-include/srec/output/file/signetics.h	 interface definition for include/srec/output/file/signetics.cc
-include/srec/output/file/spasm.h	 interface definition for include/srec/output/file/spasm.cc
-include/srec/output/file/spectrum.h	 interface definition for include/srec/output/file/spectrum.cc
-include/srec/output/file/srecord.h	 interface definition for lib/srec/output/file/srecord.cc
-include/srec/output/file/stewie.h	 interface definition for lib/srec/output/file/stewie.cc
-include/srec/output/file/tektronix.h	 interface definition for lib/srec/output/file/tektronix.cc
-include/srec/output/file/tektronix_extended.h	 interface definition for lib/srec/output/file/tektronix_extended.cc
-include/srec/output/file/ti_tagged.h	 interface definition for include/srec/output/file/ti_tagged.cc
-include/srec/output/file/vhdl.h	 interface definition for lib/srec/output/file/vhdl.cc
-include/srec/output/file/vmem.h	 interface definition for lib/srec/output/file/vmem.cc
-include/srec/output/file/wilson.h	 interface definition for lib/srec/output/file/wilson.cc
-include/srec/record.h	 interface definition for lib/srec/record.cc
-lib/common/arglex.cc	
-lib/common/crc16.cc	 functions to impliment the crc16 class
-lib/common/crc32.cc	 functions to impliment the crc32 class
-lib/common/interval.cc	 functions to impliment the interval class
-lib/common/progname.cc	 functions to impliment the progname class
-lib/common/quit.cc	 functions to impliment the quit class
-lib/common/quit/exception.cc	 functions to impliment the quit_exception class
-lib/common/quit/normal.cc	 functions to impliment the quit_normal class
-lib/common/quit/prefix.cc	 functions to impliment the quit_prefix class
-lib/common/r250.cc	 functions to impliment the common_r250 class
-lib/common/versn_stamp.cc	 functions to impliment the versn_stamp class
-lib/common/versn_stamp.h	 interface definition for lib/common/versn_stamp.cc
-lib/common/vsnprintf.cc	 functions to impliment the common_vsnprintf class
+lib/arglex.cc	
+lib/arglex.h	 interface definition for the lib/common/arglex.cc file
+lib/config.messy.h	 interface definition for include/config.messy.cc
+lib/crc16.cc	 functions to impliment the crc16 class
+lib/crc16.h	 interface definition for include/crc16.cc
+lib/crc32.cc	 functions to implement the crc32 class
+lib/crc32.h	 interface definition for include/crc32.cc
+lib/format_printf.h	 printf formatting attribute insulation
+lib/interval.cc	 functions to impliment the interval class
+lib/interval.h	 interface definition for lib/common/interval.cc
+lib/progname.cc	 functions to impliment the progname class
+lib/progname.h	 interface definition for lib/common/progname.cc
+lib/quit.cc	 functions to impliment the quit class
+lib/quit.h	 interface definition for lib/quit.cc
+lib/quit/exception.cc	 functions to impliment the quit_exception class
+lib/quit/exception.h	 interface definition for lib/quit/exception.cc
+lib/quit/normal.cc	 functions to impliment the quit_normal class
+lib/quit/normal.h	 interface definition for include/quit/normal.cc
+lib/quit/prefix.cc	 functions to impliment the quit_prefix class
+lib/quit/prefix.h	 interface definition for include/quit/prefix.cc
+lib/r250.cc	 functions to impliment the common_r250 class
+lib/r250.h	 interface definition for include/r250.cc
 lib/srec/arglex.cc	 functions to impliment the srec_arglex class
+lib/srec/arglex.h	 interface definition for lib/srec/arglex.cc
 lib/srec/arglex/get_interval.cc	 functions to impliment the srec_arglex_get_interval class
 lib/srec/arglex/get_number.cc	 functions to impliment the srec_arglex_get_number class
 lib/srec/arglex/input.cc	 functions to impliment the srec_arglex input method
 lib/srec/arglex/output.cc	 functions to impliment the srec_arglex_output class
 lib/srec/input.cc	 functions to impliment the srec_input class
+lib/srec/input.h	 interface definition for lib/srec/input.cc
 lib/srec/input/file.cc	 functions to impliment the srec_input_file class
+lib/srec/input/file.h	 interface definition for lib/srec/input/file.cc
 lib/srec/input/file/aomf.cc	 functions to impliment the srec_input_file_aomf class
+lib/srec/input/file/aomf.h	 interface definition for include/srec/input/file/aomf.cc
 lib/srec/input/file/ascii_hex.cc	 functions to impliment the srec_input_file_ascii_hex class
+lib/srec/input/file/ascii_hex.h	 interface definition for include/srec/input/file/ascii_hex.cc
 lib/srec/input/file/atmel_generic.cc	 functions to impliment the srec_input_file_atmel_generic class
+lib/srec/input/file/atmel_generic.h	 interface definition for include/srec/input/file/atmel_generic.cc
 lib/srec/input/file/binary.cc	 functions to impliment the srec_input_file_binary class
+lib/srec/input/file/binary.h	 interface definition for srec/input/file/binary.cc
 lib/srec/input/file/cosmac.cc	 functions to impliment the srec_input_file_cosmac class
+lib/srec/input/file/cosmac.h	 interface definition for include/srec/input/file/cosmac.cc
 lib/srec/input/file/dec_binary.cc	 functions to impliment the srec_input_file_dec_binary class
+lib/srec/input/file/dec_binary.h	 interface definition for include/srec/input/file/dec_binary.cc
 lib/srec/input/file/emon52.cc	 functions to impliment the srec_input_file_emon52 class
+lib/srec/input/file/emon52.h	 interface definition for include/srec/input/file/emon52.cc
 lib/srec/input/file/fairchild.cc	 functions to impliment the srec_input_file_fairchild class
+lib/srec/input/file/fairchild.h	 interface definition for include/srec/input/file/fairchild.cc
 lib/srec/input/file/fastload.cc	 functions to impliment the srec_input_file_fastload class
+lib/srec/input/file/fastload.h	 interface definition for include/srec/input/file/fastload.cc
 lib/srec/input/file/formatted_binary.cc	 functions to impliment the srec_input_file_formatted_binary class
+lib/srec/input/file/formatted_binary.h	 interface defn for include/srec/input/file/formatted_binary.cc
 lib/srec/input/file/four_packed_code.cc	 functions to impliment the srec_input_file_four_packed_code class
+lib/srec/input/file/four_packed_code.h	 interface definition for include/srec/input/file/four_packed_code.cc
 lib/srec/input/file/guess.cc	 functions to guess the format
+lib/srec/input/file/guess.h	 interface definition for include/srec/input/file/guess.cc
 lib/srec/input/file/intel.cc	 functions to impliment the srec_input_file_intel class
+lib/srec/input/file/intel.h	 interface definition for srec/input/file/intel.cc
 lib/srec/input/file/intel16.cc	 functions to impliment the srec_input_file_intel16 class
+lib/srec/input/file/intel16.h	 interface definition for include/srec/input/file/intel16.cc
 lib/srec/input/file/mos_tech.cc	 functions to impliment the srec_input_file_mos_tech class
+lib/srec/input/file/mos_tech.h	 interface definition for include/srec/input/file/mos_tech.cc
 lib/srec/input/file/needham.cc	 functions to impliment the srec_input_file_needham class
+lib/srec/input/file/needham.h	 interface definition for include/srec/input/file/needham.cc
 lib/srec/input/file/os65v.cc	 functions to impliment the srec_input_file_os65v class
+lib/srec/input/file/os65v.h	 interface definition for include/srec/input/file/os65v.cc
 lib/srec/input/file/signetics.cc	 functions to impliment the srec_input_file_signetics class
+lib/srec/input/file/signetics.h	 interface definition for include/srec/input/file/signetics.cc
 lib/srec/input/file/spasm.cc	 functions to impliment the srec_input_file_spasm class
+lib/srec/input/file/spasm.h	 interface definition for include/srec/input/file/spasm.cc
 lib/srec/input/file/spectrum.cc	 functions to impliment the srec_input_file_spectrum class
+lib/srec/input/file/spectrum.h	 interface definition for include/srec/input/file/spectrum.cc
 lib/srec/input/file/srecord.cc	 functions to impliment the srec_input_file_srecord class
+lib/srec/input/file/srecord.h	 interface definition for lib/input/file/srecord.cc
 lib/srec/input/file/stewie.cc	 functions to impliment the srec_input_file_stewie class
+lib/srec/input/file/stewie.h	 interface definition for lib/input/file/stewie.cc
 lib/srec/input/file/tektronix.cc	 functions to impliment the srec_input_file_tektronix class
+lib/srec/input/file/tektronix.h	 interface definition for lib/srec/input/file/tektronix.cc
 lib/srec/input/file/tektronix_extended.cc	 functions to impliment the srec_input_file_tektronix_extended class
+lib/srec/input/file/tektronix_extended.h	 interface definition for lib/srec/input/file/tektronix_extended.cc
 lib/srec/input/file/ti_tagged.cc	 functions to impliment the srec_input_file_ti_tagged class
+lib/srec/input/file/ti_tagged.h	 interface definition for lib/srec/input/file/ti_tagged.cc
 lib/srec/input/file/vmem.cc	 functions to impliment the srec_input_file_vmem class
+lib/srec/input/file/vmem.h	 interface definition for include/srec/input/file/vmem.cc
 lib/srec/input/file/wilson.cc	 functions to impliment the srec_input_file_wilson class
+lib/srec/input/file/wilson.h	 interface definition for lib/srec/input/file/wilson.cc
 lib/srec/input/filter.cc	 functions to impliment the srec_input_filter class
+lib/srec/input/filter.h	 interface definition for lib/srec/input/filter.cc
 lib/srec/input/filter/and.cc	 functions to impliment the srec_input_filter_and class
+lib/srec/input/filter/and.h	 interface definition for include/srec/input/filter/and.cc
 lib/srec/input/filter/byte_swap.cc	 functions to impliment the srec_input_filter_byte_swap class
+lib/srec/input/filter/byte_swap.h	 interface definition for lib/srec/input/filter/byte_swap.cc
 lib/srec/input/filter/checksum.cc	 functions to impliment the srec_input_filter_checksum class
+lib/srec/input/filter/checksum.h	 interface definition for lib/srec/input/filter/checksum.cc
 lib/srec/input/filter/checksum/bitnot.cc	 functions to impliment the srec_input_filter_checksum_bitnot class
+lib/srec/input/filter/checksum/bitnot.h	 interface definition for lib/srec/input/filter/checksum/bitnot.cc
 lib/srec/input/filter/checksum/negative.cc	 functions to impliment the srec_input_filter_checksum_negative class
+lib/srec/input/filter/checksum/negative.h	 interface definition for lib/srec/input/filter/checksum/negative.cc
 lib/srec/input/filter/checksum/positive.cc	 functions to impliment the srec_input_filter_checksum_positive class
+lib/srec/input/filter/checksum/positive.h	 interface definition for lib/srec/input/filter/checksum/positive.cc
 lib/srec/input/filter/crc16.cc	 functions to impliment the srec_input_filter_crc16 class
+lib/srec/input/filter/crc16.h	 interface definition for include/srec/input/filter/crc16.cc
 lib/srec/input/filter/crc32.cc	 functions to impliment the srec_input_filter_crc32 class
+lib/srec/input/filter/crc32.h	 interface definition for include/srec/input/filter/crc32.cc
 lib/srec/input/filter/crop.cc	 functions to impliment the srec_input_filter_crop class
+lib/srec/input/filter/crop.h	 interface definition for lib/srec/input/filter/crop.cc
 lib/srec/input/filter/fill.cc	 functions to impliment the srec_input_filter_fill class
+lib/srec/input/filter/fill.h	 interface definition for lib/srec/input/filter/fill.cc
 lib/srec/input/filter/length.cc	 functions to impliment the srec_input_filter_length class
+lib/srec/input/filter/length.h	 interface definition for lib/srec/input/filter/length.cc
 lib/srec/input/filter/maximum.cc	 functions to impliment the srec_input_filter_maximum class
+lib/srec/input/filter/maximum.h	 interface definition for lib/srec/input/filter/maximum.cc
 lib/srec/input/filter/minimum.cc	 functions to impliment the srec_input_filter_minimum class
+lib/srec/input/filter/minimum.h	 interface definition for lib/srec/input/filter/minimum.cc
 lib/srec/input/filter/not.cc	 functions to impliment the srec_input_filter_not class
+lib/srec/input/filter/not.h	 interface definition for lib/srec/input/filter/not.cc
 lib/srec/input/filter/offset.cc	 functions to impliment the srec_input_filter_offset class
+lib/srec/input/filter/offset.h	 interface definition for lib/srec/input/filter/offset.cc
 lib/srec/input/filter/or.cc	 functions to impliment the srec_input_filter_or class
+lib/srec/input/filter/or.h	 interface definition for lib/srec/input/filter/or.cc
 lib/srec/input/filter/random_fill.cc	 functions to impliment the srec_input_filter_random_fill class
+lib/srec/input/filter/random_fill.h	 interface definition for lib/srec/input/filter/fill.cc
+lib/srec/input/filter/sequence.cc	 functions to impliment the srec_input_filter_sequence class
+lib/srec/input/filter/sequence.h	 interface definition for lib/srec/input/filter/sequence.cc
 lib/srec/input/filter/split.cc	 functions to impliment the srec_input_filter_split class
+lib/srec/input/filter/split.h	 interface definition for lib/srec/input/filter/split.cc
 lib/srec/input/filter/unfill.cc	 functions to impliment the srec_input_filter_unfill class
+lib/srec/input/filter/unfill.h	 interface definition for include/srec/input/filter/unfill.cc
 lib/srec/input/filter/unsplit.cc	 functions to impliment the srec_input_filter_unsplit class
+lib/srec/input/filter/unsplit.h	 interface definition for lib/srec/input/filter/unsplit.cc
 lib/srec/input/filter/xor.cc	 functions to impliment the srec_input_filter_xor class
+lib/srec/input/filter/xor.h	 interface definition for include/srec/input/filter/xor.cc
 lib/srec/input/interval.cc	 functions to impliment deriving an interval from an input file
+lib/srec/input/interval.h	 interface definition for lib/srec/input/interval.cc
 lib/srec/memory.cc	 functions to impliment the srec_memory class
+lib/srec/memory.h	 interface definition for lib/srec/memory.cc
 lib/srec/memory/chunk.cc	 functions to impliment the srec_memory_chunk class
+lib/srec/memory/chunk.h	 interface definition for lib/srec/memory/chunk.cc
 lib/srec/memory/walker.cc	 functions to impliment the srec_memory_walker class
+lib/srec/memory/walker.h	 interface definition for lib/srec/memory/walker.cc
 lib/srec/memory/walker/compare.cc	 functions to impliment the srec_memory_walker_compare class
+lib/srec/memory/walker/compare.h	 interface definition for include/srec/memory/walker/compare.cc
 lib/srec/memory/walker/continuity.cc	 functions to impliment the srec_memory_walker_continuity class
+lib/srec/memory/walker/continuity.h	 interface definition for include/srec/memory/walker/continuity.cc
 lib/srec/memory/walker/crc16.cc	 functions to impliment the srec_memory_walker_crc16 class
+lib/srec/memory/walker/crc16.h	 interface definition for include/srec/memory/walker/crc16.cc
 lib/srec/memory/walker/crc32.cc	 functions to impliment the srec_memory_walker_crc32 class
+lib/srec/memory/walker/crc32.h	 interface definition for include/srec/memory/walker/crc32.cc
 lib/srec/memory/walker/writer.cc	 functions to impliment the srec_memory_walker_writer class
+lib/srec/memory/walker/writer.h	 interface definition for lib/srec/memory/walker/writer.cc
 lib/srec/output.cc	 functions to impliment the srec_output class
+lib/srec/output.h	 interface definition for lib/srec/output.cc
 lib/srec/output/file.cc	 functions to impliment the srec_output_file class
+lib/srec/output/file.h	 interface definition for lib/srec/output/file.cc
 lib/srec/output/file/aomf.cc	 functions to impliment the srec_output_file_aomf class
+lib/srec/output/file/aomf.h	 interface definition for include/srec/output/file/aomf.cc
 lib/srec/output/file/ascii_hex.cc	 functions to impliment the srec_output_file_ascii_hex class
+lib/srec/output/file/ascii_hex.h	 interface definition for lib/srec/output/file/ascii_hex.cc
 lib/srec/output/file/asm.cc	 functions to impliment the srec_output_file_asm class
+lib/srec/output/file/asm.h	 interface definition for include/srec/output/file/asm.cc
 lib/srec/output/file/atmel_generic.cc	 functions to impliment the srec_output_file_atmel_generic class
+lib/srec/output/file/atmel_generic.h	 interface definition for include/srec/output/file/atmel_generic.cc
 lib/srec/output/file/basic.cc	 functions to impliment the srec_output_file_basic class
+lib/srec/output/file/basic.h	 interface definition for include/srec/output/file/basic.cc
 lib/srec/output/file/binary.cc	 functions to impliment the srec_output_file_binary class
+lib/srec/output/file/binary.h	 interface definition for lib/srec/output/file/binary.cc
 lib/srec/output/file/c.cc	 functions to impliment the srec_output_file_c class
+lib/srec/output/file/c.h	 interface definition for lib/srec/output/file/c.cc
 lib/srec/output/file/cosmac.cc	 functions to impliment the srec_output_file_cosmac class
+lib/srec/output/file/cosmac.h	 interface definition for include/srec/output/file/cosmac.cc
 lib/srec/output/file/dec_binary.cc	 functions to impliment the srec_output_file_dec_binary class
+lib/srec/output/file/dec_binary.h	 interface definition for include/srec/output/file/dec_binary.cc
 lib/srec/output/file/emon52.cc	 functions to impliment the srec_output_file_emon52 class
+lib/srec/output/file/emon52.h	 interface definition for include/srec/output/file/emon52.cc
 lib/srec/output/file/fairchild.cc	 functions to impliment the srec_output_file_fairchild class
+lib/srec/output/file/fairchild.h	 interface definition for include/srec/output/file/fairchild.cc
 lib/srec/output/file/fastload.cc	 functions to impliment the srec_output_file_fastload class
+lib/srec/output/file/fastload.h	 interface definition for include/srec/output/file/fastload.cc
 lib/srec/output/file/formatted_binary.cc	 functions to impliment the srec_output_file_formatted_binary class
+lib/srec/output/file/formatted_binary.h	 interface defn for include/srec/output/file/formatted_binary.cc
 lib/srec/output/file/four_packed_code.cc	 functions to impliment the srec_output_file_four_packed_code class
+lib/srec/output/file/four_packed_code.h	 interface definition for include/srec/output/file/four_packed_code.cc
 lib/srec/output/file/intel.cc	 functions to impliment the srec_output_file_intel class
+lib/srec/output/file/intel.h	 interface definition for lib/srec/output/file/intel.cc
 lib/srec/output/file/intel16.cc	 functions to impliment the srec_output_file_intel16 class
+lib/srec/output/file/intel16.h	 interface definition for include/srec/output/file/intel16.cc
 lib/srec/output/file/mos_tech.cc	 functions to impliment the srec_output_file_mos_tech class
+lib/srec/output/file/mos_tech.h	 interface definition for lib/srec/output/file/mos_tech.cc
 lib/srec/output/file/needham.cc	 functions to impliment the srec_output_file_needham class
+lib/srec/output/file/needham.h	 interface definition for include/srec/output/file/needham.cc
 lib/srec/output/file/os65v.cc	 functions to impliment the srec_output_file_os65v class
+lib/srec/output/file/os65v.h	 interface definition for include/srec/output/file/os65v.cc
 lib/srec/output/file/signetics.cc	 functions to impliment the srec_output_file_signetics class
+lib/srec/output/file/signetics.h	 interface definition for include/srec/output/file/signetics.cc
 lib/srec/output/file/spasm.cc	 functions to impliment the srec_output_file_spasm class
+lib/srec/output/file/spasm.h	 interface definition for include/srec/output/file/spasm.cc
 lib/srec/output/file/spectrum.cc	 functions to impliment the srec_output_file_spectrum class
+lib/srec/output/file/spectrum.h	 interface definition for include/srec/output/file/spectrum.cc
 lib/srec/output/file/srecord.cc	 functions to impliment the srec_output_file_srecord class
+lib/srec/output/file/srecord.h	 interface definition for lib/srec/output/file/srecord.cc
 lib/srec/output/file/stewie.cc	 functions to impliment the srec_output_file_stewie class
+lib/srec/output/file/stewie.h	 interface definition for lib/srec/output/file/stewie.cc
 lib/srec/output/file/tektronix.cc	 functions to impliment the srec_output_file_tektronix class
+lib/srec/output/file/tektronix.h	 interface definition for lib/srec/output/file/tektronix.cc
 lib/srec/output/file/tektronix_extended.cc	 functions to impliment the srec_output_file_tektronix_extended class
+lib/srec/output/file/tektronix_extended.h	 interface definition for lib/srec/output/file/tektronix_extended.cc
 lib/srec/output/file/ti_tagged.cc	 functions to impliment the srec_output_file_ti_tagged class
+lib/srec/output/file/ti_tagged.h	 interface definition for include/srec/output/file/ti_tagged.cc
 lib/srec/output/file/vhdl.cc	 functions to impliment the srec_output_file_vhdl class
+lib/srec/output/file/vhdl.h	 interface definition for lib/srec/output/file/vhdl.cc
 lib/srec/output/file/vmem.cc	 functions to impliment the srec_output_file_vmem class
+lib/srec/output/file/vmem.h	 interface definition for lib/srec/output/file/vmem.cc
 lib/srec/output/file/wilson.cc	 functions to impliment the srec_output_file_wilson class
+lib/srec/output/file/wilson.h	 interface definition for lib/srec/output/file/wilson.cc
 lib/srec/record.cc	 functions to impliment the srec_record class
+lib/srec/record.h	 interface definition for lib/srec/record.cc
+lib/versn_stamp.cc	 functions to impliment the versn_stamp class
+lib/versn_stamp.h	 interface definition for lib/common/versn_stamp.cc
+lib/vsnprintf.cc	 functions to impliment the common_vsnprintf class
+man/man1/o_at.so	 man/man1/o_at.so
 man/man1/o_ignore_checksums.so	 man/man1/o_ignore_checksums.so
 man/man1/o_input.so	 describe input file specifiers
 man/man1/o_multiple.so	 document describing the -multiple option
+man/man1/o_sequence.so	 man/man1/o_sequence.so
 man/man1/srec_cat.1	 manual entry for the srec_cat command
 man/man1/srec_cmp.1	 manual entry for the srec_cmp command
 man/man1/srec_info.1	 manual entry for the srec_info command
@@ -431,3 +436,4 @@ test/01/t0100a.sh	 Test the byte swap filter functionality
 test/01/t0101a.sh	 Test the intel hex functionality
 test/01/t0102a.sh	 Test the srec_output_file_asm functionality
 test/01/t0103a.sh	 Test the cmd line parsing functionality
+test/01/t0105a.sh	 Test the @file functionality

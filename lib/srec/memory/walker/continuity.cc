@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2006 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,9 +19,8 @@
 // MANIFEST: functions to impliment the srec_memory_walker_continuity class
 //
 
-#pragma implementation "srec_memory_walker_continuity"
 
-#include <srec/memory/walker/continuity.h>
+#include <lib/srec/memory/walker/continuity.h>
 
 
 srec_memory_walker_continuity::~srec_memory_walker_continuity()

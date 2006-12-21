@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2001-2003, 2005 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2001-2003, 2005, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,10 +19,9 @@
 // MANIFEST: functions to impliment the srec_input_file_signetics class
 //
 
-#pragma implementation "srec_input_file_signetics"
 
-#include <srec/input/file/signetics.h>
-#include <srec/record.h>
+#include <lib/srec/input/file/signetics.h>
+#include <lib/srec/record.h>
 
 
 srec_input_file_signetics::srec_input_file_signetics(const char *filename) :

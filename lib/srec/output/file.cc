@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2002, 2005, 2006 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998-2002, 2005, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,7 +19,6 @@
 // MANIFEST: functions to impliment the srec_output_file class
 //
 
-#pragma implementation "srec_output_file"
 
 #include <cstdio>
 #include <errno.h>
@@ -29,7 +27,7 @@ using namespace std;
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <srec/output/file.h>
+#include <lib/srec/output/file.h>
 
 
 bool srec_output_file::data_only_flag = false;

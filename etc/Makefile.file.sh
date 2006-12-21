@@ -1,8 +1,7 @@
 #!/bin/sh
 #
 #	srecord - manipulate eprom load files
-#	Copyright (C) 1998 Peter Miller;
-#	All rights reserved.
+#	Copyright (C) 1998, 2006 Peter Miller
 #
 #	This program is free software; you can redistribute it and/or modify
 #	it under the terms of the GNU General Public License as published by
@@ -70,7 +69,7 @@ case $file in
 
 	echo ""
 	echo "${stem}.o: $file" $dep
-	echo "	\$(CXX) \$(CPPFLAGS) \$(CXXFLAGS) -I$dir -Iinclude -c $file"
+	echo "	\$(CXX) \$(CPPFLAGS) \$(CXXFLAGS) -I. -c $file"
 	echo "	mv ${root}.o ${stem}.o"
 	;;
 
@@ -85,7 +84,7 @@ man/man[0-9]/*.[0-9])
 
 	echo ""
 	echo "\$(mandir)/$stem: $file" $dep $dir/.mandir
-	echo "	\$(SOELIM) -I$dir -Ietc $file > tmp"
+	echo "	\$(SOELIM) -I. -Ietc $file > tmp"
 	echo "	\$(INSTALL_DATA) tmp \$@"
 	echo "	@rm -f tmp"
 	;;
@@ -108,7 +107,7 @@ etc/*.man)
 
 	echo ""
 	echo "etc/$base.txt: $file" $dep
-	echo "	\$(SOELIM) -I. -Iman/man1 -Iman/man5 -I. $file | \$(GROFF) -Tascii -t -man > \$@"
+	echo "	\$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc $file | \$(GROFF) -Tascii -t -man > \$@"
 	;;
 
 test/*/*.sh)

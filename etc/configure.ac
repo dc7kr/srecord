@@ -1,7 +1,6 @@
 dnl
 dnl	srecord - manipulate eprom load files
-dnl	Copyright (C) 1998, 1999, 2002 Peter Miller;
-dnl	All rights reserved.
+dnl	Copyright (C) 1998, 1999, 2002, 2006 Peter Miller
 dnl
 dnl	This program is free software; you can redistribute it and/or modify
 dnl	it under the terms of the GNU General Public License as published by
@@ -20,7 +19,7 @@ dnl
 dnl MANIFEST: how to configure srecord, input to the GNU autoconf program
 dnl
 AC_INIT(install-sh)
-AC_CONFIG_HEADER(include/config.h)
+AC_CONFIG_HEADER(lib/config.h)
 AC_PROG_CXX
 AC_PROG_CPP
 AC_PROG_INSTALL
@@ -92,8 +91,7 @@ AC_SUBST(HAVE_GROFF)
 
 AH_TOP([/*
  *	srecord - manipulate eprom load files
- *	Copyright (C) 1998-2002 Peter Miller;
- *	All rights reserved.
+ *	Copyright (C) 1998-2002, 2006 Peter Miller
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -109,7 +107,7 @@ AH_TOP([/*
  *	along with this program; if not, write to the Free Software
  *	Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
  *
- * MANIFEST: template include/config.h file
+ * MANIFEST: template lib/config.h file
  */
 
 #ifndef INCLUDE_CONFIG_H
@@ -123,7 +121,7 @@ AH_BOTTOM([
  * the above information, so there is no need for you to edit the file,
  * if you are configuring Aegis manually.
  */
-#include <config.messy.h>
+#include <lib/config.messy.h>
 
 #endif /* INCLUDE_CONFIG_H */])
 

@@ -1,7 +1,6 @@
 /*
  *	srecord - manipulate eprom load files
- *	Copyright (C) 1998-2000, 2003, 2004 Peter Miller;
- *	All rights reserved.
+ *	Copyright (C) 1998-2000, 2003, 2004, 2006 Peter Miller
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -27,7 +26,12 @@ integration-build-targets:
 	archive/[project_minus].spec
 	archive/[project_minus].tar.gz
 	archive/[project_minus].pdf
-	archive/[project_short].gif
+	archive/[project_short].png
+	archive/[project_short].ico
+	archive/[project_short]-128.png
+	archive/[project_short]-64.png
+	archive/[project_short]-32.png
+	archive/[project_short]-16.png
 	[fromto etc/%.html archive/%.html
 	    [match_mask etc/%.html [source_files]]
 	]
@@ -46,13 +50,13 @@ source_file_order =
 			 * These two are for time stamping the distribution.
 			 */
 			etc/version.so
-			include/patchlevel.h
+			lib/patchlevel.h
 
 			/*
 			 * These four are for building the distribution.
 			 */
 			Makefile.in
-			include/config.h.in
+			lib/config.h.in
 			install-sh
 			configure
 
@@ -327,4 +331,30 @@ MANIFEST: etc/MANIFEST.head
 	[addsuffix ",m" [stringset [source_files] - MANIFEST]]
 {
 	cat [resolve [need]] > [target];
+}
+
+archive/%1-%2.png: archive/%1.png
+{
+    if [find_command pngcrush] then
+    {
+	convert [resolve archive/%1.png] -scale %2 [target].tmp;
+	pngcrush -bkgd 255 255 255 -brute -q [target].tmp [target];
+	rm [target].tmp;
+    }
+    else
+    {
+	convert [resolve archive/%1.png] -scale %2 [target];
+    }
+}
+
+archive/srecord.ico:
+    archive/srecord-16.png
+    archive/srecord-24.png
+    archive/srecord-32.png
+    archive/srecord-48.png
+    archive/srecord-64.png
+    archive/srecord-96.png
+    archive/srecord-128.png
+{
+    png2ico [target] [resolve [need]];
 }

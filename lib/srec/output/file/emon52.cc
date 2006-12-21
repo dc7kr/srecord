@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2001, 2002, 2006 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2001, 2002, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,10 +19,9 @@
 // MANIFEST: functions to impliment the srec_output_file_emon52 class
 //
 
-#pragma implementation "srec_output_file_emon52"
 
-#include <srec/output/file/emon52.h>
-#include <srec/record.h>
+#include <lib/srec/output/file/emon52.h>
+#include <lib/srec/record.h>
 
 
 srec_output_file_emon52::srec_output_file_emon52() :

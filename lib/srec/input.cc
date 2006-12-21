@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2000, 2002, 2003, 2005 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998-2000, 2002, 2003, 2005, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,16 +19,15 @@
 // MANIFEST: functions to impliment the srec_input class
 //
 
-#pragma implementation "srec_input"
 
 #include <errno.h>
 #include <iostream>
 using namespace std;
 #include <cstring>
 
-#include <srec/input.h>
-#include <srec/record.h>
-#include <quit/prefix.h>
+#include <lib/srec/input.h>
+#include <lib/srec/record.h>
+#include <lib/quit/prefix.h>
 
 
 srec_input::srec_input() :

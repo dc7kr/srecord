@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 1998-2006 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 1998-2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -23,55 +22,56 @@
 #include <iostream>
 using namespace std;
 
-#include <srec/arglex.h>
-#include <srec/input/file/aomf.h>
-#include <srec/input/file/ascii_hex.h>
-#include <srec/input/file/atmel_generic.h>
-#include <srec/input/file/binary.h>
-#include <srec/input/file/cosmac.h>
-#include <srec/input/file/dec_binary.h>
-#include <srec/input/file/emon52.h>
-#include <srec/input/file/fairchild.h>
-#include <srec/input/file/fastload.h>
-#include <srec/input/file/formatted_binary.h>
-#include <srec/input/file/four_packed_code.h>
-#include <srec/input/file/guess.h>
-#include <srec/input/file/intel.h>
-#include <srec/input/file/intel16.h>
-#include <srec/input/file/mos_tech.h>
-#include <srec/input/file/needham.h>
-#include <srec/input/file/os65v.h>
-#include <srec/input/file/signetics.h>
-#include <srec/input/file/spasm.h>
-#include <srec/input/file/spectrum.h>
-#include <srec/input/file/srecord.h>
-#include <srec/input/file/stewie.h>
-#include <srec/input/file/tektronix_extended.h>
-#include <srec/input/file/tektronix.h>
-#include <srec/input/file/ti_tagged.h>
-#include <srec/input/file/vmem.h>
-#include <srec/input/file/wilson.h>
-#include <srec/input/filter/and.h>
-#include <srec/input/filter/byte_swap.h>
-#include <srec/input/filter/checksum/bitnot.h>
-#include <srec/input/filter/checksum/negative.h>
-#include <srec/input/filter/checksum/positive.h>
-#include <srec/input/filter/crc16.h>
-#include <srec/input/filter/crc32.h>
-#include <srec/input/filter/crop.h>
-#include <srec/input/filter/fill.h>
-#include <srec/input/filter/length.h>
-#include <srec/input/filter/maximum.h>
-#include <srec/input/filter/minimum.h>
-#include <srec/input/filter/not.h>
-#include <srec/input/filter/offset.h>
-#include <srec/input/filter/or.h>
-#include <srec/input/filter/random_fill.h>
-#include <srec/input/filter/split.h>
-#include <srec/input/filter/unfill.h>
-#include <srec/input/filter/unsplit.h>
-#include <srec/input/filter/xor.h>
-#include <srec/input/interval.h>
+#include <lib/srec/arglex.h>
+#include <lib/srec/input/file/aomf.h>
+#include <lib/srec/input/file/ascii_hex.h>
+#include <lib/srec/input/file/atmel_generic.h>
+#include <lib/srec/input/file/binary.h>
+#include <lib/srec/input/file/cosmac.h>
+#include <lib/srec/input/file/dec_binary.h>
+#include <lib/srec/input/file/emon52.h>
+#include <lib/srec/input/file/fairchild.h>
+#include <lib/srec/input/file/fastload.h>
+#include <lib/srec/input/file/formatted_binary.h>
+#include <lib/srec/input/file/four_packed_code.h>
+#include <lib/srec/input/file/guess.h>
+#include <lib/srec/input/file/intel.h>
+#include <lib/srec/input/file/intel16.h>
+#include <lib/srec/input/file/mos_tech.h>
+#include <lib/srec/input/file/needham.h>
+#include <lib/srec/input/file/os65v.h>
+#include <lib/srec/input/file/signetics.h>
+#include <lib/srec/input/file/spasm.h>
+#include <lib/srec/input/file/spectrum.h>
+#include <lib/srec/input/file/srecord.h>
+#include <lib/srec/input/file/stewie.h>
+#include <lib/srec/input/file/tektronix_extended.h>
+#include <lib/srec/input/file/tektronix.h>
+#include <lib/srec/input/file/ti_tagged.h>
+#include <lib/srec/input/file/vmem.h>
+#include <lib/srec/input/file/wilson.h>
+#include <lib/srec/input/filter/and.h>
+#include <lib/srec/input/filter/byte_swap.h>
+#include <lib/srec/input/filter/checksum/bitnot.h>
+#include <lib/srec/input/filter/checksum/negative.h>
+#include <lib/srec/input/filter/checksum/positive.h>
+#include <lib/srec/input/filter/crc16.h>
+#include <lib/srec/input/filter/crc32.h>
+#include <lib/srec/input/filter/crop.h>
+#include <lib/srec/input/filter/fill.h>
+#include <lib/srec/input/filter/length.h>
+#include <lib/srec/input/filter/maximum.h>
+#include <lib/srec/input/filter/minimum.h>
+#include <lib/srec/input/filter/not.h>
+#include <lib/srec/input/filter/offset.h>
+#include <lib/srec/input/filter/or.h>
+#include <lib/srec/input/filter/random_fill.h>
+#include <lib/srec/input/filter/sequence.h>
+#include <lib/srec/input/filter/split.h>
+#include <lib/srec/input/filter/unfill.h>
+#include <lib/srec/input/filter/unsplit.h>
+#include <lib/srec/input/filter/xor.h>
+#include <lib/srec/input/interval.h>
 
 
 srec_input *
@@ -80,7 +80,7 @@ srec_arglex::get_input()
     //
     // determine the file name
     //
-    const char *fn = "-";
+    std::string fn = "-";
     switch (token_cur())
     {
     case token_paren_begin:
@@ -130,147 +130,147 @@ srec_arglex::get_input()
 	// fall through...
 
     default:
-	ifp = new srec_input_file_srecord(fn);
+	ifp = new srec_input_file_srecord(fn.c_str());
 	break;
 
     case token_aomf:
 	token_next();
-	ifp = new srec_input_file_aomf(fn);
+	ifp = new srec_input_file_aomf(fn.c_str());
 	break;
 
     case token_ascii_hex:
 	token_next();
-	ifp = new srec_input_file_ascii_hex(fn);
+	ifp = new srec_input_file_ascii_hex(fn.c_str());
 	break;
 
     case token_atmel_generic_be:
 	token_next();
-	ifp = new srec_input_file_atmel_generic(fn, true);
+	ifp = new srec_input_file_atmel_generic(fn.c_str(), true);
 	break;
 
     case token_atmel_generic_le:
 	token_next();
-	ifp = new srec_input_file_atmel_generic(fn, false);
+	ifp = new srec_input_file_atmel_generic(fn.c_str(), false);
 	break;
 
     case token_binary:
 	token_next();
-	ifp = new srec_input_file_binary(fn);
+	ifp = new srec_input_file_binary(fn.c_str());
 	break;
 
     case token_cosmac:
 	token_next();
-	ifp = new srec_input_file_cosmac(fn);
+	ifp = new srec_input_file_cosmac(fn.c_str());
 	break;
 
     case token_dec_binary:
 	token_next();
-	ifp = new srec_input_file_dec_binary(fn);
+	ifp = new srec_input_file_dec_binary(fn.c_str());
 	break;
 
     case token_emon52:
 	token_next();
-	ifp = new srec_input_file_emon52(fn);
+	ifp = new srec_input_file_emon52(fn.c_str());
 	break;
 
     case token_fairchild:
 	token_next();
-	ifp = new srec_input_file_fairchild(fn);
+	ifp = new srec_input_file_fairchild(fn.c_str());
 	break;
 
     case token_fast_load:
 	token_next();
-	ifp = new srec_input_file_fastload(fn);
+	ifp = new srec_input_file_fastload(fn.c_str());
 	break;
 
     case token_formatted_binary:
 	token_next();
-	ifp = new srec_input_file_formatted_binary(fn);
+	ifp = new srec_input_file_formatted_binary(fn.c_str());
 	break;
 
     case token_four_packed_code:
 	token_next();
-	ifp = new srec_input_file_four_packed_code(fn);
+	ifp = new srec_input_file_four_packed_code(fn.c_str());
 	break;
 
     case token_guess:
 	token_next();
-	ifp = srec_input_file_guess(fn);
+	ifp = srec_input_file_guess(fn.c_str());
 	break;
 
     case token_intel:
 	token_next();
-	ifp = new srec_input_file_intel(fn);
+	ifp = new srec_input_file_intel(fn.c_str());
 	break;
 
     case token_intel16:
     	token_next();
-	ifp = new srec_input_file_intel16(fn);
+	ifp = new srec_input_file_intel16(fn.c_str());
 	break;
 
     case token_mos_tech:
 	token_next();
-	ifp = new srec_input_file_mos_tech(fn);
+	ifp = new srec_input_file_mos_tech(fn.c_str());
 	break;
 
     case token_ohio_scientific:
 	token_next();
-	ifp = new srec_input_file_os65v(fn);
+	ifp = new srec_input_file_os65v(fn.c_str());
 	break;
 
     case token_needham_hex:
 	token_next();
-	ifp = new srec_input_file_needham(fn);
+	ifp = new srec_input_file_needham(fn.c_str());
 	break;
 
     case token_signetics:
 	token_next();
-	ifp = new srec_input_file_signetics(fn);
+	ifp = new srec_input_file_signetics(fn.c_str());
 	break;
 
     case token_spasm_be:
 	token_next();
-	ifp = new srec_input_file_spasm(fn, true);
+	ifp = new srec_input_file_spasm(fn.c_str(), true);
 	break;
 
     case token_spasm_le:
 	token_next();
-	ifp = new srec_input_file_spasm(fn, false);
+	ifp = new srec_input_file_spasm(fn.c_str(), false);
 	break;
 
     case token_spectrum:
 	token_next();
-	ifp = new srec_input_file_spectrum(fn);
+	ifp = new srec_input_file_spectrum(fn.c_str());
 	break;
 
     case token_stewie:
 	token_next();
-	ifp = new srec_input_file_stewie(fn);
+	ifp = new srec_input_file_stewie(fn.c_str());
 	break;
 
     case token_tektronix:
 	token_next();
-	ifp = new srec_input_file_tektronix(fn);
+	ifp = new srec_input_file_tektronix(fn.c_str());
 	break;
 
     case token_tektronix_extended:
 	token_next();
-	ifp = new srec_input_file_tektronix_extended(fn);
+	ifp = new srec_input_file_tektronix_extended(fn.c_str());
 	break;
 
     case token_ti_tagged:
 	token_next();
-	ifp = new srec_input_file_ti_tagged(fn);
+	ifp = new srec_input_file_ti_tagged(fn.c_str());
 	break;
 
     case token_vmem:
 	token_next();
-	ifp = new srec_input_file_vmem(fn);
+	ifp = new srec_input_file_vmem(fn.c_str());
 	break;
 
     case token_wilson:
 	token_next();
-	ifp = new srec_input_file_wilson(fn);
+	ifp = new srec_input_file_wilson(fn.c_str());
 	break;
     }
 
@@ -287,6 +287,12 @@ srec_arglex::get_input()
 	ifp->disable_checksum_validation();
 	token_next();
     }
+
+    //
+    // warn about data record sequences, if asked to
+    //
+    if (issue_sequence_warnings != 0)
+        ifp = new srec_input_filter_sequence(ifp);
 
     //
     // apply any filters specified

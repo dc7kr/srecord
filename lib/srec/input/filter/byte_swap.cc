@@ -1,7 +1,6 @@
 //
 //	srecord - manipulate eprom load files
-//	Copyright (C) 2000-2002, 2005 Peter Miller;
-//	All rights reserved.
+//	Copyright (C) 2000-2002, 2005, 2006 Peter Miller
 //
 //	This program is free software; you can redistribute it and/or modify
 //	it under the terms of the GNU General Public License as published by
@@ -20,11 +19,10 @@
 // MANIFEST: functions to impliment the srec_input_filter_byte_swap class
 //
 
-#pragma implementation "srec_input_filter_byte_swap"
 
-#include <srec/arglex.h>
-#include <srec/input/filter/byte_swap.h>
-#include <srec/record.h>
+#include <lib/srec/arglex.h>
+#include <lib/srec/input/filter/byte_swap.h>
+#include <lib/srec/record.h>
 
 
 srec_input_filter_byte_swap::srec_input_filter_byte_swap(srec_input *arg) :

@@ -1,7 +1,6 @@
 '\" t
 .\"	srecord - manipulate eprom load files
-.\"	Copyright (C) 1998, 2001, 2005 Peter Miller;
-.\"	All rights reserved.
+.\"	Copyright (C) 1998, 2001, 2005, 2006 Peter Miller
 .\"
 .\"	This program is free software; you can redistribute it and/or modify
 .\"	it under the terms of the GNU General Public License as published by
@@ -48,6 +47,7 @@ These statistics include: the file header if any, the start address if any, and 
 .ne 1i
 .SH OPTIONS
 The following options are understood:
+.so o_at.so
 .TP 8n
 .B -Help
 .br
@@ -57,6 +57,7 @@ program.
 .TP 8n
 \fB\-IGnore_Checksums\fP
 .so o_ignore_checksums.so
+.so o_sequence.so
 .so o_multiple.so
 .TP 8n
 .B -VERSion
