@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.27
+Version: 1.28
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -74,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/srec_aomf.5*
 %{_mandir}/man5/srec_ascii_hex.5*
 %{_mandir}/man5/srec_atmel_generic.5*
+%{_mandir}/man5/srec_brecord.5*
 %{_mandir}/man5/srec_cosmac.5*
 %{_mandir}/man5/srec_dec_binary.5*
 %{_mandir}/man5/srec_emon52.5*

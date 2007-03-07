@@ -56,6 +56,7 @@ etc/new.1.24.so	 description of new 1.24 features
 etc/new.1.25.so	 description of new 1.25 features
 etc/new.1.26.so	 description of new 1.26 features
 etc/new.1.27.so	 description of new 1.27 features
+etc/new.1.28.so	 description of new 1.28 features
 etc/new.1.3.so	 description of new 1.3 features
 etc/new.1.4.so	 description of new 1.4 features
 etc/new.1.5.so	 description of new 1.5 features
@@ -126,6 +127,8 @@ lib/srec/input/file/atmel_generic.cc	 functions to impliment the srec_input_file
 lib/srec/input/file/atmel_generic.h	 interface definition for include/srec/input/file/atmel_generic.cc
 lib/srec/input/file/binary.cc	 functions to impliment the srec_input_file_binary class
 lib/srec/input/file/binary.h	 interface definition for srec/input/file/binary.cc
+lib/srec/input/file/brecord.cc	 functions to impliment the srec_input_file_brecord class
+lib/srec/input/file/brecord.h	 interface definition for lib/srec/input/file/brecord.cc
 lib/srec/input/file/cosmac.cc	 functions to impliment the srec_input_file_cosmac class
 lib/srec/input/file/cosmac.h	 interface definition for include/srec/input/file/cosmac.cc
 lib/srec/input/file/dec_binary.cc	 functions to impliment the srec_input_file_dec_binary class
@@ -252,6 +255,8 @@ lib/srec/output/file/basic.cc	 functions to impliment the srec_output_file_basic
 lib/srec/output/file/basic.h	 interface definition for include/srec/output/file/basic.cc
 lib/srec/output/file/binary.cc	 functions to impliment the srec_output_file_binary class
 lib/srec/output/file/binary.h	 interface definition for lib/srec/output/file/binary.cc
+lib/srec/output/file/brecord.cc	 functions to impliment the srec_output_file_brecord class
+lib/srec/output/file/brecord.h	 interface definition for lib/srec/output/file/brecord.cc
 lib/srec/output/file/c.cc	 functions to impliment the srec_output_file_c class
 lib/srec/output/file/c.h	 interface definition for lib/srec/output/file/c.cc
 lib/srec/output/file/cosmac.cc	 functions to impliment the srec_output_file_cosmac class
@@ -320,6 +325,7 @@ man/man1/z_options.so	 description of option up/down case convention
 man/man5/srec_aomf.5	 manual entry for the srec_aomf.5 command
 man/man5/srec_ascii_hex.5	 manual entry for the srec_ascii_hex.5 command
 man/man5/srec_atmel_generic.5	 manual entry for the srec_atmel_generic.5 command
+man/man5/srec_brecord.5	 manual entry for the srec_brecord.5 command
 man/man5/srec_cosmac.5	 manual entry for the srec_cosmac.5 command
 man/man5/srec_dec_binary.5	 manual entry for srec_dec_binary(5)
 man/man5/srec_emon52.5	 manual entry for the srec_emon52.5 command
@@ -437,3 +443,5 @@ test/01/t0101a.sh	 Test the intel hex functionality
 test/01/t0102a.sh	 Test the srec_output_file_asm functionality
 test/01/t0103a.sh	 Test the cmd line parsing functionality
 test/01/t0105a.sh	 Test the @file functionality
+test/01/t0106a.sh	 Test the read b-record functionality
+test/01/t0107a.sh	 Test the write b-record functionality
