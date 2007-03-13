@@ -1,6 +1,7 @@
+#!/bin/sh
 #
-#       srecord - manipulate eprom load files
-#       Copyright (C) 1998, 2006, 2007 Peter Miller
+#       srecord - The "srecord" program.
+#       Copyright (C) 2007 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -16,26 +17,20 @@
 #       along with this program; if not, write to the Free Software
 #       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 #
-# MANIFEST: ptx2.awk
+# MANIFEST: shell script to check-tarball
 #
-BEGIN {
-        print ".hy 0"
-        print ".de TH"
-        print ".."
-        print ".TS H"
-        print "l r lw(2.5i) lw(2.5i)."
-        print ".TH"
-}
-{
-        print $10 "\t\\*[Page*Of*" $10 "]\tT{"
-        print ".ad r"
-        print $4
-        print "T}\tT{"
-        print ".ad l"
-        print $6
-        print "T}"
-}
-END {
-        print ".TE"
-        print ".ad b"
-}
+set -e
+set -x
+
+base=`basename $1 .tar.gz`
+
+tar xzf $1
+cd $base
+./configure
+make
+make sure
+cd ..
+rm -rf $base
+exit 0
+
+# vim:ts=8:sw=4:et

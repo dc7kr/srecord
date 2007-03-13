@@ -212,11 +212,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   srecord.html          # the SRecord page
-           File:   srecord-1.28.README   # Description, from the tar file
-           File:   srecord-1.28.lsm      # Description, LSM format
-           File:   srecord-1.28.spec     # RedHat package specification
-           File:   srecord-1.28.tar.gz   # the complete source
-           File:   srecord-1.28.pdf      # Reference Manual
+           File:   srecord-1.29.README   # Description, from the tar file
+           File:   srecord-1.29.lsm      # Description, LSM format
+           File:   srecord-1.29.spec     # RedHat package specification
+           File:   srecord-1.29.tar.gz   # the complete source
+           File:   srecord-1.29.pdf      # Reference Manual
 
        This Web page also contains a few other pieces of software written by
        me.  Please have a look if you are interested.
@@ -225,11 +225,11 @@ ARCHIVE SITE
        will be able to find SRecord on any of its mirrors.
 
            URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.28.README   # Description, from the tar file
-           File:   srecord-1.28.lsm      # Description, LSM format
-           File:   srecord-1.28.spec     # RedHat package specification
-           File:   srecord-1.28.tar.gz   # the complete source
-           File:   srecord-1.28.pdf      # Reference Manual
+           File:   srecord-1.29.README   # Description, from the tar file
+           File:   srecord-1.29.lsm      # Description, LSM format
+           File:   srecord-1.29.spec     # RedHat package specification
+           File:   srecord-1.29.tar.gz   # the complete source
+           File:   srecord-1.29.pdf      # Reference Manual
        This site is extensively mirrored around the world, so look for a copy
        near you (you will get much better response).
 
@@ -259,7 +259,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.28
+       srecord version 1.29
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007 Peter Miller
 
@@ -339,11 +339,14 @@ RELEASE NOTES
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
-   Version 1.28 (8-Mar-2007)
+   Version 1.29 (2007-Mar-13)
+       * A serious bug has been fixed in the generated Makefile.
+
+   Version 1.28 (2007-Mar-08)
        * It is now possible to read and write files in the Freescale MC68EZ328
        Dragonball bootstrap b-record format
 
-   Version 1.27 (21-Dec-2006)
+   Version 1.27 (2006-Dec-21)
        * [SourceForge Feature Request 1597637] There is a new warning issued
        when input data records are not in strictly ascending address order.
        There is a new command line option to silence the warning.
@@ -354,34 +357,34 @@ RELEASE NOTES
        of they were command line options.  This gets around absurdly short
        command line length limits in some operating systems.
 
-   Version 1.26 (26-May-2006)
+   Version 1.26 (2006-May-26)
        * It is now possible to place parenteses on the command line in more
        places to clariy your intent.
 
        * This change prepares SRecord for the next public release.
 
-   Version 1.25 (18-May-2006)
+   Version 1.25 (2006-May-18)
        * The assembler output has been enhanced to produce ORG directives, if
        necessary, to change the data address.
 
        * The srec_cat(1) command now only writes a start address into the
        output if there was a start address present in the input.
 
-   Version 1.24 (8-Mar-2006)
+   Version 1.24 (2006-Mar-08)
        * Additional information has been added to the lseek error when they
        try to seek to addresses >= 2**31
 
        * The CRC 16 filters have been enhanced to accept an argument to
        specify whether CCITT or XMODEM calculations are to be performed.
 
-   Version 1.23 (23-Sep-2005)
+   Version 1.23 (2005-Sep-23)
        * A segfault has been fixed on x86_64 when running the regression test
        suite.
 
        * A compile problem with the lib/srec/output/file/c.cc file has been
        fixed.
 
-   Version 1.22 (12-Aug-2005)
+   Version 1.22 (2005-Aug-12)
        * The -byte-swap filter now has an optional width argument, to specify
        the address width to swap.  The default is two bytes.
 
@@ -406,7 +409,7 @@ RELEASE NOTES
        checksum values are still read in and parsed (so it is still an error
        if they are missing) but their values are not checked.
 
-   Version 1.21 (7-Feb-2005)
+   Version 1.21 (2005-Feb-07)
        * More Doxygen comments have been added to the class header files.
 
        * There is a new srec_cat --crlf option, which may be used for force
@@ -422,10 +425,10 @@ RELEASE NOTES
 
        * A number of build problems have been fixed.
 
-   Version 1.20 (8-Feb-2004)
+   Version 1.20 (2004-Feb-08)
        * The AOMF format now accepts (and ignores) more record types.
 
-   Version 1.19 (3-Jan-2004)
+   Version 1.19 (2004-Jan-03)
        * It is now possible to set the start address in the output using the
        srec_cat -Start_Address command line option.
 
@@ -435,7 +438,7 @@ RELEASE NOTES
        * There is a new srec_cat -Random_Fill filter, like the srec_cat -Fill
        filter except that it uses random values.
 
-   Version 1.18 (1-Jan-2004)
+   Version 1.18 (2004-Jan-01)
        * The VMEM format is now able to output data for 64 and 128 bits wide
        memories.
 
@@ -443,7 +446,7 @@ RELEASE NOTES
        a copy-and-paste glitch and always said big-endian where little endian
        was intended half the time.
 
-   Version 1.17 (12-Oct-2003)
+   Version 1.17 (2003-Oct-12)
        * There is now support for Intel Extended Segment aasddressing output,
        via the --address-length=2 option.
 
@@ -455,10 +458,10 @@ RELEASE NOTES
        except that the bytes counts and the addresses refer to words (hi,lo)
        rather than bytes.  See srec_intel16(5) for more information.
 
-   Version 1.16 (28-Jul-2003)
+   Version 1.16 (2003-Jul-28)
        * Some updates have been made to cope with GCC 3.2
 
-   Version 1.15 (16-Jun-2003)
+   Version 1.15 (2003-Jun-16)
        * The Ascii-Hex implementation is now slightly more complete.  I still
        haven't found a definitive description.
 
@@ -477,13 +480,13 @@ RELEASE NOTES
        * The Needham EMP programmer format has been added for reading and
        writing.  See srec_needham(5) for more information.
 
-   Version 1.14 (11-Mar-2003)
+   Version 1.14 (2003-Mar-11)
        * Numerous fixes have been made to header handling.  It is now possible
        to specify an empty header with the -header command line option.
 
        * Some more GCC 3.2 build problems have been fixed.
 
-   Version 1.13 (5-Feb-2003)
+   Version 1.13 (2003-Feb-05)
        * Bugs have been fixed in the Texas Instruments Tagged and VHDL
        formats, which produced inconsistent output.
 
@@ -491,7 +494,7 @@ RELEASE NOTES
 
        * There are two new output formats for ASM and BASIC.
 
-   Version 1.12 (6-Dec-2002)
+   Version 1.12 (2002-Dec-06)
        * It is now possible to put -minimum input.spec (also -maximum and
        -length) almost anywhere on the command line that you can put a number.
        It allows, for example, the -offset value to be calculated from the
@@ -502,13 +505,13 @@ RELEASE NOTES
        * The malformed Motorola S5 records output by the Green Hills tool
        chain are now understood.
 
-   Version 1.11 (21-Oct-2002)
+   Version 1.11 (2002-Oct-21)
        * The Ohio Scientific OS65V audio tape format has been added for
        reading and writing.  See srec_os65v(5) for more information.
 
        * Some build problems have been fixed.
 
-   Version 1.10 (14-Jun-2002)
+   Version 1.10 (2002-Jun-14)
        * The Intel format now emits the redundant extended linear address
        record at the start of the file; some loaders couldn't cope without it.
 
@@ -522,7 +525,7 @@ RELEASE NOTES
        * The LSI Logic Fast Load format is now understood for both reading and
        writing.  See srec_fastload(5) for more information.
 
-   Version 1.9 (27-Nov-2001)
+   Version 1.9 (2001-Nov-27)
        * The DEC Binary (XXDP) format is now understood for both reading and
        writing.  See srec_dec_binary(5) for more information.
 
@@ -552,7 +555,7 @@ RELEASE NOTES
        * There is a new SPASM format for PIC programmers.  See srec_spasm(5)
        for more information.
 
-   Version 1.8 (20-Apr-2001)
+   Version 1.8 (2001-Apr-20)
        * There is a new ``unfill'' filter, which may be used to perform the
        reverse effect of the ``fill'' filter.
 
@@ -561,7 +564,7 @@ RELEASE NOTES
 
        * A couple of bugs have been fixed in the CRC filters.
 
-   Version 1.7 (19-Mar-2001)
+   Version 1.7 (2001-Mar-19)
        * The documentation is now in PDF format.  This was in order to make it
        more accessible to a wider range of people.
 
@@ -581,7 +584,7 @@ RELEASE NOTES
        * A bug has been fixed in the C array output.  It used to generate
        invalid output when the input had holes in the data.
 
-   Version 1.6 (3-Dec-2000)
+   Version 1.6 (2000-Dec-03)
        * A bug has been fixed in the C array output.  (Holes in the input
        caused an invalid C file to be produced.)
 
@@ -601,7 +604,7 @@ RELEASE NOTES
        information about how the two inputs differ.  See srec_cmp(1) for more
        information.
 
-   Version 1.5 (6-Mar-200)
+   Version 1.5 (2000-Mar-06)
        * There is now a command line option to guess the input file format;
        all of the tools understand this option.
 
@@ -635,12 +638,12 @@ RELEASE NOTES
        you to specify the maximum width of output lines.  See srec_cat(1) for
        more information.
 
-   Version 1.4 (13-Jan-2000)
+   Version 1.4 (2000-Jan-13)
        * SRecord can now cope with CRLF sequences in Unix files.  This was
        unfortunately common where the file was generated on a PC, but SRecord
        was being used on Unix.
 
-   Version 1.3 (12-May-1999)
+   Version 1.3 (1999-May-12)
        * A bug has been fixed which would cause the crop and exclude filters
        to dump core sometimes.
 
@@ -654,7 +657,7 @@ RELEASE NOTES
        OR filter, which may be used to bit-wise XOR a value to each data byte.
        See srec_cat(1) for more information.
 
-   Version 1.2 (4-Nov-1998)
+   Version 1.2 (1998-Nov-04)
        * This release includes file format man pages.  The web page also
        includes a PostScript reference manual, containing all of the man
        pages.
@@ -670,7 +673,7 @@ RELEASE NOTES
        striping, and a complementary unsplit filter to reverse it.  See
        srec_cat(1) for more information.
 
-   Version 1.1 (22-Mar-1998)
+   Version 1.1 (1998-Mar-22)
        First public release.
 
 

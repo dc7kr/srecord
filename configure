@@ -3616,9 +3616,9 @@ fi
 echo $ECHO_N "checking for a Bourne shell which understands functions... $ECHO_C" >&6; }
 if test "z$SH" = "z"; then
     if test -f /bin/sh5; then
-	SH=/bin/sh5
+        SH=/bin/sh5
     else
-	SH=/bin/sh
+        SH=/bin/sh
     fi
 fi
 
@@ -3638,14 +3638,14 @@ then
   else
     { echo "$as_me:$LINENO: result: " >&5
 echo "${ECHO_T}" >&6; }
-    { echo "$as_me:$LINENO: result: 	The $SOELIM program does not understand the -I" >&5
-echo "${ECHO_T}	The $SOELIM program does not understand the -I" >&6; }
-    { echo "$as_me:$LINENO: result: 	option.  There is a patch available for GNU Groff" >&5
-echo "${ECHO_T}	option.  There is a patch available for GNU Groff" >&6; }
-    { echo "$as_me:$LINENO: result: 	which makes this work correctly.  See the BUILDING" >&5
-echo "${ECHO_T}	which makes this work correctly.  See the BUILDING" >&6; }
-    { echo "$as_me:$LINENO: result: 	file for details." >&5
-echo "${ECHO_T}	file for details." >&6; }
+    { echo "$as_me:$LINENO: result:      The $SOELIM program does not understand the -I" >&5
+echo "${ECHO_T}     The $SOELIM program does not understand the -I" >&6; }
+    { echo "$as_me:$LINENO: result:      option.  There is a patch available for GNU Groff" >&5
+echo "${ECHO_T}     option.  There is a patch available for GNU Groff" >&6; }
+    { echo "$as_me:$LINENO: result:      which makes this work correctly.  See the BUILDING" >&5
+echo "${ECHO_T}     which makes this work correctly.  See the BUILDING" >&6; }
+    { echo "$as_me:$LINENO: result:      file for details." >&5
+echo "${ECHO_T}     file for details." >&6; }
     GROFF=
   fi
 fi
@@ -3656,14 +3656,14 @@ then
   HAVE_GROFF=no
   { echo "$as_me:$LINENO: result: " >&5
 echo "${ECHO_T}" >&6; }
-  { echo "$as_me:$LINENO: result: 	The SRecord documentation set and manual pages will" >&5
-echo "${ECHO_T}	The SRecord documentation set and manual pages will" >&6; }
-  { echo "$as_me:$LINENO: result: 	be formatted and installed if you first install" >&5
-echo "${ECHO_T}	be formatted and installed if you first install" >&6; }
-  { echo "$as_me:$LINENO: result: 	GNU Groff and then re-run this ./configure script." >&5
-echo "${ECHO_T}	GNU Groff and then re-run this ./configure script." >&6; }
-  { echo "$as_me:$LINENO: result: 	Remember to use \`\`rm config.cache'' before you do." >&5
-echo "${ECHO_T}	Remember to use \`\`rm config.cache'' before you do." >&6; }
+  { echo "$as_me:$LINENO: result:        The SRecord documentation set and manual pages will" >&5
+echo "${ECHO_T}       The SRecord documentation set and manual pages will" >&6; }
+  { echo "$as_me:$LINENO: result:        be formatted and installed if you first install" >&5
+echo "${ECHO_T}       be formatted and installed if you first install" >&6; }
+  { echo "$as_me:$LINENO: result:        GNU Groff and then re-run this ./configure script." >&5
+echo "${ECHO_T}       GNU Groff and then re-run this ./configure script." >&6; }
+  { echo "$as_me:$LINENO: result:        Remember to use \`\`rm config.cache'' before you do." >&5
+echo "${ECHO_T}       Remember to use \`\`rm config.cache'' before you do." >&6; }
   { echo "$as_me:$LINENO: result: " >&5
 echo "${ECHO_T}" >&6; }
 fi
