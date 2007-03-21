@@ -403,9 +403,16 @@ T}	T{
 .ad l
 file format
 T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti tagged 16 - Texas Instruments Tagged (SDSMAC 320)
+T}	T{
+.ad l
+file format
+T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
-srec ti tagged - Texas Instruments Tagged
+srec ti tagged - Texas Instruments Tagged (SDSMAC)
 T}	T{
 .ad l
 file format
@@ -613,9 +620,16 @@ T}	T{
 .ad l
 format
 T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti tagged 16 - Texas Instruments Tagged (SDSMAC 320) file
+T}	T{
+.ad l
+format
+T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
-srec ti tagged - Texas Instruments Tagged file
+srec ti tagged - Texas Instruments Tagged (SDSMAC) file
 T}	T{
 .ad l
 format
@@ -753,12 +767,19 @@ T}	T{
 .ad l
 information about eprom load files
 T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti tagged 16 - Texas
+T}	T{
+.ad l
+Instruments Tagged (SDSMAC 320) file format
+T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
 srec ti tagged - Texas
 T}	T{
 .ad l
-Instruments Tagged file format
+Instruments Tagged (SDSMAC) file format
 T}
 srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
 .ad r
@@ -983,6 +1004,20 @@ srec stewie - Stewie'
 T}	T{
 .ad l
 s binary file format
+T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti tagged 16 - Texas Instruments Tagged (
+T}	T{
+.ad l
+SDSMAC 320) file format
+T}
+srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
+.ad r
+srec ti tagged - Texas Instruments Tagged (
+T}	T{
+.ad l
+SDSMAC) file format
 T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
@@ -1229,12 +1264,19 @@ T}	T{
 .ad l
 srec tektronix - Tektronix hexadecimal file format
 T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec ti tagged 16 - Texas Instruments Tagged (SDSMAC 320) file format
+T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
 
 T}	T{
 .ad l
-srec ti tagged - Texas Instruments Tagged file format
+srec ti tagged - Texas Instruments Tagged (SDSMAC) file format
 T}
 srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
 .ad r
@@ -1264,19 +1306,33 @@ T}	T{
 .ad l
 stewie - Stewie's binary file format
 T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti
+T}	T{
+.ad l
+tagged 16 - Texas Instruments Tagged (SDSMAC 320) file format
+T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti tagged 16 - Texas Instruments
+T}	T{
+.ad l
+Tagged (SDSMAC 320) file format
+T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
 srec ti tagged - Texas Instruments
 T}	T{
 .ad l
-Tagged file format
+Tagged (SDSMAC) file format
 T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
 srec ti
 T}	T{
 .ad l
-tagged - Texas Instruments Tagged file format
+tagged - Texas Instruments Tagged (SDSMAC) file format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
@@ -1320,19 +1376,33 @@ T}	T{
 .ad l
 tektronix - Tektronix hexadecimal file format
 T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec ti tagged 16 -
+T}	T{
+.ad l
+Texas Instruments Tagged (SDSMAC 320) file format
+T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
 srec ti tagged -
 T}	T{
 .ad l
-Texas Instruments Tagged file format
+Texas Instruments Tagged (SDSMAC) file format
+T}
+srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+ti tagged 16 - Texas Instruments Tagged (SDSMAC 320) file format
 T}
 srec_ti_tagged(5)	\*[Page*Of*srec_ti_tagged(5)]	T{
 .ad r
 srec
 T}	T{
 .ad l
-ti tagged - Texas Instruments Tagged file format
+ti tagged - Texas Instruments Tagged (SDSMAC) file format
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r

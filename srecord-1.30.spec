@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.29
+Version: 1.30
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -94,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/srec_stewie.5*
 %{_mandir}/man5/srec_tektronix.5*
 %{_mandir}/man5/srec_tektronix_extended.5*
+%{_mandir}/man5/srec_ti_tagged_16.5*
 %{_mandir}/man5/srec_ti_tagged.5*
 %{_mandir}/man5/srec_vmem.5*
 %{_mandir}/man5/srec_wilson.5*

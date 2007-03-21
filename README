@@ -211,43 +211,12 @@ ARCHIVE SITE
        The latest version of SRecord is available on the Web from:
 
            URL:    http://srecord.sourceforge.net/
-           File:   srecord.html          # the SRecord page
-           File:   srecord-1.29.README   # Description, from the tar file
-           File:   srecord-1.29.lsm      # Description, LSM format
-           File:   srecord-1.29.spec     # RedHat package specification
-           File:   srecord-1.29.tar.gz   # the complete source
-           File:   srecord-1.29.pdf      # Reference Manual
-
-       This Web page also contains a few other pieces of software written by
-       me.  Please have a look if you are interested.
-
-       SRecord is also carried by sunsite.unc.edu in its Linux archives.  You
-       will be able to find SRecord on any of its mirrors.
-
-           URL:    ftp://sunsite.unc.edu/pub/Linux/apps/circuits/
-           File:   srecord-1.29.README   # Description, from the tar file
-           File:   srecord-1.29.lsm      # Description, LSM format
-           File:   srecord-1.29.spec     # RedHat package specification
-           File:   srecord-1.29.tar.gz   # the complete source
-           File:   srecord-1.29.pdf      # Reference Manual
-       This site is extensively mirrored around the world, so look for a copy
-       near you (you will get much better response).
-
-   FTP by EMail
-       For those of you without Web or FTP access, I recommend the use of an
-       ftp-by-email server.  Here is a list of a few (there may be more):
-
-                    ftpmail@cs.uow.edu.au          Australia
-                    ftpmail@ftp.uni-stuttgart.de   Germany
-                    ftpmail@grasp.insa-lyon.fr     France
-                    ftpmail@doc.ic.ac.uk           Great Britain
-                    ftpmail@ieunet.ie              Ireland
-                    ftpmail@sunsite.unc.edu        USA
-                    ftpmail@ftp.uu.net             USA
-
-       In general, you can get a help message about how to use each system by
-       sending email with a subject of "help" and a message body containing
-       just the word "help".
+           File:   index.html            # the SRecord page
+           File:   srecord-1.30.README   # Description, from the tar file
+           File:   srecord-1.30.lsm      # Description, LSM format
+           File:   srecord-1.30.spec     # RedHat package specification
+           File:   srecord-1.30.tar.gz   # the complete source
+           File:   srecord-1.30.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -259,7 +228,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.29
+       srecord version 1.30
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007 Peter Miller
 
@@ -294,50 +263,22 @@ AUTHOR
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.30 (2007-Mar-21)
+       * The ascii-hex output format has been improved.
+
+       * The ti-tagged-16-bit format is now understood for reading and
+       writing.
+
+       * The Intel format no longer warns about missing optional records.
+
+       * A bug in the ti-tagged format has been fixed, it now understands the
+       '0' tag.
 
    Version 1.29 (2007-Mar-13)
        * A serious bug has been fixed in the generated Makefile.
