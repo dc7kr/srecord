@@ -63,8 +63,11 @@ protected:
       * (or the standard input if the filename is "-").
       *
       * Only derived classes may use this constructor.
+      *
+      * @param file_name
+      *     The name of the file to be read.
       */
-    srec_input_file(const char *);
+    srec_input_file(const string &file_name);
 
     /**
       * The get_char method is used to fetch a character from
@@ -91,6 +94,18 @@ protected:
       * or peak_char method will still see it).
       */
     int peek_char();
+
+    /**
+      * The get_nibble_value class method is used to translate a
+      * character into its hexadecimal value.
+      *
+      * @param c
+      *     The character to translate
+      * @returns
+      *     int; 0..9 for '0'..'9', 10..15 for 'a'..'f',
+      *     10..15 for 'A-Z', and -1 for everything else.
+      */
+    static int get_nibble_value(int c);
 
     /**
       * The get_nibble method is used to fetch one hexadecimal digit

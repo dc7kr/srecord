@@ -32,6 +32,10 @@
 /* Define to 1 if you have the `snprintf' function. */
 #undef HAVE_SNPRINTF
 
+/* Define this symbol if your operating system has support for sparse file
+   seeking. */
+#undef HAVE_SPARSE_LSEEK
+
 /* Define to 1 if you have the `vsnprintf' function. */
 #undef HAVE_VSNPRINTF
 

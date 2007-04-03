@@ -61,6 +61,7 @@ etc/new.1.28.so        description of new 1.28 features
 etc/new.1.29.so        description of new 1.29 features
 etc/new.1.3.so        description of new 1.3 features
 etc/new.1.30.so        description of new 1.30 features
+etc/new.1.31.so        description of new 1.31 features
 etc/new.1.4.so        description of new 1.4 features
 etc/new.1.5.so        description of new 1.5 features
 etc/new.1.6.so        description of new 1.6 features
@@ -176,6 +177,8 @@ lib/srec/input/file/ti_tagged.cc        functions to impliment the srec_input_fi
 lib/srec/input/file/ti_tagged.h        interface definition for lib/srec/input/file/ti_tagged.cc
 lib/srec/input/file/ti_tagged_16.cc        functions to impliment the srec_input_file_ti_tagged class
 lib/srec/input/file/ti_tagged_16.h        interface definition for lib/srec/input/file/ti_tagged.cc
+lib/srec/input/file/ti_txt.cc        functions to impliment the srec_input_file_ti_txt class
+lib/srec/input/file/ti_txt.h        interface definition for include/srec/input/file/ti_txt.cc
 lib/srec/input/file/vmem.cc        functions to impliment the srec_input_file_vmem class
 lib/srec/input/file/vmem.h        interface definition for include/srec/input/file/vmem.cc
 lib/srec/input/file/wilson.cc        functions to impliment the srec_input_file_wilson class
@@ -306,6 +309,8 @@ lib/srec/output/file/ti_tagged.cc        functions to impliment the srec_output_
 lib/srec/output/file/ti_tagged.h        interface definition for include/srec/output/file/ti_tagged.cc
 lib/srec/output/file/ti_tagged_16.cc        functions to impliment the srec_output_file_ti_tagged class
 lib/srec/output/file/ti_tagged_16.h        interface definition for lib/srec/output/file/ti_tagged_16.cc
+lib/srec/output/file/ti_txt.cc        functions to impliment the srec_output_file_ti_txt class
+lib/srec/output/file/ti_txt.h        interface definition for lib/srec/output/file/ti_txt.cc
 lib/srec/output/file/vhdl.cc        functions to impliment the srec_output_file_vhdl class
 lib/srec/output/file/vhdl.h        interface definition for lib/srec/output/file/vhdl.cc
 lib/srec/output/file/vmem.cc        functions to impliment the srec_output_file_vmem class
@@ -332,6 +337,7 @@ man/man1/z_options.so        description of option up/down case convention
 man/man5/srec_aomf.5        manual entry for the srec_aomf.5 command
 man/man5/srec_ascii_hex.5        manual entry for the srec_ascii_hex.5 command
 man/man5/srec_atmel_generic.5        manual entry for the srec_atmel_generic.5 command
+man/man5/srec_binary.5        manual entry for the srec_binary.5 command
 man/man5/srec_brecord.5        manual entry for the srec_brecord.5 command
 man/man5/srec_cosmac.5        manual entry for the srec_cosmac.5 command
 man/man5/srec_dec_binary.5        manual entry for srec_dec_binary(5)
@@ -354,6 +360,7 @@ man/man5/srec_tektronix.5        manual entry for the srec_tektronix.5 command
 man/man5/srec_tektronix_extended.5        manual entry for the srec_tektronix_extended.5 command
 man/man5/srec_ti_tagged.5        manual entry for the srec_ti_tagged.5 command
 man/man5/srec_ti_tagged_16.5        manual entry for the srec_ti_tagged.5 command
+man/man5/srec_ti_txt.5        manual entry for the srec_ti_txt.5 command
 man/man5/srec_vmem.5        manual entry for the srec_vmem.5 command
 man/man5/srec_wilson.5        manual entry for the srec_wilson.5 command
 prog/srec_cat/arglex3.cc        functions to impliment the srec_cat_arglex3 class
@@ -456,3 +463,6 @@ test/01/t0107a.sh        Test the write b-record functionality
 test/01/t0108a.sh        Test the TI-Tagged functionality
 test/01/t0109a.sh        Test the ti-tagged-16 format functionality
 test/01/t0110a.sh        Test the ascii-hex functionality
+test/01/t0111a.sh        Test the ti-txt functionality
+test/01/t0112a.sh        Test the ti-txt functionality
+test/01/t0113a.sh        Test the ti-txt functionality

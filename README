@@ -116,8 +116,13 @@ DESCRIPTION
 
        Texas Instruments Tagged
                The Texas Instruments Tagged format is understood for both
-               reading and writing.  (Also known as the TI-tagged or TI-SDSMAC
-               format.)
+               reading and writing (both 8 and 16 bit).  Also known as the TI-
+               tagged or TI-SDSMAC format.
+
+       Texas Instruments ti-txt
+               The TI-TXT format is understood for reading and writing.  This
+               format is used with the bootstrap loader of the Texas
+               Instruments MSP430 family of processors.
 
        VHDL    It is possible to write VHDL file.  This is only supported for
                output.
@@ -212,11 +217,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.30.README   # Description, from the tar file
-           File:   srecord-1.30.lsm      # Description, LSM format
-           File:   srecord-1.30.spec     # RedHat package specification
-           File:   srecord-1.30.tar.gz   # the complete source
-           File:   srecord-1.30.pdf      # Reference Manual
+           File:   srecord-1.31.README   # Description, from the tar file
+           File:   srecord-1.31.lsm      # Description, LSM format
+           File:   srecord-1.31.spec     # RedHat package specification
+           File:   srecord-1.31.tar.gz   # the complete source
+           File:   srecord-1.31.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -228,7 +233,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.30
+       srecord version 1.31
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007 Peter Miller
 
@@ -258,16 +263,18 @@ AUTHOR
 
 
 
-
-
-
-
-
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.31 (2007-Apr-03)
+       * The verilog format now suppresses comments when you specify the
+       --data-only option.
+
+       * The Texas Instruments ti-txt (MSP430) format is now understood for
+       reading and writing.
 
    Version 1.30 (2007-Mar-21)
        * The ascii-hex output format has been improved.

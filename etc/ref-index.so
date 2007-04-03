@@ -53,6 +53,20 @@ T}	T{
 .ad l
 Atmel Generic file format
 T}
+srec_binary(5)	\*[Page*Of*srec_binary(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+binary - binary file format
+T}
+srec_binary(5)	\*[Page*Of*srec_binary(5)]	T{
+.ad r
+srec binary -
+T}	T{
+.ad l
+binary file format
+T}
 srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
 .ad r
 srec formatted binary - Formatted
@@ -284,6 +298,13 @@ T}	T{
 .ad l
 file format
 T}
+srec_binary(5)	\*[Page*Of*srec_binary(5)]	T{
+.ad r
+srec binary - binary
+T}	T{
+.ad l
+file format
+T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
 srec cosmac - RCA Cosmac Elf
@@ -417,6 +438,13 @@ T}	T{
 .ad l
 file format
 T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt - Texas Instruments ti-txt (MSP430)
+T}	T{
+.ad l
+file format
+T}
 srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
 .ad r
 srec vmem - vmem
@@ -483,6 +511,13 @@ T}
 srec_atmel_generic(5)	\*[Page*Of*srec_atmel_generic(5)]	T{
 .ad r
 srec atmel generic - Atmel Generic file
+T}	T{
+.ad l
+format
+T}
+srec_binary(5)	\*[Page*Of*srec_binary(5)]	T{
+.ad r
+srec binary - binary file
 T}	T{
 .ad l
 format
@@ -634,6 +669,13 @@ T}	T{
 .ad l
 format
 T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt - Texas Instruments ti-txt (MSP430) file
+T}	T{
+.ad l
+format
+T}
 srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
 .ad r
 srec vmem - vmem file
@@ -781,6 +823,13 @@ T}	T{
 .ad l
 Instruments Tagged (SDSMAC) file format
 T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt - Texas
+T}	T{
+.ad l
+Instruments ti-txt (MSP430) file format
+T}
 srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
 .ad r
 srec
@@ -920,6 +969,13 @@ srec motorola -
 T}	T{
 .ad l
 Motorola S-Record hexadecimal file format
+T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt - Texas Instruments ti-txt (
+T}	T{
+.ad l
+MSP430) file format
 T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
@@ -1088,6 +1144,13 @@ srec_atmel_generic(5)	\*[Page*Of*srec_atmel_generic(5)]	T{
 T}	T{
 .ad l
 srec atmel generic - Atmel Generic file format
+T}
+srec_binary(5)	\*[Page*Of*srec_binary(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec binary - binary file format
 T}
 srec_brecord(5)	\*[Page*Of*srec_brecord(5)]	T{
 .ad r
@@ -1278,6 +1341,13 @@ T}	T{
 .ad l
 srec ti tagged - Texas Instruments Tagged (SDSMAC) file format
 T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec ti txt - Texas Instruments ti-txt (MSP430) file format
+T}
 srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
 .ad r
 
@@ -1390,6 +1460,13 @@ T}	T{
 .ad l
 Texas Instruments Tagged (SDSMAC) file format
 T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt -
+T}	T{
+.ad l
+Texas Instruments ti-txt (MSP430) file format
+T}
 srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
 .ad r
 srec
@@ -1404,12 +1481,40 @@ T}	T{
 .ad l
 ti tagged - Texas Instruments Tagged (SDSMAC) file format
 T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt - Texas Instruments
+T}	T{
+.ad l
+ti-txt (MSP430) file format
+T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+ti txt - Texas Instruments ti-txt (MSP430) file format
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp - compare
 T}	T{
 .ad l
 two eprom load files for equality
+T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti txt - Texas Instruments ti-
+T}	T{
+.ad l
+txt (MSP430) file format
+T}
+srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
+.ad r
+srec ti
+T}	T{
+.ad l
+txt - Texas Instruments ti-txt (MSP430) file format
 T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r

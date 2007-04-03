@@ -19,7 +19,6 @@
 // MANIFEST: functions to impliment the srec_output_file_vmem class
 //
 
-
 #include <cctype>
 #include <lib/srec/arglex.h>
 #include <lib/srec/output/file/vmem.h>
@@ -89,8 +88,8 @@ calc_width_mask(int x)
 }
 
 
-srec_output_file_vmem::srec_output_file_vmem(const char *filename) :
-    srec_output_file(filename),
+srec_output_file_vmem::srec_output_file_vmem(const string &a_file_name) :
+    srec_output_file(a_file_name),
     address(0),
     column(0),
     pref_block_size(16),
@@ -218,6 +217,7 @@ srec_output_file_vmem::write(const srec_record &record)
     {
     case srec_record::type_header:
         // emit header records as comments in the file
+        if (!data_only_flag && record.get_length() > 0)
         {
             put_string("/* ");
             if (record.get_address() != 0)
@@ -226,8 +226,10 @@ srec_output_file_vmem::write(const srec_record &record)
             const unsigned char *ep = cp + record.get_length();
             while (cp < ep)
             {
-                int c = *cp++;
-                if (isprint(c) || isspace(c))
+                unsigned char c = *cp++;
+                if (c == '\n')
+                    put_stringf("\n * ");
+                else if (isprint(c) || isspace(c))
                     put_char(c);
                 else
                     put_stringf("\\%o", c);

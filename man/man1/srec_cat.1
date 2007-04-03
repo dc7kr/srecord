@@ -94,6 +94,8 @@ for a description of this file format.)
 .TP 8n
 \fB\-Binary\fP
 A raw binary file will be written.
+If you get unexpected results \f[B]please\fP see the
+\f[I]srec_binary\fP(5) manual for more information.
 .TP 8n
 \fB\-C-Array\fP [ \fIidentifier\fP ][ \-INClude ][ \-No-CONST ]
 A C array declaration will be written.
@@ -223,6 +225,11 @@ A Texas Instruments SDSMAC 320 format file will be written.
 (See
 .IR srec_ti_tagged_16 (5)
 for a description of this file format.)
+.TP 8n
+\fB\-Texas_Instruments_TaXT\fP
+This option says to use the Texas Instruments TXT (MSP430) format to
+write the file.  See \f[I]srec_ti_txt\fP(5) for a description of this
+file format.
 .TP 8n
 \fB\-VHdl\fP [ \fIbytes-per-word\fP [ \fIname\fP ]]
 A VHDL format file will be written.
