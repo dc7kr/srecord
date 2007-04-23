@@ -149,81 +149,98 @@ etc/BUILDING.txt: etc/BUILDING.man etc/version.so
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/BUILDING.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.31.so \
-		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
-		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
-		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
-		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
-		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
-		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
-		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
-		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
-		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
-		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
+etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.32.so \
+		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
+		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
+		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
+		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
+		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
+		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
+		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
+		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
+		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
+		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
+		etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/README.dvi: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/README.txt: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
 etc/change_log.ps: etc/change_log.man etc/version.so etc/new.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/change_log.dvi: etc/change_log.man etc/version.so etc/new.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/change_log.txt: etc/change_log.man etc/version.so etc/new.so \
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
+		$(GROFF) -Tascii -t -man > $@ 
+
+etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
+		etc/README.man etc/new.so etc/new.1.32.so \
 		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
 		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
 		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
@@ -234,23 +251,7 @@ etc/change_log.txt: etc/change_log.man etc/version.so etc/new.so \
 		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
 		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
 		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
-		$(GROFF) -Tascii -t -man > $@ 
-
-etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.31.so \
-		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
-		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
-		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
-		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
-		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
-		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
-		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
-		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
-		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
-		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so \
-		etc/BUILDING.man etc/new-file-format.so \
+		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
 		etc/ref-parts.so man/man1/srec_cat.1 \
 		man/man1/o_input.so man/man1/o_ignore_checksums.so \
 		man/man1/o_at.so man/man1/o_sequence.so \
@@ -278,18 +279,18 @@ etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -t -man > $@ 
 
 etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.31.so \
-		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
-		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
-		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
-		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
-		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
-		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
-		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
-		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
-		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
-		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so \
-		etc/BUILDING.man etc/new-file-format.so \
+		etc/README.man etc/new.so etc/new.1.32.so \
+		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
+		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
+		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
+		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
+		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
+		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
+		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
+		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
+		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
+		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
+		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
 		etc/ref-parts.so man/man1/srec_cat.1 \
 		man/man1/o_input.so man/man1/o_ignore_checksums.so \
 		man/man1/o_at.so man/man1/o_sequence.so \
@@ -317,18 +318,18 @@ etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.31.so \
-		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
-		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
-		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
-		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
-		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
-		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
-		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
-		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
-		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
-		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so \
-		etc/BUILDING.man etc/new-file-format.so \
+		etc/README.man etc/new.so etc/new.1.32.so \
+		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
+		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
+		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
+		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
+		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
+		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
+		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
+		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
+		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
+		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
+		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
 		etc/ref-parts.so man/man1/srec_cat.1 \
 		man/man1/o_input.so man/man1/o_ignore_checksums.so \
 		man/man1/o_at.so man/man1/o_sequence.so \
@@ -1740,6 +1741,12 @@ t0112a: test/01/t0112a.sh all
 t0113a: test/01/t0113a.sh all
 	$(SH) test/01/t0113a.sh
 
+t0115a: test/01/t0115a.sh all
+	$(SH) test/01/t0115a.sh
+
+t0116a: test/01/t0116a.sh all
+	$(SH) test/01/t0116a.sh
+
 man/man1/.mandir: man/.mandir
 	-$(INSTALL) -m 0755 -d $(mandir)/man1
 	@-test -d $(mandir)/man1 && touch $@
@@ -1919,7 +1926,7 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a \
 		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a \
 		t0105a t0106a t0107a t0108a t0109a t0110a t0111a t0112a \
-		t0113a 
+		t0113a t0115a t0116a 
 	@echo Passed All Tests
 
 clean-obj:
