@@ -77,7 +77,7 @@ srec_input::warning(const char *fmt, ...)
 }
 
 
-const string
+string
 srec_input::filename_and_line()
     const
 {
@@ -100,6 +100,6 @@ srec_input::reset_quit()
 
 
 void
-srec_input::command_line(srec_arglex *cmdln)
+srec_input::command_line(srec_arglex *)
 {
 }

@@ -19,6 +19,8 @@
 // MANIFEST: functions to impliment the srec_arglex_get_interval class
 //
 
+#include <climits>
+
 #include <lib/interval.h>
 #include <lib/srec/arglex.h>
 #include <lib/srec/input.h>
@@ -26,7 +28,7 @@
 
 
 interval
-srec_arglex::get_interval_inner(const char *name)
+srec_arglex::get_interval_factor(const char *name)
 {
     switch (token_cur())
     {
@@ -36,8 +38,12 @@ srec_arglex::get_interval_inner(const char *name)
             interval retval = get_interval(name);
             if (token_cur() != token_paren_end)
             {
-                    cerr << "``)'' expected" << endl;
-                    exit(1);
+                fatal_error
+                (
+                    "closing parentheses expected before %s",
+                    token_name(token_cur())
+                );
+                // NOTREACHED
             }
             token_next();
             return retval;
@@ -47,9 +53,12 @@ srec_arglex::get_interval_inner(const char *name)
         {
             if (!can_get_number())
             {
-                cerr << "the " << name
-                    << " range requires two numeric arguments" << endl;
-                exit(1);
+                fatal_error
+                (
+                    "the %s range requires two numeric arguments",
+                    name
+                );
+                // NOTREACHED
             }
             unsigned long n1 = get_number("address range minimum");
             unsigned long n2 = 0;
@@ -57,9 +66,14 @@ srec_arglex::get_interval_inner(const char *name)
                     n2 = get_number("address range maximum");
             if (n2 && n1 >= n2)
             {
-                    cerr << "the " << name << " range " << n1
-                            << ".." << n2 << " is invalid" << endl;
-                    exit(1);
+                fatal_error
+                (
+                    "the %s range %lu..%lu is invalid",
+                    name,
+                    n1,
+                    n2
+                );
+                // NOTREACHED
             }
             return interval(n1, n2);
         }
@@ -86,24 +100,70 @@ srec_arglex::get_interval_inner(const char *name)
 
 
 interval
-srec_arglex::get_interval(const char *name)
+srec_arglex::get_interval_term(const char *name)
 {
-    interval range;
+    interval result = get_interval_factor(name);
     for (;;)
     {
-        range += get_interval_inner(name);
+        switch (token_cur())
+        {
+        case token_intersection:
+            {
+                token_next();
+                result *= get_interval_factor(name);
+            }
+            break;
+
+        default:
+            return result;
+        }
+    }
+}
+
+
+interval
+srec_arglex::get_interval(const char *name)
+{
+    interval result = get_interval_term(name);
+    for (;;)
+    {
         switch (token_cur())
         {
         case token_number:
         case token_within:
         case token_over:
         case token_paren_begin:
+            result += get_interval_term(name);
             continue;
 
-        default:
+        case token_union:
+            token_next();
+            result += get_interval_term(name);
+            continue;
+
+        case token_minus:
+            token_next();
+            result -= get_interval_term(name);
+            continue;
+
+        case token_range_padding:
+            {
+                token_next();
+
+                //
+                // Collect the multiple from the command line.
+                //
+                long mult = get_number("--range-padding", 2, USHRT_MAX);
+
+                //
+                // Pad the range so that is contains whole multiples, aligned.
+                //
+                result = result.pad(mult);
+            }
             break;
+
+        default:
+            return result;
         }
-        break;
     }
-    return range;
 }

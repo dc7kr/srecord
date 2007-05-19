@@ -766,3 +766,63 @@ interval::print(ostream &os)
     if (length != 2)
         os << ")";
 }
+
+
+static string
+to_string(interval::data_t x)
+{
+    int width = 4;
+    if (x >= 0x10000)
+        width += 2;
+    if (x >= 0x1000000)
+        width += 2;
+    char buffer[20];
+    snprintf(buffer, sizeof(buffer), "0x%0*lX", width, (unsigned long)x);
+    return buffer;
+}
+
+
+string
+interval::representation()
+    const
+{
+    string result;
+    result += '(';
+    for (size_t j = 0; j < length; j += 2)
+    {
+        if (j)
+            result += ", ";
+        result += to_string(data[j]);
+        if (data[j] + 2 == data[j + 1])
+        {
+            result += ", ";
+            result += to_string(data[j] + 1);
+        }
+        else if (data[j] + 1 != data[j + 1])
+        {
+            result += " - ";
+            result += to_string(data[j + 1] - 1);
+        }
+    }
+    result += ')';
+    return result;
+}
+
+
+interval
+interval::pad(int mult)
+    const
+{
+    if (mult < 2)
+        return *this;
+    interval result;
+    for (size_t j = 0; j < length; j += 2)
+    {
+        data_t lo = data[j];
+        lo = (lo / mult) * mult;
+        data_t hi = data[j + 1];
+        hi = ((hi + mult - 1) / mult) * mult;
+        result += interval(lo, hi);
+    }
+    return result;
+}

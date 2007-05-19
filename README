@@ -217,11 +217,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.32.README   # Description, from the tar file
-           File:   srecord-1.32.lsm      # Description, LSM format
-           File:   srecord-1.32.spec     # RedHat package specification
-           File:   srecord-1.32.tar.gz   # the complete source
-           File:   srecord-1.32.pdf      # Reference Manual
+           File:   srecord-1.33.README   # Description, from the tar file
+           File:   srecord-1.33.lsm      # Description, LSM format
+           File:   srecord-1.33.spec     # RedHat package specification
+           File:   srecord-1.33.tar.gz   # the complete source
+           File:   srecord-1.33.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -233,7 +233,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.32
+       srecord version 1.33
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007 Peter Miller
 
@@ -268,6 +268,22 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.33 (2007-May-18)
+       * More examples have been added to the documentation.
+
+       * It is now possible to perform set intersection and set difference on
+       address ranges on the command line.
+
+       * There is a new category of data source: generators.  You can generate
+       constant data, random data and repeating data.
+
+       * The assembler and C-Array outputs now support additional options to
+       facilitate MSP430 systems.  They can also optionally write shorts
+       rather than bytes.
+
+       * You can now round address ranges on the command line to be whole
+       mutiples of a number of bytes.
 
    Version 1.32 (2007-Apr-24)
        * The TI-TXT format output has been improved; it is less spec

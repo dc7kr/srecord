@@ -149,82 +149,98 @@ etc/BUILDING.txt: etc/BUILDING.man etc/version.so
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/BUILDING.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.32.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so 
+etc/README.ps: etc/README.man etc/version.so etc/new.so etc/new.1.33.so \
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/README.dvi: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
-		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.33.so etc/new.1.32.so etc/new.1.31.so \
+		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/README.txt: etc/README.man etc/version.so etc/new.so \
-		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
-		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.33.so etc/new.1.32.so etc/new.1.31.so \
+		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/README.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
 etc/change_log.ps: etc/change_log.man etc/version.so etc/new.so \
-		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
-		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.33.so etc/new.1.32.so etc/new.1.31.so \
+		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
 		$(GROFF) -t -man > $@ 
 
 etc/change_log.dvi: etc/change_log.man etc/version.so etc/new.so \
-		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
-		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
-		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
-		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
-		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
-		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
-		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
-		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
-		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
-		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
+		etc/new.1.33.so etc/new.1.32.so etc/new.1.31.so \
+		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/change_log.txt: etc/change_log.man etc/version.so etc/new.so \
+		etc/new.1.33.so etc/new.1.32.so etc/new.1.31.so \
+		etc/new.1.30.so etc/new.1.29.so etc/new.1.28.so \
+		etc/new.1.27.so etc/new.1.26.so etc/new.1.25.so \
+		etc/new.1.24.so etc/new.1.23.so etc/new.1.22.so \
+		etc/new.1.21.so etc/new.1.20.so etc/new.1.19.so \
+		etc/new.1.18.so etc/new.1.17.so etc/new.1.16.so \
+		etc/new.1.15.so etc/new.1.14.so etc/new.1.13.so \
+		etc/new.1.12.so etc/new.1.11.so etc/new.1.10.so \
+		etc/new.1.9.so etc/new.1.8.so etc/new.1.7.so \
+		etc/new.1.6.so etc/new.1.5.so etc/new.1.4.so \
+		etc/new.1.3.so etc/new.1.2.so etc/new.1.1.so 
+	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
+		$(GROFF) -Tascii -t -man > $@ 
+
+etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
+		etc/README.man etc/new.so etc/new.1.33.so \
 		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
 		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
 		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
@@ -235,35 +251,20 @@ etc/change_log.txt: etc/change_log.man etc/version.so etc/new.so \
 		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
 		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
 		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
-		etc/new.1.2.so etc/new.1.1.so 
-	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/change_log.man | \
-		$(GROFF) -Tascii -t -man > $@ 
-
-etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.32.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
-		etc/ref-parts.so man/man1/srec_cat.1 \
-		man/man1/o_input.so man/man1/o_ignore_checksums.so \
-		man/man1/o_at.so man/man1/o_sequence.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
+		man/man1/srec_cat.1 man/man1/o_input.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_examples.1 man/man1/srec_info.1 \
+		man/man1/srec_input.1 man/man1/srec_license.1 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
+		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel16.5 man/man5/srec_intel.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
@@ -279,30 +280,31 @@ etc/reference.ps: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -t -man > $@ 
 
 etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.32.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
-		etc/ref-parts.so man/man1/srec_cat.1 \
-		man/man1/o_input.so man/man1/o_ignore_checksums.so \
-		man/man1/o_at.so man/man1/o_sequence.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.33.so \
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
+		man/man1/srec_cat.1 man/man1/o_input.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_examples.1 man/man1/srec_info.1 \
+		man/man1/srec_input.1 man/man1/srec_license.1 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
+		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel16.5 man/man5/srec_intel.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
@@ -318,30 +320,31 @@ etc/reference.dvi: etc/reference.man etc/ref-toc.so etc/version.so \
 		$(GROFF) -Tdvi -t -man > $@ 
 
 etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
-		etc/README.man etc/new.so etc/new.1.32.so \
-		etc/new.1.31.so etc/new.1.30.so etc/new.1.29.so \
-		etc/new.1.28.so etc/new.1.27.so etc/new.1.26.so \
-		etc/new.1.25.so etc/new.1.24.so etc/new.1.23.so \
-		etc/new.1.22.so etc/new.1.21.so etc/new.1.20.so \
-		etc/new.1.19.so etc/new.1.18.so etc/new.1.17.so \
-		etc/new.1.16.so etc/new.1.15.so etc/new.1.14.so \
-		etc/new.1.13.so etc/new.1.12.so etc/new.1.11.so \
-		etc/new.1.10.so etc/new.1.9.so etc/new.1.8.so \
-		etc/new.1.7.so etc/new.1.6.so etc/new.1.5.so \
-		etc/new.1.4.so etc/new.1.3.so etc/new.1.2.so \
-		etc/new.1.1.so etc/BUILDING.man etc/new-file-format.so \
-		etc/ref-parts.so man/man1/srec_cat.1 \
-		man/man1/o_input.so man/man1/o_ignore_checksums.so \
-		man/man1/o_at.so man/man1/o_sequence.so \
-		man/man1/o_multiple.so man/man1/z_options.so \
-		man/man1/z_exit.so man/man1/z_copyright.so \
-		man/man1/srec_cmp.1 man/man1/srec_info.1 \
-		man/man1/srec_license.1 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/README.man etc/new.so etc/new.1.33.so \
+		etc/new.1.32.so etc/new.1.31.so etc/new.1.30.so \
+		etc/new.1.29.so etc/new.1.28.so etc/new.1.27.so \
+		etc/new.1.26.so etc/new.1.25.so etc/new.1.24.so \
+		etc/new.1.23.so etc/new.1.22.so etc/new.1.21.so \
+		etc/new.1.20.so etc/new.1.19.so etc/new.1.18.so \
+		etc/new.1.17.so etc/new.1.16.so etc/new.1.15.so \
+		etc/new.1.14.so etc/new.1.13.so etc/new.1.12.so \
+		etc/new.1.11.so etc/new.1.10.so etc/new.1.9.so \
+		etc/new.1.8.so etc/new.1.7.so etc/new.1.6.so \
+		etc/new.1.5.so etc/new.1.4.so etc/new.1.3.so \
+		etc/new.1.2.so etc/new.1.1.so etc/BUILDING.man \
+		etc/new-file-format.so etc/ref-parts.so \
+		man/man1/srec_cat.1 man/man1/o_input.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_sequence.so man/man1/o_multiple.so \
+		man/man1/z_options.so man/man1/z_exit.so \
+		man/man1/z_copyright.so man/man1/srec_cmp.1 \
+		man/man1/srec_examples.1 man/man1/srec_info.1 \
+		man/man1/srec_input.1 man/man1/srec_license.1 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
+		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_fpc.5 \
 		man/man5/srec_intel16.5 man/man5/srec_intel.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
@@ -356,8 +359,8 @@ etc/reference.txt: etc/reference.man etc/ref-toc.so etc/version.so \
 	$(SOELIM) -I. -Iman/man1 -Iman/man5 -Ietc etc/reference.man | \
 		$(GROFF) -Tascii -t -man > $@ 
 
-lib/arglex.o: lib/arglex.cc lib/arglex.h lib/progname.h lib/quit.h \
-		lib/format_printf.h lib/versn_stamp.h 
+lib/arglex.o: lib/arglex.cc lib/arglex.h lib/format_printf.h \
+		lib/progname.h lib/quit.h lib/versn_stamp.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/arglex.cc
 	mv arglex.o lib/arglex.o
 
@@ -401,30 +404,35 @@ lib/r250.o: lib/r250.cc lib/r250.h
 	mv r250.o lib/r250.o
 
 lib/srec/arglex.o: lib/srec/arglex.cc lib/srec/arglex.h lib/arglex.h \
-		lib/srec/input/file.h lib/srec/input.h \
-		lib/format_printf.h lib/srec/memory.h \
+		lib/format_printf.h lib/srec/input/file.h \
+		lib/srec/input.h lib/srec/memory.h \
 		lib/srec/memory/chunk.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex.cc
 	mv arglex.o lib/srec/arglex.o
 
 lib/srec/arglex/get_interval.o: lib/srec/arglex/get_interval.cc \
 		lib/interval.h lib/srec/arglex.h lib/arglex.h \
-		lib/srec/input.h lib/format_printf.h \
+		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/interval.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_interval.cc
 	mv get_interval.o lib/srec/arglex/get_interval.o
 
 lib/srec/arglex/get_number.o: lib/srec/arglex/get_number.cc \
 		lib/interval.h lib/srec/arglex.h lib/arglex.h \
-		lib/srec/input.h lib/format_printf.h \
+		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/interval.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_number.cc
 	mv get_number.o lib/srec/arglex/get_number.o
 
+lib/srec/arglex/get_string.o: lib/srec/arglex/get_string.cc \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_string.cc
+	mv get_string.o lib/srec/arglex/get_string.o
+
 lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/srec/arglex.h \
-		lib/arglex.h lib/srec/input/file/aomf.h \
-		lib/srec/input/file.h lib/srec/input.h \
-		lib/format_printf.h lib/srec/input/file/ascii_hex.h \
+		lib/arglex.h lib/format_printf.h \
+		lib/srec/input/file/aomf.h lib/srec/input/file.h \
+		lib/srec/input.h lib/srec/input/file/ascii_hex.h \
 		lib/srec/input/file/atmel_generic.h \
 		lib/srec/input/file/binary.h \
 		lib/srec/input/file/brecord.h \
@@ -472,14 +480,15 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/srec/arglex.h \
 		lib/srec/input/filter/split.h \
 		lib/srec/input/filter/unfill.h \
 		lib/srec/input/filter/unsplit.h \
-		lib/srec/input/filter/xor.h lib/srec/input/interval.h 
+		lib/srec/input/filter/xor.h lib/srec/input/generator.h \
+		lib/srec/input/interval.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/input.cc
 	mv input.o lib/srec/arglex/input.o
 
 lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/srec/arglex.h \
-		lib/arglex.h lib/srec/output/file/aomf.h \
-		lib/srec/output/file.h lib/srec/output.h \
-		lib/format_printf.h lib/srec/output/file/ascii_hex.h \
+		lib/arglex.h lib/format_printf.h \
+		lib/srec/output/file/aomf.h lib/srec/output/file.h \
+		lib/srec/output.h lib/srec/output/file/ascii_hex.h \
 		lib/srec/output/file/asm.h lib/interval.h \
 		lib/srec/output/file/atmel_generic.h \
 		lib/srec/output/file/basic.h \
@@ -684,9 +693,9 @@ lib/srec/input/file/spectrum.o: lib/srec/input/file/spectrum.cc \
 	mv spectrum.o lib/srec/input/file/spectrum.o
 
 lib/srec/input/file/srecord.o: lib/srec/input/file/srecord.cc \
-		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
 		lib/srec/input/file/srecord.h lib/srec/input/file.h \
-		lib/srec/input.h lib/format_printf.h lib/srec/record.h 
+		lib/srec/input.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/srecord.cc
 	mv srecord.o lib/srec/input/file/srecord.o
 
@@ -756,10 +765,10 @@ lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc \
 	mv and.o lib/srec/input/filter/and.o
 
 lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
-		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
 		lib/srec/input/filter/byte_swap.h \
 		lib/srec/input/filter.h lib/srec/input.h \
-		lib/format_printf.h lib/srec/record.h 
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
 		lib/srec/input/filter/byte_swap.cc 
 	mv byte_swap.o lib/srec/input/filter/byte_swap.o
@@ -909,6 +918,40 @@ lib/srec/input/filter/xor.o: lib/srec/input/filter/xor.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/xor.cc
 	mv xor.o lib/srec/input/filter/xor.o
 
+lib/srec/input/generator.o: lib/srec/input/generator.cc \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
+		lib/srec/input/generator.h lib/srec/input.h \
+		lib/interval.h lib/srec/input/generator/constant.h \
+		lib/srec/input/generator/random.h \
+		lib/srec/input/generator/repeat.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/generator.cc
+	mv generator.o lib/srec/input/generator.o
+
+lib/srec/input/generator/constant.o: \
+		lib/srec/input/generator/constant.cc \
+		lib/srec/input/generator/constant.h \
+		lib/srec/input/generator.h lib/srec/input.h \
+		lib/format_printf.h lib/interval.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/generator/constant.cc 
+	mv constant.o lib/srec/input/generator/constant.o
+
+lib/srec/input/generator/random.o: lib/srec/input/generator/random.cc \
+		lib/r250.h lib/srec/input/generator/random.h \
+		lib/srec/input/generator.h lib/srec/input.h \
+		lib/format_printf.h lib/interval.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/generator/random.cc 
+	mv random.o lib/srec/input/generator/random.o
+
+lib/srec/input/generator/repeat.o: lib/srec/input/generator/repeat.cc \
+		lib/srec/input/generator/repeat.h \
+		lib/srec/input/generator.h lib/srec/input.h \
+		lib/format_printf.h lib/interval.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/generator/repeat.cc 
+	mv repeat.o lib/srec/input/generator/repeat.o
+
 lib/srec/input/interval.o: lib/srec/input/interval.cc lib/interval.h \
 		lib/srec/input.h lib/format_printf.h \
 		lib/srec/input/interval.h lib/srec/record.h 
@@ -993,8 +1036,9 @@ lib/srec/output/file/ascii_hex.o: lib/srec/output/file/ascii_hex.cc \
 	mv ascii_hex.o lib/srec/output/file/ascii_hex.o
 
 lib/srec/output/file/asm.o: lib/srec/output/file/asm.cc lib/interval.h \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
 		lib/srec/output/file/asm.h lib/srec/output/file.h \
-		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/asm.cc
 	mv asm.o lib/srec/output/file/asm.o
 
@@ -1027,9 +1071,9 @@ lib/srec/output/file/brecord.o: lib/srec/output/file/brecord.cc \
 	mv brecord.o lib/srec/output/file/brecord.o
 
 lib/srec/output/file/c.o: lib/srec/output/file/c.cc lib/interval.h \
-		lib/srec/arglex.h lib/arglex.h lib/srec/output/file/c.h \
-		lib/srec/output/file.h lib/srec/output.h \
-		lib/format_printf.h lib/srec/record.h 
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
+		lib/srec/output/file/c.h lib/srec/output/file.h \
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/c.cc
 	mv c.o lib/srec/output/file/c.o
 
@@ -1132,9 +1176,9 @@ lib/srec/output/file/spectrum.o: lib/srec/output/file/spectrum.cc \
 	mv spectrum.o lib/srec/output/file/spectrum.o
 
 lib/srec/output/file/srecord.o: lib/srec/output/file/srecord.cc \
-		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
 		lib/srec/output/file/srecord.h lib/srec/output/file.h \
-		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/srecord.cc
 	mv srecord.o lib/srec/output/file/srecord.o
 
@@ -1181,17 +1225,17 @@ lib/srec/output/file/ti_txt.o: lib/srec/output/file/ti_txt.cc \
 	mv ti_txt.o lib/srec/output/file/ti_txt.o
 
 lib/srec/output/file/vhdl.o: lib/srec/output/file/vhdl.cc \
-		lib/srec/arglex.h lib/arglex.h lib/interval.h \
-		lib/srec/output/file/vhdl.h lib/srec/output/file.h \
-		lib/srec/output.h lib/format_printf.h lib/srec/record.h \
-		lib/progname.h 
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
+		lib/interval.h lib/srec/output/file/vhdl.h \
+		lib/srec/output/file.h lib/srec/output.h \
+		lib/srec/record.h lib/progname.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vhdl.cc
 	mv vhdl.o lib/srec/output/file/vhdl.o
 
 lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc \
-		lib/srec/arglex.h lib/arglex.h \
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
 		lib/srec/output/file/vmem.h lib/srec/output/file.h \
-		lib/srec/output.h lib/format_printf.h lib/srec/record.h 
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
 	mv vmem.o lib/srec/output/file/vmem.o
 
@@ -1214,7 +1258,7 @@ lib/vsnprintf.o: lib/vsnprintf.cc lib/config.h lib/config.messy.h
 	mv vsnprintf.o lib/vsnprintf.o
 
 $(mandir)/man1/srec_cat.1: man/man1/srec_cat.1 man/man1/o_input.so \
-		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
 		man/man1/o_sequence.so man/man1/o_multiple.so \
 		man/man1/z_options.so man/man1/z_exit.so \
 		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
@@ -1223,7 +1267,7 @@ $(mandir)/man1/srec_cat.1: man/man1/srec_cat.1 man/man1/o_input.so \
 	@rm -f tmp
 
 $(mandir)/man1/srec_cmp.1: man/man1/srec_cmp.1 man/man1/o_input.so \
-		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
 		man/man1/o_sequence.so man/man1/o_multiple.so \
 		man/man1/z_options.so man/man1/z_exit.so \
 		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
@@ -1231,12 +1275,25 @@ $(mandir)/man1/srec_cmp.1: man/man1/srec_cmp.1 man/man1/o_input.so \
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
+$(mandir)/man1/srec_examples.1: man/man1/srec_examples.1 \
+		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
+	$(SOELIM) -I. -Ietc man/man1/srec_examples.1 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
 $(mandir)/man1/srec_info.1: man/man1/srec_info.1 man/man1/o_input.so \
-		man/man1/o_ignore_checksums.so man/man1/o_at.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
 		man/man1/o_sequence.so man/man1/o_multiple.so \
 		man/man1/z_options.so man/man1/z_exit.so \
 		man/man1/z_copyright.so etc/version.so man/man1/.mandir 
 	$(SOELIM) -I. -Ietc man/man1/srec_info.1 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
+$(mandir)/man1/srec_input.1: man/man1/srec_input.1 \
+		man/man1/o_ignore_checksums.so man/man1/z_copyright.so \
+		etc/version.so man/man1/.mandir 
+	$(SOELIM) -I. -Ietc man/man1/srec_input.1 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
@@ -1420,7 +1477,8 @@ $(mandir)/man5/srec_wilson.5: man/man5/srec_wilson.5 \
 	@rm -f tmp
 
 prog/srec_cat/arglex3.o: prog/srec_cat/arglex3.cc \
-		prog/srec_cat/arglex3.h lib/srec/arglex.h lib/arglex.h 
+		prog/srec_cat/arglex3.h lib/srec/arglex.h lib/arglex.h \
+		lib/format_printf.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_cat/arglex3.cc
 	mv arglex3.o prog/srec_cat/arglex3.o
 
@@ -1434,16 +1492,17 @@ prog/srec_cat/main.o: prog/srec_cat/main.cc lib/srec/input/file.h \
 	mv main.o prog/srec_cat/main.o
 
 prog/srec_cmp/main.o: prog/srec_cmp/main.cc lib/srec/arglex.h \
-		lib/arglex.h lib/srec/input/file.h lib/srec/input.h \
-		lib/format_printf.h lib/srec/memory.h \
+		lib/arglex.h lib/format_printf.h lib/srec/input/file.h \
+		lib/srec/input.h lib/srec/memory.h \
 		lib/srec/memory/chunk.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_cmp/main.cc
 	mv main.o prog/srec_cmp/main.o
 
 prog/srec_info/main.o: prog/srec_info/main.cc lib/interval.h \
-		lib/srec/arglex.h lib/arglex.h lib/srec/input/file.h \
-		lib/srec/input.h lib/format_printf.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/record.h 
+		lib/srec/arglex.h lib/arglex.h lib/format_printf.h \
+		lib/srec/input/file.h lib/srec/input.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c prog/srec_info/main.cc
 	mv main.o prog/srec_info/main.o
 
@@ -1747,6 +1806,39 @@ t0115a: test/01/t0115a.sh all
 t0116a: test/01/t0116a.sh all
 	$(SH) test/01/t0116a.sh
 
+t0117a: test/01/t0117a.sh all
+	$(SH) test/01/t0117a.sh
+
+t0118a: test/01/t0118a.sh all
+	$(SH) test/01/t0118a.sh
+
+t0119a: test/01/t0119a.sh all
+	$(SH) test/01/t0119a.sh
+
+t0120a: test/01/t0120a.sh all
+	$(SH) test/01/t0120a.sh
+
+t0121a: test/01/t0121a.sh all
+	$(SH) test/01/t0121a.sh
+
+t0122a: test/01/t0122a.sh all
+	$(SH) test/01/t0122a.sh
+
+t0123a: test/01/t0123a.sh all
+	$(SH) test/01/t0123a.sh
+
+t0125a: test/01/t0125a.sh all
+	$(SH) test/01/t0125a.sh
+
+t0126a: test/01/t0126a.sh all
+	$(SH) test/01/t0126a.sh
+
+t0127a: test/01/t0127a.sh all
+	$(SH) test/01/t0127a.sh
+
+t0128a: test/01/t0128a.sh all
+	$(SH) test/01/t0128a.sh
+
 man/man1/.mandir: man/.mandir
 	-$(INSTALL) -m 0755 -d $(mandir)/man1
 	@-test -d $(mandir)/man1 && touch $@
@@ -1806,7 +1898,8 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
 		lib/progname.o lib/quit.o lib/quit/exception.o \
 		lib/quit/normal.o lib/quit/prefix.o lib/r250.o \
 		lib/srec/arglex.o lib/srec/arglex/get_interval.o \
-		lib/srec/arglex/get_number.o lib/srec/arglex/input.o \
+		lib/srec/arglex/get_number.o \
+		lib/srec/arglex/get_string.o lib/srec/arglex/input.o \
 		lib/srec/arglex/output.o lib/srec/input.o \
 		lib/srec/input/file.o lib/srec/input/file/aomf.o \
 		lib/srec/input/file/ascii_hex.o \
@@ -1857,9 +1950,12 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
 		lib/srec/input/filter/split.o \
 		lib/srec/input/filter/unfill.o \
 		lib/srec/input/filter/unsplit.o \
-		lib/srec/input/filter/xor.o lib/srec/input/interval.o \
-		lib/srec/memory.o lib/srec/memory/chunk.o \
-		lib/srec/memory/walker.o \
+		lib/srec/input/filter/xor.o lib/srec/input/generator.o \
+		lib/srec/input/generator/constant.o \
+		lib/srec/input/generator/random.o \
+		lib/srec/input/generator/repeat.o \
+		lib/srec/input/interval.o lib/srec/memory.o \
+		lib/srec/memory/chunk.o lib/srec/memory/walker.o \
 		lib/srec/memory/walker/compare.o \
 		lib/srec/memory/walker/continuity.o \
 		lib/srec/memory/walker/crc16.o \
@@ -1926,7 +2022,8 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a \
 		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a \
 		t0105a t0106a t0107a t0108a t0109a t0110a t0111a t0112a \
-		t0113a t0115a t0116a 
+		t0113a t0115a t0116a t0117a t0118a t0119a t0120a t0121a \
+		t0122a t0123a t0125a t0126a t0127a t0128a 
 	@echo Passed All Tests
 
 clean-obj:
@@ -1936,10 +2033,10 @@ clean-obj:
 	rm -f lib/quit/exception.o lib/quit/normal.o lib/quit/prefix.o
 	rm -f lib/r250.o lib/srec/arglex.o
 	rm -f lib/srec/arglex/get_interval.o
-	rm -f lib/srec/arglex/get_number.o lib/srec/arglex/input.o
-	rm -f lib/srec/arglex/output.o lib/srec/input.o
-	rm -f lib/srec/input/file.o lib/srec/input/file/aomf.o
-	rm -f lib/srec/input/file/ascii_hex.o
+	rm -f lib/srec/arglex/get_number.o lib/srec/arglex/get_string.o
+	rm -f lib/srec/arglex/input.o lib/srec/arglex/output.o
+	rm -f lib/srec/input.o lib/srec/input/file.o
+	rm -f lib/srec/input/file/aomf.o lib/srec/input/file/ascii_hex.o
 	rm -f lib/srec/input/file/atmel_generic.o
 	rm -f lib/srec/input/file/binary.o lib/srec/input/file/brecord.o
 	rm -f lib/srec/input/file/cosmac.o
@@ -1981,9 +2078,13 @@ clean-obj:
 	rm -f lib/srec/input/filter/split.o
 	rm -f lib/srec/input/filter/unfill.o
 	rm -f lib/srec/input/filter/unsplit.o
-	rm -f lib/srec/input/filter/xor.o lib/srec/input/interval.o
-	rm -f lib/srec/memory.o lib/srec/memory/chunk.o
-	rm -f lib/srec/memory/walker.o lib/srec/memory/walker/compare.o
+	rm -f lib/srec/input/filter/xor.o lib/srec/input/generator.o
+	rm -f lib/srec/input/generator/constant.o
+	rm -f lib/srec/input/generator/random.o
+	rm -f lib/srec/input/generator/repeat.o
+	rm -f lib/srec/input/interval.o lib/srec/memory.o
+	rm -f lib/srec/memory/chunk.o lib/srec/memory/walker.o
+	rm -f lib/srec/memory/walker/compare.o
 	rm -f lib/srec/memory/walker/continuity.o
 	rm -f lib/srec/memory/walker/crc16.o
 	rm -f lib/srec/memory/walker/crc32.o
@@ -2034,7 +2135,8 @@ install-bin: $(bindir)/srec_cat $(bindir)/srec_cmp $(bindir)/srec_info
 install-man: install-man-${HAVE_GROFF}
 
 install-man-yes: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
-		$(mandir)/man1/srec_info.1 \
+		$(mandir)/man1/srec_examples.1 \
+		$(mandir)/man1/srec_info.1 $(mandir)/man1/srec_input.1 \
 		$(mandir)/man1/srec_license.1 \
 		$(mandir)/man5/srec_aomf.5 \
 		$(mandir)/man5/srec_ascii_hex.5 \

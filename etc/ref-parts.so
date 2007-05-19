@@ -1,6 +1,8 @@
 .so man/man1/srec_cat.1
 .so man/man1/srec_cmp.1
+.so man/man1/srec_examples.1
 .so man/man1/srec_info.1
+.so man/man1/srec_input.1
 .so man/man1/srec_license.1
 .so man/man5/srec_aomf.5
 .so man/man5/srec_ascii_hex.5

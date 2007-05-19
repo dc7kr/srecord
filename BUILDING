@@ -236,14 +236,14 @@ GETTING HELP
         When reporting problems, please include the version number given by
         the
                 % srec_cat -version
-                srecord version 1.32.D001
+                srecord version 1.33.D002
                 ...warranty disclaimer...
                 %
         command.  Please do not send this example; run the program for the
         exact version number.
 
 COPYRIGHT
-        srecord version 1.32
+        srecord version 1.33
         Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
         2007 Peter Miller
 

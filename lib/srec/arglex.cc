@@ -36,7 +36,13 @@ srec_arglex::srec_arglex(int argc, char **argv) :
     static const table_ty table[] =
     {
         { "(", token_paren_begin, },
+        { "{", token_paren_begin, },
+        { "[", token_paren_begin, },
         { ")", token_paren_end, },
+        { "}", token_paren_end, },
+        { "]", token_paren_end, },
+        { "+", token_union, },
+        { "-A430", token_a430, },
         { "-Absolute_Object_Module_Format", token_aomf, },
         { "-AND", token_and, },
         { "-Ascii_Hexadecimal", token_ascii_hex, },
@@ -58,13 +64,18 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-BINary", token_binary, },
         { "-B_Record", token_brecord, },
         { "-Byte_Swap", token_byte_swap, },
+        { "-C_COMpressed", token_c_compressed, },
+        { "-CL430", token_cl430, },
         { "-CONSTant", token_constant, },
         { "-COsmac", token_cosmac, },
         { "-CRop", token_crop, },
         { "-Cyclic_Redundancy_Check_16_XMODEM", token_crc16_xmodem,},
         { "-C_Array", token_c_array, },
         { "-Dec_Binary", token_dec_binary, },
+        { "-DECimal_STyle", token_style_hexadecimal_not, },
+        { "-DIFference", token_minus, },
         { "-Disable_Sequence_Warnings", token_sequence_warnings_disable, },
+        { "-Dot_STyle", token_style_dot, },
         { "-Elektor_Monitor52", token_emon52, },
         { "-Enable_Sequence_Warnings", token_sequence_warnings_enable, },
         { "-Exclude", token_exclude, },
@@ -73,11 +84,15 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-Fill", token_fill, },
         { "-Formatted_Binary", token_formatted_binary, },
         { "-Four_Packed_Code", token_four_packed_code, },
+        { "-GENerate", token_generator },
+        { "-GENerator", token_generator },
         { "-GUess", token_guess, },
+        { "-HEXadecimal_STyle", token_style_hexadecimal, },
         { "-IGnore_Checksums", token_ignore_checksums, },
         { "-INCLude", token_include, },
         { "-Intel", token_intel, },
         { "-INtel_HeXadecimal_16", token_intel16, },
+        { "-INTERSection", token_intersection, },
         { "-Length", token_length, },
         { "-Little_Endian_Checksum", token_checksum_le_bitnot, },
         { "-Little_Endian_Checksum_BitNot", token_checksum_le_bitnot, },
@@ -90,6 +105,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-Little_Endian_MInimum", token_minimum_le, },
         { "-MAximum", token_maximum, },
         { "-MInimum", token_minimum, },
+        { "-MINUs", token_minus, },
         { "-MOS_Technologies", token_mos_tech, },
         { "-Motorola", token_motorola, },
         { "-MULTiple", token_multiple, },
@@ -102,14 +118,20 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-Ohio_Scientific65v", token_ohio_scientific, },
         { "-OR", token_or, },
         { "-Output", token_output, },
+        { "-Output_Words", token_output_word, },
         { "-OVer", token_over, },
+        { "-RANDom", token_random, },
         { "-Random_Fill", token_random_fill, },
+        { "-RAnge_PADding", token_range_padding, },
         { "-RAw", token_binary, },
+        { "-REPeat_Data", token_repeat_data, },
+        { "-REPeat_String", token_repeat_string, },
         { "-Round", token_round_nearest, },
         { "-Round_Down", token_round_down, },
         { "-Round_Nearest", token_round_nearest, },
         { "-Round_Off", token_round_nearest, },
         { "-Round_Up", token_round_up, },
+        { "-Section_STyle", token_style_section, },
         { "-SIGnetics", token_signetics, },
         { "-SPAsm", token_spasm_be, }, // is this right?
         { "-SPAsm_BigEndian", token_spasm_be, },
@@ -117,6 +139,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-SPEctrum", token_spectrum, },
         { "-SPlit", token_split, },
         { "-STewie", token_stewie, },
+        { "-SUBtract", token_minus, },
         { "-S_record", token_motorola, },
         { "-Tektronix", token_tektronix, },
         { "-Tektronix_Extended", token_tektronix_extended, },
@@ -124,6 +147,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-Texas_Instruments_Tagged_16", token_ti_tagged_16, },
         { "-Texas_Instruments_TeXT", token_ti_txt, },
         { "-Un_Fill", token_unfill, },
+        { "-UNIon", token_union, },
         { "-Un_SPlit", token_unsplit, },
         { "-VHdl", token_vhdl, },
         { "-VMem", token_vmem, },
@@ -165,8 +189,8 @@ srec_arglex::get_address(const char *name, unsigned long &address)
 {
     if (!can_get_number())
     {
-        cerr << "the " << name << " filter requires an address" << endl;
-        exit(1);
+        fatal_error("the %s filter requires an address", name);
+        // NOTREACHED
     }
     address = get_number("address");
 }
@@ -178,30 +202,26 @@ srec_arglex::get_address_and_nbytes(const char *name, unsigned long &address,
 {
     if (!can_get_number())
     {
-        cerr << "the " << name
-                << " filter requires an address and a byte count"
-                << endl;
-        exit(1);
+        fatal_error("the %s filter requires an address and a byte count", name);
+        // NOTREACHED
     }
     address = get_number("address");
     nbytes = 4;
     if (can_get_number())
     {
-        nbytes = get_number("byte count");
-        if (nbytes < 1 || nbytes > 8)
-        {
-                cerr << "the " << name << " byte count " << nbytes
-                       << " is out of range (1..8)"
-                       << endl;
-                exit(1);
-        }
+        nbytes = get_number("byte count", 1, 8);
     }
     if ((long long)address + nbytes > (1LL << 32))
     {
-        cerr << "the " << name << " address (" << address
-                << ") and byte count (" << nbytes
-                << ") may not span the top of memory" << endl;
-        exit(1);
+        fatal_error
+        (
+            "the %s address (0x%8.8lX) and byte count (%d) may not span the "
+                "top of memory",
+            name,
+            address,
+            nbytes
+        );
+        // NOTREACHED
     }
 }
 
@@ -215,32 +235,23 @@ srec_arglex::get_address_nbytes_width(const char *name, unsigned long &address,
     width = 1;
     if (can_get_number())
     {
-        nbytes = get_number("byte count");
-        if (nbytes < 1 || nbytes > 8)
-        {
-            cerr << "the " << name << " byte count " << nbytes
-                       << " is out of range (1..8)"
-                       << endl;
-            exit(1);
-        }
+        nbytes = get_number("byte count", 1, 8);
         if (can_get_number())
         {
-            width = get_number("width");
-            if (width < 1 || width > nbytes)
-            {
-                       cerr << "the " << name << " sum width "
-                    << width << " is out of range (1.."
-                    << nbytes << ")" << endl;
-                       exit(1);
-            }
+            width = get_number("width", 1, nbytes);
         }
     }
     if ((long long)address + nbytes > (1LL << 32))
     {
-        cerr << "the " << name << " address (" << address
-                << ") and byte count (" << nbytes
-                << ") may not span the top of memory" << endl;
-        exit(1);
+        fatal_error
+        (
+            "the %s address (0x%8.8lX) and byte count (%d) may not span the "
+                "top of memory",
+            name,
+            address,
+            nbytes
+        );
+        // NOTREACHED
     }
 }
 

@@ -35,7 +35,7 @@ srec_input_filter::~srec_input_filter()
 }
 
 
-const string
+string
 srec_input_filter::filename()
     const
 {
@@ -43,7 +43,7 @@ srec_input_filter::filename()
 }
 
 
-const string
+string
 srec_input_filter::filename_and_line()
     const
 {

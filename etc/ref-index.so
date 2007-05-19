@@ -228,6 +228,20 @@ T}	T{
 .ad l
 equality
 T}
+srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+examples - examples of how to use SRecord
+T}
+srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
+.ad r
+srec examples -
+T}	T{
+.ad l
+examples of how to use SRecord
+T}
 srec_tektronix_extended(5)	\*[Page*Of*srec_tektronix_extended(5)]	T{
 .ad r
 srec tektronix extended - Tektronix
@@ -493,6 +507,13 @@ srec cmp - compare two eprom load
 T}	T{
 .ad l
 files for equality
+T}
+srec_input(1)	\*[Page*Of*srec_input(1)]	T{
+.ad r
+SRecord - input
+T}	T{
+.ad l
+file specifications
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
@@ -795,6 +816,13 @@ T}	T{
 .ad l
 Hex file format
 T}
+srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
+.ad r
+srec examples - examples of
+T}	T{
+.ad l
+how to use SRecord
+T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
 srec
@@ -808,6 +836,13 @@ srec info -
 T}	T{
 .ad l
 information about eprom load files
+T}
+srec_input(1)	\*[Page*Of*srec_input(1)]	T{
+.ad r
+SRecord -
+T}	T{
+.ad l
+input file specifications
 T}
 srec_ti_tagged_16(5)	\*[Page*Of*srec_ti_tagged_16(5)]	T{
 .ad r
@@ -1117,6 +1152,13 @@ T}	T{
 .ad l
 specification
 T}
+srec_input(1)	\*[Page*Of*srec_input(1)]	T{
+.ad r
+SRecord - input file
+T}	T{
+.ad l
+specifications
+T}
 srec_spectrum(5)	\*[Page*Of*srec_spectrum(5)]	T{
 .ad r
 srec spectrum -
@@ -1179,6 +1221,13 @@ srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 T}	T{
 .ad l
 srec cosmac - RCA Cosmac Elf file format
+T}
+srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec examples - examples of how to use SRecord
 T}
 srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
 .ad r
@@ -1243,6 +1292,13 @@ T}	T{
 .ad l
 srec needham - Needham EMP-series programmer ASCII file format
 T}
+srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
+.ad r
+srec examples - examples of how to use
+T}	T{
+.ad l
+SRecord
+T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
 
@@ -1270,6 +1326,13 @@ srec motorola - Motorola
 T}	T{
 .ad l
 S-Record hexadecimal file format
+T}
+srec_input(1)	\*[Page*Of*srec_input(1)]	T{
+.ad r
+
+T}	T{
+.ad l
+SRecord - input file specifications
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
@@ -1515,6 +1578,13 @@ srec ti
 T}	T{
 .ad l
 txt - Texas Instruments ti-txt (MSP430) file format
+T}
+srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
+.ad r
+srec examples - examples of how to
+T}	T{
+.ad l
+use SRecord
 T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r

@@ -22,8 +22,11 @@
 #ifndef INCLUDE_SREC_ARGLEX_H
 #define INCLUDE_SREC_ARGLEX_H
 
-
 #include <lib/arglex.h>
+
+class interval; // forward
+class srec_input; // forward
+class srec_output; // forward
 
 /**
   * The srec_arglex is used to parse command line with srec-specific
@@ -35,7 +38,8 @@ class srec_arglex:
 public:
     enum
     {
-        token_and = arglex::token_MAX,
+        token_a430 = arglex::token_MAX,
+        token_and,
         token_aomf,
         token_ascii_hex,
         token_assembler,
@@ -46,12 +50,14 @@ public:
         token_brecord,
         token_byte_swap,
         token_c_array,
+        token_c_compressed,
         token_checksum_be_bitnot,
         token_checksum_be_negative,
         token_checksum_be_positive,
         token_checksum_le_bitnot,
         token_checksum_le_negative,
         token_checksum_le_positive,
+        token_cl430,
         token_constant,
         token_constant_not,
         token_cosmac,
@@ -69,12 +75,14 @@ public:
         token_fill,
         token_formatted_binary,
         token_four_packed_code,
+        token_generator,
         token_guess,
         token_ignore_checksums,
         token_include,
         token_include_not,
         token_intel,
         token_intel16,
+        token_intersection,
         token_length,
         token_length_be,
         token_length_le,
@@ -84,6 +92,7 @@ public:
         token_minimum,
         token_minimum_be,
         token_minimum_le,
+        token_minus,
         token_mos_tech,
         token_motorola,
         token_multiple,
@@ -93,10 +102,15 @@ public:
         token_ohio_scientific,
         token_or,
         token_output,
+        token_output_word,
         token_over,
         token_paren_begin,
         token_paren_end,
+        token_random,
         token_random_fill,
+        token_range_padding,
+        token_repeat_data,
+        token_repeat_string,
         token_round_down,
         token_round_nearest,
         token_round_up,
@@ -108,12 +122,17 @@ public:
         token_spectrum,
         token_split,
         token_stewie,
+        token_style_dot,
+        token_style_hexadecimal,
+        token_style_hexadecimal_not,
+        token_style_section,
         token_tektronix,
         token_tektronix_extended,
         token_ti_tagged,
         token_ti_tagged_16,
         token_ti_txt,
         token_unfill,
+        token_union,
         token_unsplit,
         token_vhdl,
         token_vmem,
@@ -143,7 +162,7 @@ public:
       * line) a fatal error will be issued and the method call will
       * not return.
       */
-    class srec_input *get_input();
+    srec_input *get_input();
 
     /**
       * The get_output method is used to parse an output specification
@@ -153,13 +172,26 @@ public:
       * line) a fatal error will be issued and the method call will
       * not return.
       */
-    class srec_output *get_output();
+    srec_output *get_output();
 
     /**
-      * The get_number method is used to parse a numeric value fromthe
+      * The get_number method is used to parse a numeric value from the
       * command line.
       */
     unsigned long get_number(const char *caption);
+
+    /**
+      * The get_number method is used to parse a numeric value
+      * from the command line, and check it agains a specified range.
+      *
+      * @param caption
+      *     for the error message, if necessary
+      * @param min
+      *     The minimum acceptable value (inclusive)
+      * @param max
+      *     The maximum acceptable value (inclusive)
+      */
+    unsigned long get_number(const char *caption, long min, long max);
 
     /**
       * The can_get_number method is used to determine if it is possible
@@ -167,38 +199,66 @@ public:
       */
     bool can_get_number() const;
 
+    /**
+      * The get_interval method is used to parse an interval
+      * set form the command line.  It consists of as many
+      * get_interval_inner()s as possible.
+      *
+      * Used by the get_input method to parse the address intervals used
+      * by various filters.  It is the lowest precedence level, and
+      * handsles set union (the implicit operator) and set difference
+      * (the - operator).
+      *
+      * If the parse is unsuccessful (is not present on command
+      * line) a fatal error will be issued and the method call will
+      * not return.
+      */
+    interval get_interval(const char *err_msg_caption);
+
+    /**
+      * The get_string method may be used to get a string from the
+      * command line, or issue a fatal error if one is not available.
+      *
+      * @param caption
+      *     The text for the error message.
+      */
+    std::string get_string(const char *caption);
+
     // See base class for documentation.
     void default_command_line_processing();
 
 private:
     /**
-      * The get_interval_inner method is used to parse a single
+      * The get_interval_factor method is used to parse a single
       * interval from the command line (usually, a pair of number
       * representing the [lower, upper) bounds, but it could be
       * -over or -within, too).
       *
-      * This method should only every be called by the get_interval
+      * This method parses the highest precedence operators in the range
+      * parsing.
+      *
+      * This method should only every be called by the get_interval_term
       * method.
       *
       * If the parse is unsuccessful (is not present on command
       * line) a fatal error will be issued and the method call will
       * not return.
       */
-    class interval get_interval_inner(const char *err_msg_caption);
+    interval get_interval_factor(const char *err_msg_caption);
 
     /**
-      * The get_interval method is used to parse an interval
-      * set form the command line.        Iyt consists of as many
-      * get_interval_inner()s as possible.
+      * The get_interval_term method is used to parse set-intersection
+      * precedence intervals from the command line.  This method parses
+      * the middle precedence operators in the range parsing.
       *
-      * Used by the get_input method to parse the address intervals
-      * used by various filters.
+      * This method should only every be called by the get_interval_term
+      * method.
       *
       * If the parse is unsuccessful (is not present on command
       * line) a fatal error will be issued and the method call will
       * not return.
       */
-    class interval get_interval(const char *err_msg_caption);
+    interval get_interval_term(const char *err_msg_caption);
 
     /**
       * The get_address method is used to parse an address from the

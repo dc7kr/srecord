@@ -43,10 +43,10 @@ file.
 The use of filters (see below) allows significant manipulations to be
 performed by this command.
 .PP
-A warning will be emitted for each address wich is redundantly se to the
+A warning will be emitted for each address which is redundantly set to the
 same value.  A fatal error will be issued if any address is set with
 contradictory values.
-To supress this behaviour, use an \fB\-exclude \-within\fP filter.
+To suppress this behavior, use an \fB\-exclude \-within\fP filter.
 .so o_input.so
 .br
 .ne 1i
@@ -74,8 +74,51 @@ An Ascii-Hex file will be written.
 .IR srec_ascii_hex (5)
 for a description of this file format.)
 .TP 8n
-\fB\-ASM\fP
+\fB\-ASM\fP [ \f[I]prefix\fP ][ \-\f[I]option\fP... ]
+.RS
 A series of assembler DB statements will be written.
+.PP
+The optional \fIprefix\fP may be specified to change the names of the
+symbols generated.  The defaults to "\f[CW]eprom\fP" if not set.
+.PP
+Several options are available to modify the style of output:
+.TP 8n
+\fB\-Dot_STyle\fP
+Use "dot" style pseudo-ops instead of words.
+For example \f[CW].byte\fP instead of the \f[CW]DB\fP default.
+.TP 8n
+\fB\-HEXadecimal_STyle\fP
+Use hexadecimal numbers in the output,
+rather than the default decimal numbers.
+.TP 8n
+\fB\-Section_STyle\fP
+By default the generated assemble of placed at the correct address using
+\f[CW]ORG\fP pseudo-ops.  Section style output emits tables of section
+addresses and lengths, so the data may be related at runtime.
+.TP 8n
+\fB\-A430\fP
+Generate output which is compliant to the \f[CW]a430.exe\fP compiler as
+it is used, \f[I]e.g.\fP in IAR Embedded Workbench.
+This is short-hand for \-section-style \-hex-style
+.TP 8n
+\fB\-CL430\fP
+Generate  output which is Code Composer Essentials compliant,
+\f[I]i.e.\fP the compiler of it.
+This is short-hand for \-section-style \-hex-style \-dot-style
+.TP 8n
+\fB\-Output_Word\fP
+Generate output which is in two-byte words rather than bytes.  This
+assumes little-endian words; you will need to use the \-Byte-Swap filter
+if your target is big-endian.
+No attempt is made to align the words onto even address boundaries;
+use and input filter such as
+.nf
+.in +8n
+\f[I]input-file\fP \-fill 0xFF -within \f[I]input-file\fP -range-pad 2
+.in -8n
+.fi
+to pad the data to whole words first.
+.RE
 .TP 8n
 \fB\-Atmel_Generic\fP
 An Atmel Generic file will be written.
@@ -97,13 +140,39 @@ A raw binary file will be written.
 If you get unexpected results \f[B]please\fP see the
 \f[I]srec_binary\fP(5) manual for more information.
 .TP 8n
-\fB\-C-Array\fP [ \fIidentifier\fP ][ \-INClude ][ \-No-CONST ]
-A C array declaration will be written.
-The \fIidentifier\fP is the name of the variable to be defined.
-The \-INClude options asks for an include file to be generated as well.
-The \-No-CONST options asks for the variables to not use the const
-keyword (they are declared contant be default, so that they are placed
+\fB\-C-Array\fP [ \f[I]identifier\fP ][ \-\f[I]option\fP... ]
+.RS
+A C array defintion will be written.
+.PP
+The optional \fIidentifier\fP is the name of the variable to be defined,
+or \f[CW]bugus\fP if not specified.
+.TP 8n
+\fB\-INClude\fP
+This option asks for an include file to be generated as well.
+.TP 8n
+\fB\-No-CONST
+This options asks for the variables to not use the const
+keyword (they are declared constant be default, so that they are placed
 into the read-only segment in embedded systems).
+.TP 8n
+\fB\-A430\fP
+.TP 8n
+\fB\-CL430\fP
+.TP 8n
+\fB\-C_COMpressed\fP
+These options ask for an compressed c-array whose memory
+gaps will not be filled.
+.TP 8n
+\fB\-Output_Word\fP
+This option asks for an output which is in words not in
+bytes.  This is little endian, so you may need to
+use the \-Swap-bytes filter.  Filler bytes of 0xFF may be inserted
+if necessary; use \-fill \-range-pad for a different value.
+.TP 8n
+\fB\-DECimal_STyle\fP
+This option may be used to get decimal constants in the output, rather
+than the default hexadecimal constants.
+.RE
 .TP 8n
 \fB\-COsmac\fP
 An RCA Cosmac Elf format file will be written.
@@ -170,7 +239,7 @@ if you wish to force S37 use the \fB--address-length=4\fP option
 The optional \fIwidth\fP argument describes the number of bytes which
 form each address multiple.  For normal uses the default of one (1) byte
 is appropriate.  Some systems with 16-bit or 32-bit targets mutilate the
-addresses in the file; this option will imitate that ehaviour.
+addresses in the file; this option will imitate that behavior.
 Unlike most other parameters, this one cannot be guessed.
 .RE
 .TP 8n
@@ -226,14 +295,14 @@ A Texas Instruments SDSMAC 320 format file will be written.
 .IR srec_ti_tagged_16 (5)
 for a description of this file format.)
 .TP 8n
-\fB\-Texas_Instruments_TaXT\fP
+\fB\-Texas_Instruments_TeXT\fP
 This option says to use the Texas Instruments TXT (MSP430) format to
 write the file.  See \f[I]srec_ti_txt\fP(5) for a description of this
 file format.
 .TP 8n
 \fB\-VHdl\fP [ \fIbytes-per-word\fP [ \fIname\fP ]]
 A VHDL format file will be written.
-The \fIbytes-per-word\fP defaaults to one,
+The \fIbytes-per-word\fP defaults to one,
 the \fIname\fP defaults to \f[CW]eprom\fP.
 The \fIetc/x_defs_pack.vhd\fP file in the source distribution contains an
 example ROM definitions pack for the type-independent output.
@@ -300,185 +369,4 @@ in those formats which support it.
 All other options will produce a diagnostic error.
 .so z_options.so
 .so z_exit.so
-.SH EXAMPLES
-The \fI\*(n)\fP command is very powerful, due to the ability to combine
-the the input filters in almost unlimited ways.
-.SS Converting File Formats
-The simplest case is converting files from Intel hex format to Motorola
-S-Record format:
-.RS
-.ft CW
-\*(n) \fIintel-file\fP -intel -o \fIsrec-file\fP
-.ft R
-.RE
-Converting the other way is just as simple:
-.RS
-.ft CW
-\*(n) \fIsrec-file\fP -o \fIintel-file\fP -intel
-.ft R
-.RE
-In each case, the default format is Motorola S-Record format,
-so it does not need to be specified.
-.SS Cropping the Data
-A common activity is to crop your data to match your EPROM location.
-Your linker may add other junk that you are not interested in, \fIe.g.\fP
-at the RAM location.  In this example, there is a 1MB EPROM at the 2MB
-boundary:
-.RS
-.ft CW
-\*(n) \fIinfile\fP -crop 0x200000 0x300000 -o \fIoutfile\fP
-.ft R
-.RE
-The lower bound is inclusive, the upper bound is exclusive.
-.SS Address Offset
-Just possibly, you have a moronic EPROM programmer, and it barfs if the
-eprom doesn't start at zero.  Rather than butcher the linker command file,
-just offset the addresses:
-.RS
-.ft CW
-\*(n) \fIinfile\fP -crop 0x200000 0x300000 -offset -0x200000 -o \fIoutfile\fP
-.ft R
-.RE
-This example also demonstrates how the input filters may be chained together.
-.SS Joining Files Together
-The \fI\*(n)\fP command takes its name from the UNIX \fIcat\fP(1) command,
-which is short for `catenate' or `to join'.  Joining files together into
-a single file is simple, just name as many files on the command line as
-you need:
-.RS
-.ft CW
-\*(n) \fIinfile1\fP \fIinfile2\fP -o \fIoutfile\fP
-.ft R
-.RE
-However, this assumes that the files don't overlap in any way (you will
-get an error if they do).  If both files start from address zero, you
-may need to use the offset filter:
-.RS
-.ft CW
-\*(n) \fIinfile1\fP \fIinfile2\fP -offset 0x80000 -o \fIoutfile\fP
-.ft R
-.RE
-Sometimes you want the two files to follow each other exactly,
-but you don't know the offset in advance:
-.RS
-.ft CW
-\*(n) \fIinfile1\fP \fIinfile2\fP -offset -maximum \fIinfile1\fP
--o \fIoutfile\fP
-.ft R
-.RE
-Notice that where the was a number (0x80000) before, there is now a
-calculation (\-maximum \fIinfile1\fP).  This is possible most places
-a number may be used (also \-minimum and \-range).
-.SS Filling the Blanks
-It is possible to fill the blanks where your data does not lie.
-The simplest example of this fills the entire EPROM:
-.RS
-.ft CW
-\*(n) \fIinfile\fP -fill 0x00 0x200000 0x300000 -o \fIoutfile\fP
-.ft R
-.RE
-This example fills the holes, if any, with zeros.
-You must specify a range \- with a 32-bit address space,
-filling everything generates \fIhuge\fP load files.
-.PP
-If you only want to fill the gaps in your data,
-and don't want to fill the entire EPROM, try:
-.RS
-.ft CW
-\*(n) \fIinfile\fP -fill 0x00 -over \fIinfile\fP -o \fIoutfile\fP
-.ft R
-.RE
-This example demonstrates the fact that wherever an address range may be
-specified, the \fB\-over\fP and \fB\-within\fP options may be used.
-.SS Unfilling the Blanks
-It is common to need to ``unfill'' an eprom image after you read it out of
-a chip.  Usually, it will have had all the holes filled with 0xFF (areas
-of the EPROM you don't program show as 0xFF when you read them back).
-.PP
-To get rid of all the 0xFF bytes in the data, use this filter:
-.RS
-.ft CW
-\*(n) \fIinfile\fP -unfill 0xFF -o \fIoutfile\fP
-.ft R
-.RE
-This will get rid of \fIall\fP the 0xFF bytes, including the ones you
-actually wanted in there.  There are two ways to deal with this.  First,
-you can specify a minimum run length to the un-fill:
-.RS
-.ft CW
-\*(n) \fIinfile\fP -unfill 0xFF 5 -o \fIoutfile\fP
-.ft R
-.RE
-This says that runs of 1 to 4 bytes of 0xFF are OK, and that a hole
-should only be created for runs of 5 or more 0xFF bytes in a row.
-The second method is to re-fill over the intermediate gaps:
-.RS
-.ft CW
-\*(n) \fIoutile\fP -fill 0xFF -over \fIoutfile\fP -o \fIoutfile2\fP
-.ft R
-.RE
-Which method you choose depends on your needs, and the shape of the data
-in your EPROM.  You may need to combine both techniques.
-.SS Splitting an Image
-If you have a 16-bit data bus, but you are using two 8-bit EPROMs to
-hold your firmware, you can generate the even and odd images by using
-the \-SPlit filter.  Assuming your firmware is in the \fIfirmware.hex\fP
-file, use the following:
-.RS
-.nf
-.ft CW
-\*(n) firmware.hex -split 2 0 -o firmware.even.hex
-\*(n) firmware.hex -split 2 1 -o firmware.odd.hex
-.ft R
-.fi
-.RE
-This will result in the two necessary EPROM images.  Note that the output
-addresses are divided by the split multiple, so if your EPROM images
-are at a particular offset (say 0x10000, in the following example),
-you need to remove the offset, and then replace it...
-.RS
-.nf
-.ft CW
-.ta 0.5i 1i 1.5i
-\*(n) firmware.hex \e
-        -offset -0x10000 -split 2 0 \e
-        -offset 0x10000 -o firmware.even.hex
-\*(n) firmware.hex \e
-        -offset -0x10000 -split 2 1 \e
-        -offset 0x10000 -o firmware.odd.hex
-.ft R
-.fi
-.RE
-Note how the ability to apply multiple filters simplifies what would
-otherwise be a much longer script.
-.PP
-A second use for the \-SPlit filter is memory striping.
-In this example, the hardware requires that 512-byte blocks alternate
-between 4 EPROMs.  Generating the 4 images would be done as follows:
-.RS
-.nf
-.ft CW
-\*(n) firmware.hex -split 0x800 0x000 0x200 -o firmware.0.hex
-\*(n) firmware.hex -split 0x800 0x200 0x200 -o firmware.1.hex
-\*(n) firmware.hex -split 0x800 0x400 0x200 -o firmware.2.hex
-\*(n) firmware.hex -split 0x800 0x600 0x200 -o firmware.3.hex
-.ft R
-.fi
-.RE
-.PP
-The unsplit filter may be used to reverse the effects of the split filter.
-Note that the address range is expanded leaving holes between the stripes.
-By using all the stripes, the complete input is reassembled, without
-any holes.  For example, to reverse our previous 16-bit data bus example,
-use the following command:
-.RS
-.nf
-.ft CW
-.ta 0.5i 1i 1.5i
-\*(n) -o firmware.hex \e
-        firmware.even.hex -unsplit 2 0 \e
-        firmware.odd.hex  -unsplit 2 1
-.ft R
-.fi
-.RE
 .so z_copyright.so
