@@ -120,7 +120,7 @@ const unsigned long eprom_address[] =
 };
 const unsigned long eprom_length_of_sections[] =
 {
-0x00000010, 0x0000000E, 0x0000000E,
+0x00000008, 0x00000007, 0x00000007,
 };
 const unsigned long eprom_sections    = 0x00000003;
 const unsigned long eprom_termination = 0x00000007;
@@ -136,7 +136,8 @@ const unsigned long eprom_length      = 0x0000004A;
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -c-array -section-style -ow
+$bin/srec_cat test.in -fill 0xFF -within test.in -range-padding=2 \
+    -o test.out -c-array -section-style -ow
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out
@@ -158,7 +159,7 @@ const unsigned long eprom_address[] =
 };
 const unsigned long eprom_length_of_sections[] =
 {
-16, 14, 14,
+8, 7, 7,
 };
 const unsigned long eprom_sections    = 3;
 const unsigned long eprom_termination = 7;
@@ -174,7 +175,8 @@ const unsigned long eprom_length      = 74;
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -c-array -section-style -ow -dec-style
+$bin/srec_cat test.in -fill 0xFF -within test.in -range-padding=2 \
+    -o test.out -c-array -section-style -ow -dec-style
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out

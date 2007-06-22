@@ -16,9 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the srec_output_file_asm class
-//
-
 
 #include <lib/interval.h>
 #include <lib/srec/arglex.h>
@@ -275,13 +272,14 @@ srec_output_file_asm::~srec_output_file_asm()
             ++nsections;
 
             unsigned long slen = x2.get_highest() - x2.get_lowest();
+            if (output_word)
+                slen /= 2;
             char buffer[30];
             if (hex_style)
                 snprintf(buffer, sizeof(buffer), "0x%8.8lX", slen);
             else
                 snprintf(buffer, sizeof(buffer), "%lu", slen);
             long len = strlen(buffer);
-
             if (column && column + len + 2 > line_length)
             {
                 put_char('\n');
@@ -438,31 +436,19 @@ srec_output_file_asm::write(const srec_record & record)
         }
         if (output_word)
         {
-            unsigned long len = record.get_length();
+            int len = record.get_length();
             if (len & 1)
-                ++len;
+                fatal_alignment_error(2);
             range += interval(record.get_address(), record.get_address() + len);
 
             //
             // No attempt is made to align the data on even byte
             // boundaries, use the --fill --range-pad filter for that.
             //
-            // The data is padded with a single 0xFF byte if the data
-            // block would be and odd length.  This will never cause an
-            // overlap because srec_cat stores its data internally on
-            // powers-of-two block boundaries.
-            //
-            for (int j = 0; j < record.get_length(); j += 2)
+            for (int j = 0; j < len; j += 2)
             {
                 unsigned char n1 = record.get_data(j);
-                unsigned char n2 =
-                    (
-                        j + 1 < record.get_length()
-                    ?
-                        record.get_data(j + 1)
-                    :
-                        0xFF
-                    );
+                unsigned char n2 = record.get_data(j + 1);
                 // little-endian
                 unsigned short n = n1 + (n2 << 8);
                 emit_word(n);
@@ -519,7 +505,17 @@ srec_output_file_asm::preferred_block_size_get()
     const
 {
     //
-    // Irrelevant.  Use the largest we can get.
+    // Use the largest we can get.
     //
+    if (output_word)
+        return (srec_record::max_data_length & ~1);
     return srec_record::max_data_length;
+}
+
+
+const char *
+srec_output_file_asm::format_name()
+    const
+{
+    return (output_word ? "Assembler (16-bit)" : "Assembler (8-bit)");
 }

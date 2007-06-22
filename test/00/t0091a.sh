@@ -71,7 +71,8 @@ cat > test.ok << 'fubar'
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -vmem 64
+$bin/srec_cat test.in -fill 0xFF -within test.in -range-padding 8 \
+    -o test.out -vmem 64
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out
@@ -93,7 +94,8 @@ cat > test.ok << 'fubar'
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -vmem 128
+$bin/srec_cat test.in -fill 0xFF -within test.in -range-pad 16 \
+    -o test.out -vmem 128
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out

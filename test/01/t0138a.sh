@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-#       srecord - manipulate eprom load files
-#       Copyright (C) 2001, 2006, 2007 Peter Miller
+#       srecord - The "srecord" program.
+#       Copyright (C) 2007 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
 #       along with this program; if not, write to the Free Software
 #       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 #
-# MANIFEST: Test the SPASM write functionality
+# MANIFEST: Test the vhdl alignment functionality
 #
 here=`pwd`
 if test $? -ne 0 ; then exit 2; fi
@@ -35,7 +35,7 @@ fail()
 {
         cd $here
         rm -rf $work
-        echo 'FAILED test of the SPASM write functionality'
+        echo 'FAILED test of the vhdl alignment functionality'
         exit 1
 }
 
@@ -43,7 +43,7 @@ no_result()
 {
         cd $here
         rm -rf $work
-        echo 'NO RESULT for test of the SPASM write functionality'
+        echo 'NO RESULT for test of the vhdl alignment functionality'
         exit 2
 }
 
@@ -57,55 +57,68 @@ if test $? -ne 0; then no_result; fi
 
 cat > test.in << 'fubar'
 S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
+S10800050001020304E8
 S5030001FB
-S9030000FC
+S9030005F7
 fubar
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-0000 6548
-0001 6C6C
-0002 2C6F
-0003 5720
-0004 726F
-0005 646C
-0006 0A21
+-- HDR
+--
+-- Generated automatically by srec_cat -VHDL - do not edit
+--
+library IEEE;
+use IEEE.numeric_std.all;
+use work.eprom_defs_pack.all;
+
+package eprom_pack is
+ constant eprom_rom : eprom_rom_array;
+end package eprom_pack;
+
+package body eprom_pack is
+ constant eprom_rom : eprom_rom_array := eprom_rom_array'(
+  1 => eprom_entry(258),
+  2 => eprom_entry(50593792),
+  others => eprom_dont_care
+ );
+end package body eprom_pack;
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -spasm
+$bin/srec_cat test.in -fill 0 -within test.in -range-padding 4 \
+        -o test.out -vhdl 4
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out
 if test $? -ne 0; then fail; fi
 
 cat > test.ok << 'fubar'
-0000 4865
-0001 6C6C
-0002 6F2C
-0003 2057
-0004 6F72
-0005 6C64
-0006 210A
+-- HDR
+--
+-- Generated automatically by srec_cat -VHDL - do not edit
+--
+library IEEE;
+use IEEE.numeric_std.all;
+use work.eprom_defs_pack.all;
+
+package eprom_pack is
+ constant eprom_rom : eprom_rom_array;
+end package eprom_pack;
+
+package body eprom_pack is
+ constant eprom_rom : eprom_rom_array := eprom_rom_array'(
+  2 => eprom_entry(65280),
+  3 => eprom_entry(258),
+  4 => eprom_entry(772),
+  others => eprom_dont_care
+ );
+end package body eprom_pack;
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -spasmle
-if test $? -ne 0; then fail; fi
-
-diff test.ok test.out
-if test $? -ne 0; then fail; fi
-
-cat > test.ok << 'fubar'
-0001 6C6C
-0002 6F2C
-0003 2057
-0004 6F72
-fubar
-if test $? -ne 0; then no_result; fi
-
-$bin/srec_cat test.in -crop 2 10 -o test.out -spasmle
+$bin/srec_cat test.in -fill 0xFF -within test.in -range-padding 2 \
+        -o test.out -vhdl 2
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out
@@ -116,3 +129,5 @@ if test $? -ne 0; then fail; fi
 # No other guarantees are made.
 #
 pass
+
+# vim:ts=8:sw=4:et

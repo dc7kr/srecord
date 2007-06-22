@@ -17,8 +17,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for lib/srec/output/file/vhdl.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_VHDL_H
 #define INCLUDE_SREC_OUTPUT_FILE_VHDL_H
@@ -47,6 +45,7 @@ public:
       */
     srec_output_file_vhdl(const string &file_name);
 
+protected:
     // See base class for documentation
     void write(const srec_record &);
 
@@ -61,6 +60,9 @@ public:
 
     // See base class for documentation
     void command_line(srec_arglex *cmdln);
+
+    // See base class for documentation.
+    const char *format_name() const;
 
 private:
     /**
@@ -83,37 +85,10 @@ private:
     bool header_done;
 
     /**
-      * The current_address instance variable is used to remember where
-      * we are up to in remebering data.  Note that it is potentially
-      * <i>within</i> the current_word.
-      */
-    unsigned long current_address;
-
-    /**
-      * The current_byte instance variable is used to remember where we
-      * are located within the current_word.  The value will be in the
-      * range 0..(bytes_per_word-1).
-      */
-    unsigned current_byte;
-
-    /**
-      * The current_word instance variable is used to remember the
-      * accumulated bytes values, modulo bytes_per_word.
-      */
-    unsigned long current_word;
-
-    /**
       * The emit_header method is used to emit the file header,
       * if necessary.
       */
     void emit_header();
-
-    /**
-      * The emit_word method is used to add another byte to the outout.
-      * It will be accumulated withing current_word until we have
-      * bytes_per_word bytes, and then emitted as a row of output.
-      */
-    void emit_word(unsigned long address, unsigned value);
 
     /**
       * The default constructor.  Do not use.

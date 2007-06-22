@@ -16,8 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for lib/srec/output/file/binary.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_BINARY_H
 #define INCLUDE_SREC_OUTPUT_FILE_BINARY_H
@@ -50,19 +48,26 @@ public:
       * @param file_name
       *     The file name to open and write output to.
       */
-    srec_output_file_binary(const string &file_name);
+    srec_output_file_binary(const std::string &file_name);
+
+protected:
+    // See base class for documentation.
+    void write(const srec_record &);
 
     // See base class for documentation.
-    virtual void write(const srec_record &);
+    void line_length_set(int);
 
     // See base class for documentation.
-    virtual void line_length_set(int);
+    void address_length_set(int);
 
     // See base class for documentation.
-    virtual void address_length_set(int);
+    int preferred_block_size_get() const;
 
     // See base class for documentation.
-    virtual int preferred_block_size_get() const;
+    const char *mode() const;
+
+    // See base class for documentation.
+    const char *format_name() const;
 
 private:
     /**
@@ -74,9 +79,6 @@ private:
       * The copy constructor.  Do not use.
       */
     srec_output_file_binary &operator=(const srec_output_file_binary &);
-
-    // See base class for documentation.
-    const char *mode() const;
 };
 
 #endif // INCLUDE_SREC_OUTPUT_FILE_BINARY_H

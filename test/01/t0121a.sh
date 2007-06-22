@@ -87,7 +87,8 @@ const unsigned long eprom_length      = 0x0000004A;
 fubar
 if test $? -ne 0; then no_result; fi
 
-$bin/srec_cat test.in -o test.out -c-array -ow
+$bin/srec_cat test.in -fill 0xFF -within test.in -range-padding=2 \
+    -o test.out -c-array -ow
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out

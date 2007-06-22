@@ -16,8 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for include/srec/output/file/atmel_generic.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_ATMEL_GENERIC_H
 #define INCLUDE_SREC_OUTPUT_FILE_ATMEL_GENERIC_H
@@ -54,19 +52,23 @@ public:
       *     The byte order of the output, true means big endian, and
       *     false means little endian.
       */
-    srec_output_file_atmel_generic(const string &file_name, bool bigend);
+    srec_output_file_atmel_generic(const std::string &file_name, bool bigend);
 
+protected:
     // See base class for documentation.
     void write(const srec_record &);
 
     // See base class for documentation.
-    virtual void line_length_set(int);
+    void line_length_set(int);
 
     // See base class for documentation.
-    virtual void address_length_set(int);
+    void address_length_set(int);
 
     // See base class for documentation.
-    virtual int preferred_block_size_get() const;
+    int preferred_block_size_get() const;
+
+    // See base class for documentation.
+    const char *format_name() const;
 
 private:
     /**

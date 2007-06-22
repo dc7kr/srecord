@@ -16,9 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the srec_output_file_c class
-//
-
 
 #include <cstdio>
 #include <cstring>
@@ -318,10 +315,6 @@ srec_output_file_c::~srec_output_file_c()
         interval x = range;
         while (!x.empty())
         {
-            //
-            // FIXME: this is a byte index into a word array.
-            // FIXME: should we divide by two?
-            //
             interval x2 = x;
             x2.first_interval_only();
             x -= x2;
@@ -365,16 +358,14 @@ srec_output_file_c::~srec_output_file_c()
         x = range;
         while (!x.empty())
         {
-            //
-            // FIXME: this is a byte length for a word array.
-            // FIXME: should we divide by two?
-            //
             interval x2 = x;
             x2.first_interval_only();
             x -= x2;
             unsigned long length = x2.get_highest() - x2.get_lowest();
             ++nsections;
 
+            if (output_word)
+                length /= 2;
             string s = format_address(length);
             int len = s.size();
 
@@ -572,9 +563,11 @@ srec_output_file_c::write(const srec_record &record)
         emit_header();
         if (output_word)
         {
-            unsigned long min = record.get_address() & ~1uL;
-            unsigned long max =
-                (record.get_address() + record.get_length() + 1) & ~1uL;
+            if ((record.get_address() & 1) || (record.get_length() & 1))
+                fatal_alignment_error(2);
+
+            unsigned long min = record.get_address();
+            unsigned long max = record.get_address() + record.get_length();
             if (!section_style && !range.empty())
             {
                 // assert(current_address <= min);
@@ -587,28 +580,10 @@ srec_output_file_c::write(const srec_record &record)
 
             range += interval(min, max);
 
-            int j = 0;
-            if (record.get_address() & 1)
-            {
-                unsigned char n1 = 0xFF;
-                unsigned char n2 = record.get_data(0);
-                // little endian
-                unsigned short n = n1 + (n2 << 8);
-                emit_word(n);
-                ++j;
-            }
-            for (; j + 1 < record.get_length(); j += 2)
+            for (int j = 0; j < record.get_length(); j += 2)
             {
                 unsigned char n1 = record.get_data(j);
                 unsigned char n2 = record.get_data(j + 1);
-                // little endian
-                unsigned short n = n1 + (n2 << 8);
-                emit_word(n);
-            }
-            if (j < record.get_length())
-            {
-                unsigned char n1 = record.get_data(j);
-                unsigned char n2 = 0xFF;
                 // little endian
                 unsigned short n = n1 + (n2 << 8);
                 emit_word(n);
@@ -684,7 +659,18 @@ srec_output_file_c::preferred_block_size_get()
     const
 {
     //
-    // Irrelevant.  Use the largest we can get.
+    // Use the largest we can get,
+    // but be careful about words.
     //
+    if (output_word)
+        return (srec_record::max_data_length & ~1);
     return srec_record::max_data_length;
+}
+
+
+const char *
+srec_output_file_c::format_name()
+    const
+{
+    return (output_word ? "C-Array (16-bit)" : "C-Array (8-bit)");
 }

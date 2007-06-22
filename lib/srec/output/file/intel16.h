@@ -16,8 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for include/srec/output/file/intel16.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_INTEL16_H
 #define INCLUDE_SREC_OUTPUT_FILE_INTEL16_H
@@ -44,19 +42,23 @@ public:
       * @param file_name
       *     The name of the file to be written.
       */
-    srec_output_file_intel16(const string &file_name);
+    srec_output_file_intel16(const std::string &file_name);
+
+protected:
+    // See base class for documentation.
+    void write(const srec_record &);
 
     // See base class for documentation.
-    virtual void write(const srec_record &);
+    void line_length_set(int);
 
     // See base class for documentation.
-    virtual void line_length_set(int);
+    void address_length_set(int);
 
     // See base class for documentation.
-    virtual void address_length_set(int);
+    int preferred_block_size_get() const;
 
     // See base class for documentation.
-    virtual int preferred_block_size_get() const;
+    const char *format_name() const;
 
 private:
     /**

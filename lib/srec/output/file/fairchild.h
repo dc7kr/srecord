@@ -16,8 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for include/srec/output/file/fairchild.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_FAIRCHILD_H
 #define INCLUDE_SREC_OUTPUT_FILE_FAIRCHILD_H
@@ -44,8 +42,9 @@ public:
       * @param file_name
       *     The name of the file to be written.
       */
-    srec_output_file_fairchild(const string &file_name);
+    srec_output_file_fairchild(const std::string &file_name);
 
+protected:
     // See base class for documentation.
     void write(const srec_record &);
 
@@ -58,14 +57,10 @@ public:
     // See base class for documentation.
     int preferred_block_size_get() const;
 
-private:
-    /**
-      * The emit method is used to emit a single byte to the output.
-      * This method maintains the state of where we are in relation to
-      * the output record structure.
-      */
-    void emit(unsigned long address, unsigned char value);
+    // See base class for documentation.
+    const char *format_name() const;
 
+private:
     /**
       * The put_nibble method puts a single hex-digit on the output.
       * We override the one in the base class because the checksum is
@@ -85,13 +80,6 @@ private:
       * memory position within the output.
       */
     unsigned long address;
-
-    /**
-      * The data_bytes_emitted instance variable is used by the emit
-      * method to remember how many bytes have been emitted to the
-      * current output record.  (They are always exactly 8 bytes long.)
-      */
-    unsigned data_bytes_emitted;
 
     /**
       * The default constructor.  Do not use.

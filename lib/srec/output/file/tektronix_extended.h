@@ -16,8 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for lib/srec/output/file/tektronix_extended.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_TEKTRONIX_EXTENDED_H
 #define INCLUDE_SREC_OUTPUT_FILE_TEKTRONIX_EXTENDED_H
@@ -51,19 +49,23 @@ public:
       *     The file name to open to write data to.  The file name "-"
       *     is understood to mean the standard output.
       */
-    srec_output_file_tektronix_extended(const string &file_name);
+    srec_output_file_tektronix_extended(const std::string &file_name);
 
+protected:
     // See base class for documentation.
     void write(const srec_record &);
 
     // See base class for documentation.
-    virtual void line_length_set(int);
+    void line_length_set(int);
 
     // See base class for documentation.
-    virtual void address_length_set(int);
+    void address_length_set(int);
 
     // See base class for documentation.
-    virtual int preferred_block_size_get() const;
+    int preferred_block_size_get() const;
+
+    // See base class for documentation.
+    const char *format_name() const;
 
 private:
     /**

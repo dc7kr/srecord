@@ -16,15 +16,13 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the srec_output_file_intel16 class
-//
-
 
 #include <lib/srec/output/file/intel16.h>
 #include <lib/srec/record.h>
 
 
-srec_output_file_intel16::srec_output_file_intel16(const string &a_file_name) :
+srec_output_file_intel16::srec_output_file_intel16(
+        const std::string &a_file_name) :
     srec_output_file(a_file_name),
     address_base(0),
     pref_block_size(32)
@@ -57,22 +55,17 @@ srec_output_file_intel16::write_inner(int tag, unsigned long address,
     //
     put_char(':');
     checksum_reset();
-    int even_nbytes = (data_nbytes & 1) ? (data_nbytes + 1) : data_nbytes;
-    put_byte(even_nbytes >> 1);
+    put_byte(data_nbytes >> 1);
     unsigned char tmp[2];
     srec_record::encode_big_endian(tmp, address, 2);
     put_byte(tmp[0]);
     put_byte(tmp[1]);
     put_byte(tag);
     const unsigned char *data_p = (const unsigned char *)data;
-    for (int j = 0; j < even_nbytes; ++j)
+    for (int j = 0; j < data_nbytes; ++j)
     {
-        // Note: bytes are ordered HI,LO so we invert LSB
-        // Watch out for odd record lengths.
-        if ((j ^ 1) >= data_nbytes)
-            put_byte(0xFF);
-        else
-            put_byte(data_p[j ^ 1]);
+        // Note: bytes are ordered HI,LO so we invert
+        put_byte(data_p[j ^ 1]);
     }
     put_byte(-checksum_get());
     put_char('\n');
@@ -92,6 +85,8 @@ srec_output_file_intel16::write(const srec_record &record)
         break;
 
     case srec_record::type_data:
+        if ((record.get_address() & 1) || (record.get_length() & 1))
+            fatal_alignment_error(2);
         if ((record.get_address() & 0xFFFE0000) != address_base)
         {
             address_base = record.get_address() & 0xFFFE0000;
@@ -149,7 +144,7 @@ srec_output_file_intel16::line_length_set(int n)
     // An additional constraint is the size of the srec_record
     // data buffer.
     //
-    if (n > srec_record::max_data_length)
+    if (n > (srec_record::max_data_length & ~1))
         n = (srec_record::max_data_length & ~1);
     pref_block_size = n;
 }
@@ -167,4 +162,12 @@ srec_output_file_intel16::preferred_block_size_get()
         const
 {
     return pref_block_size;
+}
+
+
+const char *
+srec_output_file_intel16::format_name()
+    const
+{
+    return "Intel-16";
 }

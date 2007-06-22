@@ -16,15 +16,12 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the srec_output_file_spasm class
-//
-
 
 #include <lib/srec/output/file/spasm.h>
 #include <lib/srec/record.h>
 
 
-srec_output_file_spasm::srec_output_file_spasm(const string &a_file_name,
+srec_output_file_spasm::srec_output_file_spasm(const std::string &a_file_name,
         bool endianness) :
     srec_output_file(a_file_name),
     bigend(endianness)
@@ -55,25 +52,10 @@ srec_output_file_spasm::write(const srec_record &record)
     }
 
     long address = record.get_address();
-    int j = 0;
-    if (address & 1)
-    {
-        put_word(address++ / 2);
-        put_char(' ');
-        if (bigend)
-        {
-            put_byte(record.get_data(j++));
-            put_byte(0xFF);
-        }
-        else
-        {
-            put_byte(0xFF);
-            put_byte(record.get_data(j++));
-        }
-        put_char('\n');
-    }
+    if ((address & 1) || (record.get_length() & 1))
+        fatal_alignment_error(2);
 
-    while (j + 1 < record.get_length())
+    for (int j = 0; j < record.get_length(); j += 2)
     {
         put_word(address / 2);
         put_char(' ');
@@ -89,24 +71,6 @@ srec_output_file_spasm::write(const srec_record &record)
         }
         put_char('\n');
         address += 2;
-        j += 2;
-    }
-
-    if (j < record.get_length())
-    {
-        put_word(address / 2);
-        put_char(' ');
-        if (bigend)
-        {
-            put_byte(0xFF);
-            put_byte(record.get_data(j));
-        }
-        else
-        {
-            put_byte(record.get_data(j));
-            put_byte(0xFF);
-        }
-        put_char('\n');
     }
 }
 
@@ -138,4 +102,12 @@ srec_output_file_spasm::preferred_block_size_get()
     // But make sure it is an even number of bytes long.
     //
     return (srec_record::max_data_length & ~1);
+}
+
+
+const char *
+srec_output_file_spasm::format_name()
+    const
+{
+    return "Spasm";
 }

@@ -16,8 +16,6 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: interface definition for lib/srec/output/file/vmem.cc
-//
 
 #ifndef INCLUDE_SREC_OUTPUT_FILE_VMEM_H
 #define INCLUDE_SREC_OUTPUT_FILE_VMEM_H
@@ -44,8 +42,9 @@ public:
       * @param file_name
       *     The name of the file to be written.
       */
-    srec_output_file_vmem(const string &file_name);
+    srec_output_file_vmem(const std::string &file_name);
 
+protected:
     // See base class for documentation.
     void write(const srec_record &);
 
@@ -61,7 +60,16 @@ public:
     // See base class for documentation.
     void command_line(srec_arglex *cmdln);
 
+    // See base class for documentation.
+    const char *format_name() const;
+
 private:
+    /**
+      * The bytes_per_word instance variable is used to remember how
+      * many bytes go into each word of data.
+      */
+    unsigned bytes_per_word;
+
     /**
       * The address instance variable is used to remember where we are
       * up to in the output.
@@ -95,24 +103,6 @@ private:
       * This value is simply a pre-caluculation of ((1u << width_shift) - 1u).
       */
     unsigned width_mask;
-
-    /**
-      * The write_byte method is used to write a byte value to the output
-      * at the current address.  The address and column are updated,
-      * and any pre- and post-processing of trhe output line is performed.
-      */
-    void write_byte(unsigned value);
-
-    /**
-      * The write_byte_at method is used to write a byte value to the
-      * output at the specified address.  Some bytes of padding may be
-      * issued (via the write_byte() method) if the current address
-      * and the new address (addr) are not the same, and are not
-      * nicely aligned to the memory width given to the constructor.
-      * Once address equality has been achieved, the value is written
-      * via the write_byte() method.
-      */
-    void write_byte_at(unsigned long addr, unsigned value);
 
     /**
       * The default constructor.  Do not use.

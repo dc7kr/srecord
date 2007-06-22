@@ -16,16 +16,13 @@
 //      along with this program; if not, write to the Free Software
 //      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
 //
-// MANIFEST: functions to impliment the srec_output_file_atmel_generic class
-//
-
 
 #include <lib/srec/output/file/atmel_generic.h>
 #include <lib/srec/record.h>
 
 
 srec_output_file_atmel_generic::srec_output_file_atmel_generic(
-        const string &a_file_name, bool endianness) :
+        const std::string &a_file_name, bool endianness) :
     srec_output_file(a_file_name),
     bigend(endianness)
 {
@@ -55,25 +52,9 @@ srec_output_file_atmel_generic::write(const srec_record &record)
     }
 
     long address = record.get_address();
-    int j = 0;
-    if (address & 1)
-    {
-        put_3bytes(address++ / 2);
-        put_char(':');
-        if (bigend)
-        {
-            put_byte(record.get_data(j++));
-            put_byte(0xFF);
-        }
-        else
-        {
-            put_byte(0xFF);
-            put_byte(record.get_data(j++));
-        }
-        put_char('\n');
-    }
-
-    while (j + 1 < record.get_length())
+    if ((address & 1) || (record.get_length() & 1))
+        fatal_alignment_error(2);
+    for (int j = 0; j < record.get_length(); j += 2)
     {
         put_3bytes(address / 2);
         put_char(':');
@@ -89,24 +70,6 @@ srec_output_file_atmel_generic::write(const srec_record &record)
         }
         put_char('\n');
         address += 2;
-        j += 2;
-    }
-
-    if (j < record.get_length())
-    {
-        put_3bytes(address / 2);
-        put_char(':');
-        if (bigend)
-        {
-            put_byte(0xFF);
-            put_byte(record.get_data(j));
-        }
-        else
-        {
-            put_byte(record.get_data(j));
-            put_byte(0xFF);
-        }
-        put_char('\n');
     }
 }
 
@@ -134,8 +97,16 @@ srec_output_file_atmel_generic::preferred_block_size_get()
     const
 {
     //
-    // Irrelevant.  Use the largest we can get.
-    // But make sure it is an even number of bytes long.
+    // Use the largest we can get,
+    // but make sure it is an even number of bytes long.
     //
     return (srec_record::max_data_length & ~1);
+}
+
+
+const char *
+srec_output_file_atmel_generic::format_name()
+    const
+{
+    return "Atmel-Generic";
 }
