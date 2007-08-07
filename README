@@ -217,11 +217,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.35.README   # Description, from the tar file
-           File:   srecord-1.35.lsm      # Description, LSM format
-           File:   srecord-1.35.spec     # RedHat package specification
-           File:   srecord-1.35.tar.gz   # the complete source
-           File:   srecord-1.35.pdf      # Reference Manual
+           File:   srecord-1.36.README   # Description, from the tar file
+           File:   srecord-1.36.lsm      # Description, LSM format
+           File:   srecord-1.36.spec     # RedHat package specification
+           File:   srecord-1.36.tar.gz   # the complete source
+           File:   srecord-1.36.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -233,13 +233,13 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.35
+       srecord version 1.36
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007 Peter Miller
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
-       Free Software Foundation; either version 2 of the License, or (at your
+       Free Software Foundation; either version 3 of the License, or (at your
        option) any later version.
 
        This program is distributed in the hope that it will be useful, but
@@ -248,8 +248,7 @@ COPYRIGHT
        General Public License for more details.
 
        You should have received a copy of the GNU General Public License along
-       with this program; if not, write to the Free Software Foundation, Inc.,
-       59 Temple Place, Suite 330, Boston, MA 02111, USA.
+       with this program. If not, see <http://www.gnu.org/licenses/>.
 
        It should be in the LICENSE file included with this distribution.
 
@@ -263,14 +262,29 @@ AUTHOR
 
 
 
+
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
+   Version 1.36 (2007-Aug-07)
+       * A bug has been fixed in the CRC-16 CCITT calculation; the algorithm
+       was correct but the start value was incorrect, leading to incorrect
+       results.
+
+       * The CRC16 filters have a new --no-augment option, to omit the 16 zero
+       bits augmenting the message.  This is not CCITT standard conforming,
+       but some implementations do this.
+
+       * A problem has been fixed in the generated Makefile.in file found in
+       the tarball.
+
+       * The license has been changed to GNU GPL version 3.
+
    Version 1.35 (2007-Jun-23)
-       * A major build problem with the generated makefile has been fxed.
+       * A major build problem with the generated makefile has been fixed.
 
    Version 1.34 (2007-Jun-22)
        * The C and ASM output formats have been improved in the word mode.
@@ -291,7 +305,7 @@ RELEASE NOTES
        rather than bytes.
 
        * You can now round address ranges on the command line to be whole
-       mutiples of a number of bytes.
+       multiples of a number of bytes.
 
    Version 1.32 (2007-Apr-24)
        * The TI-TXT format output has been improved; it is less spec
@@ -302,7 +316,7 @@ RELEASE NOTES
        didn't like them, but the MSP430 handles them without a hiccup.
 
    Version 1.31 (2007-Apr-03)
-       * The verilog format now suppresses comments when you specify the
+       * The Verilog format now suppresses comments when you specify the
        --data-only option.
 
        * The Texas Instruments ti-txt (MSP430) format is now understood for
@@ -332,14 +346,14 @@ RELEASE NOTES
        There is a new command line option to silence the warning.
 
        * [SourceForge  Feature Request 1592348] The command line processing of
-       all srrecord commands now understands @file command line options,
-       filled with additional space separated strings witch will be treated as
-       of they were command line options.  This gets around absurdly short
+       all srecord commands now understands @file command line options, filled
+       with additional space separated strings witch will be treated as of
+       they were command line options.  This gets around absurdly short
        command line length limits in some operating systems.
 
    Version 1.26 (2006-May-26)
-       * It is now possible to place parenteses on the command line in more
-       places to clariy your intent.
+       * It is now possible to place parentheses on the command line in more
+       places to clarify your intent.
 
        * This change prepares SRecord for the next public release.
 
@@ -385,7 +399,7 @@ RELEASE NOTES
 
        * There is a new -ignore-checksum command line option.  The -ignore-
        checksums option may be used to disable checksum validation of input
-       files, for those formats which have checksums at all.  Note that trhe
+       files, for those formats which have checksums at all.  Note that the
        checksum values are still read in and parsed (so it is still an error
        if they are missing) but their values are not checked.
 
@@ -427,7 +441,7 @@ RELEASE NOTES
        was intended half the time.
 
    Version 1.17 (2003-Oct-12)
-       * There is now support for Intel Extended Segment aasddressing output,
+       * There is now support for Intel Extended Segment addressing output,
        via the --address-length=2 option.
 
        * There is now support for output of Verilog VMEM format.  See
@@ -442,7 +456,7 @@ RELEASE NOTES
        * Some updates have been made to cope with GCC 3.2
 
    Version 1.15 (2003-Jun-16)
-       * The Ascii-Hex implementation is now slightly more complete.  I still
+       * The ASCII-Hex implementation is now slightly more complete.  I still
        haven't found a definitive description.
 
        * The Fairchild Fairbug format has been added for reading and writing.
@@ -574,7 +588,7 @@ RELEASE NOTES
        * There is a new VHDL output format.
 
        * There are new checksum filters: in addition to the existing one's
-       complement (bitnot) checksum filter, there are now negative and
+       complement (bit not) checksum filter, there are now negative and
        positive checksum filters.  See srec_cat(1) for more information.
 
        * The checksum filters are now able to sum over 16-bit and 32-bit
@@ -609,9 +623,9 @@ RELEASE NOTES
        This mystery format was added for a mysterious type of EPROM writer.
        See srec_wilson(5) for more information.
 
-       * The srec_cat program now has a -data-only option, which supresses all
-       output except for the data records.  This helps when talking to brain-
-       dead EPROM programmers which barf at anything but data.  See
+       * The srec_cat program now has a -data-only option, which suppresses
+       all output except for the data records.  This helps when talking to
+       brain-dead EPROM programmers which barf at anything but data.  See
        srec_cat(1) for more information.
 
        * There is a new -Line-Length option for the srec_cat program, allowing
@@ -628,7 +642,7 @@ RELEASE NOTES
        to dump core sometimes.
 
        * A bug has been fixed where binary files were handled incorrectly on
-       Windows NT (acually, any system in which text files aren't the same as
+       Windows NT (actually, any system in which text files aren't the same as
        binary files).
 
        * There are three new data filters.  The --OR filter, which may be used
@@ -646,7 +660,7 @@ RELEASE NOTES
        for more information.
 
        * The Tektronix hex format is now supported (only the 16-bit version,
-       Extended tektronix hex is not yet suppported).  See srec_tektronix(5)
+       Extended Tektronix hex is not yet supported).  See srec_tektronix(5)
        for more information.
 
        * There is a new split filter, useful for wide data buses and memory

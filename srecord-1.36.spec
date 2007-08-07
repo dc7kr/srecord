@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.35
+Version: 1.36
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -64,9 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr (-,root,root,-)
 %doc LICENSE BUILDING README
-%{_bindir}/srec_cat
-%{_bindir}/srec_cmp
-%{_bindir}/srec_info
 %{_mandir}/man1/srec_cat.1*
 %{_mandir}/man1/srec_cmp.1*
 %{_mandir}/man1/srec_examples.1*

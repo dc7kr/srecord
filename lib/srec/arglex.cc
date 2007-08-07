@@ -4,7 +4,7 @@
 //
 //        This program is free software; you can redistribute it and/or modify
 //        it under the terms of the GNU General Public License as published by
-//        the Free Software Foundation; either version 2 of the License, or
+//        the Free Software Foundation; either version 3 of the License, or
 //        (at your option) any later version.
 //
 //        This program is distributed in the hope that it will be useful,
@@ -13,10 +13,8 @@
 //        GNU General Public License for more details.
 //
 //        You should have received a copy of the GNU General Public License
-//        along with this program; if not, write to the Free Software
-//        Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-//
-// MANIFEST: functions to impliment the srec_arglex class
+//        along with this program. If not, see
+//        <http://www.gnu.org/licenses/>.
 //
 
 #include <iostream>
@@ -51,6 +49,8 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-Atmel_Generic", token_atmel_generic_le, },
         { "-Atmel_Generic_BigEndian", token_atmel_generic_be, },
         { "-Atmel_Generic_LittleEndian", token_atmel_generic_le, },
+        { "-AUGment", token_crc16_augment },
+        { "-Not_AUGment", token_crc16_augment_not },
         { "-BAsic", token_basic_data, },
         { "-Big_Endian_Checksum", token_checksum_be_bitnot, },
         { "-Big_Endian_Checksum_BitNot", token_checksum_be_bitnot, },
@@ -70,6 +70,9 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-COsmac", token_cosmac, },
         { "-CRop", token_crop, },
         { "-Cyclic_Redundancy_Check_16_XMODEM", token_crc16_xmodem,},
+        { "-Comite_Consultatif_International_Telephonique_et_Telegraphique",
+            token_crc16_ccitt,},
+        { "-International_Telecommunication_Union", token_crc16_ccitt,},
         { "-C_Array", token_c_array, },
         { "-Dec_Binary", token_dec_binary, },
         { "-DECimal_STyle", token_style_hexadecimal_not, },
@@ -153,6 +156,7 @@ srec_arglex::srec_arglex(int argc, char **argv) :
         { "-VMem", token_vmem, },
         { "-WILson", token_wilson, },
         { "-Within", token_within, },
+        { "-X_MODEM", token_crc16_xmodem,},
         { "-XOR", token_xor, },
         ARGLEX_END_MARKER
     };

@@ -4,7 +4,7 @@
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
-//      the Free Software Foundation; either version 2 of the License, or
+//      the Free Software Foundation; either version 3 of the License, or
 //      (at your option) any later version.
 //
 //      This program is distributed in the hope that it will be useful,
@@ -13,10 +13,8 @@
 //      GNU General Public License for more details.
 //
 //      You should have received a copy of the GNU General Public License
-//      along with this program; if not, write to the Free Software
-//      Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-//
-// MANIFEST: interface definition for include/srec/input/filter/crc16.cc
+//      along with this program. If not, see
+//      <http://www.gnu.org/licenses/>.
 //
 
 #ifndef INCLUDE_SREC_INPUT_FILTER_CRC16_H
@@ -42,10 +40,13 @@ public:
       * The constructor.
       */
     srec_input_filter_crc16(srec_input *deeper, unsigned long address,
-            int order, bool ccitt_seed);
+        int order);
 
     // See base class for documentation.
-    virtual int read(srec_record &);
+    int read(srec_record &);
+
+    // See base class for documentation.
+    void command_line(srec_arglex *cmdln);
 
 private:
     /**
@@ -61,10 +62,18 @@ private:
     int order;
 
     /**
-      * The ccitt_seed instance variable is used to remember whether to
-      * use the CCITT seed for CRC16 calculation.
+      * The ccitt_flag instance variable is used to remember whether to
+      * use the CCITT seed for CRC16 calculation (rather than XMODEM).
+      * Almost always true.
       */
-    bool ccitt_seed;
+    bool ccitt_flag;
+
+    /**
+      * The augment_flag instance variable is used to remember whether
+      * or not the final 16-zero-bits augmentation should be applied to
+      * the CRC.  Almost always true.
+      */
+    bool augment_flag;
 
     /**
       * The buffer instance variable is used to remember the contents

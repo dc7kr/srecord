@@ -5,7 +5,7 @@
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
-#       the Free Software Foundation; either version 2 of the License, or
+#       the Free Software Foundation; either version 3 of the License, or
 #       (at your option) any later version.
 #
 #       This program is distributed in the hope that it will be useful,
@@ -14,10 +14,8 @@
 #       GNU General Public License for more details.
 #
 #       You should have received a copy of the GNU General Public License
-#       along with this program; if not, write to the Free Software
-#       Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
-#
-# MANIFEST: shell script to generate Makefile file
+#       along with this program. If not, see
+#       <http://www.gnu.org/licenses/>.
 #
 clean_files="core y.tab.c y.tab.h y.output .bin .bindir lib/libsrecord.a"
 
@@ -86,17 +84,16 @@ ${stem}.gen.o"
                 clean_files="$clean_files ${stem}.o"
                 ;;
 
-        prog/*.y)
+        *.y)
                 prog=`echo $file |sed 's|^[^/]*/||;s|/.*||'`
                 stem=`echo $file | sed 's/\.y$//'`
                 eval "${prog}_files=\"\$${prog}_files ${stem}.gen.o\""
                 clean_files="$clean_files ${stem}.gen.cc ${stem}.gen.h \
 ${stem}.gen.o"
-                remember_prog $prog
                 ;;
 
-        prog/*.cc)
-                prog=`echo $file |sed 's|^[^/]*/||;s|/.*||'`
+        *.cc)
+                prog=`echo $file | sed 's|/.*||'`
                 stem=`echo $file | sed 's/\.cc$//'`
                 eval "${prog}_files=\"\$${prog}_files ${stem}.o\""
                 clean_files="$clean_files ${stem}.o"
@@ -143,11 +140,16 @@ do
 
         all="${all} bin/${prog}"
 
-        echo ""
-        echo "\$(bindir)/${prog}: bin/${prog} .bindir"
-        echo "${TAB}\$(INSTALL_PROGRAM) bin/${prog} \$@"
-
-        install_bin="${install_bin} \$(bindir)/${prog}"
+        case $prog in
+        test_*)
+            ;;
+        *)
+            echo ""
+            echo "\$(bindir)/${prog}: bin/${prog} .bindir"
+            echo "${TAB}\$(INSTALL_PROGRAM) bin/${prog} \$@"
+            install_bin="${install_bin} \$(bindir)/${prog}"
+            ;;
+        esac
 done
 
 echo ""

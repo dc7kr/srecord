@@ -4,7 +4,7 @@
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
-.\"     the Free Software Foundation; either version 2 of the License, or
+.\"     the Free Software Foundation; either version 3 of the License, or
 .\"     (at your option) any later version.
 .\"
 .\"     This program is distributed in the hope that it will be useful,
@@ -13,21 +13,33 @@
 .\"     GNU General Public License for more details.
 .\"
 .\"     You should have received a copy of the GNU General Public License
-.\"     along with this program; if not, write to the Free Software
-.\"     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111, USA.
+.\"     along with this program. If not, see
+.\"     <http://www.gnu.org/licenses/>.
 .\"
-.\" MANIFEST: description of new 1.35 features
-.\"
-.\" you can create the initial cut of this file using the
-.\"     aereport -f /usr/local/share/aegis/report/chan_so.rpt \
-.\"             -p srecord.1 -c 35 -unf
-.\" command, and then editing it to be more appropriate.
-.\"
-.\" ------------------------------------------------------------------------
-.\" .PP
-.\" .if n *
-.\" .if t \(bu
-.\" .\" Change N
+.PP
+.if n *
+.if t \(bu
+.\" Change 22, 21
+A bug has been fixed in the CRC-16 CCITT calculation; the algorithm was
+correct but the start value was incorrect, leading to incorrect results.
+.PP
+.if n *
+.if t \(bu
+.\" Change 12, 25
+The CRC16 filters have a new --no-augment option, to omit the 16
+zero bits augmenting the message.  This is not CCITT standard
+conforming, but some implementations do this.
+.PP
+.if n *
+.if t \(bu
+.\" Change 17
+A problem has been fixed in the generated Makefile.in file found
+in the tarball.
+.PP
+.if n *
+.if t \(bu
+.\" Change 15
+The license has been changed to GNU GPL version 3.
 .\" ------------------------------------------------------------------------
 .\" Add new entries above this line.
 .SS Version 1.35 (2007-Jun-23)
