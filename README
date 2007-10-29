@@ -61,6 +61,8 @@ DESCRIPTION
                The Fairchild Fairbug format is understood for both reading and
                writing.
 
+       hexdump It is possible to get a simple hexdump as output.
+
        LSI Logic Fast Load
                The LSI Logic Fast Load format is understood for both reading
                and writing.
@@ -217,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.36.README   # Description, from the tar file
-           File:   srecord-1.36.lsm      # Description, LSM format
-           File:   srecord-1.36.spec     # RedHat package specification
-           File:   srecord-1.36.tar.gz   # the complete source
-           File:   srecord-1.36.pdf      # Reference Manual
+           File:   srecord-1.37.README   # Description, from the tar file
+           File:   srecord-1.37.lsm      # Description, LSM format
+           File:   srecord-1.37.spec     # RedHat package specification
+           File:   srecord-1.37.tar.gz   # the complete source
+           File:   srecord-1.37.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -233,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.36
+       srecord version 1.37
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007 Peter Miller
 
@@ -263,11 +265,29 @@ AUTHOR
 
 
 
+
+
+
+
+
+
+
+
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.37 (2007-Oct-29)
+       * It is now possible to have negative expressions on the command line,
+       to facilitate "--offset - -minimum foo" usages.
+
+       * The srec_cat(1) command now has a simple hexadecimal dump output
+       format.
+
+       * The use of uudecode(1) in the tests has been removed, so sharutils is
+       no longer a build dependency.
 
    Version 1.36 (2007-Aug-07)
        * A bug has been fixed in the CRC-16 CCITT calculation; the algorithm
