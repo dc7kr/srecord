@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.37.README   # Description, from the tar file
-           File:   srecord-1.37.lsm      # Description, LSM format
-           File:   srecord-1.37.spec     # RedHat package specification
-           File:   srecord-1.37.tar.gz   # the complete source
-           File:   srecord-1.37.pdf      # Reference Manual
+           File:   srecord-1.38.README   # Description, from the tar file
+           File:   srecord-1.38.lsm      # Description, LSM format
+           File:   srecord-1.38.spec     # RedHat package specification
+           File:   srecord-1.38.tar.gz   # the complete source
+           File:   srecord-1.38.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,9 +235,9 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.37
+       srecord version 1.38
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
-       2007 Peter Miller
+       2007, 2008 Peter Miller
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -278,6 +278,21 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.38 (2008-Jan-14)
+       * The CRC16 filters now support a -Broken option, to perform a common-
+       but-broken CRC16 calculation, in addition to the CCITT and XMODEM
+       calculations.
+
+       * A link has been added to the CRC16 man page section to the
+       www.joegeluso.com/software/articles/ccitt.htm web page, to explain the
+       difficulties in seeding CRC16 calculations.
+
+       * A buglet has been fixed in the srec-motorola(5) man page, it now
+       includes S6 in the list of things that can appear in the type field.
+
+       * The ability to negate expressions is now mentioned in the
+       srec_examples(1) man page.
 
    Version 1.37 (2007-Oct-29)
        * It is now possible to have negative expressions on the command line,
