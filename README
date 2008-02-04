@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.38.README   # Description, from the tar file
-           File:   srecord-1.38.lsm      # Description, LSM format
-           File:   srecord-1.38.spec     # RedHat package specification
-           File:   srecord-1.38.tar.gz   # the complete source
-           File:   srecord-1.38.pdf      # Reference Manual
+           File:   srecord-1.39.README   # Description, from the tar file
+           File:   srecord-1.39.lsm      # Description, LSM format
+           File:   srecord-1.39.spec     # RedHat package specification
+           File:   srecord-1.39.tar.gz   # the complete source
+           File:   srecord-1.39.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.38
+       srecord version 1.39
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,10 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.39 (2008-Feb-04)
+       * A bug has been fixed in the use of parentheses to group filters and
+       override the default precedences.
 
    Version 1.38 (2008-Jan-14)
        * The CRC16 filters now support a -Broken option, to perform a common-
