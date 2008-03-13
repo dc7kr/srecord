@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.39.README   # Description, from the tar file
-           File:   srecord-1.39.lsm      # Description, LSM format
-           File:   srecord-1.39.spec     # RedHat package specification
-           File:   srecord-1.39.tar.gz   # the complete source
-           File:   srecord-1.39.pdf      # Reference Manual
+           File:   srecord-1.40.README   # Description, from the tar file
+           File:   srecord-1.40.lsm      # Description, LSM format
+           File:   srecord-1.40.spec     # RedHat package specification
+           File:   srecord-1.40.tar.gz   # the complete source
+           File:   srecord-1.40.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.39
+       srecord version 1.40
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,24 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.40 (2008-Mar-13)
+       * An RPM build problem has been fixed.
+
+       * The dependency on the Boost library is now documented in the BUILDING
+       file.
+
+       * Some build problems with g++ 4.3 have been fixed
+
+       * A bug has been fixed in the calculation of ranges on the command
+       line, it no longer goes into an infinite loop for "--fill 0xFF -over {
+       foo.hex -exclude -within foo.hex }" construct, which should have been
+       calculating an empty fill set, but was instead calculating a 4GB fill
+       set.
+
+       * The CRC32 filters now take an -xmodem option, to use an xmodem-like
+       (all bit zero) initial state, rather than the default CCITT (all bits
+       on) initial state.
 
    Version 1.39 (2008-Feb-04)
        * A bug has been fixed in the use of parentheses to group filters and

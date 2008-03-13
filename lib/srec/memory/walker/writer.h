@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 1998, 1999, 2002, 2003, 2006, 2007 Peter Miller
+//      Copyright (C) 1998, 1999, 2002, 2003, 2006-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@
 #ifndef INCLUDE_SREC_MEMORY_WALKER_WRITER_H
 #define INCLUDE_SREC_MEMORY_WALKER_WRITER_H
 
-
 #include <lib/srec/memory/walker.h>
+#include <lib/srec/output.h>
 
 /**
   * The srec_memory_walker_writer class is used to write data to and
@@ -36,11 +36,27 @@ public:
       */
     virtual ~srec_memory_walker_writer();
 
+private:
     /**
-      * The constructor.
+      * The constructor.  It is private on purpose, use the #create
+      * class method instead.
+      *
+      * @param deeper
+      *     where to write the output
       */
-    srec_memory_walker_writer(class srec_output *);
+    srec_memory_walker_writer(const srec_output::pointer &deeper);
 
+public:
+    /**
+      * The create class method is used to create new dynamically
+      * allocated instances of this class.
+      *
+      * @param deeper
+      *     where to write the output
+      */
+    static pointer create(const srec_output::pointer &deeper);
+
+protected:
     // See base class for documentation.
     virtual void observe(unsigned long, const void *, int);
 
@@ -58,7 +74,7 @@ private:
       * The op instance variabel is used to remember where to send
       * the output.
       */
-    class srec_output *op;
+    srec_output::pointer op;
 
     /**
       * The default constructor.  Do not use.

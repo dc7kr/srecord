@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 2001, 2002, 2005-2007 Peter Miller
+//      Copyright (C) 2001, 2002, 2005-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
 //      along with this program. If not, see
 //      <http://www.gnu.org/licenses/>.
 //
+
+#include <cstring>
 
 #include <lib/srec/output/file/four_packed_code.h>
 #include <lib/srec/record.h>
@@ -110,12 +112,9 @@ static unsigned char digit[] = {
 };
 
 
-srec_output_file_four_packed_code::srec_output_file_four_packed_code():
-    srec_output_file(),
-    pref_block_size(32),
-    put_byte_pos(0),
-    put_byte_value(0)
+srec_output_file_four_packed_code::~srec_output_file_four_packed_code()
 {
+    put_string("$%%%%%\n");
 }
 
 
@@ -129,29 +128,10 @@ srec_output_file_four_packed_code::srec_output_file_four_packed_code(
 }
 
 
-srec_output_file_four_packed_code::srec_output_file_four_packed_code(
-        const srec_output_file_four_packed_code &):
-    srec_output_file(),
-    pref_block_size(32),
-    put_byte_pos(0),
-    put_byte_value(0)
+srec_output::pointer
+srec_output_file_four_packed_code::create(const std::string &a_file_name)
 {
-    fatal_error("bug (%s, %d)", __FILE__, __LINE__);
-}
-
-
-srec_output_file_four_packed_code &
-srec_output_file_four_packed_code::operator=(
-        const srec_output_file_four_packed_code &)
-{
-    fatal_error("bug (%s, %d)", __FILE__, __LINE__);
-    return *this;
-}
-
-
-srec_output_file_four_packed_code::~srec_output_file_four_packed_code()
-{
-    put_string("$%%%%%\n");
+    return pointer(new srec_output_file_four_packed_code(a_file_name));
 }
 
 

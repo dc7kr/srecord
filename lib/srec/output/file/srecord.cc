@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 1998, 1999, 2001-2003, 2005-2007 Peter Miller
+//      Copyright (C) 1998, 1999, 2001-2003, 2005-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -17,19 +17,17 @@
 //      <http://www.gnu.org/licenses/>.
 //
 
+#include <cstring>
+
 #include <lib/srec/arglex.h>
 #include <lib/srec/output/file/srecord.h>
 #include <lib/srec/record.h>
 
 
-srec_output_file_srecord::srec_output_file_srecord() :
-    srec_output_file(),
-    data_count(0),
-    pref_block_size(32),
-    address_length(2),
-    address_shift(0),
-    data_count_written(false)
+srec_output_file_srecord::~srec_output_file_srecord()
 {
+    write_data_count();
+    // check for termination record
 }
 
 
@@ -42,6 +40,13 @@ srec_output_file_srecord::srec_output_file_srecord(
     address_shift(0),
     data_count_written(false)
 {
+}
+
+
+srec_output::pointer
+srec_output_file_srecord::create(const std::string &a_file_name)
+{
+    return pointer(new srec_output_file_srecord(a_file_name));
 }
 
 
@@ -86,13 +91,6 @@ srec_output_file_srecord::command_line(srec_arglex *cmdln)
             // NOTREACHED
         }
     }
-}
-
-
-srec_output_file_srecord::~srec_output_file_srecord()
-{
-    write_data_count();
-    // check for termination record
 }
 
 

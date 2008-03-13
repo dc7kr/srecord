@@ -81,12 +81,15 @@ source_file_order =
  * information is included in the Makefile.
  */
 
+aemakegen = aemakegen;
+
 Makefile.in: [source_files]
 {
-    aemakegen -p [project] -c [change]
-        | [awk] -f [resolve etc/Makefile.awk]
-        > [target]
-            set meter;
+    [aemakegen] -p [project] -c [change] > [target].tmp
+        set meter;
+    [awk] -f [resolve etc/Makefile.awk] < [target].tmp > [target];
+    rm [target].tmp
+        set silent;
 }
 
 archive/[project_minus].tar.gz: [source_file_order]
@@ -119,8 +122,8 @@ archive/[project_minus].pdf: etc/reference.pdf
 %: etc/%.man
 {
         roffpp
-                [prepost "-I" /[arch]/etc [search_list]]
-                [prepost "-I" "/etc" [search_list]]
+                [prepost "-I" /[arch] [search_list]]
+                [addprefix "-I" [search_list]]
                 [resolve etc/%.man]
         | groff -Tascii -t -P-bcu -man
         > [target];
@@ -130,8 +133,8 @@ archive/%.txt: etc/%.man
     set shallow
 {
         roffpp
-                [prepost "-I" /[arch]/etc [search_list]]
-                [prepost "-I" "/etc" [search_list]]
+                [prepost "-I" /[arch] [search_list]]
+                [addprefix "-I" [search_list]]
                 [resolve etc/%.man]
         | groff -Tascii -t -P-bcu -man
         > [target];
@@ -143,9 +146,6 @@ etc/%.man.d: etc/%.man
         [c_incl] -nc -ns -api -nrec
                 --lang\=roff
                 [addprefix "-I" [search_list]]
-                [prepost "-I" "/man/man1" [search_list]]
-                [prepost "-I" "/man/man5" [search_list]]
-                [prepost "-I" "/etc" [search_list]]
                 [resolve etc/%.man]
                 -prefix "'cascade etc/%.man ='"
                 -suffix "';'"
@@ -204,8 +204,8 @@ etc/%.html.d: etc/%.html
         set no-cascade
 {
         c_incl -nc -ns -eia -r -nrec
-                [prepost "-I" /[arch]/etc [search_list]]
-                [prepost "-I" "/etc" [search_list]]
+                [prepost "-I" /[arch] [search_list]]
+                [addprefix "-I" [search_list]]
                 -prefix "'cascade etc/"%".html ='"
                 -suffix "';'"
                 [resolve etc/%.html]
@@ -220,8 +220,8 @@ archive/%.html: etc/%.html etc/ssp.awk
         set shallow
 {
         roffpp
-                [prepost "-I" /[arch]/etc [search_list]]
-                [prepost "-I" "/etc" [search_list]]
+                [prepost "-I" /[arch] [search_list]]
+                [addprefix "-I" [search_list]]
                 [resolve etc/%.html]
         | groff -Tascii -t -P-bcu -man
         | [awk] -f [resolve etc/ssp.awk]
@@ -233,8 +233,8 @@ etc/[project_short].lsm.d: etc/[project_short].lsm
         set no-cascade
 {
         c_incl -nc -ns -eia -r -nrec
-                [prepost "-I" /[arch]/etc [search_list]]
-                [prepost "-I" "/etc" [search_list]]
+                [prepost "-I" /[arch] [search_list]]
+                [addprefix "-I" [search_list]]
                 -prefix "'cascade etc/"[project_short]".lsm ='"
                 -suffix "';'"
                 [resolve etc/[project_short].lsm]
@@ -249,8 +249,8 @@ archive/[project_minus].lsm: etc/[project_short].lsm etc/ssp.awk
         set shallow
 {
         roffpp
-                [prepost "-I" /[arch]/etc [search_list]]
-                [prepost "-I" "/etc" [search_list]]
+                [prepost "-I" /[arch] [search_list]]
+                [addprefix "-I" [search_list]]
                 [resolve etc/[project_short].lsm]
         | groff -Tascii -t -P-bcu -man
         | [awk] -f [resolve etc/ssp.awk]

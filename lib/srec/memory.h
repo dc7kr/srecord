@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 1998-2003, 2006, 2007 Peter Miller
+//      Copyright (C) 1998-2003, 2006-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -20,8 +20,9 @@
 #ifndef INCLUDE_SREC_MEMORY_H
 #define INCLUDE_SREC_MEMORY_H
 
-
+#include <lib/srec/input.h>
 #include <lib/srec/memory/chunk.h>
+#include <lib/srec/memory/walker.h>
 
 class srec_record; // forward
 
@@ -90,7 +91,7 @@ public:
       * The walk method is used to apply a srec_memory_walker derived
       * class to every byte of memory.
       */
-    void walk(class srec_memory_walker *) const;
+    void walk(srec_memory_walker::pointer) const;
 
     /**
       * The reader method is used to read the given `input' source
@@ -108,7 +109,7 @@ public:
       * warning, instead.  If `barf' is false, no checking of any
       * kind is performed.
       */
-    void reader(class srec_input *input, bool barf = false);
+    void reader(const srec_input::pointer &input, bool barf = false);
 
     /**
       * The equal method may be used to determine if two srec_memory
@@ -183,6 +184,17 @@ public:
       */
     bool has_holes() const;
 
+    /**
+      * The empty method is used to determine whether or not this memory
+      * image has no data in it.
+      */
+    bool
+    empty()
+        const
+    {
+        return (nchunks == 0);
+    }
+
 private:
     /**
       * The overwrite static variable is used to remember whether
@@ -205,7 +217,7 @@ private:
 
     /**
       * The chunk instance variable is used to hold the pointer to
-      * the base of the chunk array.  These chuinks remember the
+      * the base of the chunk array.  These chunks remember the
       * settings of the various bytes.  By using a sparse array,
       * we can cope with arbitrary memory usages.
       */

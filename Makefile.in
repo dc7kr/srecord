@@ -94,6 +94,9 @@ bindir = $(DESTDIR)$(RPM_BUILD_ROOT)@bindir@
 #
 mandir = $(DESTDIR)$(RPM_BUILD_ROOT)@mandir@
 
+# define this to silence ./configure warning
+DATAROOTDIR = $(DESTDIR)$(RPM_BUILD_ROOT)@datarootdir@
+
 #
 # extra libraries required for your system
 #
@@ -110,13 +113,25 @@ SH = @SH@
 RANLIB = @RANLIB@
 AR = ar
 
+#
+# Set GROFF to the name of the roff command on your
+# system, usually "groff" or "troff" or "nroff"
+#
+GROFF = @GROFF@
+
+#
+# Set SOELIM to the name of the roff proprocessor command
+# on your system, usually "soelim" or "gsoelim"
+#
+SOELIM = @SOELIM@
+
 # -------------------------------------------------------------
 # You should not need to change anything below this line.
 
 #
 # The default target
 #
-all: bin-all
+the-default-target: all
 
 etc/BUILDING.ps: etc/BUILDING.man 
 	$(GROFF) -s -I. -t -man etc/BUILDING.man > $@
@@ -150,6 +165,10 @@ lib/interval.o: lib/interval.cc lib/interval.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval.cc
 	mv interval.o lib/interval.o
 
+lib/interval/flatten.o: lib/interval/flatten.cc lib/interval.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval/flatten.cc
+	mv flatten.o lib/interval/flatten.o
+
 lib/progname.o: lib/progname.cc lib/progname.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/progname.cc
 	mv progname.o lib/progname.o
@@ -180,32 +199,34 @@ lib/r250.o: lib/r250.cc lib/r250.h
 lib/srec/arglex.o: lib/srec/arglex.cc lib/arglex.h lib/format_printf.h \
 		lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h 
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex.cc
 	mv arglex.o lib/srec/arglex.o
 
 lib/srec/arglex/get_interval.o: lib/srec/arglex/get_interval.cc \
 		lib/arglex.h lib/format_printf.h lib/interval.h \
 		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/interval.h 
+		lib/srec/input/interval.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_interval.cc
 	mv get_interval.o lib/srec/arglex/get_interval.o
 
 lib/srec/arglex/get_number.o: lib/srec/arglex/get_number.cc \
 		lib/arglex.h lib/format_printf.h lib/interval.h \
 		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/interval.h 
+		lib/srec/input/interval.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_number.cc
 	mv get_number.o lib/srec/arglex/get_number.o
 
 lib/srec/arglex/get_string.o: lib/srec/arglex/get_string.cc \
-		lib/arglex.h lib/format_printf.h lib/srec/arglex.h 
+		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
+		lib/srec/input.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_string.cc
 	mv get_string.o lib/srec/arglex/get_string.o
 
 lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
-		lib/crc16.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h \
+		lib/crc16.h lib/crc32.h lib/format_printf.h \
+		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/aomf.h \
 		lib/srec/input/file/ascii_hex.h \
 		lib/srec/input/file/atmel_generic.h \
@@ -218,7 +239,7 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
 		lib/srec/input/file/fastload.h \
 		lib/srec/input/file/formatted_binary.h \
 		lib/srec/input/file/four_packed_code.h \
-		lib/srec/input/file/guess.h lib/srec/input/file/intel.h \
+		lib/srec/input/file/intel.h \
 		lib/srec/input/file/intel16.h \
 		lib/srec/input/file/mos_tech.h \
 		lib/srec/input/file/needham.h \
@@ -256,14 +277,16 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
 		lib/srec/input/filter/unfill.h \
 		lib/srec/input/filter/unsplit.h \
 		lib/srec/input/filter/xor.h lib/srec/input/generator.h \
-		lib/srec/input/interval.h lib/srec/record.h 
+		lib/srec/input/interval.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/input.cc
 	mv input.o lib/srec/arglex/input.o
 
 lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
 		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/aomf.h \
+		lib/srec/input.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/aomf.h \
 		lib/srec/output/file/ascii_hex.h \
 		lib/srec/output/file/asm.h \
 		lib/srec/output/file/atmel_generic.h \
@@ -414,7 +437,7 @@ lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc \
 		lib/srec/input/file/fastload.h \
 		lib/srec/input/file/formatted_binary.h \
 		lib/srec/input/file/four_packed_code.h \
-		lib/srec/input/file/guess.h lib/srec/input/file/intel.h \
+		lib/srec/input/file/intel.h \
 		lib/srec/input/file/intel16.h \
 		lib/srec/input/file/mos_tech.h \
 		lib/srec/input/file/needham.h \
@@ -491,7 +514,8 @@ lib/srec/input/file/spectrum.o: lib/srec/input/file/spectrum.cc \
 lib/srec/input/file/srecord.o: lib/srec/input/file/srecord.cc \
 		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
 		lib/srec/input.h lib/srec/input/file.h \
-		lib/srec/input/file/srecord.h lib/srec/record.h 
+		lib/srec/input/file/srecord.h lib/srec/output.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/srecord.cc
 	mv srecord.o lib/srec/input/file/srecord.o
 
@@ -570,7 +594,8 @@ lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc \
 lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
 		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
 		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/byte_swap.h lib/srec/record.h 
+		lib/srec/input/filter/byte_swap.h lib/srec/output.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
 		lib/srec/input/filter/byte_swap.cc 
 	mv byte_swap.o lib/srec/input/filter/byte_swap.o
@@ -621,16 +646,17 @@ lib/srec/input/filter/crc16.o: lib/srec/input/filter/crc16.cc \
 		lib/srec/input/filter.h lib/srec/input/filter/crc16.h \
 		lib/srec/memory.h lib/srec/memory/chunk.h \
 		lib/srec/memory/walker.h lib/srec/memory/walker/crc16.h \
-		lib/srec/record.h 
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crc16.cc
 	mv crc16.o lib/srec/input/filter/crc16.o
 
 lib/srec/input/filter/crc32.o: lib/srec/input/filter/crc32.cc \
-		lib/crc32.h lib/format_printf.h lib/srec/input.h \
+		lib/arglex.h lib/crc32.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/crc32.h \
 		lib/srec/memory.h lib/srec/memory/chunk.h \
 		lib/srec/memory/walker.h lib/srec/memory/walker/crc32.h \
-		lib/srec/record.h 
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crc32.cc
 	mv crc32.o lib/srec/input/filter/crc32.o
 
@@ -739,7 +765,8 @@ lib/srec/input/generator.o: lib/srec/input/generator.cc lib/arglex.h \
 		lib/srec/input.h lib/srec/input/generator.h \
 		lib/srec/input/generator/constant.h \
 		lib/srec/input/generator/random.h \
-		lib/srec/input/generator/repeat.h lib/srec/record.h 
+		lib/srec/input/generator/repeat.h lib/srec/output.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/generator.cc
 	mv generator.o lib/srec/input/generator.o
 
@@ -793,8 +820,9 @@ lib/srec/memory/walker.o: lib/srec/memory/walker.cc \
 	mv walker.o lib/srec/memory/walker.o
 
 lib/srec/memory/walker/compare.o: lib/srec/memory/walker/compare.cc \
-		lib/interval.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/format_printf.h lib/interval.h lib/srec/input.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h \
 		lib/srec/memory/walker/compare.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/compare.cc
 	mv compare.o lib/srec/memory/walker/compare.o
@@ -853,8 +881,9 @@ lib/srec/output/file/ascii_hex.o: lib/srec/output/file/ascii_hex.cc \
 
 lib/srec/output/file/asm.o: lib/srec/output/file/asm.cc lib/arglex.h \
 		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/asm.h lib/srec/record.h 
+		lib/srec/input.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/asm.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/asm.cc
 	mv asm.o lib/srec/output/file/asm.o
 
@@ -890,8 +919,9 @@ lib/srec/output/file/brecord.o: lib/srec/output/file/brecord.cc \
 
 lib/srec/output/file/c.o: lib/srec/output/file/c.cc lib/arglex.h \
 		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/c.h lib/srec/record.h 
+		lib/srec/input.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/c.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/c.cc
 	mv c.o lib/srec/output/file/c.o
 
@@ -1016,8 +1046,9 @@ lib/srec/output/file/spectrum.o: lib/srec/output/file/spectrum.cc \
 
 lib/srec/output/file/srecord.o: lib/srec/output/file/srecord.cc \
 		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/srecord.h lib/srec/record.h 
+		lib/srec/input.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/srecord.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/srecord.cc
 	mv srecord.o lib/srec/output/file/srecord.o
 
@@ -1070,16 +1101,16 @@ lib/srec/output/file/ti_txt.o: lib/srec/output/file/ti_txt.cc \
 
 lib/srec/output/file/vhdl.o: lib/srec/output/file/vhdl.cc lib/arglex.h \
 		lib/format_printf.h lib/interval.h lib/progname.h \
-		lib/srec/arglex.h lib/srec/output.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/vhdl.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vhdl.cc
 	mv vhdl.o lib/srec/output/file/vhdl.o
 
 lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc lib/arglex.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/vmem.h \
-		lib/srec/record.h 
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/output.h lib/srec/output/file.h \
+		lib/srec/output/file/vmem.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
 	mv vmem.o lib/srec/output/file/vmem.o
 
@@ -1321,8 +1352,8 @@ bin/test_prelude: script/test_prelude .bin
 	$(INSTALL_SCRIPT) bin/test_prelude $@
 
 srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h \
-		lib/format_printf.h lib/srec/arglex.h \
-		srec_cat/arglex3.h 
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/output.h srec_cat/arglex3.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/arglex3.cc
 	mv arglex3.o srec_cat/arglex3.o
 
@@ -1338,14 +1369,16 @@ srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/format_printf.h \
 srec_cmp/main.o: srec_cmp/main.cc lib/arglex.h lib/format_printf.h \
 		lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/record.h 
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cmp/main.cc
 	mv main.o srec_cmp/main.o
 
 srec_info/main.o: srec_info/main.cc lib/arglex.h lib/format_printf.h \
 		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/record.h 
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_info/main.cc
 	mv main.o srec_info/main.o
 
@@ -1736,15 +1769,22 @@ t0157a: test/01/t0157a.sh all
 t0158a: test/01/t0158a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0158a.sh
 
+t0159a: test/01/t0159a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0159a.sh
+
+t0160a: test/01/t0160a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0160a.sh
+
 test_crc16/main.o: test_crc16/main.cc lib/crc16.h lib/format_printf.h \
 		lib/progname.h lib/quit.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
 	mv main.o test_crc16/main.o
 
 lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
-		lib/progname.o lib/quit.o lib/quit/exception.o \
-		lib/quit/normal.o lib/quit/prefix.o lib/r250.o \
-		lib/srec/arglex.o lib/srec/arglex/get_interval.o \
+		lib/interval/flatten.o lib/progname.o lib/quit.o \
+		lib/quit/exception.o lib/quit/normal.o \
+		lib/quit/prefix.o lib/r250.o lib/srec/arglex.o \
+		lib/srec/arglex/get_interval.o \
 		lib/srec/arglex/get_number.o \
 		lib/srec/arglex/get_string.o lib/srec/arglex/input.o \
 		lib/srec/arglex/output.o lib/srec/input.o \
@@ -1879,8 +1919,11 @@ bin/test_crc16: $(test_crc16_obj) .bin lib/lib.a
 $(bindir)/test_crc16: bin/test_crc16 .bindir
 	$(INSTALL_PROGRAM) bin/test_crc16 $@
 
-bin-all: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_crc16 \
+all: all-bin all-doc
+all-bin: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_crc16 \
 		bin/test_prelude 
+all-doc: etc/BUILDING.ps etc/README.ps etc/change_log.ps \
+		etc/reference.ps 
 
 .bin:
 	-mkdir bin
@@ -1908,30 +1951,20 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0113a t0115a t0116a t0117a t0118a t0119a t0120a t0121a \
 		t0122a t0123a t0125a t0126a t0127a t0128a t0129a t0130a \
 		t0131a t0132a t0133a t0135a t0136a t0137a t0138a t0139a \
-		t0150a t0151a t0152a t0153a t0155a t0156a t0157a t0158a 
+		t0150a t0151a t0152a t0153a t0155a t0156a t0157a t0158a \
+		t0159a t0160a 
 	@echo Passed All Tests
 
 clean-obj:
 	rm -f .bin
 	rm -f .bindir
-	rm -f BUILDING.dvi
-	rm -f BUILDING.pdf
-	rm -f BUILDING.ps
-	rm -f BUILDING.txt
-	rm -f README.dvi
-	rm -f README.pdf
-	rm -f README.ps
-	rm -f README.txt
 	rm -f bin/test_prelude
-	rm -f change_log.dvi
-	rm -f change_log.pdf
-	rm -f change_log.ps
-	rm -f change_log.txt
 	rm -f core
 	rm -f lib/arglex.o
 	rm -f lib/crc16.o
 	rm -f lib/crc32.o
 	rm -f lib/interval.o
+	rm -f lib/interval/flatten.o
 	rm -f lib/lib.a
 	rm -f lib/progname.o
 	rm -f lib/quit.o
@@ -2055,10 +2088,6 @@ clean-obj:
 	rm -f man/.mandir
 	rm -f man/man1/.mandir
 	rm -f man/man5/.mandir
-	rm -f reference.dvi
-	rm -f reference.pdf
-	rm -f reference.ps
-	rm -f reference.txt
 	rm -f srec_cat/arglex3.o
 	rm -f srec_cat/main.o
 	rm -f srec_cmp/main.o
@@ -2074,6 +2103,10 @@ clean: clean-obj
 	rm -f bin/srec_info
 	rm -f bin/test_crc16
 	rm -f bin/test_prelude
+	rm -f etc/BUILDING.ps
+	rm -f etc/README.ps
+	rm -f etc/change_log.ps
+	rm -f etc/reference.ps
 
 distclean: clean
 	rm -f Makefile
@@ -2086,9 +2119,7 @@ distclean: clean
 
 install-bin: $(bindir)/srec_cat $(bindir)/srec_cmp $(bindir)/srec_info
 
-install-man: install-man-${HAVE_GROFF}
-
-install-man-yes: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
+install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man1/srec_examples.1 \
 		$(mandir)/man1/srec_info.1 $(mandir)/man1/srec_input.1 \
 		$(mandir)/man1/srec_license.1 \
@@ -2119,7 +2150,5 @@ install-man-yes: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man5/srec_ti_tagged_16.5 \
 		$(mandir)/man5/srec_ti_txt.5 $(mandir)/man5/srec_vmem.5 \
 		$(mandir)/man5/srec_wilson.5 
-
-install-man-no:
 
 install: install-bin install-man

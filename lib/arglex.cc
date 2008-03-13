@@ -1,25 +1,24 @@
 //
-//      srecord - manipulate eprom load files
-//      Copyright (C) 1998, 1999, 2002, 2003, 2006, 2007 Peter Miller
+// srecord - manipulate eprom load files
+// Copyright (C) 1998, 1999, 2002, 2003, 2006-2008 Peter Miller
 //
-//      This program is free software; you can redistribute it and/or modify
-//      it under the terms of the GNU General Public License as published by
-//      the Free Software Foundation; either version 3 of the License, or
-//      (at your option) any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
-//      This program is distributed in the hope that it will be useful,
-//      but WITHOUT ANY WARRANTY; without even the implied warranty of
-//      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//      GNU General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
 //
-//      You should have received a copy of the GNU General Public License
-//      along with this program. If not, see
-//      <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
-
 
 #include <cctype>
 #include <cstring>
+#include <cstdlib>
 #include <errno.h>
 #include <iostream>
 using namespace std;
@@ -143,59 +142,11 @@ arglex::table_set(const table_ty *tp)
 }
 
 
-//
-// NAME
-//      arglex_compare
-//
-// SYNOPSIS
-//      int arglex_compare(const char *formal, char *actual);
-//
-// DESCRIPTION
-//      The arglex_compare function is used to compare
-//      a command line string with a formal spec of the option,
-//      to see if they compare equal.
-//
-//      The actual is case-insensitive.  Uppercase in the formal
-//      means a mandatory character, while lower case means optional.
-//      Any number of consecutive optional characters may be supplied
-//      by actual, but none may be skipped, unless all are skipped to
-//      the next non-lower-case letter.
-//
-//      The underscore (_) is like a lower-case minus,
-//      it matches "", "-" and "_".
-//
-//      The "*" in a pattern matches everything to the end of the line,
-//      anything after the "*" is ignored.  The rest of the line is pointed
-//      to by the "partial" variable as a side-effect (else it will be 0).
-//      This rather ugly feature is to support "-I./dir" type options.
-//
-//      A backslash in a pattern nominates an exact match required,
-//      case must matche excatly here.
-//      This rather ugly feature is to support "-I./dir" type options.
-//
-//      For example: "-project" and "-P' both match "-Project",
-//      as does "-proJ", but "-prj" does not.
-//
-//      For example: "-devDir" and "-d_d' both match "-Development_Directory",
-//      but "-dvlpmnt_drctry" does not.
-//
-//      For example: to match include path specifications, use a pattern
-//      such as "-\\I*", and the partial global variable will have the
-//      path in it on return.
-//
-// ARGUMENTS
-//      formal  - the "pattern" for the option
-//      actual  - what the user supplied
-//
-// RETURNS
-//      int;    zero if no match,
-//              non-zero if they do match.
-//
-
 static const char *partial;
 
+
 bool
-arglex_compare(const char *formal, const char *actual)
+arglex::compare(const char *formal, const char *actual)
 {
     for (;;)
     {
@@ -222,7 +173,7 @@ arglex_compare(const char *formal, const char *actual)
             //
             // optional characters
             //
-            if (ac == fc && arglex_compare(formal, actual))
+            if (ac == fc && compare(formal, actual))
                 return true;
 
             //
@@ -242,8 +193,8 @@ arglex_compare(const char *formal, const char *actual)
 
         case '*':
             //
-            // This is a hack, it should really
-            // check for a match match the stuff after
+            // This is incomplete, it should really
+            // check for a match match of the stuff after
             // the '*', too, a la glob.
             //
             if (!ac)
@@ -505,7 +456,7 @@ arglex::token_next()
     {
         for (tp = *it; tp->name; tp++)
         {
-            if (arglex_compare(tp->name, arg.c_str()))
+            if (compare(tp->name, arg.c_str()))
                 hit[nhit++] = tp;
         }
     }

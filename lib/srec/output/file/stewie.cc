@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 2004, 2006, 2007 Peter Miller
+//      Copyright (C) 2004, 2006-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -17,8 +17,15 @@
 //      <http://www.gnu.org/licenses/>.
 //
 
+#include <cstring>
+
 #include <lib/srec/output/file/stewie.h>
 #include <lib/srec/record.h>
+
+
+srec_output_file_stewie::~srec_output_file_stewie()
+{
+}
 
 
 srec_output_file_stewie::srec_output_file_stewie(
@@ -31,8 +38,10 @@ srec_output_file_stewie::srec_output_file_stewie(
 }
 
 
-srec_output_file_stewie::~srec_output_file_stewie()
+srec_output::pointer
+srec_output_file_stewie::create(const std::string &a_file_name)
 {
+    return pointer(new srec_output_file_stewie(a_file_name));
 }
 
 

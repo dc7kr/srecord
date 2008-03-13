@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 1998, 1999, 2002, 2003, 2006, 2007 Peter Miller
+//      Copyright (C) 1998, 1999, 2002, 2003, 2006-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #ifndef INCLUDE_SREC_MEMORY_WALKER_H
 #define INCLUDE_SREC_MEMORY_WALKER_H
 
+#include <boost/shared_ptr.hpp>
 
 class srec_record; // forward
 
@@ -30,6 +31,8 @@ class srec_record; // forward
 class srec_memory_walker
 {
 public:
+    typedef boost::shared_ptr<srec_memory_walker> pointer;
+
     /**
       * The destructor.
       */

@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 2000, 2002, 2006, 2007 Peter Miller
+//      Copyright (C) 2000, 2002, 2006-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #ifndef INCLUDE_SREC_MEMORY_WALKER_CRC32_H
 #define INCLUDE_SREC_MEMORY_WALKER_CRC32_H
 
-
 #include <lib/crc32.h>
 #include <lib/srec/memory/walker.h>
 
@@ -32,24 +31,42 @@ class srec_memory_walker_crc32:
     public srec_memory_walker
 {
 public:
+    typedef boost::shared_ptr<srec_memory_walker_crc32> pointer;
+
     /**
       * The destructor.
       */
     virtual ~srec_memory_walker_crc32();
 
+private:
     /**
-      * The default constructor.
+      * The default constructor.  It is private on putpose, use the
+      * #create method instead.
+      *
+      * @param seed_mode
+      *     How to calculate the initial seed.
       */
-    srec_memory_walker_crc32();
+    srec_memory_walker_crc32(crc32::seed_mode_t seed_mode);
 
-    // See base class for documentation.
-    void observe(unsigned long, const void *, int);
+public:
+    /**
+      * The create class method is used to create new dynamically
+      * allocated instances of this class.
+      *
+      * @param seed_mode
+      *     How to calculate the initial seed.
+      */
+    static pointer create(crc32::seed_mode_t seed_mode);
 
     /**
       * The get method is used to get the CRC32 checksum once all memory
       * chunks have been processed by calls to our observe method.
       */
     unsigned get() const;
+
+protected:
+    // See base class for documentation.
+    void observe(unsigned long, const void *, int);
 
 private:
     /**

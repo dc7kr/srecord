@@ -36,9 +36,9 @@ main(int argc, char **argv)
 {
     srec_cat_arglex3 cmdline(argc, argv);
     cmdline.token_first();
-    typedef vector<srec_input *> infile_t;
+    typedef vector<srec_input::pointer> infile_t;
     infile_t infile;
-    srec_output *outfile = 0;
+    srec_output::pointer outfile;
     int line_length = 0;
     int address_length = 0;
     std::string header;
@@ -139,34 +139,25 @@ main(int argc, char **argv)
     // eproms which are usually smaller than the available virtual
     // memory of the development system.
     //
-    srec_memory *mp = new srec_memory();
+    srec_memory m;
     if (header_set)
-        mp->set_header(header.c_str());
+        m.set_header(header.c_str());
     for (infile_t::iterator it = infile.begin(); it != infile.end(); ++it)
     {
-        srec_input *ifp = *it;
-        mp->reader(ifp, true);
-        delete ifp;
+        srec_input::pointer ifp = *it;
+        m.reader(ifp, true);
     }
     if (start_address_set)
-        mp->set_start_address(start_address);
+        m.set_start_address(start_address);
 
     //
     // Open the output file and write the remembered data out to it.
     //
-    srec_memory_walker *w = new srec_memory_walker_writer(outfile);
-    mp->walk(w);
-    delete outfile;
-
-    //
-    // Dispose of the memory image of the data.
-    // (Probably not necessary.)
-    //
-    delete mp;
+    srec_memory_walker::pointer w = srec_memory_walker_writer::create(outfile);
+    m.walk(w);
 
     //
     // success
     //
-    exit(0);
     return 0;
 }

@@ -1,6 +1,6 @@
 //
 //      srecord - The "srecord" program.
-//      Copyright (C) 2007 Peter Miller
+//      Copyright (C) 2007, 2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -35,14 +35,26 @@ public:
       */
     virtual ~srec_output_file_hexdump();
 
+private:
     /**
-      * The constructor.
+      * The constructor.  It is private on purpose, use the #create
+      * class method instead.
       *
       * @param file_name
-      *     The file name to open to write data to.  The name "-" is
-      *     understood to mean the standard output.
+      *     The name of the file to be written.  The special name "-"
+      *     indicates the standard output is to be used.
       */
     srec_output_file_hexdump(const std::string &file_name);
+
+public:
+    /**
+      * The create class method is used to create new dynamically
+      * allocated instances of this class.
+      *
+      * @param file_name
+      *     The name of the file to be written.
+      */
+    static pointer create(const std::string &file_name);
 
 protected:
     // See base class for documentation.
@@ -65,13 +77,38 @@ protected:
 
 private:
     /**
-      * The FUBAR instance variable
-      * is used to remember
+      * The number_of_columns instance variable is used to remember how
+      * many columns of hex bytes to display on a single line.  It is
+      * always a power of two.
       */
     int number_of_columns;
+
+    /**
+      * The row_cache_address instance variable is used to remember
+      * where we are up to in printing our rows of data.  It is the
+      * address of the beginning of the row, NOT the current byte.
+      * The lower "number_of_columns" bits are always zero.
+      */
     unsigned long row_cache_address;
+
+    /**
+      * The row_cache_address_mask instance variable is used to remember
+      * the mask to calculate the column within the output line, give a
+      * byte address.
+      */
     unsigned long row_cache_address_mask;
+
+    /**
+      * The row_cache_size instance variable is used to remember the
+      * number of printing columns wide the output is.
+      */
     size_t row_cache_size;
+
+    /**
+      * The row_cache instance variable is used to remember the text of
+      * the line to be printed.  It contains ASCII hex representations
+      * of the bytes "written" to this output.
+      */
     char *row_cache;
 
     /**
@@ -92,6 +129,9 @@ private:
       */
     void row_cache_print();
 
+    /**
+      * The columns_to_line_length method is used to
+      */
     int columns_to_line_length(int cols);
 
     /**

@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 1998-2003, 2006, 2007 Peter Miller
+//      Copyright (C) 1998-2003, 2006-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 //      <http://www.gnu.org/licenses/>.
 //
 
+#include <cstring>
 
 #include <lib/srec/input.h>
 #include <lib/srec/memory.h>
@@ -221,13 +222,15 @@ srec_memory::equal(const srec_memory &lhs, const srec_memory &rhs)
 bool
 srec_memory::compare(const srec_memory &lhs, const srec_memory &rhs)
 {
-    srec_memory_walker_compare wlhs(rhs, true);
-    lhs.walk(&wlhs);
-    wlhs.print("Left");
-    srec_memory_walker_compare wrhs(lhs, false);
-    rhs.walk(&wrhs);
-    wrhs.print("Right");
-    return (!wlhs.same() || !wrhs.same());
+    srec_memory_walker_compare::pointer wlhs =
+        srec_memory_walker_compare::create(rhs, true);
+    lhs.walk(wlhs);
+    wlhs->print("Left");
+    srec_memory_walker_compare::pointer wrhs =
+        srec_memory_walker_compare::create(lhs, false);
+    rhs.walk(wrhs);
+    wrhs->print("Right");
+    return (!wlhs->same() || !wrhs->same());
 }
 
 
@@ -242,7 +245,7 @@ srec_memory::get_upper_bound()
 
 
 void
-srec_memory::walk(srec_memory_walker *w)
+srec_memory::walk(srec_memory_walker::pointer w)
     const
 {
     w->notify_upper_bound(get_upper_bound());
@@ -257,7 +260,7 @@ srec_memory::walk(srec_memory_walker *w)
 
 
 void
-srec_memory::reader(srec_input *ifp, bool barf)
+srec_memory::reader(const srec_input::pointer &ifp, bool barf)
 {
     srec_record record;
     while (ifp->read(record))
@@ -442,7 +445,8 @@ bool
 srec_memory::has_holes()
     const
 {
-    srec_memory_walker_continuity sniffer;
-    walk(&sniffer);
-    return (!sniffer.is_continuous());
+    srec_memory_walker_continuity::pointer sniffer =
+        srec_memory_walker_continuity::create();
+    walk(sniffer);
+    return (!sniffer->is_continuous());
 }

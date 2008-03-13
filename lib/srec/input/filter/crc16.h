@@ -22,6 +22,7 @@
 
 #include <lib/crc16.h>
 #include <lib/srec/input/filter.h>
+#include <lib/srec/memory.h>
 
 /**
   * The srec_input_filter_crc16 class is used to represent the state of
@@ -36,12 +37,25 @@ public:
       */
     virtual ~srec_input_filter_crc16();
 
+private:
     /**
       * The constructor.
       */
-    srec_input_filter_crc16(srec_input *deeper, unsigned long address,
-        int order);
+    srec_input_filter_crc16(const srec_input::pointer &deeper,
+        unsigned long address, int order);
 
+public:
+    /**
+      * The create class method is used to create new dynamically
+      * allocated instances of this class.
+      *
+      * @param deeper
+      *     The incoming data source to be filtered
+      */
+    static pointer create(const srec_input::pointer &deeper,
+        unsigned long address, int order);
+
+protected:
     // See base class for documentation.
     int read(srec_record &);
 
@@ -80,7 +94,7 @@ private:
       * order to calculate the CRC, and the input may be out of address
       * order, necessitating this buffer.
       */
-    class srec_memory *buffer;
+    srec_memory buffer;
 
     /**
       * The buffer_pos instance variable is used to remember where we

@@ -1,6 +1,6 @@
 dnl
 dnl  srecord - manipulate eprom load files
-dnl  Copyright (C) 1998, 1999, 2002, 2006, 2007 Peter Miller
+dnl  Copyright (C) 1998, 1999, 2002, 2006-2008 Peter Miller
 dnl
 dnl  This program is free software; you can redistribute it and/or modify
 dnl  it under the terms of the GNU General Public License as published by
@@ -19,21 +19,46 @@ AC_INIT(install-sh)
 AC_CONFIG_HEADER(lib/config.h)
 AC_PROG_CXX
 AC_PROG_CPP
+AC_LANG(C++)
+AC_GNU_SOURCE
 AC_PROG_INSTALL
 AC_PROG_YACC
 AC_PROG_RANLIB
 AC_CHECK_PROGS(GROFF, groff roff)
-AC_CHECK_PROGS(SOELIM, roffpp gsoelim soelim)
+AC_CHECK_PROGS(SOELIM, gsoelim soelim roffpp)
 AC_CHECK_FUNCS(snprintf vsnprintf)
 
-#
-# If we are using the GNU C++ compiler, add the -fno-rtti command line
-# option.  This fixes the ugly GCC 3.x "undefined symbols" bug on Cygwin
-# and MacOsX.
-#
-if test "$ac_cv_cxx_compiler_gnu" = "yes"
+dnl
+dnl Make sure Boost is installed.
+dnl
+AC_CHECK_HEADERS(boost/shared_ptr.hpp)
+if test "$ac_cv_header_boost_shared_ptr_hpp" != "yes"
 then
-    CXXFLAGS="$CXXFLAGS -fno-rtti"
+    AC_MSG_RESULT([
+        You need to install the Boost C++ library to be able to compile SRecord.
+        http://boost.org/])
+    OK=no
+    if apt-get --version > /dev/null 2> /dev/null; then
+      AC_MSG_RESULT([
+        The following command may be used to install it:
+        sudo apt-get install libboost-dev
+      ])
+      OK=yes
+    fi
+    if yum --version > /dev/null 2> /dev/null; then
+      AC_MSG_RESULT([
+        The following command may be used to install it:
+        sudo yum install libboost-devel
+      ])
+      OK=yes
+    fi
+    if test "$OK" != "yes"; then
+      AC_MSG_RESULT([
+        If you have a package based system, the package you need to
+        install will be called libboost-devel or something similar.
+      ])
+    fi
+    exit 1
 fi
 
 dnl
@@ -96,9 +121,42 @@ then
 fi
 AC_SUBST(HAVE_GROFF)
 
+#
+# Evaluate some of the variables, to remove ${prefix} references.
+# This way, they can be used in C programs and Roff input.
+# Make sure that srecord is mentioned in the libdir and datadir paths;
+# add it if it is not already there.
+#
+test "x$prefix" = xNONE && prefix="${ac_default_prefix-/usr/local}"
+test "x$exec_prefix" = xNONE && exec_prefix="$prefix"
+eval "exec_prefix=$exec_prefix"
+eval "bindir=$bindir"
+eval "datarootdir=$datarootdir"
+eval "mandir=$mandir"
+eval "libdir=$libdir"
+eval "datadir=$datadir"
+case "$libdir" in
+*/srecord/* | */srecord )
+    ;;
+*)
+    libdir="${libdir}/srecord"
+    AC_MSG_RESULT([Rewriting --libdir=$libdir])
+    ;;
+esac
+case "$datadir" in
+    */srecord/* | */srecord )
+    ;;
+*)
+    datadir="${datadir}/srecord"
+    AC_MSG_RESULT([Rewriting --datadir=$datadir])
+;;
+esac
+
+
+
 AH_TOP([/*
  * srecord - manipulate eprom load files
- * Copyright (C) 1998-2002, 2006, 2007 Peter Miller
+ * Copyright (C) 1998-2002, 2006-2008 Peter Miller
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

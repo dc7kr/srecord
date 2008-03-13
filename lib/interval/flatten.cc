@@ -1,6 +1,6 @@
 //
-//      srecord - manipulate eprom load files
-//      Copyright (C) 2000, 2002, 2003, 2005-2007 Peter Miller
+//      srecord - Manipulate EPROM load files
+//      Copyright (C) 2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -17,19 +17,14 @@
 //      <http://www.gnu.org/licenses/>.
 //
 
-#ifndef INCLUDE_SREC_INPUT_FILE_GUESS_H
-#define INCLUDE_SREC_INPUT_FILE_GUESS_H
+#include <lib/interval.h>
 
-#include <lib/srec/input.h>
 
-/**
-  * The srec_input_file_guess function is used to open a file of an
-  * unknown type.  It attempts all of the know formats one after the
-  * other.
-  *
-  * @param file_name
-  *     The name of the file to be opened.
-  */
-srec_input *srec_input_file_guess(const string &file_name);
-
-#endif // INCLUDE_SREC_INPUT_FILE_GUESS_H
+interval
+interval::flatten()
+    const
+{
+    if (length <= 2)
+        return *this;
+    return interval(get_lowest(), get_highest());
+}

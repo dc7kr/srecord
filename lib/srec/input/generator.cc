@@ -1,6 +1,6 @@
 //
 //      srecord - The "srecord" program.
-//      Copyright (C) 2007 Peter Miller
+//      Copyright (C) 2007, 2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -16,6 +16,8 @@
 //      along with this program. If not, see
 //      <http://www.gnu.org/licenses/>.
 //
+
+#include <cstring>
 
 #include <lib/srec/arglex.h>
 #include <lib/srec/input/generator.h>
@@ -84,25 +86,25 @@ srec_input_generator::read(srec_record &result)
 }
 
 
-srec_input *
+srec_input::pointer
 srec_input_generator::create(srec_arglex *cmdln)
 {
     interval range = cmdln->get_interval("--generate");
-    srec_input *result = 0;
+    srec_input::pointer result;
     switch (cmdln->token_cur())
     {
     case srec_arglex::token_constant:
         {
             cmdln->token_next();
             int n = cmdln->get_number("--generate --constant");
-            result = new srec_input_generator_constant(range, n);
+            result = srec_input_generator_constant::create(range, n);
         }
         break;
 
     case srec_arglex::token_random:
         {
             cmdln->token_next();
-            result = new srec_input_generator_random(range);
+            result = srec_input_generator_random::create(range);
         }
         break;
 
@@ -158,9 +160,14 @@ srec_input_generator::create(srec_arglex *cmdln)
             // Build our new input data source.
             //
             if (length == 1)
-                result = new srec_input_generator_constant(range, data[0]);
+            {
+                result = srec_input_generator_constant::create(range, data[0]);
+            }
             else
-                result = new srec_input_generator_repeat(range, data, length);
+            {
+                result =
+                    srec_input_generator_repeat::create(range, data, length);
+            }
             delete [] data;
         }
         break;
@@ -177,12 +184,12 @@ srec_input_generator::create(srec_arglex *cmdln)
                 // NOTREACHED
 
             case 1:
-                result = new srec_input_generator_constant(range, s[0]);
+                result = srec_input_generator_constant::create(range, s[0]);
                 break;
 
             default:
                 result =
-                    new srec_input_generator_repeat
+                    srec_input_generator_repeat::create
                     (
                         range,
                         (unsigned char *)s.c_str(),
