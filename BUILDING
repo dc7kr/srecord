@@ -181,14 +181,13 @@ BUILDING SRECORD
    Windows NT
         It is possible to build SRecord on MS Windows platforms, using the
         Cygwin (see www.cygwin.com) or DJGPP (see www.delorie.com/djgpp)
-        environments.  This provides the ``porting layer'' necessary to run
-        Unix programs on Windows.  The build process is exactly as described
-        above.
+        environments.  This provides the "porting layer" necessary to run Unix
+        programs on Windows.  The build process is exactly as described above.
 
-        Note: if you are using GCC 3.x where x < 4, you may need to edit the
-        Makefile to change CXX = g++ to read CXX = g++-2 to fix some weird
-        undefined symbols.  This appears to be a bug in these versions of GCC.
-        The bug has apparently been fixed in GCC 3.4 and above.
+        You may need to pass in the include path to the Boost library.  This
+        is most simply done as
+                CC='gcc -no-cygwin' \
+                CXX='g++ -mno-cygwin -I/usr/include/boost-1_33_1' \
 
         DJGPP always produces native binaries, however if you want to make
         native binaries with Cygwin (i.e. ones which work outside Cygwin)
@@ -242,14 +241,14 @@ GETTING HELP
         When reporting problems, please include the version number given by
         the
                 % srec_cat -version
-                srecord version 1.40.D002
+                srecord version 1.41.D001
                 ...warranty disclaimer...
                 %
         command.  Please do not send this example; run the program for the
         exact version number.
 
 COPYRIGHT
-        srecord version 1.40
+        srecord version 1.41
         Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
         2007, 2008 Peter Miller
 

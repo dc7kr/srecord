@@ -78,10 +78,9 @@ exec_prefix = @exec_prefix@
 # On a network, this would only be shared between machines
 # of identical cpu-hw-os flavour.  It can be read-only.
 #
-# The $(DESTDIR) is for Debian packaging.
-# The $(RPM_BUILD_ROOT) is for RPM packaging.
+# The $(DESTDIR) is for packaging.
 #
-bindir = $(DESTDIR)$(RPM_BUILD_ROOT)@bindir@
+bindir = $(DESTDIR)@bindir@
 
 #
 # where to put the manuals
@@ -89,13 +88,12 @@ bindir = $(DESTDIR)$(RPM_BUILD_ROOT)@bindir@
 # On a network, this would be shared between all machines
 # on the network.  It can be read-only.
 #
-# The $(DESTDIR) is for Debian packaging.
-# The $(RPM_BUILD_ROOT) is for RPM packaging.
+# The $(DESTDIR) is for packaging.
 #
-mandir = $(DESTDIR)$(RPM_BUILD_ROOT)@mandir@
+mandir = $(DESTDIR)@mandir@
 
 # define this to silence ./configure warning
-DATAROOTDIR = $(DESTDIR)$(RPM_BUILD_ROOT)@datarootdir@
+DATAROOTDIR = $(DESTDIR)@datarootdir@
 
 #
 # extra libraries required for your system
@@ -161,6 +159,10 @@ lib/crc32.o: lib/crc32.cc lib/crc32.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/crc32.cc
 	mv crc32.o lib/crc32.o
 
+lib/endian.o: lib/endian.cc lib/endian.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/endian.cc
+	mv endian.o lib/endian.o
+
 lib/interval.o: lib/interval.cc lib/interval.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval.cc
 	mv interval.o lib/interval.o
@@ -196,8 +198,8 @@ lib/r250.o: lib/r250.cc lib/r250.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/r250.cc
 	mv r250.o lib/r250.o
 
-lib/srec/arglex.o: lib/srec/arglex.cc lib/arglex.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
+lib/srec/arglex.o: lib/srec/arglex.cc lib/arglex.h lib/endian.h \
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/memory.h \
 		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
 		lib/srec/output.h 
@@ -205,28 +207,29 @@ lib/srec/arglex.o: lib/srec/arglex.cc lib/arglex.h lib/format_printf.h \
 	mv arglex.o lib/srec/arglex.o
 
 lib/srec/arglex/get_interval.o: lib/srec/arglex/get_interval.cc \
-		lib/arglex.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/interval.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_interval.cc
 	mv get_interval.o lib/srec/arglex/get_interval.o
 
 lib/srec/arglex/get_number.o: lib/srec/arglex/get_number.cc \
-		lib/arglex.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/interval.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_number.cc
 	mv get_number.o lib/srec/arglex/get_number.o
 
 lib/srec/arglex/get_string.o: lib/srec/arglex/get_string.cc \
-		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/output.h 
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_string.cc
 	mv get_string.o lib/srec/arglex/get_string.o
 
 lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
-		lib/crc16.h lib/crc32.h lib/format_printf.h \
-		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
+		lib/crc16.h lib/crc32.h lib/endian.h \
+		lib/format_printf.h lib/interval.h lib/quit.h \
+		lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/aomf.h \
 		lib/srec/input/file/ascii_hex.h \
 		lib/srec/input/file/atmel_generic.h \
@@ -265,9 +268,10 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
 		lib/srec/input/filter/crc32.h \
 		lib/srec/input/filter/crop.h \
 		lib/srec/input/filter/fill.h \
-		lib/srec/input/filter/length.h \
-		lib/srec/input/filter/maximum.h \
-		lib/srec/input/filter/minimum.h \
+		lib/srec/input/filter/interval.h \
+		lib/srec/input/filter/interval/length.h \
+		lib/srec/input/filter/interval/maximum.h \
+		lib/srec/input/filter/interval/minimum.h \
 		lib/srec/input/filter/not.h \
 		lib/srec/input/filter/offset.h \
 		lib/srec/input/filter/or.h \
@@ -284,8 +288,8 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
 	mv input.o lib/srec/arglex/input.o
 
 lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
-		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/aomf.h \
 		lib/srec/output/file/ascii_hex.h \
 		lib/srec/output/file/asm.h \
@@ -321,8 +325,9 @@ lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/output.cc
 	mv output.o lib/srec/arglex/output.o
 
-lib/srec/input.o: lib/srec/input.cc lib/format_printf.h lib/quit.h \
-		lib/quit/prefix.h lib/srec/input.h lib/srec/record.h 
+lib/srec/input.o: lib/srec/input.cc lib/endian.h lib/format_printf.h \
+		lib/quit.h lib/quit/prefix.h lib/srec/input.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input.cc
 	mv input.o lib/srec/input.o
 
@@ -331,7 +336,7 @@ lib/srec/input/file.o: lib/srec/input/file.cc lib/format_printf.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file.cc
 	mv file.o lib/srec/input/file.o
 
-lib/srec/input/file/aomf.o: lib/srec/input/file/aomf.cc \
+lib/srec/input/file/aomf.o: lib/srec/input/file/aomf.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/aomf.h \
 		lib/srec/record.h 
@@ -339,14 +344,14 @@ lib/srec/input/file/aomf.o: lib/srec/input/file/aomf.cc \
 	mv aomf.o lib/srec/input/file/aomf.o
 
 lib/srec/input/file/ascii_hex.o: lib/srec/input/file/ascii_hex.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/ascii_hex.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ascii_hex.cc
 	mv ascii_hex.o lib/srec/input/file/ascii_hex.o
 
 lib/srec/input/file/atmel_generic.o: \
-		lib/srec/input/file/atmel_generic.cc \
+		lib/srec/input/file/atmel_generic.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h \
 		lib/srec/input/file/atmel_generic.h lib/srec/record.h 
@@ -355,56 +360,56 @@ lib/srec/input/file/atmel_generic.o: \
 	mv atmel_generic.o lib/srec/input/file/atmel_generic.o
 
 lib/srec/input/file/binary.o: lib/srec/input/file/binary.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/binary.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/binary.cc
 	mv binary.o lib/srec/input/file/binary.o
 
 lib/srec/input/file/brecord.o: lib/srec/input/file/brecord.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/brecord.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/brecord.cc
 	mv brecord.o lib/srec/input/file/brecord.o
 
 lib/srec/input/file/cosmac.o: lib/srec/input/file/cosmac.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/cosmac.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/cosmac.cc
 	mv cosmac.o lib/srec/input/file/cosmac.o
 
 lib/srec/input/file/dec_binary.o: lib/srec/input/file/dec_binary.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/dec_binary.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/dec_binary.cc
 	mv dec_binary.o lib/srec/input/file/dec_binary.o
 
 lib/srec/input/file/emon52.o: lib/srec/input/file/emon52.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/emon52.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/emon52.cc
 	mv emon52.o lib/srec/input/file/emon52.o
 
 lib/srec/input/file/fairchild.o: lib/srec/input/file/fairchild.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/fairchild.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/fairchild.cc
 	mv fairchild.o lib/srec/input/file/fairchild.o
 
 lib/srec/input/file/fastload.o: lib/srec/input/file/fastload.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/fastload.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/fastload.cc
 	mv fastload.o lib/srec/input/file/fastload.o
 
 lib/srec/input/file/formatted_binary.o: \
-		lib/srec/input/file/formatted_binary.cc \
+		lib/srec/input/file/formatted_binary.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h \
 		lib/srec/input/file/formatted_binary.h \
@@ -414,7 +419,7 @@ lib/srec/input/file/formatted_binary.o: \
 	mv formatted_binary.o lib/srec/input/file/formatted_binary.o
 
 lib/srec/input/file/four_packed_code.o: \
-		lib/srec/input/file/four_packed_code.cc \
+		lib/srec/input/file/four_packed_code.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h \
 		lib/srec/input/file/four_packed_code.h \
@@ -423,7 +428,7 @@ lib/srec/input/file/four_packed_code.o: \
 		lib/srec/input/file/four_packed_code.cc 
 	mv four_packed_code.o lib/srec/input/file/four_packed_code.o
 
-lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc \
+lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc lib/endian.h \
 		lib/format_printf.h lib/quit.h lib/quit/exception.h \
 		lib/srec/input.h lib/srec/input/file.h \
 		lib/srec/input/file/aomf.h \
@@ -455,7 +460,7 @@ lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/guess.cc
 	mv guess.o lib/srec/input/file/guess.o
 
-lib/srec/input/file/intel.o: lib/srec/input/file/intel.cc \
+lib/srec/input/file/intel.o: lib/srec/input/file/intel.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/intel.h \
 		lib/srec/record.h 
@@ -463,27 +468,27 @@ lib/srec/input/file/intel.o: lib/srec/input/file/intel.cc \
 	mv intel.o lib/srec/input/file/intel.o
 
 lib/srec/input/file/intel16.o: lib/srec/input/file/intel16.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/intel16.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/intel16.cc
 	mv intel16.o lib/srec/input/file/intel16.o
 
 lib/srec/input/file/mos_tech.o: lib/srec/input/file/mos_tech.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/mos_tech.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/mos_tech.cc
 	mv mos_tech.o lib/srec/input/file/mos_tech.o
 
 lib/srec/input/file/needham.o: lib/srec/input/file/needham.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/needham.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/needham.cc
 	mv needham.o lib/srec/input/file/needham.o
 
-lib/srec/input/file/os65v.o: lib/srec/input/file/os65v.cc \
+lib/srec/input/file/os65v.o: lib/srec/input/file/os65v.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/os65v.h \
 		lib/srec/record.h 
@@ -491,13 +496,13 @@ lib/srec/input/file/os65v.o: lib/srec/input/file/os65v.cc \
 	mv os65v.o lib/srec/input/file/os65v.o
 
 lib/srec/input/file/signetics.o: lib/srec/input/file/signetics.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/signetics.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/signetics.cc
 	mv signetics.o lib/srec/input/file/signetics.o
 
-lib/srec/input/file/spasm.o: lib/srec/input/file/spasm.cc \
+lib/srec/input/file/spasm.o: lib/srec/input/file/spasm.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/spasm.h \
 		lib/srec/record.h 
@@ -505,36 +510,36 @@ lib/srec/input/file/spasm.o: lib/srec/input/file/spasm.cc \
 	mv spasm.o lib/srec/input/file/spasm.o
 
 lib/srec/input/file/spectrum.o: lib/srec/input/file/spectrum.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/spectrum.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/spectrum.cc
 	mv spectrum.o lib/srec/input/file/spectrum.o
 
 lib/srec/input/file/srecord.o: lib/srec/input/file/srecord.cc \
-		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/input/file.h \
-		lib/srec/input/file/srecord.h lib/srec/output.h \
-		lib/srec/record.h 
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/file.h lib/srec/input/file/srecord.h \
+		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/srecord.cc
 	mv srecord.o lib/srec/input/file/srecord.o
 
 lib/srec/input/file/stewie.o: lib/srec/input/file/stewie.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/stewie.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/stewie.cc
 	mv stewie.o lib/srec/input/file/stewie.o
 
 lib/srec/input/file/tektronix.o: lib/srec/input/file/tektronix.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/tektronix.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/tektronix.cc
 	mv tektronix.o lib/srec/input/file/tektronix.o
 
 lib/srec/input/file/tektronix_extended.o: \
-		lib/srec/input/file/tektronix_extended.cc \
+		lib/srec/input/file/tektronix_extended.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h \
 		lib/srec/input/file/tektronix_extended.h \
@@ -544,14 +549,14 @@ lib/srec/input/file/tektronix_extended.o: \
 	mv tektronix_extended.o lib/srec/input/file/tektronix_extended.o
 
 lib/srec/input/file/ti_tagged.o: lib/srec/input/file/ti_tagged.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/ti_tagged.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ti_tagged.cc
 	mv ti_tagged.o lib/srec/input/file/ti_tagged.o
 
 lib/srec/input/file/ti_tagged_16.o: lib/srec/input/file/ti_tagged_16.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h \
 		lib/srec/input/file/ti_tagged_16.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
@@ -559,13 +564,13 @@ lib/srec/input/file/ti_tagged_16.o: lib/srec/input/file/ti_tagged_16.cc \
 	mv ti_tagged_16.o lib/srec/input/file/ti_tagged_16.o
 
 lib/srec/input/file/ti_txt.o: lib/srec/input/file/ti_txt.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/ti_txt.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ti_txt.cc
 	mv ti_txt.o lib/srec/input/file/ti_txt.o
 
-lib/srec/input/file/vmem.o: lib/srec/input/file/vmem.cc \
+lib/srec/input/file/vmem.o: lib/srec/input/file/vmem.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/vmem.h \
 		lib/srec/record.h 
@@ -573,7 +578,7 @@ lib/srec/input/file/vmem.o: lib/srec/input/file/vmem.cc \
 	mv vmem.o lib/srec/input/file/vmem.o
 
 lib/srec/input/file/wilson.o: lib/srec/input/file/wilson.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/input/file/wilson.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/wilson.cc
@@ -584,7 +589,7 @@ lib/srec/input/filter.o: lib/srec/input/filter.cc lib/format_printf.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter.cc
 	mv filter.o lib/srec/input/filter.o
 
-lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc \
+lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/and.h \
 		lib/srec/record.h 
@@ -592,8 +597,9 @@ lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc \
 	mv and.o lib/srec/input/filter/and.o
 
 lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
-		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/input/filter.h \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h \
 		lib/srec/input/filter/byte_swap.h lib/srec/output.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
@@ -601,14 +607,14 @@ lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
 	mv byte_swap.o lib/srec/input/filter/byte_swap.o
 
 lib/srec/input/filter/checksum.o: lib/srec/input/filter/checksum.cc \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/input.h lib/srec/input/filter.h \
 		lib/srec/input/filter/checksum.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/checksum.cc
 	mv checksum.o lib/srec/input/filter/checksum.o
 
 lib/srec/input/filter/checksum/bitnot.o: \
-		lib/srec/input/filter/checksum/bitnot.cc \
+		lib/srec/input/filter/checksum/bitnot.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
 		lib/srec/input/filter.h \
 		lib/srec/input/filter/checksum.h \
@@ -619,7 +625,7 @@ lib/srec/input/filter/checksum/bitnot.o: \
 	mv bitnot.o lib/srec/input/filter/checksum/bitnot.o
 
 lib/srec/input/filter/checksum/negative.o: \
-		lib/srec/input/filter/checksum/negative.cc \
+		lib/srec/input/filter/checksum/negative.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
 		lib/srec/input/filter.h \
 		lib/srec/input/filter/checksum.h \
@@ -630,7 +636,7 @@ lib/srec/input/filter/checksum/negative.o: \
 	mv negative.o lib/srec/input/filter/checksum/negative.o
 
 lib/srec/input/filter/checksum/positive.o: \
-		lib/srec/input/filter/checksum/positive.cc \
+		lib/srec/input/filter/checksum/positive.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
 		lib/srec/input/filter.h \
 		lib/srec/input/filter/checksum.h \
@@ -641,8 +647,8 @@ lib/srec/input/filter/checksum/positive.o: \
 	mv positive.o lib/srec/input/filter/checksum/positive.o
 
 lib/srec/input/filter/crc16.o: lib/srec/input/filter/crc16.cc \
-		lib/arglex.h lib/crc16.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
+		lib/arglex.h lib/crc16.h lib/endian.h \
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/crc16.h \
 		lib/srec/memory.h lib/srec/memory/chunk.h \
 		lib/srec/memory/walker.h lib/srec/memory/walker/crc16.h \
@@ -651,8 +657,8 @@ lib/srec/input/filter/crc16.o: lib/srec/input/filter/crc16.cc \
 	mv crc16.o lib/srec/input/filter/crc16.o
 
 lib/srec/input/filter/crc32.o: lib/srec/input/filter/crc32.cc \
-		lib/arglex.h lib/crc32.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
+		lib/arglex.h lib/crc32.h lib/endian.h \
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/crc32.h \
 		lib/srec/memory.h lib/srec/memory/chunk.h \
 		lib/srec/memory/walker.h lib/srec/memory/walker/crc32.h \
@@ -661,41 +667,57 @@ lib/srec/input/filter/crc32.o: lib/srec/input/filter/crc32.cc \
 	mv crc32.o lib/srec/input/filter/crc32.o
 
 lib/srec/input/filter/crop.o: lib/srec/input/filter/crop.cc \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/crop.h \
-		lib/srec/record.h 
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/input.h lib/srec/input/filter.h \
+		lib/srec/input/filter/crop.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crop.cc
 	mv crop.o lib/srec/input/filter/crop.o
 
 lib/srec/input/filter/fill.o: lib/srec/input/filter/fill.cc \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/fill.h \
-		lib/srec/record.h 
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/input.h lib/srec/input/filter.h \
+		lib/srec/input/filter/fill.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/fill.cc
 	mv fill.o lib/srec/input/filter/fill.o
 
-lib/srec/input/filter/length.o: lib/srec/input/filter/length.cc \
+lib/srec/input/filter/interval.o: lib/srec/input/filter/interval.cc \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/input.h lib/srec/input/filter.h \
+		lib/srec/input/filter/interval.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/interval.cc
+	mv interval.o lib/srec/input/filter/interval.o
+
+lib/srec/input/filter/interval/length.o: \
+		lib/srec/input/filter/interval/length.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/length.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/length.cc
-	mv length.o lib/srec/input/filter/length.o
+		lib/srec/input/filter.h \
+		lib/srec/input/filter/interval.h \
+		lib/srec/input/filter/interval/length.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/interval/length.cc 
+	mv length.o lib/srec/input/filter/interval/length.o
 
-lib/srec/input/filter/maximum.o: lib/srec/input/filter/maximum.cc \
+lib/srec/input/filter/interval/maximum.o: \
+		lib/srec/input/filter/interval/maximum.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/maximum.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/maximum.cc
-	mv maximum.o lib/srec/input/filter/maximum.o
+		lib/srec/input/filter.h \
+		lib/srec/input/filter/interval.h \
+		lib/srec/input/filter/interval/maximum.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/interval/maximum.cc 
+	mv maximum.o lib/srec/input/filter/interval/maximum.o
 
-lib/srec/input/filter/minimum.o: lib/srec/input/filter/minimum.cc \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/minimum.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/minimum.cc
-	mv minimum.o lib/srec/input/filter/minimum.o
+lib/srec/input/filter/interval/minimum.o: \
+		lib/srec/input/filter/interval/minimum.cc lib/endian.h \
+		lib/format_printf.h lib/interval.h lib/srec/input.h \
+		lib/srec/input/filter.h \
+		lib/srec/input/filter/interval.h \
+		lib/srec/input/filter/interval/minimum.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/interval/minimum.cc 
+	mv minimum.o lib/srec/input/filter/interval/minimum.o
 
-lib/srec/input/filter/not.o: lib/srec/input/filter/not.cc \
+lib/srec/input/filter/not.o: lib/srec/input/filter/not.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/not.h \
 		lib/srec/record.h 
@@ -703,13 +725,13 @@ lib/srec/input/filter/not.o: lib/srec/input/filter/not.cc \
 	mv not.o lib/srec/input/filter/not.o
 
 lib/srec/input/filter/offset.o: lib/srec/input/filter/offset.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/offset.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/offset.cc
 	mv offset.o lib/srec/input/filter/offset.o
 
-lib/srec/input/filter/or.o: lib/srec/input/filter/or.cc \
+lib/srec/input/filter/or.o: lib/srec/input/filter/or.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/or.h \
 		lib/srec/record.h 
@@ -717,7 +739,7 @@ lib/srec/input/filter/or.o: lib/srec/input/filter/or.cc \
 	mv or.o lib/srec/input/filter/or.o
 
 lib/srec/input/filter/random_fill.o: \
-		lib/srec/input/filter/random_fill.cc \
+		lib/srec/input/filter/random_fill.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/r250.h \
 		lib/srec/input.h lib/srec/input/filter.h \
 		lib/srec/input/filter/random_fill.h lib/srec/record.h 
@@ -726,34 +748,34 @@ lib/srec/input/filter/random_fill.o: \
 	mv random_fill.o lib/srec/input/filter/random_fill.o
 
 lib/srec/input/filter/sequence.o: lib/srec/input/filter/sequence.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h \
 		lib/srec/input/filter/sequence.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/sequence.cc
 	mv sequence.o lib/srec/input/filter/sequence.o
 
 lib/srec/input/filter/split.o: lib/srec/input/filter/split.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/split.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/split.cc
 	mv split.o lib/srec/input/filter/split.o
 
 lib/srec/input/filter/unfill.o: lib/srec/input/filter/unfill.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/unfill.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/unfill.cc
 	mv unfill.o lib/srec/input/filter/unfill.o
 
 lib/srec/input/filter/unsplit.o: lib/srec/input/filter/unsplit.cc \
-		lib/format_printf.h lib/srec/input.h \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/unsplit.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/unsplit.cc
 	mv unsplit.o lib/srec/input/filter/unsplit.o
 
-lib/srec/input/filter/xor.o: lib/srec/input/filter/xor.cc \
+lib/srec/input/filter/xor.o: lib/srec/input/filter/xor.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
 		lib/srec/input/filter.h lib/srec/input/filter/xor.h \
 		lib/srec/record.h 
@@ -761,8 +783,9 @@ lib/srec/input/filter/xor.o: lib/srec/input/filter/xor.cc \
 	mv xor.o lib/srec/input/filter/xor.o
 
 lib/srec/input/generator.o: lib/srec/input/generator.cc lib/arglex.h \
-		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/input/generator.h \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/generator.h \
 		lib/srec/input/generator/constant.h \
 		lib/srec/input/generator/random.h \
 		lib/srec/input/generator/repeat.h lib/srec/output.h \
@@ -795,13 +818,13 @@ lib/srec/input/generator/repeat.o: lib/srec/input/generator/repeat.cc \
 		lib/srec/input/generator/repeat.cc 
 	mv repeat.o lib/srec/input/generator/repeat.o
 
-lib/srec/input/interval.o: lib/srec/input/interval.cc \
+lib/srec/input/interval.o: lib/srec/input/interval.cc lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
 		lib/srec/input/interval.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/interval.cc
 	mv interval.o lib/srec/input/interval.o
 
-lib/srec/memory.o: lib/srec/memory.cc lib/format_printf.h \
+lib/srec/memory.o: lib/srec/memory.cc lib/endian.h lib/format_printf.h \
 		lib/interval.h lib/srec/input.h lib/srec/memory.h \
 		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
 		lib/srec/memory/walker/compare.h \
@@ -855,8 +878,8 @@ lib/srec/memory/walker/writer.o: lib/srec/memory/walker/writer.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/writer.cc
 	mv writer.o lib/srec/memory/walker/writer.o
 
-lib/srec/output.o: lib/srec/output.cc lib/format_printf.h lib/quit.h \
-		lib/srec/output.h lib/srec/record.h 
+lib/srec/output.o: lib/srec/output.cc lib/endian.h lib/format_printf.h \
+		lib/quit.h lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output.cc
 	mv output.o lib/srec/output.o
 
@@ -865,7 +888,7 @@ lib/srec/output/file.o: lib/srec/output/file.cc lib/format_printf.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file.cc
 	mv file.o lib/srec/output/file.o
 
-lib/srec/output/file/aomf.o: lib/srec/output/file/aomf.cc \
+lib/srec/output/file/aomf.o: lib/srec/output/file/aomf.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/aomf.h \
 		lib/srec/record.h 
@@ -873,22 +896,22 @@ lib/srec/output/file/aomf.o: lib/srec/output/file/aomf.cc \
 	mv aomf.o lib/srec/output/file/aomf.o
 
 lib/srec/output/file/ascii_hex.o: lib/srec/output/file/ascii_hex.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/ascii_hex.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ascii_hex.cc
 	mv ascii_hex.o lib/srec/output/file/ascii_hex.o
 
 lib/srec/output/file/asm.o: lib/srec/output/file/asm.cc lib/arglex.h \
-		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/asm.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/asm.cc
 	mv asm.o lib/srec/output/file/asm.o
 
 lib/srec/output/file/atmel_generic.o: \
-		lib/srec/output/file/atmel_generic.cc \
+		lib/srec/output/file/atmel_generic.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h \
 		lib/srec/output/file/atmel_generic.h lib/srec/record.h 
@@ -897,43 +920,43 @@ lib/srec/output/file/atmel_generic.o: \
 	mv atmel_generic.o lib/srec/output/file/atmel_generic.o
 
 lib/srec/output/file/basic.o: lib/srec/output/file/basic.cc \
-		lib/format_printf.h lib/interval.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/basic.h \
-		lib/srec/record.h 
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/output.h lib/srec/output/file.h \
+		lib/srec/output/file/basic.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/basic.cc
 	mv basic.o lib/srec/output/file/basic.o
 
 lib/srec/output/file/binary.o: lib/srec/output/file/binary.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/binary.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/binary.cc
 	mv binary.o lib/srec/output/file/binary.o
 
 lib/srec/output/file/brecord.o: lib/srec/output/file/brecord.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/brecord.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/brecord.cc
 	mv brecord.o lib/srec/output/file/brecord.o
 
 lib/srec/output/file/c.o: lib/srec/output/file/c.cc lib/arglex.h \
-		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/c.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/c.cc
 	mv c.o lib/srec/output/file/c.o
 
 lib/srec/output/file/cosmac.o: lib/srec/output/file/cosmac.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/cosmac.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/cosmac.cc
 	mv cosmac.o lib/srec/output/file/cosmac.o
 
 lib/srec/output/file/dec_binary.o: lib/srec/output/file/dec_binary.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h \
 		lib/srec/output/file/dec_binary.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
@@ -941,28 +964,28 @@ lib/srec/output/file/dec_binary.o: lib/srec/output/file/dec_binary.cc \
 	mv dec_binary.o lib/srec/output/file/dec_binary.o
 
 lib/srec/output/file/emon52.o: lib/srec/output/file/emon52.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/emon52.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/emon52.cc
 	mv emon52.o lib/srec/output/file/emon52.o
 
 lib/srec/output/file/fairchild.o: lib/srec/output/file/fairchild.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/fairchild.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/fairchild.cc
 	mv fairchild.o lib/srec/output/file/fairchild.o
 
 lib/srec/output/file/fastload.o: lib/srec/output/file/fastload.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/fastload.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/fastload.cc
 	mv fastload.o lib/srec/output/file/fastload.o
 
 lib/srec/output/file/formatted_binary.o: \
-		lib/srec/output/file/formatted_binary.cc \
+		lib/srec/output/file/formatted_binary.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h \
 		lib/srec/output/file/formatted_binary.h \
@@ -972,7 +995,7 @@ lib/srec/output/file/formatted_binary.o: \
 	mv formatted_binary.o lib/srec/output/file/formatted_binary.o
 
 lib/srec/output/file/four_packed_code.o: \
-		lib/srec/output/file/four_packed_code.cc \
+		lib/srec/output/file/four_packed_code.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h \
 		lib/srec/output/file/four_packed_code.h \
@@ -982,92 +1005,92 @@ lib/srec/output/file/four_packed_code.o: \
 	mv four_packed_code.o lib/srec/output/file/four_packed_code.o
 
 lib/srec/output/file/hexdump.o: lib/srec/output/file/hexdump.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/hexdump.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/hexdump.cc
 	mv hexdump.o lib/srec/output/file/hexdump.o
 
 lib/srec/output/file/intel.o: lib/srec/output/file/intel.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/intel.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel.cc
 	mv intel.o lib/srec/output/file/intel.o
 
 lib/srec/output/file/intel16.o: lib/srec/output/file/intel16.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/intel16.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel16.cc
 	mv intel16.o lib/srec/output/file/intel16.o
 
 lib/srec/output/file/mos_tech.o: lib/srec/output/file/mos_tech.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/mos_tech.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/mos_tech.cc
 	mv mos_tech.o lib/srec/output/file/mos_tech.o
 
 lib/srec/output/file/needham.o: lib/srec/output/file/needham.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/needham.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/needham.cc
 	mv needham.o lib/srec/output/file/needham.o
 
 lib/srec/output/file/os65v.o: lib/srec/output/file/os65v.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/os65v.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/os65v.cc
 	mv os65v.o lib/srec/output/file/os65v.o
 
 lib/srec/output/file/signetics.o: lib/srec/output/file/signetics.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/signetics.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/signetics.cc
 	mv signetics.o lib/srec/output/file/signetics.o
 
 lib/srec/output/file/spasm.o: lib/srec/output/file/spasm.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/spasm.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/spasm.cc
 	mv spasm.o lib/srec/output/file/spasm.o
 
 lib/srec/output/file/spectrum.o: lib/srec/output/file/spectrum.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/spectrum.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/spectrum.cc
 	mv spectrum.o lib/srec/output/file/spectrum.o
 
 lib/srec/output/file/srecord.o: lib/srec/output/file/srecord.cc \
-		lib/arglex.h lib/format_printf.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/output.h \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/srecord.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/srecord.cc
 	mv srecord.o lib/srec/output/file/srecord.o
 
 lib/srec/output/file/stewie.o: lib/srec/output/file/stewie.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/stewie.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/stewie.cc
 	mv stewie.o lib/srec/output/file/stewie.o
 
 lib/srec/output/file/tektronix.o: lib/srec/output/file/tektronix.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/tektronix.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/tektronix.cc
 	mv tektronix.o lib/srec/output/file/tektronix.o
 
 lib/srec/output/file/tektronix_extended.o: \
-		lib/srec/output/file/tektronix_extended.cc \
+		lib/srec/output/file/tektronix_extended.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h \
 		lib/srec/output/file/tektronix_extended.h \
@@ -1077,14 +1100,14 @@ lib/srec/output/file/tektronix_extended.o: \
 	mv tektronix_extended.o lib/srec/output/file/tektronix_extended.o
 
 lib/srec/output/file/ti_tagged.o: lib/srec/output/file/ti_tagged.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/ti_tagged.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ti_tagged.cc
 	mv ti_tagged.o lib/srec/output/file/ti_tagged.o
 
 lib/srec/output/file/ti_tagged_16.o: \
-		lib/srec/output/file/ti_tagged_16.cc \
+		lib/srec/output/file/ti_tagged_16.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h \
 		lib/srec/output/file/ti_tagged_16.h lib/srec/record.h 
@@ -1093,35 +1116,36 @@ lib/srec/output/file/ti_tagged_16.o: \
 	mv ti_tagged_16.o lib/srec/output/file/ti_tagged_16.o
 
 lib/srec/output/file/ti_txt.o: lib/srec/output/file/ti_txt.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/ti_txt.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ti_txt.cc
 	mv ti_txt.o lib/srec/output/file/ti_txt.o
 
 lib/srec/output/file/vhdl.o: lib/srec/output/file/vhdl.cc lib/arglex.h \
-		lib/format_printf.h lib/interval.h lib/progname.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/vhdl.h \
-		lib/srec/record.h 
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/progname.h lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/output.h lib/srec/output/file.h \
+		lib/srec/output/file/vhdl.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vhdl.cc
 	mv vhdl.o lib/srec/output/file/vhdl.o
 
 lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc lib/arglex.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/vmem.h lib/srec/record.h 
+		lib/endian.h lib/format_printf.h lib/srec/arglex.h \
+		lib/srec/input.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/vmem.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
 	mv vmem.o lib/srec/output/file/vmem.o
 
 lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc \
-		lib/format_printf.h lib/srec/output.h \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/wilson.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/wilson.cc
 	mv wilson.o lib/srec/output/file/wilson.o
 
-lib/srec/record.o: lib/srec/record.cc lib/srec/record.h
+lib/srec/record.o: lib/srec/record.cc lib/endian.h lib/srec/record.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/record.cc
 	mv record.o lib/srec/record.o
 
@@ -1129,7 +1153,7 @@ lib/versn_stamp.o: lib/versn_stamp.cc lib/patchlevel.h lib/versn_stamp.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/versn_stamp.cc
 	mv versn_stamp.o lib/versn_stamp.o
 
-lib/vsnprintf.o: lib/vsnprintf.cc 
+lib/vsnprintf.o: lib/vsnprintf.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/vsnprintf.cc
 	mv vsnprintf.o lib/vsnprintf.o
 
@@ -1346,19 +1370,18 @@ bin/test_prelude: script/test_prelude .bin
 	cp script/test_prelude $@
 	chmod a+rx $@
 
-\
-		$(RPM_BUILD_ROOT)$(bindir)/$(PROGRAM_PREFIX)test_prelude$(PROGRAM_SUFFIX): \
+$(bindir)/$(PROGRAM_PREFIX)test_prelude$(PROGRAM_SUFFIX): \
 		bin/test_prelude .bindir 
 	$(INSTALL_SCRIPT) bin/test_prelude $@
 
-srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h \
+srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h lib/endian.h \
 		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/output.h srec_cat/arglex3.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/arglex3.cc
 	mv arglex3.o srec_cat/arglex3.o
 
-srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
+srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/endian.h \
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/memory.h \
 		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
 		lib/srec/memory/walker/writer.h lib/srec/output.h \
@@ -1366,19 +1389,14 @@ srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/format_printf.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/main.cc
 	mv main.o srec_cat/main.o
 
-srec_cmp/main.o: srec_cmp/main.cc lib/arglex.h lib/format_printf.h \
+srec_cmp/main.o: srec_cmp/main.cc lib/arglex.h lib/endian.h \
 		lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
 		lib/srec/output.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cmp/main.cc
 	mv main.o srec_cmp/main.o
 
-srec_info/main.o: srec_info/main.cc lib/arglex.h lib/format_printf.h \
-		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/output.h lib/srec/record.h 
+srec_info/main.o: srec_info/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_info/main.cc
 	mv main.o srec_info/main.o
 
@@ -1775,14 +1793,16 @@ t0159a: test/01/t0159a.sh all
 t0160a: test/01/t0160a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0160a.sh
 
-test_crc16/main.o: test_crc16/main.cc lib/crc16.h lib/format_printf.h \
-		lib/progname.h lib/quit.h 
+t0161a: test/01/t0161a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0161a.sh
+
+test_crc16/main.o: test_crc16/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
 	mv main.o test_crc16/main.o
 
-lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
-		lib/interval/flatten.o lib/progname.o lib/quit.o \
-		lib/quit/exception.o lib/quit/normal.o \
+lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
+		lib/interval.o lib/interval/flatten.o lib/progname.o \
+		lib/quit.o lib/quit/exception.o lib/quit/normal.o \
 		lib/quit/prefix.o lib/r250.o lib/srec/arglex.o \
 		lib/srec/arglex/get_interval.o \
 		lib/srec/arglex/get_number.o \
@@ -1826,9 +1846,10 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
 		lib/srec/input/filter/crc32.o \
 		lib/srec/input/filter/crop.o \
 		lib/srec/input/filter/fill.o \
-		lib/srec/input/filter/length.o \
-		lib/srec/input/filter/maximum.o \
-		lib/srec/input/filter/minimum.o \
+		lib/srec/input/filter/interval.o \
+		lib/srec/input/filter/interval/length.o \
+		lib/srec/input/filter/interval/maximum.o \
+		lib/srec/input/filter/interval/minimum.o \
 		lib/srec/input/filter/not.o \
 		lib/srec/input/filter/offset.o \
 		lib/srec/input/filter/or.o \
@@ -1882,39 +1903,43 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/interval.o \
 		lib/srec/output/file/wilson.o lib/srec/record.o \
 		lib/versn_stamp.o lib/vsnprintf.o 
 
-lib/lib.a: $(lib_obj)
+lib/libsrecord.a: $(lib_obj)
 	rm -f $@
 	$(AR) qc $@ $(lib_obj)
 	$(RANLIB) $@
 
 srec_cat_obj = srec_cat/arglex3.o srec_cat/main.o
 
-bin/srec_cat: $(srec_cat_obj) .bin lib/lib.a
-	$(CXX) $(LDFLAGS) -o $@ $(srec_cat_obj) lib/lib.a $(LIBS)
+bin/srec_cat: $(srec_cat_obj) .bin lib/libsrecord.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_cat_obj) \
+		lib/libsrecord.a $(LIBS) 
 
 $(bindir)/srec_cat: bin/srec_cat .bindir
 	$(INSTALL_PROGRAM) bin/srec_cat $@
 
 srec_cmp_obj = srec_cmp/main.o
 
-bin/srec_cmp: $(srec_cmp_obj) .bin lib/lib.a
-	$(CXX) $(LDFLAGS) -o $@ $(srec_cmp_obj) lib/lib.a $(LIBS)
+bin/srec_cmp: $(srec_cmp_obj) .bin lib/libsrecord.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_cmp_obj) \
+		lib/libsrecord.a $(LIBS) 
 
 $(bindir)/srec_cmp: bin/srec_cmp .bindir
 	$(INSTALL_PROGRAM) bin/srec_cmp $@
 
 srec_info_obj = srec_info/main.o
 
-bin/srec_info: $(srec_info_obj) .bin lib/lib.a
-	$(CXX) $(LDFLAGS) -o $@ $(srec_info_obj) lib/lib.a $(LIBS)
+bin/srec_info: $(srec_info_obj) .bin lib/libsrecord.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_info_obj) \
+		lib/libsrecord.a $(LIBS) 
 
 $(bindir)/srec_info: bin/srec_info .bindir
 	$(INSTALL_PROGRAM) bin/srec_info $@
 
 test_crc16_obj = test_crc16/main.o
 
-bin/test_crc16: $(test_crc16_obj) .bin lib/lib.a
-	$(CXX) $(LDFLAGS) -o $@ $(test_crc16_obj) lib/lib.a $(LIBS)
+bin/test_crc16: $(test_crc16_obj) .bin lib/libsrecord.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(test_crc16_obj) \
+		lib/libsrecord.a $(LIBS) 
 
 $(bindir)/test_crc16: bin/test_crc16 .bindir
 	$(INSTALL_PROGRAM) bin/test_crc16 $@
@@ -1952,7 +1977,7 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0122a t0123a t0125a t0126a t0127a t0128a t0129a t0130a \
 		t0131a t0132a t0133a t0135a t0136a t0137a t0138a t0139a \
 		t0150a t0151a t0152a t0153a t0155a t0156a t0157a t0158a \
-		t0159a t0160a 
+		t0159a t0160a t0161a 
 	@echo Passed All Tests
 
 clean-obj:
@@ -1963,9 +1988,10 @@ clean-obj:
 	rm -f lib/arglex.o
 	rm -f lib/crc16.o
 	rm -f lib/crc32.o
+	rm -f lib/endian.o
 	rm -f lib/interval.o
 	rm -f lib/interval/flatten.o
-	rm -f lib/lib.a
+	rm -f lib/libsrecord.a
 	rm -f lib/progname.o
 	rm -f lib/quit.o
 	rm -f lib/quit/exception.o
@@ -2021,9 +2047,10 @@ clean-obj:
 	rm -f lib/srec/input/filter/crc32.o
 	rm -f lib/srec/input/filter/crop.o
 	rm -f lib/srec/input/filter/fill.o
-	rm -f lib/srec/input/filter/length.o
-	rm -f lib/srec/input/filter/maximum.o
-	rm -f lib/srec/input/filter/minimum.o
+	rm -f lib/srec/input/filter/interval.o
+	rm -f lib/srec/input/filter/interval/length.o
+	rm -f lib/srec/input/filter/interval/maximum.o
+	rm -f lib/srec/input/filter/interval/minimum.o
 	rm -f lib/srec/input/filter/not.o
 	rm -f lib/srec/input/filter/offset.o
 	rm -f lib/srec/input/filter/or.o

@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.40.README   # Description, from the tar file
-           File:   srecord-1.40.lsm      # Description, LSM format
-           File:   srecord-1.40.spec     # RedHat package specification
-           File:   srecord-1.40.tar.gz   # the complete source
-           File:   srecord-1.40.pdf      # Reference Manual
+           File:   srecord-1.41.README   # Description, from the tar file
+           File:   srecord-1.41.lsm      # Description, LSM format
+           File:   srecord-1.41.spec     # RedHat package specification
+           File:   srecord-1.41.tar.gz   # the complete source
+           File:   srecord-1.41.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.40
+       srecord version 1.41
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,25 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.41 (2008-May-12)
+       * False negative being reported by tests on Cygwin have been fixed.
+
+       * There are six new filters (-be-exclusive-length, -le-exclusive-
+       length, -be-exclusive-maximum, -le-exclusive-maximum, -be-exclusive-
+       minimum and -le-exclusive-minimum) which are very similar to their non-
+       exclusive equivalents, except that they do not include the adress range
+       covered by their output in their output.
+
+       * A bug has been fixed in the C word-array output.  It was getting
+       offsets and lengths wrong in some cases.
+
+       * A bug has been fixed in the generated C array header file, it no
+       longer omits the section descriptor arrays.
+
+       * A problem with building RPM packages with the names of the
+       executables in the .spec file has been fixed, and the BuildRequires has
+       been updated.
 
    Version 1.40 (2008-Mar-13)
        * An RPM build problem has been fixed.

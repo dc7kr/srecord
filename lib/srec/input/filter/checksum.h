@@ -21,6 +21,7 @@
 #define INCLUDE_SREC_INPUT_FILTER_CHECKSUM_H
 
 
+#include <lib/endian.h>
 #include <lib/interval.h>
 #include <lib/srec/input/filter.h>
 #include <lib/srec/record.h>
@@ -38,10 +39,10 @@ public:
       */
     virtual ~srec_input_filter_checksum();
 
-    // See bas class for documentation.
-    virtual int read(srec_record &);
-
 protected:
+    // See bas class for documentation.
+    bool read(srec_record &record);
+
     /**
       * The constructor.
       * May only be called by derived classes.
@@ -52,8 +53,8 @@ protected:
       *     The address to place the checksum.
       * @param length
       *     The number of bytes of checksum to be placed into the result.
-      * @param order
-      *     The byte order: false => bigendian, true => little endian.
+      * @param end
+      *     The byte order
       * @param width
       *     The width of the values being summed.  Usually 1 byte, but
       *     wider combinations are possible.  If you use something
@@ -61,7 +62,7 @@ protected:
       *     that width, no provision for an offset is provided.
       */
     srec_input_filter_checksum(srec_input::pointer deeper, int address,
-        int length, int order, int width = 1);
+        int length, endian_t end, int width = 1);
 
     typedef unsigned long sum_t;
 
@@ -78,11 +79,10 @@ protected:
     int length;
 
     /**
-      * The checksum_order instance variable is used to remember whether
-      * the summation for the checksum is bigendian (false) or little
-      * endian (true).
+      * The end instance variable is used to remember whether the
+      * summation for the checksum is bigendian or little endian.
       */
-    int checksum_order;
+    endian_t end;
 
     /**
       * The sum instance variable is used to remember the running
@@ -106,8 +106,13 @@ protected:
       * The generate method is used to generate the final data record,
       * once all of the deeper input has been passed through, based on
       * the calculated checksum.
+      *
+      * @param record
+      *     Where to place the returned data.
+      * @returns
+      *     bool; false if end-of-file, true if data available
       */
-    int generate(srec_record &);
+    bool generate(srec_record &record);
 
 private:
     /**

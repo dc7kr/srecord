@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.40
+Version: 1.41
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -13,7 +13,7 @@ Source: http://srecord.sourceforge.net/%{name}-%{version}.tar.gz
 URL: http://srecord.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  diffutils, sharutils, groff
+BuildRequires:  diffutils, sharutils, groff, gcc-c++, boost-devel
 
 %description
 The SRecord package is a collection of powerful tools for manipulating
@@ -64,10 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr (-,root,root,-)
 %doc LICENSE BUILDING README
-%{_bindir}/srec_cat/main.cc
-%{_bindir}/srec_cmp/main.cc
-%{_bindir}/srec_info/main.cc
-%{_bindir}/test_crc16/main.cc
+%{_bindir}/srec_cat
+%{_bindir}/srec_cmp
+%{_bindir}/srec_info
 %{_mandir}/man1/srec_cat.1*
 %{_mandir}/man1/srec_cmp.1*
 %{_mandir}/man1/srec_examples.1*
