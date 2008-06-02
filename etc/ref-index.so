@@ -349,7 +349,7 @@ file format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
-srec mos tech - MOS Technologies
+srec mos tech - MOS Technology
 T}	T{
 .ad l
 file format
@@ -580,7 +580,7 @@ format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
-srec mos tech - MOS Technologies file
+srec mos tech - MOS Technology file
 T}	T{
 .ad l
 format
@@ -982,14 +982,14 @@ srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 srec
 T}	T{
 .ad l
-mos tech - MOS Technologies file format
+mos tech - MOS Technology file format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
 srec mos tech -
 T}	T{
 .ad l
-MOS Technologies file format
+MOS Technology file format
 T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
@@ -1276,7 +1276,7 @@ srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 
 T}	T{
 .ad l
-srec mos tech - MOS Technologies file format
+srec mos tech - MOS Technology file format
 T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
@@ -1472,14 +1472,14 @@ srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 srec mos
 T}	T{
 .ad l
-tech - MOS Technologies file format
+tech - MOS Technology file format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
 srec mos tech - MOS
 T}	T{
 .ad l
-Technologies file format
+Technology file format
 T}
 srec_tektronix_extended(5)	\*[Page*Of*srec_tektronix_extended(5)]	T{
 .ad r

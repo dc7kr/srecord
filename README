@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.41.README   # Description, from the tar file
-           File:   srecord-1.41.lsm      # Description, LSM format
-           File:   srecord-1.41.spec     # RedHat package specification
-           File:   srecord-1.41.tar.gz   # the complete source
-           File:   srecord-1.41.pdf      # Reference Manual
+           File:   srecord-1.42.README   # Description, from the tar file
+           File:   srecord-1.42.lsm      # Description, LSM format
+           File:   srecord-1.42.spec     # RedHat package specification
+           File:   srecord-1.42.tar.gz   # the complete source
+           File:   srecord-1.42.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.41
+       srecord version 1.42
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,14 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.42 (2008-Jun-01)
+       * The MOS Technology format was not reading and writing end records
+       correctly, this has been fixed.  The name of the company has been
+       corrected.
+
+       * Some examples of how to insert constant or scripted data into your
+       EPROM load files have been added to the srec_examples(1) man page.
 
    Version 1.41 (2008-May-12)
        * False negative being reported by tests on Cygwin have been fixed.
