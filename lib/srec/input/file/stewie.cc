@@ -26,7 +26,7 @@ srec_input_file_stewie::~srec_input_file_stewie()
 }
 
 
-srec_input_file_stewie::srec_input_file_stewie(const string &a_file_name) :
+srec_input_file_stewie::srec_input_file_stewie(const std::string &a_file_name) :
     srec_input_file(a_file_name),
     data_count(0),
     garbage_warning(false),
@@ -38,7 +38,7 @@ srec_input_file_stewie::srec_input_file_stewie(const string &a_file_name) :
 
 
 srec_input::pointer
-srec_input_file_stewie::create(const string &a_file_name)
+srec_input_file_stewie::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_stewie(a_file_name));
 }
@@ -82,7 +82,8 @@ srec_input_file_stewie::read_inner(srec_record &record)
     case 7:
     case 8:
     case 9:
-        record = srec_record(srec_record::type_start_address, 0, 0, 0);
+        record =
+            srec_record(srec_record::type_execution_start_address, 0, 0, 0);
         return 1;
     }
     checksum_reset();
@@ -184,7 +185,7 @@ srec_input_file_stewie::read(srec_record &record)
                 warning("file contains no data");
             if (!termination_seen)
             {
-                warning("no start_address record");
+                warning("no execution start address record");
                 termination_seen = true;
             }
             return false;
@@ -240,7 +241,7 @@ srec_input_file_stewie::read(srec_record &record)
             }
             continue;
 
-        case srec_record::type_start_address:
+        case srec_record::type_execution_start_address:
             if (record.get_length() > 0)
             {
                 warning("data in termination record ignored");

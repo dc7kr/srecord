@@ -17,17 +17,20 @@
 //      <http://www.gnu.org/licenses/>.
 //
 
-
-#include <errno.h>
+#include <cerrno>
 #include <iostream>
-using namespace std;
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#include <lib/arglex.h>
+#include <lib/sizeof.h>
 #include <lib/srec/output/file.h>
 
 
-bool srec_output_file::data_only_flag = false;
+bool srec_output_file::enable_header_flag = true;
+bool srec_output_file::enable_data_count_flag = true;
+bool srec_output_file::enable_goto_addr_flag = true;
+bool srec_output_file::enable_footer_flag = true;
 bool srec_output_file::crlf_flag = false;
 
 
@@ -52,7 +55,7 @@ srec_output_file::mode()
 }
 
 
-srec_output_file::srec_output_file(const string &a_file_name) :
+srec_output_file::srec_output_file(const std::string &a_file_name) :
     file_name(a_file_name),
     line_number(1),
     vfp(0),
@@ -106,7 +109,7 @@ srec_output_file::~srec_output_file()
 }
 
 
-const string
+const std::string
 srec_output_file::filename()
     const
 {
@@ -256,7 +259,7 @@ srec_output_file::put_string(const char *s)
 
 
 void
-srec_output_file::put_string(const string &s)
+srec_output_file::put_string(const std::string &s)
 {
     const char *cp = s.c_str();
     const char *ep = cp + s.size();
@@ -278,9 +281,59 @@ srec_output_file::put_stringf(const char *fmt, ...)
 
 
 void
-srec_output_file::data_only()
+srec_output_file::enable_header(bool yesno)
 {
-    data_only_flag = true;
+    enable_header_flag = yesno;
+}
+
+
+void
+srec_output_file::enable_data_count(bool yesno)
+{
+    enable_data_count_flag = yesno;
+}
+
+
+void
+srec_output_file::enable_goto_addr(bool yesno)
+{
+    enable_goto_addr_flag = yesno;
+}
+
+
+void
+srec_output_file::enable_footer(bool yesno)
+{
+    enable_footer_flag = yesno;
+}
+
+
+bool
+srec_output_file::enable_by_name(const std::string &name, bool yesno)
+{
+    struct table_t
+    {
+        const char *name;
+        void (*func)(bool);
+    };
+
+    static const table_t table[] =
+    {
+        { "Header", &srec_output_file::enable_header },
+        { "Data_Count", &srec_output_file::enable_data_count },
+        { "Execution_Start_Address", &srec_output_file::enable_goto_addr },
+        { "Footer", &srec_output_file::enable_footer },
+    };
+
+    for (const table_t *tp = table; tp < ENDOF(table); ++tp)
+    {
+        if (arglex::compare(tp->name, name.c_str()))
+        {
+            tp->func(yesno);
+            return true;
+        }
+    }
+    return false;
 }
 
 

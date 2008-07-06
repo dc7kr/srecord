@@ -23,6 +23,18 @@
 
 srec_output_file_fastload::~srec_output_file_fastload()
 {
+    if (bytes_since_checksum)
+    {
+        put_command('C', checksum_get16(), 3);
+        bytes_since_checksum = 0;
+    }
+    if (enable_footer_flag)
+        put_command('E', 0, 2);
+    if (column)
+    {
+        put_char('\n');
+        column = 0;
+    }
 }
 
 
@@ -168,22 +180,20 @@ srec_output_file_fastload::write(const srec_record &record)
         // ignore
         break;
 
-    case srec_record::type_start_address:
-        if (data_only_flag)
-            break;
-        if (bytes_since_checksum)
+    case srec_record::type_execution_start_address:
+        if (enable_goto_addr_flag)
         {
-            put_command('C', checksum_get16(), 3);
-            bytes_since_checksum = 0;
+            if (bytes_since_checksum)
+            {
+                put_command('C', checksum_get16(), 3);
+                bytes_since_checksum = 0;
+            }
+            if (address != record.get_address())
+            {
+                address = record.get_address();
+                put_command('A', address, 3);
+            }
         }
-        if (address != record.get_address())
-        {
-            address = record.get_address();
-            put_command('A', address, 3);
-        }
-        put_command('E', 0, 2);
-        put_char('\n');
-        column = 0;
         break;
 
     case srec_record::type_unknown:

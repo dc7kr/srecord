@@ -175,7 +175,7 @@ srec_output_file_asm::~srec_output_file_asm()
     }
 
 
-    if (!data_only_flag)
+    if (enable_footer_flag)
     {
         put_stringf("; upper bound = 0x%4.4lX\n", range.get_highest());
         put_stringf("; lower bound = 0x%4.4lX\n", range.get_lowest());
@@ -193,7 +193,7 @@ srec_output_file_asm::~srec_output_file_asm()
 }
 
 
-srec_output_file_asm::srec_output_file_asm(const string &filename) :
+srec_output_file_asm::srec_output_file_asm(const std::string &filename) :
     srec_output_file(filename),
     prefix("eprom"),
     taddr(0),
@@ -478,16 +478,16 @@ srec_output_file_asm::write(const srec_record & record)
         }
         break;
 
-    case srec_record::type_start_address:
+    case srec_record::type_execution_start_address:
         taddr = record.get_address();
-        if (!data_only_flag)
+        if (enable_goto_addr_flag)
         {
             if (column)
             {
                 put_char('\n');
                 column = 0;
             }
-            put_stringf("; start addr =  0x%4.4lX\n", taddr);
+            put_stringf("; execution start address = 0x%4.4lX\n", taddr);
         }
         break;
     }

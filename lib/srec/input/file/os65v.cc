@@ -26,7 +26,7 @@ srec_input_file_os65v::~srec_input_file_os65v()
 }
 
 
-srec_input_file_os65v::srec_input_file_os65v(const string &a_file_name) :
+srec_input_file_os65v::srec_input_file_os65v(const std::string &a_file_name) :
     srec_input_file(a_file_name),
     seen_some_input(false),
     address(0),
@@ -37,7 +37,7 @@ srec_input_file_os65v::srec_input_file_os65v(const string &a_file_name) :
 
 
 srec_input::pointer
-srec_input_file_os65v::create(const string &a_file_name)
+srec_input_file_os65v::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_os65v(a_file_name));
 }
@@ -120,7 +120,7 @@ srec_input_file_os65v::read_inner(srec_record &record)
             record =
                 srec_record
                 (
-                    srec_record::type_start_address,
+                    srec_record::type_execution_start_address,
                     address,
                     0,
                     0
@@ -129,6 +129,13 @@ srec_input_file_os65v::read_inner(srec_record &record)
             return 1;
 
         case '\r':
+            if (state == '/')
+                ++address;
+            if (peek_char() == '\n')
+                get_char();
+            continue;
+
+        case '\n':
             if (state == '/')
                 ++address;
             continue;

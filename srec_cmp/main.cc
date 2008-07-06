@@ -23,13 +23,12 @@
 #include <lib/srec/record.h>
 
 #include <iostream>
-using namespace std;
 #include <cstdlib>
 #include <vector>
 
 
 static bool
-start_addresses_differ(srec_record *rp1, srec_record *rp2)
+execution_start_addresses_differ(srec_record *rp1, srec_record *rp2)
 {
     return (rp1 && rp2 && rp1->get_address() != rp2->get_address());
 }
@@ -62,7 +61,8 @@ main(int argc, char **argv)
                 if2 = cmdline.get_input();
             else
             {
-                cerr << argv[0] << ": too many input files specified" << endl;
+                std::cerr << argv[0] << ": too many input files specified"
+                    << std::endl;
                 cmdline.usage();
             }
             continue;
@@ -75,7 +75,7 @@ main(int argc, char **argv)
     }
     if (!if1 || !if2)
     {
-        cerr << argv[0] << ": two input files required" << endl;
+        std::cerr << argv[0] << ": two input files required" << std::endl;
         cmdline.usage();
     }
 
@@ -99,23 +99,24 @@ main(int argc, char **argv)
         bool different = srec_memory::compare(m1, m2);
         if
         (
-            start_addresses_differ
+            execution_start_addresses_differ
             (
-                m1.get_start_address(),
-                m2.get_start_address()
+                m1.get_execution_start_address(),
+                m2.get_execution_start_address()
             )
         )
         {
-            cout << hex << "Start address "
-                << m1.get_start_address()->get_address()
-                << " not equal to " << m2.get_start_address()->get_address()
-                << "." << dec << endl;
+            std::cout << std::hex << "Execution start address "
+                << m1.get_execution_start_address()->get_address()
+                << " not equal to "
+                << m2.get_execution_start_address()->get_address()
+                << "." << std::dec << std::endl;
             different = true;
         }
         if (different)
             exit(2);
-        cerr << argv[0] << ": files \"" << if1->filename() << "\" and \""
-            << if2->filename() << "\" are the same." << endl;
+        std::cerr << argv[0] << ": files \"" << if1->filename() << "\" and \""
+            << if2->filename() << "\" are the same." << std::endl;
     }
     else
     {
@@ -123,15 +124,15 @@ main(int argc, char **argv)
         (
             m1 != m2
         ||
-            start_addresses_differ
+            execution_start_addresses_differ
             (
-                m1.get_start_address(),
-                m2.get_start_address()
+                m1.get_execution_start_address(),
+                m2.get_execution_start_address()
             )
         )
         {
-            cerr << argv[0] << ": files \"" << if1->filename() << "\" and \""
-                << if2->filename() << "\" differ" << endl;
+            std::cerr << argv[0] << ": files \"" << if1->filename()
+                << "\" and \"" << if2->filename() << "\" differ" << std::endl;
             exit(2);
         }
     }

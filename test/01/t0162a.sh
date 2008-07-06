@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-#       srecord - manipulate eprom load files
-#       Copyright (C) 2002, 2003, 2006-2008 Peter Miller
+#       srecord - Manipulate EPROM load files
+#       Copyright (C) 2008 Peter Miller
 #
 #       This program is free software; you can redistribute it and/or modify
 #       it under the terms of the GNU General Public License as published by
@@ -18,45 +18,22 @@
 #       <http://www.gnu.org/licenses/>.
 #
 
-TEST_SUBJECT="os65v format"
+TEST_SUBJECT="MOS Tech output"
 . test_prelude
 
 cat > test.in << 'fubar'
+S00600004844521B
 S111000048656C6C6F2C20576F726C64210A7B
-S9031000EC
 fubar
-if test $? -ne 0; then no_result; fi
-
-# this is a binary format, so we have to encode the results,
-# which is annoying because it obfuscates them.
-cat > test.ok.mot << 'fubar'
-S12300002E303030302F34380D36350D36430D36430D36460D32430D32300D35370D364653
-S12200200D37320D36430D36340D32310D30410D2E31303030472E303046442F30300D65
-fubar
-if test $? -ne 0; then no_result; fi
-
-srec_cat test.ok.mot -o test.ok -bin > LOG 2>&1
-if test $? -ne 0; then cat LOG; no_result; fi
-
-# This is the actual test
-srec_cat test.in -o test.out -os65v > LOG 2>&1
-if test $? -ne 0; then cat LOG; fail; fi
-
-cmp test.ok test.out
-if test $? -ne 0; then fail; fi
-
-mv test.out test.in
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
-S5030001FB
-S9031000EC
+;0E000048656C6C6F2C20576F726C64210A0481
+;0000010001
 fubar
 if test $? -ne 0; then no_result; fi
 
-srec_cat test.in -os -o test.out -header HDR > LOG 2>&1
+srec_cat test.in -o test.out -mos-tech 2>LOG
 if test $? -ne 0; then cat LOG; fail; fi
 
 diff test.ok test.out
@@ -67,3 +44,5 @@ if test $? -ne 0; then fail; fi
 # No other guarantees are made.
 #
 pass
+
+# vim:ts=8:sw=4:et

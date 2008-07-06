@@ -28,7 +28,7 @@ srec_input_file_ti_txt::~srec_input_file_ti_txt()
 }
 
 
-srec_input_file_ti_txt::srec_input_file_ti_txt(const string &a_file_name) :
+srec_input_file_ti_txt::srec_input_file_ti_txt(const std::string &a_file_name) :
     srec_input_file(a_file_name),
     seen_some_input(false),
     address(0),
@@ -40,7 +40,7 @@ srec_input_file_ti_txt::srec_input_file_ti_txt(const string &a_file_name) :
 
 
 srec_input::pointer
-srec_input_file_ti_txt::create(const string &a_file_name)
+srec_input_file_ti_txt::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_ti_txt(a_file_name));
 }
@@ -139,8 +139,8 @@ srec_input_file_ti_txt::read(srec_record &record)
 #if 0
             //
             // Despite // http://www.ti.com/lit/pdf/slau101 section A.2
-            // stating that "the start address must be even", it doesn't
-            // have to be.
+            // stating that "the execution start address must be even",
+            // it doesn't have to be.
             //
             if (address & 1)
                 warning("addresses should be even");

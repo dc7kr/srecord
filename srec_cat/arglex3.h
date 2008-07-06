@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 2000-2007 Peter Miller
+//      Copyright (C) 2000-2008 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #ifndef PROG_SREC_CAT_ARGLEX3_H
 #define PROG_SREC_CAT_ARGLEX3_H
 
-
 #include <lib/srec/arglex.h>
 
 class srec_cat_arglex3:
@@ -34,7 +33,9 @@ public:
         token_data_only,
         token_crlf,
         token_header,
-        token_start_address,
+        token_execution_start_address,
+        token_enable,
+        token_disable,
         token_MAX
     };
 

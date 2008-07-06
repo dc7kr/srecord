@@ -28,7 +28,8 @@ srec_input_file_fastload::~srec_input_file_fastload()
 }
 
 
-srec_input_file_fastload::srec_input_file_fastload(const string &a_file_name) :
+srec_input_file_fastload::srec_input_file_fastload(
+        const std::string &a_file_name) :
     srec_input_file(a_file_name),
     seen_some_input(false),
     address(0)
@@ -37,7 +38,7 @@ srec_input_file_fastload::srec_input_file_fastload(const string &a_file_name) :
 
 
 srec_input::pointer
-srec_input_file_fastload::create(const string &a_file_name)
+srec_input_file_fastload::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_fastload(a_file_name));
 }
@@ -232,7 +233,7 @@ srec_input_file_fastload::read_inner(srec_record &record)
             case 'E':
                 get_number(1, 6);
                 seek_to_end();
-                type = srec_record::type_start_address;
+                type = srec_record::type_execution_start_address;
                 record = srec_record(type, address, 0, 0);
                 return 1;
 

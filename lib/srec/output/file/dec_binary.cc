@@ -26,6 +26,9 @@
 
 srec_output_file_dec_binary::~srec_output_file_dec_binary()
 {
+    // Round off to a whole multiple of BLOCK_SIZE bytes.
+    while (byte_offset & BLOCK_SIZE_MASK)
+        put_byte(0);
 }
 
 
@@ -120,18 +123,15 @@ srec_output_file_dec_binary::write(const srec_record &record)
         // ignore
         break;
 
-    case srec_record::type_start_address:
-        if (data_only_flag)
-            break;
-        checksum_reset();
-        put_word(1);
-        put_word(6);
-        put_word(record.get_address());
-        put_byte(-checksum_get());
-
-        // Round off to a whole multiple of BLOCK_SIZE bytes.
-        while (byte_offset & BLOCK_SIZE_MASK)
-            put_byte(0);
+    case srec_record::type_execution_start_address:
+        if (enable_goto_addr_flag)
+        {
+            checksum_reset();
+            put_word(1);
+            put_word(6);
+            put_word(record.get_address());
+            put_byte(-checksum_get());
+        }
         break;
 
     case srec_record::type_unknown:

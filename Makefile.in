@@ -883,8 +883,9 @@ lib/srec/output.o: lib/srec/output.cc lib/endian.h lib/format_printf.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output.cc
 	mv output.o lib/srec/output.o
 
-lib/srec/output/file.o: lib/srec/output/file.cc lib/format_printf.h \
-		lib/srec/output.h lib/srec/output/file.h 
+lib/srec/output/file.o: lib/srec/output/file.cc lib/arglex.h \
+		lib/format_printf.h lib/sizeof.h lib/srec/output.h \
+		lib/srec/output/file.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file.cc
 	mv file.o lib/srec/output/file.o
 
@@ -1389,10 +1390,9 @@ srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/endian.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/main.cc
 	mv main.o srec_cat/main.o
 
-srec_cmp/main.o: srec_cmp/main.cc lib/arglex.h lib/endian.h \
-		lib/srec/arglex.h lib/srec/input.h \
+srec_cmp/main.o: srec_cmp/main.cc lib/srec/arglex.h \
 		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/output.h lib/srec/record.h 
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cmp/main.cc
 	mv main.o srec_cmp/main.o
 
@@ -1796,6 +1796,12 @@ t0160a: test/01/t0160a.sh all
 t0161a: test/01/t0161a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0161a.sh
 
+t0162a: test/01/t0162a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0162a.sh
+
+t0163a: test/01/t0163a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0163a.sh
+
 test_crc16/main.o: test_crc16/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
 	mv main.o test_crc16/main.o
@@ -1977,7 +1983,7 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0122a t0123a t0125a t0126a t0127a t0128a t0129a t0130a \
 		t0131a t0132a t0133a t0135a t0136a t0137a t0138a t0139a \
 		t0150a t0151a t0152a t0153a t0155a t0156a t0157a t0158a \
-		t0159a t0160a t0161a 
+		t0159a t0160a t0161a t0162a t0163a 
 	@echo Passed All Tests
 
 clean-obj:

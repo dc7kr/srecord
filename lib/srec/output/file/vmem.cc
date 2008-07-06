@@ -146,7 +146,7 @@ srec_output_file_vmem::write(const srec_record &record)
     {
     case srec_record::type_header:
         // emit header records as comments in the file
-        if (!data_only_flag && record.get_length() > 0)
+        if (enable_header_flag && record.get_length() > 0)
         {
             put_string("/* ");
             if (record.get_address() != 0)
@@ -244,7 +244,7 @@ srec_output_file_vmem::write(const srec_record &record)
         break;
 
     case srec_record::type_data_count:
-    case srec_record::type_start_address:
+    case srec_record::type_execution_start_address:
         // ignore
         break;
 

@@ -27,7 +27,7 @@ srec_input_file_tektronix_extended::~srec_input_file_tektronix_extended()
 
 
 srec_input_file_tektronix_extended::srec_input_file_tektronix_extended(
-        const string &a_file_name) :
+        const std::string &a_file_name) :
     srec_input_file(a_file_name),
     garbage_warning(false),
     seen_some_input(false),
@@ -37,7 +37,7 @@ srec_input_file_tektronix_extended::srec_input_file_tektronix_extended(
 
 
 srec_input::pointer
-srec_input_file_tektronix_extended::create(const string &a_file_name)
+srec_input_file_tektronix_extended::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_tektronix_extended(a_file_name));
 }
@@ -119,7 +119,7 @@ srec_input_file_tektronix_extended::read_inner(srec_record &record)
 
     case 8:
         // termination
-        type = srec_record::type_start_address;
+        type = srec_record::type_execution_start_address;
         break;
     }
     record = srec_record(type, address, buffer, length);
@@ -138,7 +138,7 @@ srec_input_file_tektronix_extended::read(srec_record &record)
                 fatal_error("file contains no data");
             if (!termination_seen)
             {
-                warning("no start address record");
+                warning("no execution start address record");
                 termination_seen = true;
             }
             return false;
@@ -146,7 +146,7 @@ srec_input_file_tektronix_extended::read(srec_record &record)
         seen_some_input = true;
         if
         (
-            record.get_type() != srec_record::type_start_address
+            record.get_type() != srec_record::type_execution_start_address
         &&
             termination_seen
         )
@@ -171,14 +171,14 @@ srec_input_file_tektronix_extended::read(srec_record &record)
             }
             break;
 
-        case srec_record::type_start_address:
+        case srec_record::type_execution_start_address:
             if (record.get_length() > 0)
             {
-                warning("data in termination record ignored");
+                warning("data in execution start address record ignored");
                 record.set_length(0);
             }
             if (termination_seen)
-                warning("redundant termination record");
+                warning("redundant execution start address record");
             termination_seen = true;
             break;
         }

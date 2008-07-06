@@ -26,8 +26,8 @@
 #include <lib/srec/record.h>
 
 
-static string
-toupper(const string &s)
+static std::string
+toupper(const std::string &s)
 {
     char *buffer = new char[s.size() + 1];
     char *bp = buffer;
@@ -40,14 +40,14 @@ toupper(const string &s)
         else
             *bp++ = c;
     }
-    string result(buffer, bp - buffer);
+    std::string result(buffer, bp - buffer);
     delete [] buffer;
     return result;
 }
 
 
-static string
-identifier(const string &s)
+static std::string
+identifier(const std::string &s)
 {
     char *buffer = new char[s.size() + 1];
     char *bp = buffer;
@@ -62,7 +62,7 @@ identifier(const string &s)
         else
             *bp++ = '_';
     }
-    string result(buffer, bp - buffer);
+    std::string result(buffer, bp - buffer);
     delete [] buffer;
     return result;
 }
@@ -106,7 +106,7 @@ srec_output_file_c::~srec_output_file_c()
             x -= x2;
             unsigned long address = x2.get_lowest();
 
-            string s = format_address(address);
+            std::string s = format_address(address);
             int len = s.size();
 
             if (column && column + len + 2 > line_length)
@@ -149,7 +149,7 @@ srec_output_file_c::~srec_output_file_c()
                 x -= x2;
                 unsigned long address = x2.get_lowest() / 2;
 
-                string s = format_address(address);
+                std::string s = format_address(address);
                 int len = s.size();
 
                 if (column && column + len + 2 > line_length)
@@ -196,7 +196,7 @@ srec_output_file_c::~srec_output_file_c()
 
             if (output_word)
                 length /= 2;
-            string s = format_address(length);
+            std::string s = format_address(length);
             int len = s.size();
 
             if (column && column + len + 2 > line_length)
@@ -233,7 +233,7 @@ srec_output_file_c::~srec_output_file_c()
         put_string(";\n");
     }
 
-    if (!data_only_flag)
+    if (enable_goto_addr_flag)
     {
         if (constant)
             put_string("const ");
@@ -243,6 +243,9 @@ srec_output_file_c::~srec_output_file_c()
             prefix.c_str(),
             format_address(taddr).c_str()
         );
+    }
+    if (enable_footer_flag)
+    {
         if (constant)
             put_string("const ");
         put_stringf
@@ -275,7 +278,7 @@ srec_output_file_c::~srec_output_file_c()
     //
     put_char('\n');
 
-    string PREFIX = toupper(prefix);
+    std::string PREFIX = toupper(prefix);
     put_stringf
     (
         "#define %s_TERMINATION %s\n",
@@ -312,14 +315,14 @@ srec_output_file_c::~srec_output_file_c()
 
     if (include)
     {
-        string insulation = identifier(include_file_name);
+        std::string insulation = identifier(include_file_name);
         FILE *fp = fopen(include_file_name.c_str(), "w");
         if (!fp)
             fatal_error_errno("open %s", include_file_name.c_str());
         fprintf(fp, "#ifndef %s\n", insulation.c_str());
         fprintf(fp, "#define %s\n", insulation.c_str());
         fprintf(fp, "\n");
-        if (!data_only_flag)
+        if (enable_goto_addr_flag)
         {
             if (constant)
                 fprintf(fp, "const ");
@@ -329,6 +332,9 @@ srec_output_file_c::~srec_output_file_c()
                 "extern unsigned long %s_termination;\n",
                 prefix.c_str()
             );
+        }
+        if (enable_footer_flag)
+        {
             if (constant)
                 fprintf(fp, "const ");
             fprintf(fp, "extern unsigned long %s_start;\n", prefix.c_str());
@@ -400,8 +406,8 @@ memrchr(const char *data, char c, size_t len)
 }
 
 
-static string
-build_include_file_name(const string &filename)
+static std::string
+build_include_file_name(const std::string &filename)
 {
     const char *fn = filename.c_str();
     // Watch out for out base class adding a line number.
@@ -418,11 +424,11 @@ build_include_file_name(const string &filename)
     const char *ep = memrchr(slash, '.', colon - slash);
     if (!ep)
         ep = colon;
-    return (string(fn, ep - fn) + ".h");
+    return (std::string(fn, ep - fn) + ".h");
 }
 
 
-srec_output_file_c::srec_output_file_c(const string &a_file_name) :
+srec_output_file_c::srec_output_file_c(const std::string &a_file_name) :
     srec_output_file(a_file_name),
     prefix("eprom"),
     taddr(0),
@@ -588,7 +594,7 @@ srec_output_file_c::emit_word(unsigned int n)
 }
 
 
-string
+std::string
 srec_output_file_c::format_address(unsigned long addr)
 {
     char buffer[30];
@@ -686,7 +692,7 @@ srec_output_file_c::write(const srec_record &record)
         }
         break;
 
-    case srec_record::type_start_address:
+    case srec_record::type_execution_start_address:
         taddr = record.get_address();
         break;
     }

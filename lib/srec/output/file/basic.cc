@@ -31,7 +31,7 @@ srec_output_file_basic::~srec_output_file_basic()
     if (column)
         put_char('\n');
 
-    if (!data_only_flag)
+    if (enable_footer_flag)
     {
         put_stringf("REM termination = %lu\n", taddr);
         put_stringf("REM start = %lu\n", range.get_lowest());
@@ -42,7 +42,7 @@ srec_output_file_basic::~srec_output_file_basic()
 }
 
 
-srec_output_file_basic::srec_output_file_basic(const string &a_file_name) :
+srec_output_file_basic::srec_output_file_basic(const std::string &a_file_name) :
     srec_output_file(a_file_name),
     taddr(0),
     column(0),
@@ -140,7 +140,7 @@ srec_output_file_basic::write(const srec_record &record)
         }
         break;
 
-    case srec_record::type_start_address:
+    case srec_record::type_execution_start_address:
         taddr = record.get_address();
         break;
     }

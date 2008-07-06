@@ -23,7 +23,7 @@
 
 srec_output_file_os65v::~srec_output_file_os65v()
 {
-    if (!data_only_flag && !seen_start_address)
+    if (enable_footer_flag)
         put_string(".00FD/00\r");
 }
 
@@ -55,7 +55,7 @@ srec_output_file_os65v::write(const srec_record &record)
 
     case srec_record::type_data:
         if (seen_start_address)
-            fatal_error("more data following start address (bug)");
+            fatal_error("more data following execution start address (bug)");
         if (address != record.get_address() || state == 0)
         {
             address = record.get_address();
@@ -77,8 +77,8 @@ srec_output_file_os65v::write(const srec_record &record)
         // ignore
         break;
 
-    case srec_record::type_start_address:
-        if (!data_only_flag)
+    case srec_record::type_execution_start_address:
+        if (enable_goto_addr_flag)
         {
             if (address != record.get_address() || state == 0)
             {

@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.42.README   # Description, from the tar file
-           File:   srecord-1.42.lsm      # Description, LSM format
-           File:   srecord-1.42.spec     # RedHat package specification
-           File:   srecord-1.42.tar.gz   # the complete source
-           File:   srecord-1.42.pdf      # Reference Manual
+           File:   srecord-1.43.README   # Description, from the tar file
+           File:   srecord-1.43.lsm      # Description, LSM format
+           File:   srecord-1.43.spec     # RedHat package specification
+           File:   srecord-1.43.tar.gz   # the complete source
+           File:   srecord-1.43.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.42
+       srecord version 1.43
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,22 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.43 (2008-Jul-06)
+       * The srec-cat -data-only option has been broken down into four
+       separate controls.  It is now possible to -enable and -disable
+       individual features, such as "header", "data-count", "execution-start-
+       address" and "footer".  See srec_cat(1) for more information.
+
+       * The srec_cat -start-address option has been renamed -execution-start-
+       address to remove any confusion with the -offset filter.  The
+       documentation now explicitly explains the difference between the two.
+
+       * Examples of converting to and from binary files have been added to
+       the srec_examples(1) man page.
+
+       * A bug has been fixed in the MOS Tech format, it now emits an end
+       record even when there is no execution start address passed in.
 
    Version 1.42 (2008-Jun-01)
        * The MOS Technology format was not reading and writing end records
@@ -445,8 +461,9 @@ RELEASE NOTES
        * The assembler output has been enhanced to produce ORG directives, if
        necessary, to change the data address.
 
-       * The srec_cat(1) command now only writes a start address into the
-       output if there was a start address present in the input.
+       * The srec_cat(1) command now only writes an execution start address
+       into the output if there was an execution start address present in the
+       input.
 
    Version 1.24 (2006-Mar-08)
        * Additional information has been added to the lseek error when they
@@ -507,8 +524,8 @@ RELEASE NOTES
        * The AOMF format now accepts (and ignores) more record types.
 
    Version 1.19 (2004-Jan-03)
-       * It is now possible to set the start address in the output using the
-       srec_cat -Start_Address command line option.
+       * It is now possible to set the execution start address in the output
+       using the srec_cat -Execution_Start_Address command line option.
 
        * The Intel Absolute Object Module Format (AOMF) is now supported for
        reading and writing.

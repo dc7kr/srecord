@@ -18,7 +18,6 @@
 //
 
 #include <iostream>
-using namespace std;
 #include <cstdlib>
 #include <vector>
 
@@ -36,15 +35,15 @@ main(int argc, char **argv)
 {
     srec_cat_arglex3 cmdline(argc, argv);
     cmdline.token_first();
-    typedef vector<srec_input::pointer> infile_t;
+    typedef std::vector<srec_input::pointer> infile_t;
     infile_t infile;
     srec_output::pointer outfile;
     int line_length = 0;
     int address_length = 0;
     std::string header;
     bool header_set = false;
-    unsigned long start_address = 0;
-    bool start_address_set = false;
+    unsigned long execution_start_address = 0;
+    bool execution_start_address_set = false;
     while (cmdline.token_cur() != arglex::token_eoln)
     {
         switch (cmdline.token_cur())
@@ -74,8 +73,8 @@ main(int argc, char **argv)
             line_length = cmdline.value_number();
             if (line_length <= 0)
             {
-                cerr << "the line length " << line_length << " is invalid"
-                    << endl;
+                std::cerr << "the line length " << line_length << " is invalid"
+                    << std::endl;
                 exit(1);
             }
             break;
@@ -88,15 +87,34 @@ main(int argc, char **argv)
             address_length = cmdline.value_number();
             if (address_length <= 0 || address_length > (int)sizeof(long))
             {
-                cerr << "the address length " << address_length
-                    << " is invalid" << endl;
+                std::cerr << "the address length " << address_length
+                    << " is invalid" << std::endl;
                 exit(1);
             }
             break;
 
         case srec_cat_arglex3::token_data_only:
-            srec_output_file::data_only();
+            srec_output_file::enable_header(false);
+            srec_output_file::enable_data_count(false);
+            srec_output_file::enable_goto_addr(false);
+            srec_output_file::enable_footer(false);
             break;
+
+        case srec_cat_arglex3::token_enable:
+        case srec_cat_arglex3::token_disable:
+            {
+                int tok = cmdline.token_cur();
+                bool yesno = (tok == srec_cat_arglex3::token_enable);
+                cmdline.token_next();
+                std::string name = cmdline.get_string(cmdline.token_name(tok));
+                if (!srec_output_file::enable_by_name(name, yesno))
+                {
+                    std::cerr << "argument of " << cmdline.token_name(tok)
+                        << "=" << name << " unknown" << std::endl;
+                    cmdline.usage();
+                }
+            }
+            continue;
 
         case srec_cat_arglex3::token_crlf:
             srec_output_file::crlf();
@@ -105,17 +123,27 @@ main(int argc, char **argv)
         case srec_cat_arglex3::token_header:
             if (cmdline.token_next() != arglex::token_string)
             {
-                cerr << "the header option requires a string argument" << endl;
+                std::cerr << "the header option requires a string argument"
+                    << std::endl;
                 exit(1);
             }
             header = cmdline.value_string();
             header_set = true;
+            srec_output_file::enable_header(true);
             break;
 
-        case srec_cat_arglex3::token_start_address:
+        case srec_cat_arglex3::token_execution_start_address:
+            if (execution_start_address_set)
+            {
+                std::cerr << "too many -execution-start-address options "
+                    "specified" << std::endl;
+                exit(1);
+            }
             cmdline.token_next();
-            start_address = cmdline.get_number("-Start_Address");
-            start_address_set = true;
+            execution_start_address =
+                cmdline.get_number("-Execution_Start_Address");
+            execution_start_address_set = true;
+            srec_output_file::enable_goto_addr(true);
             continue;
         }
         cmdline.token_next();
@@ -147,8 +175,8 @@ main(int argc, char **argv)
         srec_input::pointer ifp = *it;
         m.reader(ifp, true);
     }
-    if (start_address_set)
-        m.set_start_address(start_address);
+    if (execution_start_address_set)
+        m.set_execution_start_address(execution_start_address);
 
     //
     // Open the output file and write the remembered data out to it.

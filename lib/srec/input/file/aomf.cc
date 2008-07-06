@@ -119,7 +119,7 @@ srec_input_file_aomf::~srec_input_file_aomf()
 }
 
 
-srec_input_file_aomf::srec_input_file_aomf(const string &a_filename) :
+srec_input_file_aomf::srec_input_file_aomf(const std::string &a_filename) :
     srec_input_file(a_filename),
     current_buffer(0),
     current_length(0),
@@ -132,7 +132,7 @@ srec_input_file_aomf::srec_input_file_aomf(const string &a_filename) :
 
 
 srec_input::pointer
-srec_input_file_aomf::create(const string &a_filename)
+srec_input_file_aomf::create(const std::string &a_filename)
 {
     return pointer(new srec_input_file_aomf(a_filename));
 }
@@ -254,7 +254,14 @@ srec_input_file_aomf::read(srec_record &record)
 
             case O96_Mod_End:
                 state = expecting_eof;
-                record = srec_record(srec_record::type_start_address, 0, 0, 0);
+                record =
+                    srec_record
+                    (
+                        srec_record::type_execution_start_address,
+                        0,
+                        0,
+                        0
+                    );
                 return true;
 
             case O96_Content:

@@ -27,7 +27,7 @@ srec_input_file_dec_binary::~srec_input_file_dec_binary()
 
 
 srec_input_file_dec_binary::srec_input_file_dec_binary(
-        const string &a_file_name) :
+        const std::string &a_file_name) :
     srec_input_file(a_file_name),
     current_pos(0),
     current_length(0),
@@ -37,7 +37,7 @@ srec_input_file_dec_binary::srec_input_file_dec_binary(
 
 
 srec_input::pointer
-srec_input_file_dec_binary::create(const string &a_file_name)
+srec_input_file_dec_binary::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_dec_binary(a_file_name));
 }
@@ -127,7 +127,8 @@ srec_input_file_dec_binary::read(srec_record &record)
             {
                 fatal_error("checksum mismatch (%02X)", checksum_get());
             }
-            srec_record::type_t type = srec_record::type_start_address;
+            srec_record::type_t type =
+                srec_record::type_execution_start_address;
             record = srec_record(type, current_address, 0, 0);
             seek_to_end();
             return true;

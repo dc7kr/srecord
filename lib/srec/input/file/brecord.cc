@@ -26,7 +26,8 @@ srec_input_file_brecord::~srec_input_file_brecord()
 }
 
 
-srec_input_file_brecord::srec_input_file_brecord(const string &a_file_name) :
+srec_input_file_brecord::srec_input_file_brecord(
+        const std::string &a_file_name) :
     srec_input_file(a_file_name),
     seen_some_input(false)
 {
@@ -34,7 +35,7 @@ srec_input_file_brecord::srec_input_file_brecord(const string &a_file_name) :
 
 
 srec_input::pointer
-srec_input_file_brecord::create(const string &a_file_name)
+srec_input_file_brecord::create(const std::string &a_file_name)
 {
     return pointer(new srec_input_file_brecord(a_file_name));
 }
@@ -58,9 +59,20 @@ srec_input_file_brecord::read_inner(srec_record &record)
         fatal_error("end of line expected");
 
     if (length == 0)
-        record = srec_record(srec_record::type_start_address, address, 0, 0);
+    {
+        record =
+            srec_record
+            (
+                srec_record::type_execution_start_address,
+                address,
+                0,
+                0
+            );
+    }
     else
+    {
         record = srec_record(srec_record::type_data, address, data, length);
+    }
     return 1;
 }
 
