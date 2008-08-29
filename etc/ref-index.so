@@ -9,7 +9,7 @@ srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 srec info - information
 T}	T{
 .ad l
-about eprom load files
+about EPROM load files
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
@@ -121,14 +121,14 @@ srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 srec
 T}	T{
 .ad l
-cat - manipulate eprom load files
+cat - manipulate EPROM load files
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec
 T}	T{
 .ad l
-cmp - compare two eprom load files for equality
+cmp - compare two EPROM load files for equality
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
@@ -142,7 +142,7 @@ srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 srec cmp -
 T}	T{
 .ad l
-compare two eprom load files for equality
+compare two EPROM load files for equality
 T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
@@ -205,25 +205,25 @@ srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 srec cat - manipulate
 T}	T{
 .ad l
-eprom load files
+EPROM load files
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
 srec info - information about
 T}	T{
 .ad l
-eprom load files
+EPROM load files
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp - compare two
 T}	T{
 .ad l
-eprom load files for equality
+EPROM load files for equality
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
-srec cmp - compare two eprom load files for
+srec cmp - compare two EPROM load files for
 T}	T{
 .ad l
 equality
@@ -489,21 +489,21 @@ file format specification
 T}
 srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 .ad r
-srec cat - manipulate eprom load
+srec cat - manipulate EPROM load
 T}	T{
 .ad l
 files
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
-srec info - information about eprom load
+srec info - information about EPROM load
 T}	T{
 .ad l
 files
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
-srec cmp - compare two eprom load
+srec cmp - compare two EPROM load
 T}	T{
 .ad l
 files for equality
@@ -517,7 +517,7 @@ file specifications
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
-srec cmp - compare two eprom load files
+srec cmp - compare two EPROM load files
 T}	T{
 .ad l
 for equality
@@ -828,14 +828,14 @@ srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 srec
 T}	T{
 .ad l
-info - information about eprom load files
+info - information about EPROM load files
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
 srec info -
 T}	T{
 .ad l
-information about eprom load files
+information about EPROM load files
 T}
 srec_input(1)	\*[Page*Of*srec_input(1)]	T{
 .ad r
@@ -916,21 +916,21 @@ Load file format
 T}
 srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 .ad r
-srec cat - manipulate eprom
+srec cat - manipulate EPROM
 T}	T{
 .ad l
 load files
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
-srec info - information about eprom
+srec info - information about EPROM
 T}	T{
 .ad l
 load files
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
-srec cmp - compare two eprom
+srec cmp - compare two EPROM
 T}	T{
 .ad l
 load files for equality
@@ -954,7 +954,7 @@ srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 srec cat -
 T}	T{
 .ad l
-manipulate eprom load files
+manipulate EPROM load files
 T}
 srec_brecord(5)	\*[Page*Of*srec_brecord(5)]	T{
 .ad r
@@ -1206,14 +1206,14 @@ srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 
 T}	T{
 .ad l
-srec cat - manipulate eprom load files
+srec cat - manipulate EPROM load files
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 
 T}	T{
 .ad l
-srec cmp - compare two eprom load files for equality
+srec cmp - compare two EPROM load files for equality
 T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
@@ -1255,7 +1255,7 @@ srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 
 T}	T{
 .ad l
-srec info - information about eprom load files
+srec info - information about EPROM load files
 T}
 srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
 .ad r
@@ -1563,7 +1563,7 @@ srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 srec cmp - compare
 T}	T{
 .ad l
-two eprom load files for equality
+two EPROM load files for equality
 T}
 srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
 .ad r

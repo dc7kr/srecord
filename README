@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.43.README   # Description, from the tar file
-           File:   srecord-1.43.lsm      # Description, LSM format
-           File:   srecord-1.43.spec     # RedHat package specification
-           File:   srecord-1.43.tar.gz   # the complete source
-           File:   srecord-1.43.pdf      # Reference Manual
+           File:   srecord-1.44.README   # Description, from the tar file
+           File:   srecord-1.44.lsm      # Description, LSM format
+           File:   srecord-1.44.spec     # RedHat package specification
+           File:   srecord-1.44.tar.gz   # the complete source
+           File:   srecord-1.44.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.43
+       srecord version 1.44
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,26 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.44 (2008-Aug-29)
+       * Some compilers issue a warning when const appears before extern.
+       "warning: storage class is not first".  The C output has been updated
+       to conform to this expectation.
+
+       * The manual page for srec_cat(1) has been enhanced to describe the in-
+       memory data model, and the resulting output data order.
+
+       * The -motorola optional width argument now produces a better error
+       message when it is out of range.
+
+       * The -fill filter now checks the size, and fails for absurdly large
+       fills, with a -big override if they really want >1GB fills.
+
+       * A bug in the .spec file for rpmbuild has been fixed, it now takes
+       notice of $RPM_BUILD_ROOT
+
+       * There is a new -line-termination option, which may be used to select
+       the desired line termination of output text files.
 
    Version 1.43 (2008-Jul-06)
        * The srec-cat -data-only option has been broken down into four

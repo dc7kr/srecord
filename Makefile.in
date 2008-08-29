@@ -167,9 +167,17 @@ lib/interval.o: lib/interval.cc lib/interval.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval.cc
 	mv interval.o lib/interval.o
 
+lib/interval/coverage.o: lib/interval/coverage.cc lib/interval.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval/coverage.cc
+	mv coverage.o lib/interval/coverage.o
+
 lib/interval/flatten.o: lib/interval/flatten.cc lib/interval.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval/flatten.cc
 	mv flatten.o lib/interval/flatten.o
+
+lib/pretty_size.o: lib/pretty_size.cc lib/pretty_size.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/pretty_size.cc
+	mv pretty_size.o lib/pretty_size.o
 
 lib/progname.o: lib/progname.cc lib/progname.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/progname.cc
@@ -212,6 +220,15 @@ lib/srec/arglex/get_interval.o: lib/srec/arglex/get_interval.cc \
 		lib/srec/input/interval.h lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_interval.cc
 	mv get_interval.o lib/srec/arglex/get_interval.o
+
+lib/srec/arglex/get_interval_small.o: \
+		lib/srec/arglex/get_interval_small.cc lib/arglex.h \
+		lib/endian.h lib/format_printf.h lib/interval.h \
+		lib/pretty_size.h lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/output.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/arglex/get_interval_small.cc 
+	mv get_interval_small.o lib/srec/arglex/get_interval_small.o
 
 lib/srec/arglex/get_number.o: lib/srec/arglex/get_number.cc \
 		lib/arglex.h lib/endian.h lib/format_printf.h \
@@ -1026,6 +1043,14 @@ lib/srec/output/file/intel16.o: lib/srec/output/file/intel16.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel16.cc
 	mv intel16.o lib/srec/output/file/intel16.o
 
+lib/srec/output/file/line_termination.o: \
+		lib/srec/output/file/line_termination.cc lib/arglex.h \
+		lib/format_printf.h lib/sizeof.h lib/srec/output.h \
+		lib/srec/output/file.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/output/file/line_termination.cc 
+	mv line_termination.o lib/srec/output/file/line_termination.o
+
 lib/srec/output/file/mos_tech.o: lib/srec/output/file/mos_tech.cc \
 		lib/endian.h lib/format_printf.h lib/srec/output.h \
 		lib/srec/output/file.h lib/srec/output/file/mos_tech.h \
@@ -1381,18 +1406,11 @@ srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h lib/endian.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/arglex3.cc
 	mv arglex3.o srec_cat/arglex3.o
 
-srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/writer.h lib/srec/output.h \
-		lib/srec/output/file.h srec_cat/arglex3.h 
+srec_cat/main.o: srec_cat/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/main.cc
 	mv main.o srec_cat/main.o
 
-srec_cmp/main.o: srec_cmp/main.cc lib/srec/arglex.h \
-		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/record.h 
+srec_cmp/main.o: srec_cmp/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cmp/main.cc
 	mv main.o srec_cmp/main.o
 
@@ -1807,10 +1825,12 @@ test_crc16/main.o: test_crc16/main.cc
 	mv main.o test_crc16/main.o
 
 lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
-		lib/interval.o lib/interval/flatten.o lib/progname.o \
+		lib/interval.o lib/interval/coverage.o \
+		lib/interval/flatten.o lib/pretty_size.o lib/progname.o \
 		lib/quit.o lib/quit/exception.o lib/quit/normal.o \
 		lib/quit/prefix.o lib/r250.o lib/srec/arglex.o \
 		lib/srec/arglex/get_interval.o \
+		lib/srec/arglex/get_interval_small.o \
 		lib/srec/arglex/get_number.o \
 		lib/srec/arglex/get_string.o lib/srec/arglex/input.o \
 		lib/srec/arglex/output.o lib/srec/input.o \
@@ -1892,6 +1912,7 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
 		lib/srec/output/file/hexdump.o \
 		lib/srec/output/file/intel.o \
 		lib/srec/output/file/intel16.o \
+		lib/srec/output/file/line_termination.o \
 		lib/srec/output/file/mos_tech.o \
 		lib/srec/output/file/needham.o \
 		lib/srec/output/file/os65v.o \
@@ -1916,7 +1937,7 @@ lib/libsrecord.a: $(lib_obj)
 
 srec_cat_obj = srec_cat/arglex3.o srec_cat/main.o
 
-bin/srec_cat: $(srec_cat_obj) .bin lib/libsrecord.a
+bin/srec_cat: $(srec_cat_obj) lib/libsrecord.a .bin
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_cat_obj) \
 		lib/libsrecord.a $(LIBS) 
 
@@ -1925,7 +1946,7 @@ $(bindir)/srec_cat: bin/srec_cat .bindir
 
 srec_cmp_obj = srec_cmp/main.o
 
-bin/srec_cmp: $(srec_cmp_obj) .bin lib/libsrecord.a
+bin/srec_cmp: $(srec_cmp_obj) lib/libsrecord.a .bin
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_cmp_obj) \
 		lib/libsrecord.a $(LIBS) 
 
@@ -1934,7 +1955,7 @@ $(bindir)/srec_cmp: bin/srec_cmp .bindir
 
 srec_info_obj = srec_info/main.o
 
-bin/srec_info: $(srec_info_obj) .bin lib/libsrecord.a
+bin/srec_info: $(srec_info_obj) lib/libsrecord.a .bin
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_info_obj) \
 		lib/libsrecord.a $(LIBS) 
 
@@ -1943,7 +1964,7 @@ $(bindir)/srec_info: bin/srec_info .bindir
 
 test_crc16_obj = test_crc16/main.o
 
-bin/test_crc16: $(test_crc16_obj) .bin lib/libsrecord.a
+bin/test_crc16: $(test_crc16_obj) lib/libsrecord.a .bin
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(test_crc16_obj) \
 		lib/libsrecord.a $(LIBS) 
 
@@ -1996,8 +2017,10 @@ clean-obj:
 	rm -f lib/crc32.o
 	rm -f lib/endian.o
 	rm -f lib/interval.o
+	rm -f lib/interval/coverage.o
 	rm -f lib/interval/flatten.o
 	rm -f lib/libsrecord.a
+	rm -f lib/pretty_size.o
 	rm -f lib/progname.o
 	rm -f lib/quit.o
 	rm -f lib/quit/exception.o
@@ -2006,6 +2029,7 @@ clean-obj:
 	rm -f lib/r250.o
 	rm -f lib/srec/arglex.o
 	rm -f lib/srec/arglex/get_interval.o
+	rm -f lib/srec/arglex/get_interval_small.o
 	rm -f lib/srec/arglex/get_number.o
 	rm -f lib/srec/arglex/get_string.o
 	rm -f lib/srec/arglex/input.o
@@ -2099,6 +2123,7 @@ clean-obj:
 	rm -f lib/srec/output/file/hexdump.o
 	rm -f lib/srec/output/file/intel.o
 	rm -f lib/srec/output/file/intel16.o
+	rm -f lib/srec/output/file/line_termination.o
 	rm -f lib/srec/output/file/mos_tech.o
 	rm -f lib/srec/output/file/needham.o
 	rm -f lib/srec/output/file/os65v.o

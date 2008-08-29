@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.43
+Version: 1.44
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -50,7 +50,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install
+make DESTDIR=$RPM_BUILD_ROOT install
 
 
 %check || :
