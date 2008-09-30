@@ -347,6 +347,13 @@ T}	T{
 .ad l
 file format
 T}
+srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
+.ad r
+srec forth - FORTH
+T}	T{
+.ad l
+file format
+T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
 srec mos tech - MOS Technology
@@ -578,6 +585,13 @@ T}	T{
 .ad l
 format
 T}
+srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
+.ad r
+srec forth - FORTH file
+T}	T{
+.ad l
+format
+T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
 srec mos tech - MOS Technology file
@@ -738,6 +752,20 @@ srec
 T}	T{
 .ad l
 formatted binary - Formatted Binary file format
+T}
+srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
+.ad r
+srec forth -
+T}	T{
+.ad l
+FORTH file format
+T}
+srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+forth - FORTH file format
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
@@ -1249,6 +1277,13 @@ srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
 T}	T{
 .ad l
 srec formatted binary - Formatted Binary file format
+T}
+srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec forth - FORTH file format
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r

@@ -219,11 +219,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.44.README   # Description, from the tar file
-           File:   srecord-1.44.lsm      # Description, LSM format
-           File:   srecord-1.44.spec     # RedHat package specification
-           File:   srecord-1.44.tar.gz   # the complete source
-           File:   srecord-1.44.pdf      # Reference Manual
+           File:   srecord-1.45.README   # Description, from the tar file
+           File:   srecord-1.45.lsm      # Description, LSM format
+           File:   srecord-1.45.spec     # RedHat package specification
+           File:   srecord-1.45.tar.gz   # the complete source
+           File:   srecord-1.45.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -235,7 +235,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.44
+       srecord version 1.45
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008 Peter Miller
 
@@ -278,6 +278,13 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.45 (2008-Sep-30)
+       * A bug has been fixed in the srec_cat(1) command.  You are now able to
+       specify several inputs within parentheses, instead of just one.  This
+       allows filters to be applied to the concatenation of several inputs.
+
+       * The srec_cat(1) command is now able to write FORTH output.
 
    Version 1.44 (2008-Aug-29)
        * Some compilers issue a warning when const appears before extern.

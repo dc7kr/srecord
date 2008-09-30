@@ -247,7 +247,8 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
 		lib/crc16.h lib/crc32.h lib/endian.h \
 		lib/format_printf.h lib/interval.h lib/quit.h \
 		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/aomf.h \
+		lib/srec/input/catenate.h lib/srec/input/file.h \
+		lib/srec/input/file/aomf.h \
 		lib/srec/input/file/ascii_hex.h \
 		lib/srec/input/file/atmel_generic.h \
 		lib/srec/input/file/binary.h \
@@ -320,6 +321,7 @@ lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
 		lib/srec/output/file/fairchild.h \
 		lib/srec/output/file/fastload.h \
 		lib/srec/output/file/formatted_binary.h \
+		lib/srec/output/file/forth.h \
 		lib/srec/output/file/four_packed_code.h \
 		lib/srec/output/file/hexdump.h \
 		lib/srec/output/file/intel.h \
@@ -347,6 +349,12 @@ lib/srec/input.o: lib/srec/input.cc lib/endian.h lib/format_printf.h \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input.cc
 	mv input.o lib/srec/input.o
+
+lib/srec/input/catenate.o: lib/srec/input/catenate.cc lib/endian.h \
+		lib/format_printf.h lib/srec/input.h \
+		lib/srec/input/catenate.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/catenate.cc
+	mv catenate.o lib/srec/input/catenate.o
 
 lib/srec/input/file.o: lib/srec/input/file.cc lib/format_printf.h \
 		lib/srec/input.h lib/srec/input/file.h 
@@ -1012,6 +1020,14 @@ lib/srec/output/file/formatted_binary.o: \
 		lib/srec/output/file/formatted_binary.cc 
 	mv formatted_binary.o lib/srec/output/file/formatted_binary.o
 
+lib/srec/output/file/forth.o: lib/srec/output/file/forth.cc \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/forth.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/forth.cc
+	mv forth.o lib/srec/output/file/forth.o
+
 lib/srec/output/file/four_packed_code.o: \
 		lib/srec/output/file/four_packed_code.cc lib/endian.h \
 		lib/format_printf.h lib/srec/output.h \
@@ -1164,18 +1180,15 @@ lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc lib/arglex.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
 	mv vmem.o lib/srec/output/file/vmem.o
 
-lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/wilson.h \
-		lib/srec/record.h 
+lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/wilson.cc
 	mv wilson.o lib/srec/output/file/wilson.o
 
-lib/srec/record.o: lib/srec/record.cc lib/endian.h lib/srec/record.h
+lib/srec/record.o: lib/srec/record.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/record.cc
 	mv record.o lib/srec/record.o
 
-lib/versn_stamp.o: lib/versn_stamp.cc lib/patchlevel.h lib/versn_stamp.h
+lib/versn_stamp.o: lib/versn_stamp.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/versn_stamp.cc
 	mv versn_stamp.o lib/versn_stamp.o
 
@@ -1290,6 +1303,11 @@ $(mandir)/man5/srec_formatted_binary.5: \
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
+$(mandir)/man5/srec_forth.5: man/man5/srec_forth.5  man/man5/.mandir
+	$(SOELIM) -I. -Iman/man5 man/man5/srec_forth.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
 $(mandir)/man5/srec_fpc.5: man/man5/srec_fpc.5  man/man5/.mandir
 	$(SOELIM) -I. -Iman/man5 man/man5/srec_fpc.5 > tmp
 	$(INSTALL_DATA) tmp $@
@@ -1400,9 +1418,7 @@ $(bindir)/$(PROGRAM_PREFIX)test_prelude$(PROGRAM_SUFFIX): \
 		bin/test_prelude .bindir 
 	$(INSTALL_SCRIPT) bin/test_prelude $@
 
-srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/output.h srec_cat/arglex3.h 
+srec_cat/arglex3.o: srec_cat/arglex3.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/arglex3.cc
 	mv arglex3.o srec_cat/arglex3.o
 
@@ -1820,6 +1836,12 @@ t0162a: test/01/t0162a.sh all
 t0163a: test/01/t0163a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0163a.sh
 
+t0165a: test/01/t0165a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0165a.sh
+
+t0166a: test/01/t0166a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0166a.sh
+
 test_crc16/main.o: test_crc16/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
 	mv main.o test_crc16/main.o
@@ -1834,7 +1856,8 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
 		lib/srec/arglex/get_number.o \
 		lib/srec/arglex/get_string.o lib/srec/arglex/input.o \
 		lib/srec/arglex/output.o lib/srec/input.o \
-		lib/srec/input/file.o lib/srec/input/file/aomf.o \
+		lib/srec/input/catenate.o lib/srec/input/file.o \
+		lib/srec/input/file/aomf.o \
 		lib/srec/input/file/ascii_hex.o \
 		lib/srec/input/file/atmel_generic.o \
 		lib/srec/input/file/binary.o \
@@ -1908,6 +1931,7 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
 		lib/srec/output/file/fairchild.o \
 		lib/srec/output/file/fastload.o \
 		lib/srec/output/file/formatted_binary.o \
+		lib/srec/output/file/forth.o \
 		lib/srec/output/file/four_packed_code.o \
 		lib/srec/output/file/hexdump.o \
 		lib/srec/output/file/intel.o \
@@ -2004,7 +2028,7 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0122a t0123a t0125a t0126a t0127a t0128a t0129a t0130a \
 		t0131a t0132a t0133a t0135a t0136a t0137a t0138a t0139a \
 		t0150a t0151a t0152a t0153a t0155a t0156a t0157a t0158a \
-		t0159a t0160a t0161a t0162a t0163a 
+		t0159a t0160a t0161a t0162a t0163a t0165a t0166a 
 	@echo Passed All Tests
 
 clean-obj:
@@ -2035,6 +2059,7 @@ clean-obj:
 	rm -f lib/srec/arglex/input.o
 	rm -f lib/srec/arglex/output.o
 	rm -f lib/srec/input.o
+	rm -f lib/srec/input/catenate.o
 	rm -f lib/srec/input/file.o
 	rm -f lib/srec/input/file/aomf.o
 	rm -f lib/srec/input/file/ascii_hex.o
@@ -2119,6 +2144,7 @@ clean-obj:
 	rm -f lib/srec/output/file/fairchild.o
 	rm -f lib/srec/output/file/fastload.o
 	rm -f lib/srec/output/file/formatted_binary.o
+	rm -f lib/srec/output/file/forth.o
 	rm -f lib/srec/output/file/four_packed_code.o
 	rm -f lib/srec/output/file/hexdump.o
 	rm -f lib/srec/output/file/intel.o
@@ -2192,7 +2218,8 @@ install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man5/srec_fairchild.5 \
 		$(mandir)/man5/srec_fastload.5 \
 		$(mandir)/man5/srec_formatted_binary.5 \
-		$(mandir)/man5/srec_fpc.5 $(mandir)/man5/srec_intel.5 \
+		$(mandir)/man5/srec_forth.5 $(mandir)/man5/srec_fpc.5 \
+		$(mandir)/man5/srec_intel.5 \
 		$(mandir)/man5/srec_intel16.5 \
 		$(mandir)/man5/srec_mos_tech.5 \
 		$(mandir)/man5/srec_motorola.5 \

@@ -15,6 +15,7 @@
 .so man/man5/srec_fairchild.5
 .so man/man5/srec_fastload.5
 .so man/man5/srec_formatted_binary.5
+.so man/man5/srec_forth.5
 .so man/man5/srec_fpc.5
 .so man/man5/srec_intel16.5
 .so man/man5/srec_intel.5
