@@ -1,6 +1,6 @@
 '\" t
 .\"     srecord - The "srecord" program.
-.\"     Copyright (C) 1998-2008 Peter Miller
+.\"     Copyright (C) 1998-2009 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -467,21 +467,25 @@ This filter may be used to bit-wise NOT the value of every data byte.
 This is useful if you need to invert the data.
 Only existing data is altered, no holes are filled.
 .TP 8n
-\fB\-Big_Endian_Length\fP \f[I]address\fP [ \f[I]nbytes\fP ]
+\fB\-Big_Endian_Length\fP \f[I]address\fP [ \f[I]nbytes\fP [ \f[I]width\fP ]]
 This filter may be used to insert the length of the data (high water
 minus low water) into the data.  This includes the length itself.
 If the data already contains bytes at the length location,
 you need to use an exclude filter, or this will generate errors.
 The value will be written with the most significant byte first.
 The number of bytes defaults to 4.
+The width defaults to 1, and is divided into the actual lenght,
+thus you can insert the width in units of words (2) or longs (4).
 .TP 8n
-\fB\-Big_Endian_Exclusive_Length\fP \f[I]address\fP [ \f[I]nbytes\fP ]
+\fB\-Big_Endian_Exclusive_Length\fP \f[I]address\fP [ \f[I]nbytes\fP \
+[ \f[I]width\fP ]]
 As above, except that the result does \f[B]not\fP include the length itself.
 .TP 8n
-\fB\-Little_Endian_Length\fP \f[I]address\fP [ \f[I]nbytes\fP ]
+\fB\-Little_Endian_Length\fP \f[I]address\fP [ \f[I]nbytes\fP [ \f[I]width\fP ]]
 As above, however
 the value will be written with the least significant byte first.
-\fB\-Little_Endian_Exclusive_Length\fP \f[I]address\fP [ \f[I]nbytes\fP ]
+\fB\-Little_Endian_Exclusive_Length\fP \f[I]address\fP [ \f[I]nbytes\fP \
+[ \f[I]width\fP ]]
 As above, except that the result does \f[B]not\fP include the length itself.
 .TP 8n
 \fB\-Big_Endian_MAXimum\fP \f[I]address\fP [ \f[I]nbytes\fP ]
@@ -571,10 +575,11 @@ See also the \fB\-over\fP option for a discussion on operator precedence.
 .TP 8n
 \fB\-OVER\fP \f[I]input-specification\fP
 .RS
-This says to use the specified input file as a mask.  The range
-extends from the minimum to the maximum address used by the input, and
-ignores any holes.  The input specification need not be just a file name,
-it may be anything any other input specification can be.
+This says to use the specified input file as a mask.  The range extends
+from the minimum to the maximum address used by the input, without any
+holes, even if the input has holes.  The input specification need not be
+just a file name, it may be anything any other input specification can
+be.
 .PP
 You may need to enclose \f[I]input-specification\fP in parentheses
 to make sure it can't misinterpret which arguments go with which input
@@ -642,7 +647,7 @@ Note the \f[B]space\fP between the minus sign and its argument:
 this space is mandatory.
 .RS
 .ft CW
-srec_cat in.srec -offset - -minimum in.srec -o out.srec
+srec_cat in.srec -offset - -minimum-addr in.srec -o out.srec
 .ft P
 .RE
 This example shows how to move data to the base of memory.
@@ -656,7 +661,7 @@ they can't be within the text of the preceding or following option,
 and you will need to quote them to get them past the shell,
 such as \f[CW]'('\fP and \f[CW]')'\fP.
 .TP 8n
-\fB\-MINimum\fP \f[I]input-specification\fP
+\fB\-MINimum-Address\fP \f[I]input-specification\fP
 .RS
 This inserts the minimum address of the specified input file.
 The input specification need not be just a file name,
@@ -665,7 +670,7 @@ it may be anything any other input specification can be.
 See also the \fB\-over\fP option for a discussion on operator precedence.
 .RE
 .TP 8n
-\fB\-MAXimum\fP \f[I]input-specification\fP
+\fB\-MAXimum-Address\fP \f[I]input-specification\fP
 .RS
 This inserts the maximum address of the specified input file, plus one.
 The input specification need not be just a file name,

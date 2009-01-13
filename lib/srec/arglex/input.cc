@@ -1,6 +1,6 @@
 //
 //      srecord - manipulate eprom load files
-//      Copyright (C) 1998-2008 Peter Miller
+//      Copyright (C) 1998-2009 Peter Miller
 //
 //      This program is free software; you can redistribute it and/or modify
 //      it under the terms of the GNU General Public License as published by
@@ -145,10 +145,8 @@ srec_arglex::get_inclusive_by_token(int tok)
     case token_length:
     case token_length_be:
     case token_length_le:
-    case token_maximum:
     case token_maximum_be:
     case token_maximum_le:
-    case token_minimum:
     case token_minimum_be:
     case token_minimum_le:
         return true;
@@ -556,8 +554,8 @@ srec_arglex::get_input()
                 bool inclusive = get_inclusive_by_token();
                 token_next();
                 unsigned long address;
-                int nbytes;
-                get_address_and_nbytes(name, address, nbytes);
+                int nbytes, width;
+                get_address_nbytes_width(name, address, nbytes, width);
                 ifp =
                     srec_input_filter_interval_length::create
                     (
@@ -565,14 +563,11 @@ srec_arglex::get_input()
                         address,
                         nbytes,
                         end,
+                        width,
                         inclusive
                     );
             }
             break;
-
-        case token_maximum:
-            fatal_error("Use --big-endian-maximum or --little-endian-maximum");
-            // NOTREACHED
 
         case token_exclusive_maximum:
             fatal_error
@@ -605,10 +600,6 @@ srec_arglex::get_input()
                     );
             }
             break;
-
-        case token_minimum:
-            fatal_error("Use --big-endian-minimum or --little-endian-minimum");
-            // NOTREACHED
 
         case token_exclusive_minimum:
             fatal_error

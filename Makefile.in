@@ -96,6 +96,17 @@ mandir = $(DESTDIR)@mandir@
 DATAROOTDIR = $(DESTDIR)@datarootdir@
 
 #
+# where to put the supplementary package executables
+#
+# On a network, this would be shared between all
+# machines of identical architecture.  It can be
+# read-only.
+#
+# The $(DESTDIR) is for packaging.
+#
+LIBDIR = $(DESTDIR)@libdir@
+
+#
 # extra libraries required for your system
 #
 LIBS = @LIBS@
@@ -1180,7 +1191,8 @@ lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc lib/arglex.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
 	mv vmem.o lib/srec/output/file/vmem.o
 
-lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc
+lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc \
+		lib/srec/output/file/wilson.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/wilson.cc
 	mv wilson.o lib/srec/output/file/wilson.o
 
@@ -1842,6 +1854,12 @@ t0165a: test/01/t0165a.sh all
 t0166a: test/01/t0166a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0166a.sh
 
+t0167a: test/01/t0167a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0167a.sh
+
+t0168a: test/01/t0168a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0168a.sh
+
 test_crc16/main.o: test_crc16/main.cc
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
 	mv main.o test_crc16/main.o
@@ -2012,23 +2030,146 @@ all-doc: etc/BUILDING.ps etc/README.ps etc/change_log.ps \
 	@-test -d $(bindir) && touch $@
 	@sleep 1
 
-sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
-		t0010a t0011a t0012a t0013a t0014a t0015a t0016a t0017a \
-		t0018a t0019a t0020a t0021a t0022a t0023a t0024a t0025a \
-		t0026a t0027a t0028a t0029a t0030a t0031a t0032a t0033a \
-		t0034a t0035a t0036a t0037a t0038a t0039a t0040a t0050a \
-		t0051a t0052a t0053a t0055a t0056a t0057a t0058a t0059a \
-		t0060a t0061a t0062a t0063a t0065a t0066a t0067a t0068a \
-		t0069a t0070a t0071a t0072a t0073a t0075a t0076a t0077a \
-		t0078a t0079a t0080a t0081a t0082a t0083a t0085a t0086a \
-		t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a \
-		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a \
-		t0105a t0106a t0107a t0108a t0109a t0110a t0111a t0112a \
-		t0113a t0115a t0116a t0117a t0118a t0119a t0120a t0121a \
-		t0122a t0123a t0125a t0126a t0127a t0128a t0129a t0130a \
-		t0131a t0132a t0133a t0135a t0136a t0137a t0138a t0139a \
-		t0150a t0151a t0152a t0153a t0155a t0156a t0157a t0158a \
-		t0159a t0160a t0161a t0162a t0163a t0165a t0166a 
+check: sure
+
+sure: t0001a \
+	t0002a \
+	t0003a \
+	t0004a \
+	t0005a \
+	t0006a \
+	t0007a \
+	t0008a \
+	t0009a \
+	t0010a \
+	t0011a \
+	t0012a \
+	t0013a \
+	t0014a \
+	t0015a \
+	t0016a \
+	t0017a \
+	t0018a \
+	t0019a \
+	t0020a \
+	t0021a \
+	t0022a \
+	t0023a \
+	t0024a \
+	t0025a \
+	t0026a \
+	t0027a \
+	t0028a \
+	t0029a \
+	t0030a \
+	t0031a \
+	t0032a \
+	t0033a \
+	t0034a \
+	t0035a \
+	t0036a \
+	t0037a \
+	t0038a \
+	t0039a \
+	t0040a \
+	t0050a \
+	t0051a \
+	t0052a \
+	t0053a \
+	t0055a \
+	t0056a \
+	t0057a \
+	t0058a \
+	t0059a \
+	t0060a \
+	t0061a \
+	t0062a \
+	t0063a \
+	t0065a \
+	t0066a \
+	t0067a \
+	t0068a \
+	t0069a \
+	t0070a \
+	t0071a \
+	t0072a \
+	t0073a \
+	t0075a \
+	t0076a \
+	t0077a \
+	t0078a \
+	t0079a \
+	t0080a \
+	t0081a \
+	t0082a \
+	t0083a \
+	t0085a \
+	t0086a \
+	t0087a \
+	t0088a \
+	t0089a \
+	t0090a \
+	t0091a \
+	t0092a \
+	t0093a \
+	t0095a \
+	t0096a \
+	t0097a \
+	t0098a \
+	t0099a \
+	t0100a \
+	t0101a \
+	t0102a \
+	t0103a \
+	t0105a \
+	t0106a \
+	t0107a \
+	t0108a \
+	t0109a \
+	t0110a \
+	t0111a \
+	t0112a \
+	t0113a \
+	t0115a \
+	t0116a \
+	t0117a \
+	t0118a \
+	t0119a \
+	t0120a \
+	t0121a \
+	t0122a \
+	t0123a \
+	t0125a \
+	t0126a \
+	t0127a \
+	t0128a \
+	t0129a \
+	t0130a \
+	t0131a \
+	t0132a \
+	t0133a \
+	t0135a \
+	t0136a \
+	t0137a \
+	t0138a \
+	t0139a \
+	t0150a \
+	t0151a \
+	t0152a \
+	t0153a \
+	t0155a \
+	t0156a \
+	t0157a \
+	t0158a \
+	t0159a \
+	t0160a \
+	t0161a \
+	t0162a \
+	t0163a \
+	t0165a \
+	t0166a \
+	t0167a \
+	t0168a
 	@echo Passed All Tests
 
 clean-obj:
