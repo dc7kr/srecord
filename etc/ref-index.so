@@ -494,6 +494,13 @@ T}	T{
 .ad l
 file format specification
 T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+srec mif - Memory Initialization
+T}	T{
+.ad l
+File (MIF) format
+T}
 srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 .ad r
 srec cat - manipulate EPROM load
@@ -588,6 +595,13 @@ T}
 srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
 .ad r
 srec forth - FORTH file
+T}	T{
+.ad l
+format
+T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+srec mif - Memory Initialization File (MIF)
 T}	T{
 .ad l
 format
@@ -865,6 +879,13 @@ T}	T{
 .ad l
 information about EPROM load files
 T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+srec mif - Memory
+T}	T{
+.ad l
+Initialization File (MIF) format
+T}
 srec_input(1)	\*[Page*Of*srec_input(1)]	T{
 .ad r
 SRecord -
@@ -990,6 +1011,27 @@ srec brecord - Freescale
 T}	T{
 .ad l
 MC68EZ328 Dragonball bootstrap record format
+T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+srec mif -
+T}	T{
+.ad l
+Memory Initialization File (MIF) format
+T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+srec mif - Memory Initialization File (
+T}	T{
+.ad l
+MIF) format
+T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+mif - Memory Initialization File (MIF) format
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
@@ -1305,6 +1347,13 @@ srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 T}	T{
 .ad l
 srec intel - Intel Hexadecimal object file format specification
+T}
+srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec mif - Memory Initialization File (MIF) format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
