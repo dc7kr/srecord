@@ -168,6 +168,10 @@ DESCRIPTION
                The checksum filter may be used to insert the checksum of the
                data (bitnot, negative or positive) into the data.
 
+       bit reverse
+               The bit-reverse filter may be used to reverse the order of bits
+               in each data byte.
+
        byte swap
                The byte swap filter may be used to swap pairs of add and even
                bytes.
@@ -222,11 +226,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.47.README   # Description, from the tar file
-           File:   srecord-1.47.lsm      # Description, LSM format
-           File:   srecord-1.47.spec     # RedHat package specification
-           File:   srecord-1.47.tar.gz   # the complete source
-           File:   srecord-1.47.pdf      # Reference Manual
+           File:   srecord-1.49.README   # Description, from the tar file
+           File:   srecord-1.49.lsm      # Description, LSM format
+           File:   srecord-1.49.spec     # RedHat package specification
+           File:   srecord-1.49.tar.gz   # the complete source
+           File:   srecord-1.49.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -238,7 +242,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.47
+       srecord version 1.49
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008, 2009 Peter Miller
 
@@ -270,17 +274,25 @@ AUTHOR
 
 
 
-
-
-
-
 RELEASE NOTES
        This section details the various features and bug fixes of the various
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
-   Version 1.47 (2009-feb-19)
+   Version 1.49 (2009-May-17)
+       * Nopminated for SourceForge community choice awards.
+
+       * A typo in the srec_input(1) man page has been fixed.
+
+   Version 1.48 (2009-Apr-19)
+       * There are new Fletcher Checksum filters, both 32-bits and 16-bits,
+       both little-endian and big-endian.
+
+       * There are new Fletcher Checksum filters, both 32-bits and 16-bits,
+       both little-endian and big-endian.
+
+   Version 1.47 (2009-Feb-19)
        * Memory Initialzation File (MIF) format by Altera is now supported for
        reading and writing.
 

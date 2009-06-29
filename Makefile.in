@@ -162,9 +162,9 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.39.so etc/new.1.4.so etc/new.1.40.so \
 		etc/new.1.41.so etc/new.1.42.so etc/new.1.43.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
-		etc/new.1.47.so etc/new.1.5.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
+		etc/new.1.5.so etc/new.1.6.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -181,27 +181,28 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.39.so etc/new.1.4.so etc/new.1.40.so \
 		etc/new.1.41.so etc/new.1.42.so etc/new.1.43.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
-		etc/new.1.47.so etc/new.1.5.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
+		etc/new.1.5.so etc/new.1.6.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
 
 etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
-		etc/new-file-format.so etc/new.1.1.so etc/new.1.10.so \
-		etc/new.1.11.so etc/new.1.12.so etc/new.1.13.so \
-		etc/new.1.14.so etc/new.1.15.so etc/new.1.16.so \
-		etc/new.1.17.so etc/new.1.18.so etc/new.1.19.so \
-		etc/new.1.2.so etc/new.1.20.so etc/new.1.21.so \
-		etc/new.1.22.so etc/new.1.23.so etc/new.1.24.so \
-		etc/new.1.25.so etc/new.1.26.so etc/new.1.27.so \
-		etc/new.1.28.so etc/new.1.29.so etc/new.1.3.so \
-		etc/new.1.30.so etc/new.1.31.so etc/new.1.32.so \
-		etc/new.1.33.so etc/new.1.34.so etc/new.1.35.so \
-		etc/new.1.36.so etc/new.1.37.so etc/new.1.38.so \
-		etc/new.1.39.so etc/new.1.4.so etc/new.1.40.so \
-		etc/new.1.41.so etc/new.1.42.so etc/new.1.43.so \
-		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
-		etc/new.1.47.so etc/new.1.5.so etc/new.1.6.so \
+		etc/new-file-format.so etc/new-filter.so etc/new.1.1.so \
+		etc/new.1.10.so etc/new.1.11.so etc/new.1.12.so \
+		etc/new.1.13.so etc/new.1.14.so etc/new.1.15.so \
+		etc/new.1.16.so etc/new.1.17.so etc/new.1.18.so \
+		etc/new.1.19.so etc/new.1.2.so etc/new.1.20.so \
+		etc/new.1.21.so etc/new.1.22.so etc/new.1.23.so \
+		etc/new.1.24.so etc/new.1.25.so etc/new.1.26.so \
+		etc/new.1.27.so etc/new.1.28.so etc/new.1.29.so \
+		etc/new.1.3.so etc/new.1.30.so etc/new.1.31.so \
+		etc/new.1.32.so etc/new.1.33.so etc/new.1.34.so \
+		etc/new.1.35.so etc/new.1.36.so etc/new.1.37.so \
+		etc/new.1.38.so etc/new.1.39.so etc/new.1.4.so \
+		etc/new.1.40.so etc/new.1.41.so etc/new.1.42.so \
+		etc/new.1.43.so etc/new.1.44.so etc/new.1.45.so \
+		etc/new.1.46.so etc/new.1.47.so etc/new.1.48.so \
+		etc/new.1.49.so etc/new.1.5.so etc/new.1.6.so \
 		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
 		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so \
 		etc/version.so man/man1/o_at.so \
@@ -231,12 +232,24 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		man/man5/srec_wilson.5 
 	$(GROFF) -s -I. -t -man etc/reference.man > $@
 
+lib/adler16.o: lib/adler16.cc lib/adler16.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/adler16.cc
+	mv adler16.o lib/adler16.o
+
+lib/adler32.o: lib/adler32.cc lib/adler32.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/adler32.cc
+	mv adler32.o lib/adler32.o
+
 lib/arglex.o: lib/arglex.cc lib/arglex.h lib/format_printf.h \
 		lib/progname.h lib/quit.h lib/versn_stamp.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/arglex.cc
 	mv arglex.o lib/arglex.o
 
-lib/crc16.o: lib/crc16.cc lib/crc16.h
+lib/bitrev.o: lib/bitrev.cc lib/bitrev.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/bitrev.cc
+	mv bitrev.o lib/bitrev.o
+
+lib/crc16.o: lib/crc16.cc lib/bitrev.h lib/crc16.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/crc16.cc
 	mv crc16.o lib/crc16.o
 
@@ -247,6 +260,14 @@ lib/crc32.o: lib/crc32.cc lib/crc32.h
 lib/endian.o: lib/endian.cc lib/endian.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/endian.cc
 	mv endian.o lib/endian.o
+
+lib/fletcher16.o: lib/fletcher16.cc lib/fletcher16.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/fletcher16.cc
+	mv fletcher16.o lib/fletcher16.o
+
+lib/fletcher32.o: lib/fletcher32.cc lib/fletcher32.h
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/fletcher32.cc
+	mv fletcher32.o lib/fletcher32.o
 
 lib/interval.o: lib/interval.cc lib/interval.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval.cc
@@ -328,8 +349,9 @@ lib/srec/arglex/get_string.o: lib/srec/arglex/get_string.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_string.cc
 	mv get_string.o lib/srec/arglex/get_string.o
 
-lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
-		lib/crc16.h lib/crc32.h lib/endian.h \
+lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/adler16.h \
+		lib/adler32.h lib/arglex.h lib/crc16.h lib/crc32.h \
+		lib/endian.h lib/fletcher16.h lib/fletcher32.h \
 		lib/format_printf.h lib/interval.h lib/quit.h \
 		lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/input/catenate.h lib/srec/input/file.h \
@@ -362,19 +384,26 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/arglex.h \
 		lib/srec/input/file/ti_txt.h lib/srec/input/file/vmem.h \
 		lib/srec/input/file/wilson.h lib/srec/input/filter.h \
 		lib/srec/input/filter/and.h \
+		lib/srec/input/filter/bitrev.h \
 		lib/srec/input/filter/byte_swap.h \
 		lib/srec/input/filter/checksum.h \
 		lib/srec/input/filter/checksum/bitnot.h \
 		lib/srec/input/filter/checksum/negative.h \
 		lib/srec/input/filter/checksum/positive.h \
-		lib/srec/input/filter/crc16.h \
-		lib/srec/input/filter/crc32.h \
 		lib/srec/input/filter/crop.h \
 		lib/srec/input/filter/fill.h \
 		lib/srec/input/filter/interval.h \
 		lib/srec/input/filter/interval/length.h \
 		lib/srec/input/filter/interval/maximum.h \
 		lib/srec/input/filter/interval/minimum.h \
+		lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/adler16.h \
+		lib/srec/input/filter/message/adler32.h \
+		lib/srec/input/filter/message/crc16.h \
+		lib/srec/input/filter/message/crc32.h \
+		lib/srec/input/filter/message/fletcher16.h \
+		lib/srec/input/filter/message/fletcher32.h \
+		lib/srec/input/filter/message/gcrypt.h \
 		lib/srec/input/filter/not.h \
 		lib/srec/input/filter/offset.h \
 		lib/srec/input/filter/or.h \
@@ -714,6 +743,13 @@ lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc lib/endian.h \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/and.cc
 	mv and.o lib/srec/input/filter/and.o
 
+lib/srec/input/filter/bitrev.o: lib/srec/input/filter/bitrev.cc \
+		lib/bitrev.h lib/endian.h lib/format_printf.h \
+		lib/srec/input.h lib/srec/input/filter.h \
+		lib/srec/input/filter/bitrev.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/bitrev.cc
+	mv bitrev.o lib/srec/input/filter/bitrev.o
+
 lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
 		lib/arglex.h lib/endian.h lib/format_printf.h \
 		lib/srec/arglex.h lib/srec/input.h \
@@ -763,26 +799,6 @@ lib/srec/input/filter/checksum/positive.o: \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
 		lib/srec/input/filter/checksum/positive.cc 
 	mv positive.o lib/srec/input/filter/checksum/positive.o
-
-lib/srec/input/filter/crc16.o: lib/srec/input/filter/crc16.cc \
-		lib/arglex.h lib/crc16.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/crc16.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h lib/srec/memory/walker/crc16.h \
-		lib/srec/output.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crc16.cc
-	mv crc16.o lib/srec/input/filter/crc16.o
-
-lib/srec/input/filter/crc32.o: lib/srec/input/filter/crc32.cc \
-		lib/arglex.h lib/crc32.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/crc32.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h lib/srec/memory/walker/crc32.h \
-		lib/srec/output.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crc32.cc
-	mv crc32.o lib/srec/input/filter/crc32.o
 
 lib/srec/input/filter/crop.o: lib/srec/input/filter/crop.cc \
 		lib/endian.h lib/format_printf.h lib/interval.h \
@@ -834,6 +850,109 @@ lib/srec/input/filter/interval/minimum.o: \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
 		lib/srec/input/filter/interval/minimum.cc 
 	mv minimum.o lib/srec/input/filter/interval/minimum.o
+
+lib/srec/input/filter/message.o: lib/srec/input/filter/message.cc \
+		lib/endian.h lib/format_printf.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/message.cc
+	mv message.o lib/srec/input/filter/message.o
+
+lib/srec/input/filter/message/adler16.o: \
+		lib/srec/input/filter/message/adler16.cc lib/adler16.h \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/adler16.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/adler16.h lib/srec/output.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/adler16.cc 
+	mv adler16.o lib/srec/input/filter/message/adler16.o
+
+lib/srec/input/filter/message/adler32.o: \
+		lib/srec/input/filter/message/adler32.cc lib/adler32.h \
+		lib/arglex.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/adler32.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/adler32.h lib/srec/output.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/adler32.cc 
+	mv adler32.o lib/srec/input/filter/message/adler32.o
+
+lib/srec/input/filter/message/crc16.o: \
+		lib/srec/input/filter/message/crc16.cc lib/arglex.h \
+		lib/crc16.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/crc16.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/srec/memory/walker/crc16.h lib/srec/output.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/crc16.cc 
+	mv crc16.o lib/srec/input/filter/message/crc16.o
+
+lib/srec/input/filter/message/crc32.o: \
+		lib/srec/input/filter/message/crc32.cc lib/arglex.h \
+		lib/crc32.h lib/endian.h lib/format_printf.h \
+		lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/crc32.h lib/srec/memory.h \
+		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
+		lib/srec/memory/walker/crc32.h lib/srec/output.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/crc32.cc 
+	mv crc32.o lib/srec/input/filter/message/crc32.o
+
+lib/srec/input/filter/message/fletcher16.o: \
+		lib/srec/input/filter/message/fletcher16.cc \
+		lib/arglex.h lib/endian.h lib/fletcher16.h \
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/fletcher16.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/fletcher16.h lib/srec/output.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/fletcher16.cc 
+	mv fletcher16.o lib/srec/input/filter/message/fletcher16.o
+
+lib/srec/input/filter/message/fletcher32.o: \
+		lib/srec/input/filter/message/fletcher32.cc \
+		lib/arglex.h lib/endian.h lib/fletcher32.h \
+		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
+		lib/srec/input/filter.h lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/fletcher32.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/fletcher32.h lib/srec/output.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/fletcher32.cc 
+	mv fletcher32.o lib/srec/input/filter/message/fletcher32.o
+
+lib/srec/input/filter/message/gcrypt.o: \
+		lib/srec/input/filter/message/gcrypt.cc lib/endian.h \
+		lib/format_printf.h lib/quit.h lib/sizeof.h \
+		lib/srec/input.h lib/srec/input/filter.h \
+		lib/srec/input/filter/message.h \
+		lib/srec/input/filter/message/gcrypt.h \
+		lib/srec/memory.h lib/srec/memory/chunk.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/gcrypt.h lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/input/filter/message/gcrypt.cc 
+	mv gcrypt.o lib/srec/input/filter/message/gcrypt.o
 
 lib/srec/input/filter/not.o: lib/srec/input/filter/not.cc lib/endian.h \
 		lib/format_printf.h lib/srec/input.h \
@@ -960,6 +1079,20 @@ lib/srec/memory/walker.o: lib/srec/memory/walker.cc \
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker.cc
 	mv walker.o lib/srec/memory/walker.o
 
+lib/srec/memory/walker/adler16.o: lib/srec/memory/walker/adler16.cc \
+		lib/adler16.h lib/format_printf.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/adler16.h lib/srec/output.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/adler16.cc
+	mv adler16.o lib/srec/memory/walker/adler16.o
+
+lib/srec/memory/walker/adler32.o: lib/srec/memory/walker/adler32.cc \
+		lib/adler32.h lib/format_printf.h \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/adler32.h lib/srec/output.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/adler32.cc
+	mv adler32.o lib/srec/memory/walker/adler32.o
+
 lib/srec/memory/walker/compare.o: lib/srec/memory/walker/compare.cc \
 		lib/format_printf.h lib/interval.h lib/srec/input.h \
 		lib/srec/memory.h lib/srec/memory/chunk.h \
@@ -989,6 +1122,28 @@ lib/srec/memory/walker/crc32.o: lib/srec/memory/walker/crc32.cc \
 		lib/srec/output.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/crc32.cc
 	mv crc32.o lib/srec/memory/walker/crc32.o
+
+lib/srec/memory/walker/fletcher16.o: \
+		lib/srec/memory/walker/fletcher16.cc lib/fletcher16.h \
+		lib/format_printf.h lib/srec/memory/walker.h \
+		lib/srec/memory/walker/fletcher16.h lib/srec/output.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/memory/walker/fletcher16.cc 
+	mv fletcher16.o lib/srec/memory/walker/fletcher16.o
+
+lib/srec/memory/walker/fletcher32.o: \
+		lib/srec/memory/walker/fletcher32.cc lib/fletcher32.h \
+		lib/format_printf.h lib/srec/memory/walker.h \
+		lib/srec/memory/walker/fletcher32.h lib/srec/output.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		lib/srec/memory/walker/fletcher32.cc 
+	mv fletcher32.o lib/srec/memory/walker/fletcher32.o
+
+lib/srec/memory/walker/gcrypt.o: lib/srec/memory/walker/gcrypt.cc \
+		lib/srec/memory/walker.h \
+		lib/srec/memory/walker/gcrypt.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/gcrypt.cc
+	mv gcrypt.o lib/srec/memory/walker/gcrypt.o
 
 lib/srec/memory/walker/writer.o: lib/srec/memory/walker/writer.cc \
 		lib/format_printf.h lib/srec/memory/walker.h \
@@ -2017,13 +2172,62 @@ t0170a: test/01/t0170a.sh all
 t0171a: test/01/t0171a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0171a.sh
 
+t0172a: test/01/t0172a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0172a.sh
+
+t0173a: test/01/t0173a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0173a.sh
+
+t0175a: test/01/t0175a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0175a.sh
+
+t0176a: test/01/t0176a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0176a.sh
+
+t0177a: test/01/t0177a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0177a.sh
+
+t0178a: test/01/t0178a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0178a.sh
+
+t0179a: test/01/t0179a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0179a.sh
+
+t0180a: test/01/t0180a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0180a.sh
+
+t0181a: test/01/t0181a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0181a.sh
+
+t0182a: test/01/t0182a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0182a.sh
+
+t0183a: test/01/t0183a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0183a.sh
+
+t0185a: test/01/t0185a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0185a.sh
+
+t0186a: test/01/t0186a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0186a.sh
+
+t0187a: test/01/t0187a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0187a.sh
+
+t0188a: test/01/t0188a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0188a.sh
+
+t0189a: test/01/t0189a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0189a.sh
+
 test_crc16/main.o: test_crc16/main.cc lib/crc16.h lib/format_printf.h \
 		lib/progname.h lib/quit.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
 	mv main.o test_crc16/main.o
 
-lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
-		lib/interval.o lib/interval/coverage.o \
+lib_obj = lib/adler16.o lib/adler32.o lib/arglex.o lib/bitrev.o \
+		lib/crc16.o lib/crc32.o lib/endian.o lib/fletcher16.o \
+		lib/fletcher32.o lib/interval.o lib/interval/coverage.o \
 		lib/interval/flatten.o lib/pretty_size.o lib/progname.o \
 		lib/quit.o lib/quit/exception.o lib/quit/normal.o \
 		lib/quit/prefix.o lib/r250.o lib/srec/arglex.o \
@@ -2062,19 +2266,26 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
 		lib/srec/input/file/ti_txt.o lib/srec/input/file/vmem.o \
 		lib/srec/input/file/wilson.o lib/srec/input/filter.o \
 		lib/srec/input/filter/and.o \
+		lib/srec/input/filter/bitrev.o \
 		lib/srec/input/filter/byte_swap.o \
 		lib/srec/input/filter/checksum.o \
 		lib/srec/input/filter/checksum/bitnot.o \
 		lib/srec/input/filter/checksum/negative.o \
 		lib/srec/input/filter/checksum/positive.o \
-		lib/srec/input/filter/crc16.o \
-		lib/srec/input/filter/crc32.o \
 		lib/srec/input/filter/crop.o \
 		lib/srec/input/filter/fill.o \
 		lib/srec/input/filter/interval.o \
 		lib/srec/input/filter/interval/length.o \
 		lib/srec/input/filter/interval/maximum.o \
 		lib/srec/input/filter/interval/minimum.o \
+		lib/srec/input/filter/message.o \
+		lib/srec/input/filter/message/adler16.o \
+		lib/srec/input/filter/message/adler32.o \
+		lib/srec/input/filter/message/crc16.o \
+		lib/srec/input/filter/message/crc32.o \
+		lib/srec/input/filter/message/fletcher16.o \
+		lib/srec/input/filter/message/fletcher32.o \
+		lib/srec/input/filter/message/gcrypt.o \
 		lib/srec/input/filter/not.o \
 		lib/srec/input/filter/offset.o \
 		lib/srec/input/filter/or.o \
@@ -2089,10 +2300,15 @@ lib_obj = lib/arglex.o lib/crc16.o lib/crc32.o lib/endian.o \
 		lib/srec/input/generator/repeat.o \
 		lib/srec/input/interval.o lib/srec/memory.o \
 		lib/srec/memory/chunk.o lib/srec/memory/walker.o \
+		lib/srec/memory/walker/adler16.o \
+		lib/srec/memory/walker/adler32.o \
 		lib/srec/memory/walker/compare.o \
 		lib/srec/memory/walker/continuity.o \
 		lib/srec/memory/walker/crc16.o \
 		lib/srec/memory/walker/crc32.o \
+		lib/srec/memory/walker/fletcher16.o \
+		lib/srec/memory/walker/fletcher32.o \
+		lib/srec/memory/walker/gcrypt.o \
 		lib/srec/memory/walker/writer.o lib/srec/output.o \
 		lib/srec/output/file.o lib/srec/output/file/aomf.o \
 		lib/srec/output/file/ascii_hex.o \
@@ -2191,147 +2407,164 @@ all-doc: etc/BUILDING.ps etc/README.ps etc/change_log.ps \
 
 check: sure
 
-sure: t0001a \
-	t0002a \
-	t0003a \
-	t0004a \
-	t0005a \
-	t0006a \
-	t0007a \
-	t0008a \
-	t0009a \
-	t0010a \
-	t0011a \
-	t0012a \
-	t0013a \
-	t0014a \
-	t0015a \
-	t0016a \
-	t0017a \
-	t0018a \
-	t0019a \
-	t0020a \
-	t0021a \
-	t0022a \
-	t0023a \
-	t0024a \
-	t0025a \
-	t0026a \
-	t0027a \
-	t0028a \
-	t0029a \
-	t0030a \
-	t0031a \
-	t0032a \
-	t0033a \
-	t0034a \
-	t0035a \
-	t0036a \
-	t0037a \
-	t0038a \
-	t0039a \
-	t0040a \
-	t0050a \
-	t0051a \
-	t0052a \
-	t0053a \
-	t0055a \
-	t0056a \
-	t0057a \
-	t0058a \
-	t0059a \
-	t0060a \
-	t0061a \
-	t0062a \
-	t0063a \
-	t0065a \
-	t0066a \
-	t0067a \
-	t0068a \
-	t0069a \
-	t0070a \
-	t0071a \
-	t0072a \
-	t0073a \
-	t0075a \
-	t0076a \
-	t0077a \
-	t0078a \
-	t0079a \
-	t0080a \
-	t0081a \
-	t0082a \
-	t0083a \
-	t0085a \
-	t0086a \
-	t0087a \
-	t0088a \
-	t0089a \
-	t0090a \
-	t0091a \
-	t0092a \
-	t0093a \
-	t0095a \
-	t0096a \
-	t0097a \
-	t0098a \
-	t0099a \
-	t0100a \
-	t0101a \
-	t0102a \
-	t0103a \
-	t0105a \
-	t0106a \
-	t0107a \
-	t0108a \
-	t0109a \
-	t0110a \
-	t0111a \
-	t0112a \
-	t0113a \
-	t0115a \
-	t0116a \
-	t0117a \
-	t0118a \
-	t0119a \
-	t0120a \
-	t0121a \
-	t0122a \
-	t0123a \
-	t0125a \
-	t0126a \
-	t0127a \
-	t0128a \
-	t0129a \
-	t0130a \
-	t0131a \
-	t0132a \
-	t0133a \
-	t0135a \
-	t0136a \
-	t0137a \
-	t0138a \
-	t0139a \
-	t0150a \
-	t0151a \
-	t0152a \
-	t0153a \
-	t0155a \
-	t0156a \
-	t0157a \
-	t0158a \
-	t0159a \
-	t0160a \
-	t0161a \
-	t0162a \
-	t0163a \
-	t0165a \
-	t0166a \
-	t0167a \
-	t0168a \
-	t0169a \
-	t0170a \
-	t0171a
+sure: \
+t0001a \
+t0002a \
+t0003a \
+t0004a \
+t0005a \
+t0006a \
+t0007a \
+t0008a \
+t0009a \
+t0010a \
+t0011a \
+t0012a \
+t0013a \
+t0014a \
+t0015a \
+t0016a \
+t0017a \
+t0018a \
+t0019a \
+t0020a \
+t0021a \
+t0022a \
+t0023a \
+t0024a \
+t0025a \
+t0026a \
+t0027a \
+t0028a \
+t0029a \
+t0030a \
+t0031a \
+t0032a \
+t0033a \
+t0034a \
+t0035a \
+t0036a \
+t0037a \
+t0038a \
+t0039a \
+t0040a \
+t0050a \
+t0051a \
+t0052a \
+t0053a \
+t0055a \
+t0056a \
+t0057a \
+t0058a \
+t0059a \
+t0060a \
+t0061a \
+t0062a \
+t0063a \
+t0065a \
+t0066a \
+t0067a \
+t0068a \
+t0069a \
+t0070a \
+t0071a \
+t0072a \
+t0073a \
+t0075a \
+t0076a \
+t0077a \
+t0078a \
+t0079a \
+t0080a \
+t0081a \
+t0082a \
+t0083a \
+t0085a \
+t0086a \
+t0087a \
+t0088a \
+t0089a \
+t0090a \
+t0091a \
+t0092a \
+t0093a \
+t0095a \
+t0096a \
+t0097a \
+t0098a \
+t0099a \
+t0100a \
+t0101a \
+t0102a \
+t0103a \
+t0105a \
+t0106a \
+t0107a \
+t0108a \
+t0109a \
+t0110a \
+t0111a \
+t0112a \
+t0113a \
+t0115a \
+t0116a \
+t0117a \
+t0118a \
+t0119a \
+t0120a \
+t0121a \
+t0122a \
+t0123a \
+t0125a \
+t0126a \
+t0127a \
+t0128a \
+t0129a \
+t0130a \
+t0131a \
+t0132a \
+t0133a \
+t0135a \
+t0136a \
+t0137a \
+t0138a \
+t0139a \
+t0150a \
+t0151a \
+t0152a \
+t0153a \
+t0155a \
+t0156a \
+t0157a \
+t0158a \
+t0159a \
+t0160a \
+t0161a \
+t0162a \
+t0163a \
+t0165a \
+t0166a \
+t0167a \
+t0168a \
+t0169a \
+t0170a \
+t0171a \
+t0172a \
+t0173a \
+t0175a \
+t0176a \
+t0177a \
+t0178a \
+t0179a \
+t0180a \
+t0181a \
+t0182a \
+t0183a \
+t0185a \
+t0186a \
+t0187a \
+t0188a \
+t0189a
 	@echo Passed All Tests
 
 clean-obj:
@@ -2339,10 +2572,15 @@ clean-obj:
 	rm -f .bindir
 	rm -f bin/test_prelude
 	rm -f core
+	rm -f lib/adler16.o
+	rm -f lib/adler32.o
 	rm -f lib/arglex.o
+	rm -f lib/bitrev.o
 	rm -f lib/crc16.o
 	rm -f lib/crc32.o
 	rm -f lib/endian.o
+	rm -f lib/fletcher16.o
+	rm -f lib/fletcher32.o
 	rm -f lib/interval.o
 	rm -f lib/interval/coverage.o
 	rm -f lib/interval/flatten.o
@@ -2397,19 +2635,26 @@ clean-obj:
 	rm -f lib/srec/input/file/wilson.o
 	rm -f lib/srec/input/filter.o
 	rm -f lib/srec/input/filter/and.o
+	rm -f lib/srec/input/filter/bitrev.o
 	rm -f lib/srec/input/filter/byte_swap.o
 	rm -f lib/srec/input/filter/checksum.o
 	rm -f lib/srec/input/filter/checksum/bitnot.o
 	rm -f lib/srec/input/filter/checksum/negative.o
 	rm -f lib/srec/input/filter/checksum/positive.o
-	rm -f lib/srec/input/filter/crc16.o
-	rm -f lib/srec/input/filter/crc32.o
 	rm -f lib/srec/input/filter/crop.o
 	rm -f lib/srec/input/filter/fill.o
 	rm -f lib/srec/input/filter/interval.o
 	rm -f lib/srec/input/filter/interval/length.o
 	rm -f lib/srec/input/filter/interval/maximum.o
 	rm -f lib/srec/input/filter/interval/minimum.o
+	rm -f lib/srec/input/filter/message.o
+	rm -f lib/srec/input/filter/message/adler16.o
+	rm -f lib/srec/input/filter/message/adler32.o
+	rm -f lib/srec/input/filter/message/crc16.o
+	rm -f lib/srec/input/filter/message/crc32.o
+	rm -f lib/srec/input/filter/message/fletcher16.o
+	rm -f lib/srec/input/filter/message/fletcher32.o
+	rm -f lib/srec/input/filter/message/gcrypt.o
 	rm -f lib/srec/input/filter/not.o
 	rm -f lib/srec/input/filter/offset.o
 	rm -f lib/srec/input/filter/or.o
@@ -2427,10 +2672,15 @@ clean-obj:
 	rm -f lib/srec/memory.o
 	rm -f lib/srec/memory/chunk.o
 	rm -f lib/srec/memory/walker.o
+	rm -f lib/srec/memory/walker/adler16.o
+	rm -f lib/srec/memory/walker/adler32.o
 	rm -f lib/srec/memory/walker/compare.o
 	rm -f lib/srec/memory/walker/continuity.o
 	rm -f lib/srec/memory/walker/crc16.o
 	rm -f lib/srec/memory/walker/crc32.o
+	rm -f lib/srec/memory/walker/fletcher16.o
+	rm -f lib/srec/memory/walker/fletcher32.o
+	rm -f lib/srec/memory/walker/gcrypt.o
 	rm -f lib/srec/memory/walker/writer.o
 	rm -f lib/srec/output.o
 	rm -f lib/srec/output/file.o

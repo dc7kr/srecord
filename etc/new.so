@@ -1,5 +1,11 @@
 .br
 .ne 3i
+.so etc/new.1.49.so
+.br
+.ne 3i
+.so etc/new.1.48.so
+.br
+.ne 3i
 .so etc/new.1.47.so
 .br
 .ne 3i
