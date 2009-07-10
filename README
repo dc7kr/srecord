@@ -226,11 +226,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.49.README   # Description, from the tar file
-           File:   srecord-1.49.lsm      # Description, LSM format
-           File:   srecord-1.49.spec     # RedHat package specification
-           File:   srecord-1.49.tar.gz   # the complete source
-           File:   srecord-1.49.pdf      # Reference Manual
+           File:   srecord-1.50.README   # Description, from the tar file
+           File:   srecord-1.50.lsm      # Description, LSM format
+           File:   srecord-1.50.spec     # RedHat package specification
+           File:   srecord-1.50.tar.gz   # the complete source
+           File:   srecord-1.50.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -242,7 +242,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.49
+       srecord version 1.50
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008, 2009 Peter Miller
 
@@ -280,17 +280,29 @@ RELEASE NOTES
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
-   Version 1.49 (2009-May-17)
-       * Nopminated for SourceForge community choice awards.
+   Version 1.50 (2009-Jul-09)
+       * The CRC16 code has been enhanced to provide low-to-high bit order, in
+       addition to the previous high-to-low bit order.  It is also possible to
+       specify the polynomial, with the default the CCITT standard polynomial,
+       as was in the previous code.  See srec_input(1) for more information.
 
+       * The MD5, RipeMD-160, SHA1, SHA224, SHA256, SHA384, SHA 512 and
+       Whirlpool message digests are now supported.  See srec_input(1) for
+       more information.
+
+       * There is a new srec_cat -bit-reverse filter, that may be used to
+       reverse the bits in each data byte.  See srec_input(1) for more
+       information.
+
+   Version 1.49 (2009-May-17)
        * A typo in the srec_input(1) man page has been fixed.
 
    Version 1.48 (2009-Apr-19)
        * There are new Fletcher Checksum filters, both 32-bits and 16-bits,
        both little-endian and big-endian.
 
-       * There are new Fletcher Checksum filters, both 32-bits and 16-bits,
-       both little-endian and big-endian.
+       * There are new Adler Checksum filters, both 32-bits and 16-bits, both
+       little-endian and big-endian.
 
    Version 1.47 (2009-Feb-19)
        * Memory Initialzation File (MIF) format by Altera is now supported for

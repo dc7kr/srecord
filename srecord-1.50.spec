@@ -5,7 +5,7 @@
 #
 Summary: Manipulate EPROM load files
 Name: srecord
-Version: 1.49
+Version: 1.50
 Release: 1
 License: GPL
 Group: Development/Tools
