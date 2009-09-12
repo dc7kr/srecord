@@ -163,9 +163,9 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.41.so etc/new.1.42.so etc/new.1.43.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
-		etc/new.1.5.so etc/new.1.50.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -183,9 +183,9 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.41.so etc/new.1.42.so etc/new.1.43.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
-		etc/new.1.5.so etc/new.1.50.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
 
 etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
@@ -205,21 +205,22 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		etc/new.1.43.so etc/new.1.44.so etc/new.1.45.so \
 		etc/new.1.46.so etc/new.1.47.so etc/new.1.48.so \
 		etc/new.1.49.so etc/new.1.5.so etc/new.1.50.so \
-		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so etc/new.so etc/ref-index.so \
-		etc/ref-parts.so etc/ref-toc.so etc/version.so \
-		man/man1/o_at.so man/man1/o_ignore_checksums.so \
-		man/man1/o_input.so man/man1/o_multiple.so \
-		man/man1/o_sequence.so man/man1/srec_cat.1 \
-		man/man1/srec_cmp.1 man/man1/srec_examples.1 \
-		man/man1/srec_info.1 man/man1/srec_input.1 \
-		man/man1/srec_license.1 man/man1/z_copyright.so \
-		man/man1/z_exit.so man/man1/z_options.so \
-		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
-		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
-		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
-		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
-		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		etc/new.1.51.so etc/new.1.6.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so etc/new.so \
+		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so \
+		etc/version.so man/man1/o_at.so \
+		man/man1/o_ignore_checksums.so man/man1/o_input.so \
+		man/man1/o_multiple.so man/man1/o_sequence.so \
+		man/man1/srec_cat.1 man/man1/srec_cmp.1 \
+		man/man1/srec_examples.1 man/man1/srec_info.1 \
+		man/man1/srec_input.1 man/man1/srec_license.1 \
+		man/man1/z_copyright.so man/man1/z_exit.so \
+		man/man1/z_options.so man/man5/srec_aomf.5 \
+		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
+		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
+		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
+		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
+		man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_forth.5 \
 		man/man5/srec_fpc.5 man/man5/srec_intel.5 \
 		man/man5/srec_intel16.5 man/man5/srec_mif.5 \
@@ -1714,10 +1715,6 @@ bin/test_prelude: script/test_prelude .bin
 	cp script/test_prelude $@
 	chmod a+rx $@
 
-$(bindir)/$(PROGRAM_PREFIX)test_prelude$(PROGRAM_SUFFIX): \
-		bin/test_prelude .bindir 
-	$(INSTALL_SCRIPT) bin/test_prelude $@
-
 srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h lib/endian.h \
 		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
 		lib/srec/output.h srec_cat/arglex3.h 
@@ -2222,6 +2219,12 @@ t0188a: test/01/t0188a.sh all
 t0189a: test/01/t0189a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0189a.sh
 
+t0191a: test/01/t0191a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0191a.sh
+
+t0192a: test/01/t0192a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0192a.sh
+
 test_crc16/main.o: test_crc16/main.cc lib/bitrev.h lib/crc16.h \
 		lib/format_printf.h lib/progname.h lib/quit.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
@@ -2386,9 +2389,6 @@ test_crc16_obj = test_crc16/main.o
 bin/test_crc16: $(test_crc16_obj) lib/libsrecord.a .bin
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(test_crc16_obj) \
 		lib/libsrecord.a $(LIBS) 
-
-$(bindir)/test_crc16: bin/test_crc16 .bindir
-	$(INSTALL_PROGRAM) bin/test_crc16 $@
 
 all: all-bin all-doc
 all-bin: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_crc16 \
@@ -2566,7 +2566,9 @@ t0185a \
 t0186a \
 t0187a \
 t0188a \
-t0189a
+t0189a \
+t0191a \
+t0192a
 	@echo Passed All Tests
 
 clean-obj:
