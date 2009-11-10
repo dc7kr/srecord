@@ -22,6 +22,7 @@
 .so man/man5/srec_mif.5
 .so man/man5/srec_mos_tech.5
 .so man/man5/srec_motorola.5
+.so man/man5/srec_msbin.5
 .so man/man5/srec_needham.5
 .so man/man5/srec_os65v.5
 .so man/man5/srec_signetics.5

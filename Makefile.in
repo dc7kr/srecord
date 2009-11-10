@@ -164,8 +164,9 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
-		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so etc/new.so etc/version.so 
+		etc/new.1.52.so etc/new.1.53.so etc/new.1.6.so \
+		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
+		etc/version.so 
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -184,29 +185,31 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
-		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so etc/new.so etc/version.so 
+		etc/new.1.52.so etc/new.1.53.so etc/new.1.6.so \
+		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
+		etc/version.so 
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
 
 etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
-		etc/new-file-format.so etc/new-filter.so etc/new.1.1.so \
-		etc/new.1.10.so etc/new.1.11.so etc/new.1.12.so \
-		etc/new.1.13.so etc/new.1.14.so etc/new.1.15.so \
-		etc/new.1.16.so etc/new.1.17.so etc/new.1.18.so \
-		etc/new.1.19.so etc/new.1.2.so etc/new.1.20.so \
-		etc/new.1.21.so etc/new.1.22.so etc/new.1.23.so \
-		etc/new.1.24.so etc/new.1.25.so etc/new.1.26.so \
-		etc/new.1.27.so etc/new.1.28.so etc/new.1.29.so \
-		etc/new.1.3.so etc/new.1.30.so etc/new.1.31.so \
-		etc/new.1.32.so etc/new.1.33.so etc/new.1.34.so \
-		etc/new.1.35.so etc/new.1.36.so etc/new.1.37.so \
-		etc/new.1.38.so etc/new.1.39.so etc/new.1.4.so \
-		etc/new.1.40.so etc/new.1.41.so etc/new.1.42.so \
-		etc/new.1.43.so etc/new.1.44.so etc/new.1.45.so \
-		etc/new.1.46.so etc/new.1.47.so etc/new.1.48.so \
-		etc/new.1.49.so etc/new.1.5.so etc/new.1.50.so \
-		etc/new.1.51.so etc/new.1.6.so etc/new.1.7.so \
-		etc/new.1.8.so etc/new.1.9.so etc/new.so \
+		etc/coding-style.so etc/new-file-format.so \
+		etc/new-filter.so etc/new.1.1.so etc/new.1.10.so \
+		etc/new.1.11.so etc/new.1.12.so etc/new.1.13.so \
+		etc/new.1.14.so etc/new.1.15.so etc/new.1.16.so \
+		etc/new.1.17.so etc/new.1.18.so etc/new.1.19.so \
+		etc/new.1.2.so etc/new.1.20.so etc/new.1.21.so \
+		etc/new.1.22.so etc/new.1.23.so etc/new.1.24.so \
+		etc/new.1.25.so etc/new.1.26.so etc/new.1.27.so \
+		etc/new.1.28.so etc/new.1.29.so etc/new.1.3.so \
+		etc/new.1.30.so etc/new.1.31.so etc/new.1.32.so \
+		etc/new.1.33.so etc/new.1.34.so etc/new.1.35.so \
+		etc/new.1.36.so etc/new.1.37.so etc/new.1.38.so \
+		etc/new.1.39.so etc/new.1.4.so etc/new.1.40.so \
+		etc/new.1.41.so etc/new.1.42.so etc/new.1.43.so \
+		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
+		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
+		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
+		etc/new.1.52.so etc/new.1.53.so etc/new.1.6.so \
+		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
 		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so \
 		etc/version.so man/man1/o_at.so \
 		man/man1/o_ignore_checksums.so man/man1/o_input.so \
@@ -225,10 +228,10 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		man/man5/srec_fpc.5 man/man5/srec_intel.5 \
 		man/man5/srec_intel16.5 man/man5/srec_mif.5 \
 		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
-		man/man5/srec_needham.5 man/man5/srec_os65v.5 \
-		man/man5/srec_signetics.5 man/man5/srec_spasm.5 \
-		man/man5/srec_spectrum.5 man/man5/srec_stewie.5 \
-		man/man5/srec_tektronix.5 \
+		man/man5/srec_msbin.5 man/man5/srec_needham.5 \
+		man/man5/srec_os65v.5 man/man5/srec_signetics.5 \
+		man/man5/srec_spasm.5 man/man5/srec_spectrum.5 \
+		man/man5/srec_stewie.5 man/man5/srec_tektronix.5 \
 		man/man5/srec_tektronix_extended.5 \
 		man/man5/srec_ti_tagged.5 man/man5/srec_ti_tagged_16.5 \
 		man/man5/srec_ti_txt.5 man/man5/srec_vmem.5 \
@@ -373,6 +376,7 @@ lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/adler16.h \
 		lib/srec/input/file/intel.h \
 		lib/srec/input/file/intel16.h lib/srec/input/file/mif.h \
 		lib/srec/input/file/mos_tech.h \
+		lib/srec/input/file/msbin.h \
 		lib/srec/input/file/needham.h \
 		lib/srec/input/file/os65v.h \
 		lib/srec/input/file/signetics.h \
@@ -445,6 +449,7 @@ lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
 		lib/srec/output/file/intel16.h \
 		lib/srec/output/file/mif.h \
 		lib/srec/output/file/mos_tech.h \
+		lib/srec/output/file/msbin.h \
 		lib/srec/output/file/needham.h \
 		lib/srec/output/file/os65v.h \
 		lib/srec/output/file/signetics.h \
@@ -458,7 +463,7 @@ lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
 		lib/srec/output/file/ti_tagged_16.h \
 		lib/srec/output/file/ti_txt.h \
 		lib/srec/output/file/vhdl.h lib/srec/output/file/vmem.h \
-		lib/srec/output/file/wilson.h 
+		lib/srec/output/file/wilson.h lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/output.cc
 	mv output.o lib/srec/arglex/output.o
 
@@ -588,6 +593,7 @@ lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc lib/endian.h \
 		lib/srec/input/file/intel.h \
 		lib/srec/input/file/intel16.h lib/srec/input/file/mif.h \
 		lib/srec/input/file/mos_tech.h \
+		lib/srec/input/file/msbin.h \
 		lib/srec/input/file/needham.h \
 		lib/srec/input/file/os65v.h \
 		lib/srec/input/file/signetics.h \
@@ -630,6 +636,13 @@ lib/srec/input/file/mos_tech.o: lib/srec/input/file/mos_tech.cc \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/mos_tech.cc
 	mv mos_tech.o lib/srec/input/file/mos_tech.o
+
+lib/srec/input/file/msbin.o: lib/srec/input/file/msbin.cc lib/endian.h \
+		lib/format_printf.h lib/srec/input.h \
+		lib/srec/input/file.h lib/srec/input/file/msbin.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/msbin.cc
+	mv msbin.o lib/srec/input/file/msbin.o
 
 lib/srec/input/file/needham.o: lib/srec/input/file/needham.cc \
 		lib/endian.h lib/format_printf.h lib/srec/input.h \
@@ -1160,8 +1173,9 @@ lib/srec/output.o: lib/srec/output.cc lib/endian.h lib/format_printf.h \
 	mv output.o lib/srec/output.o
 
 lib/srec/output/file.o: lib/srec/output/file.cc lib/arglex.h \
-		lib/format_printf.h lib/sizeof.h lib/srec/output.h \
-		lib/srec/output/file.h 
+		lib/endian.h lib/format_printf.h lib/sizeof.h \
+		lib/srec/output.h lib/srec/output/file.h \
+		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file.cc
 	mv file.o lib/srec/output/file.o
 
@@ -1332,6 +1346,13 @@ lib/srec/output/file/mos_tech.o: lib/srec/output/file/mos_tech.cc \
 		lib/srec/record.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/mos_tech.cc
 	mv mos_tech.o lib/srec/output/file/mos_tech.o
+
+lib/srec/output/file/msbin.o: lib/srec/output/file/msbin.cc \
+		lib/endian.h lib/format_printf.h lib/srec/output.h \
+		lib/srec/output/file.h lib/srec/output/file/msbin.h \
+		lib/srec/record.h 
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/msbin.cc
+	mv msbin.o lib/srec/output/file/msbin.o
 
 lib/srec/output/file/needham.o: lib/srec/output/file/needham.cc \
 		lib/endian.h lib/format_printf.h lib/srec/output.h \
@@ -1625,6 +1646,12 @@ $(mandir)/man5/srec_mos_tech.5: man/man5/srec_mos_tech.5 etc/version.so \
 $(mandir)/man5/srec_motorola.5: man/man5/srec_motorola.5 etc/version.so \
 		man/man1/z_copyright.so man/man5/.mandir 
 	$(SOELIM) -I. -Iman/man5 man/man5/srec_motorola.5 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
+$(mandir)/man5/srec_msbin.5: man/man5/srec_msbin.5 etc/version.so \
+		man/man1/z_copyright.so man/man5/.mandir 
+	$(SOELIM) -I. -Iman/man5 man/man5/srec_msbin.5 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
@@ -2225,6 +2252,21 @@ t0191a: test/01/t0191a.sh all
 t0192a: test/01/t0192a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0192a.sh
 
+t0193a: test/01/t0193a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0193a.sh
+
+t0195a: test/01/t0195a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0195a.sh
+
+t0196a: test/01/t0196a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0196a.sh
+
+t0197a: test/01/t0197a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0197a.sh
+
+t0198a: test/01/t0198a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0198a.sh
+
 test_crc16/main.o: test_crc16/main.cc lib/bitrev.h lib/crc16.h \
 		lib/format_printf.h lib/progname.h lib/quit.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
@@ -2257,6 +2299,7 @@ lib_obj = lib/adler16.o lib/adler32.o lib/arglex.o lib/bitrev.o \
 		lib/srec/input/file/guess.o lib/srec/input/file/intel.o \
 		lib/srec/input/file/intel16.o lib/srec/input/file/mif.o \
 		lib/srec/input/file/mos_tech.o \
+		lib/srec/input/file/msbin.o \
 		lib/srec/input/file/needham.o \
 		lib/srec/input/file/os65v.o \
 		lib/srec/input/file/signetics.o \
@@ -2336,6 +2379,7 @@ lib_obj = lib/adler16.o lib/adler32.o lib/arglex.o lib/bitrev.o \
 		lib/srec/output/file/line_termination.o \
 		lib/srec/output/file/mif.o \
 		lib/srec/output/file/mos_tech.o \
+		lib/srec/output/file/msbin.o \
 		lib/srec/output/file/needham.o \
 		lib/srec/output/file/os65v.o \
 		lib/srec/output/file/signetics.o \
@@ -2568,7 +2612,12 @@ t0187a \
 t0188a \
 t0189a \
 t0191a \
-t0192a
+t0192a \
+t0193a \
+t0195a \
+t0196a \
+t0197a \
+t0198a
 	@echo Passed All Tests
 
 clean-obj:
@@ -2623,6 +2672,7 @@ clean-obj:
 	rm -f lib/srec/input/file/intel16.o
 	rm -f lib/srec/input/file/mif.o
 	rm -f lib/srec/input/file/mos_tech.o
+	rm -f lib/srec/input/file/msbin.o
 	rm -f lib/srec/input/file/needham.o
 	rm -f lib/srec/input/file/os65v.o
 	rm -f lib/srec/input/file/signetics.o
@@ -2710,6 +2760,7 @@ clean-obj:
 	rm -f lib/srec/output/file/line_termination.o
 	rm -f lib/srec/output/file/mif.o
 	rm -f lib/srec/output/file/mos_tech.o
+	rm -f lib/srec/output/file/msbin.o
 	rm -f lib/srec/output/file/needham.o
 	rm -f lib/srec/output/file/os65v.o
 	rm -f lib/srec/output/file/signetics.o
@@ -2782,6 +2833,7 @@ install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man5/srec_intel16.5 $(mandir)/man5/srec_mif.5 \
 		$(mandir)/man5/srec_mos_tech.5 \
 		$(mandir)/man5/srec_motorola.5 \
+		$(mandir)/man5/srec_msbin.5 \
 		$(mandir)/man5/srec_needham.5 \
 		$(mandir)/man5/srec_os65v.5 \
 		$(mandir)/man5/srec_signetics.5 \

@@ -88,6 +88,13 @@ T}	T{
 .ad l
 binary - Formatted Binary file format
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+SRecord - Windows CE
+T}	T{
+.ad l
+Binary Image Data Format
+T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
 SRecord - DEC
@@ -123,6 +130,13 @@ T}	T{
 .ad l
 cat - manipulate EPROM load files
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+SRecord - Windows
+T}	T{
+.ad l
+CE Binary Image Data Format
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec
@@ -157,6 +171,13 @@ srec
 T}	T{
 .ad l
 cosmac - RCA Cosmac Elf file format
+T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+SRecord - Windows CE Binary Image
+T}	T{
+.ad l
+Data Format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
@@ -662,6 +683,13 @@ T}	T{
 .ad l
 format
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+SRecord - Windows CE Binary Image Data
+T}	T{
+.ad l
+Format
+T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
 srec os65v - OS65V Loader file
@@ -864,6 +892,13 @@ srec examples - examples of
 T}	T{
 .ad l
 how to use SRecord
+T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+SRecord - Windows CE Binary
+T}	T{
+.ad l
+Image Data Format
 T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
@@ -1432,6 +1467,13 @@ T}	T{
 .ad l
 SRecord - Signetics file format
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+SRecord - Windows CE Binary Image Data Format
+T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
 
@@ -1711,6 +1753,13 @@ srec
 T}	T{
 .ad l
 wilson - wilson file format
+T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+SRecord -
+T}	T{
+.ad l
+Windows CE Binary Image Data Format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r

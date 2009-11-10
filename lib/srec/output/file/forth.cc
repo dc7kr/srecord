@@ -1,7 +1,7 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2008 Peter Miller
-// Copyright (C) 2008 Torsten Sadowsk
+// Copyright (C) 2008, 2009 Peter Miller
+// Copyright (C) 2008 Torsten Sadowski
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ srec_output_file_forth::write(const srec_record &record)
         // Now write out the new address.  It is important not to
         // disturb the checksum, so don't use the put_byte method.
         //
-        for (int j = 0; j < record.get_length(); ++j)
+        for (size_t j = 0; j < record.get_length(); ++j)
         {
             put_byte(record.get_data(j));
             put_char(' ');

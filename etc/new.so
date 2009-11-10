@@ -12,6 +12,12 @@
 .so etc/new.1.6.so
 .br
 .ne 3i
+.so etc/new.1.53.so
+.br
+.ne 3i
+.so etc/new.1.52.so
+.br
+.ne 3i
 .so etc/new.1.51.so
 .br
 .ne 3i

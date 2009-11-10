@@ -97,6 +97,9 @@ DESCRIPTION
                reading and writing.  (Also known as the Exorciser, Exormacs or
                Exormax format.)
 
+       MsBin   The Windows CE Binary Image Data Format is supported both for
+               reading and writing.
+
        The Needham Electronics ASCII file format is understood for noth
        reading
                and writing.
@@ -226,11 +229,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.51.README   # Description, from the tar file
-           File:   srecord-1.51.lsm      # Description, LSM format
-           File:   srecord-1.51.spec     # RedHat package specification
-           File:   srecord-1.51.tar.gz   # the complete source
-           File:   srecord-1.51.pdf      # Reference Manual
+           File:   srecord-1.53.README   # Description, from the tar file
+           File:   srecord-1.53.lsm      # Description, LSM format
+           File:   srecord-1.53.spec     # RedHat package specification
+           File:   srecord-1.53.tar.gz   # the complete source
+           File:   srecord-1.53.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -242,7 +245,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.51
+       srecord version 1.53
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008, 2009 Peter Miller
 
@@ -344,6 +347,22 @@ RELEASE NOTES
        invalid output when the input had holes in the data.
 
    Version 1.6 (2000-Dec-03)
+   Version 1.53 (2009-Nov-10)
+       * There is a new MsBin (Windows CE Binary Image Data) file format,
+       supported for both reading and writing.
+
+       * The lintian(1) warning about hyphen in the manual pages has been
+       silenced, by careful use of -, and - as appropriate. Sure makes some of
+       the sources ugly, tho.  The lintian(1) warning about the undefined .XX
+       macro has been silenced, by making it conditional.
+
+       * The code will build without libgcrypt.
+
+   Version 1.52 (2009-Sep-17)
+       * There is a new srec_cat -generator -l-e-constant data generator (and
+       also -b-e-const) that may be used to insert multi-byte constants into
+       your data.  See srec_input(1) for more information.
+
    Version 1.51 (2009-Sep-13)
        * A number of gcc 4.4 build problems have been fixed.
 
