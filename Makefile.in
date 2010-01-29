@@ -8,10 +8,10 @@
 #    W W W  A   A  R  R   N   N    I   N   N   I   N   N  G   G
 #     W W   A   A  R   R  N   N   III  N   N  III  N   N   GGG
 #
-# Warning: DO NOT send patches which fix this file.
-# IT IS NOT the original source file.  This file is
-# GENERATED.  If you find a bug in this file, please
-# send me a patch for the the problem source file.
+# Warning: DO NOT send patches which fix this file.  IT IS NOT
+# the original source file.  This file is GENERATED from the
+# Aegis repository file manifest.  If you find a bug in this
+# file, it could well be an Aegis bug.
 #
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #
@@ -19,7 +19,7 @@
 #
 # The configure script generates 2 files:
 #	1. This Makefile
-#	2. lib/config.h
+#	2. srecord/config.h
 # If you change this Makefile, you may also need to
 # change these files.  To see what is configured by the
 # configure script, search for @ in the Makefile.in
@@ -107,6 +107,22 @@ DATAROOTDIR = $(DESTDIR)@datarootdir@
 LIBDIR = $(DESTDIR)@libdir@
 
 #
+# where to put the include files for the library
+#
+# On a network, this would be shared between all
+# machines of identical architecture.  It can be
+# read-only.
+#
+# The $(DESTDIR) is for packaging.
+#
+includedir = $(DESTDIR)@includedir@
+
+#
+# The name of the GNU Libtool command.
+#
+LIBTOOL = @LIBTOOL@
+
+#
 # extra libraries required for your system
 #
 LIBS = @LIBS@
@@ -115,12 +131,6 @@ LIBS = @LIBS@
 # shell to use to run tests and commands
 #
 SH = @SH@
-
-#
-# program used to place index within libraries
-#
-RANLIB = @RANLIB@
-AR = ar
 
 #
 # Set GROFF to the name of the roff command on your
@@ -164,9 +174,9 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
-		etc/new.1.52.so etc/new.1.53.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -185,9 +195,9 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
-		etc/new.1.52.so etc/new.1.53.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
 
 etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
@@ -208,22 +218,23 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		etc/new.1.44.so etc/new.1.45.so etc/new.1.46.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
-		etc/new.1.52.so etc/new.1.53.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so \
-		etc/version.so man/man1/o_at.so \
-		man/man1/o_ignore_checksums.so man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/o_sequence.so \
-		man/man1/srec_cat.1 man/man1/srec_cmp.1 \
-		man/man1/srec_examples.1 man/man1/srec_info.1 \
-		man/man1/srec_input.1 man/man1/srec_license.1 \
-		man/man1/z_copyright.so man/man1/z_exit.so \
-		man/man1/z_options.so man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/ref-index.so \
+		etc/ref-parts.so etc/ref-toc.so etc/version.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/o_sequence.so man/man1/srec_cat.1 \
+		man/man1/srec_cmp.1 man/man1/srec_examples.1 \
+		man/man1/srec_info.1 man/man1/srec_input.1 \
+		man/man1/srec_license.1 man/man1/z_copyright.so \
+		man/man1/z_exit.so man/man1/z_options.so \
+		man/man3/srecord.3 man/man3/srecord_license.3 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
+		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_forth.5 \
 		man/man5/srec_fpc.5 man/man5/srec_intel.5 \
 		man/man5/srec_intel16.5 man/man5/srec_mif.5 \
@@ -238,1246 +249,24 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		man/man5/srec_wilson.5 
 	$(GROFF) -s -I. -t -man etc/reference.man > $@
 
-lib/adler16.o: lib/adler16.cc lib/adler16.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/adler16.cc
-	mv adler16.o lib/adler16.o
-
-lib/adler32.o: lib/adler32.cc lib/adler32.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/adler32.cc
-	mv adler32.o lib/adler32.o
-
-lib/arglex.o: lib/arglex.cc lib/arglex.h lib/format_printf.h \
-		lib/progname.h lib/quit.h lib/versn_stamp.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/arglex.cc
-	mv arglex.o lib/arglex.o
-
-lib/bitrev.o: lib/bitrev.cc lib/bitrev.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/bitrev.cc
-	mv bitrev.o lib/bitrev.o
-
-lib/crc16.o: lib/crc16.cc lib/bitrev.h lib/crc16.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/crc16.cc
-	mv crc16.o lib/crc16.o
-
-lib/crc32.o: lib/crc32.cc lib/crc32.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/crc32.cc
-	mv crc32.o lib/crc32.o
-
-lib/endian.o: lib/endian.cc lib/endian.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/endian.cc
-	mv endian.o lib/endian.o
-
-lib/fletcher16.o: lib/fletcher16.cc lib/fletcher16.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/fletcher16.cc
-	mv fletcher16.o lib/fletcher16.o
-
-lib/fletcher32.o: lib/fletcher32.cc lib/fletcher32.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/fletcher32.cc
-	mv fletcher32.o lib/fletcher32.o
-
-lib/interval.o: lib/interval.cc lib/interval.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval.cc
-	mv interval.o lib/interval.o
-
-lib/interval/coverage.o: lib/interval/coverage.cc lib/interval.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval/coverage.cc
-	mv coverage.o lib/interval/coverage.o
-
-lib/interval/flatten.o: lib/interval/flatten.cc lib/interval.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/interval/flatten.cc
-	mv flatten.o lib/interval/flatten.o
-
-lib/pretty_size.o: lib/pretty_size.cc lib/pretty_size.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/pretty_size.cc
-	mv pretty_size.o lib/pretty_size.o
-
-lib/progname.o: lib/progname.cc lib/progname.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/progname.cc
-	mv progname.o lib/progname.o
-
-lib/quit.o: lib/quit.cc lib/format_printf.h lib/quit.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit.cc
-	mv quit.o lib/quit.o
-
-lib/quit/exception.o: lib/quit/exception.cc lib/format_printf.h \
-		lib/quit.h lib/quit/exception.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit/exception.cc
-	mv exception.o lib/quit/exception.o
-
-lib/quit/normal.o: lib/quit/normal.cc lib/format_printf.h \
-		lib/progname.h lib/quit.h lib/quit/normal.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit/normal.cc
-	mv normal.o lib/quit/normal.o
-
-lib/quit/prefix.o: lib/quit/prefix.cc lib/format_printf.h lib/quit.h \
-		lib/quit/prefix.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/quit/prefix.cc
-	mv prefix.o lib/quit/prefix.o
-
-lib/r250.o: lib/r250.cc lib/r250.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/r250.cc
-	mv r250.o lib/r250.o
-
-lib/srec/arglex.o: lib/srec/arglex.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex.cc
-	mv arglex.o lib/srec/arglex.o
-
-lib/srec/arglex/get_interval.o: lib/srec/arglex/get_interval.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/interval.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_interval.cc
-	mv get_interval.o lib/srec/arglex/get_interval.o
-
-lib/srec/arglex/get_interval_small.o: \
-		lib/srec/arglex/get_interval_small.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/pretty_size.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/arglex/get_interval_small.cc 
-	mv get_interval_small.o lib/srec/arglex/get_interval_small.o
-
-lib/srec/arglex/get_number.o: lib/srec/arglex/get_number.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/interval.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/interval.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_number.cc
-	mv get_number.o lib/srec/arglex/get_number.o
-
-lib/srec/arglex/get_string.o: lib/srec/arglex/get_string.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/get_string.cc
-	mv get_string.o lib/srec/arglex/get_string.o
-
-lib/srec/arglex/input.o: lib/srec/arglex/input.cc lib/adler16.h \
-		lib/adler32.h lib/arglex.h lib/crc16.h lib/crc32.h \
-		lib/endian.h lib/fletcher16.h lib/fletcher32.h \
-		lib/format_printf.h lib/interval.h lib/quit.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/catenate.h lib/srec/input/file.h \
-		lib/srec/input/file/aomf.h \
-		lib/srec/input/file/ascii_hex.h \
-		lib/srec/input/file/atmel_generic.h \
-		lib/srec/input/file/binary.h \
-		lib/srec/input/file/brecord.h \
-		lib/srec/input/file/cosmac.h \
-		lib/srec/input/file/dec_binary.h \
-		lib/srec/input/file/emon52.h \
-		lib/srec/input/file/fairchild.h \
-		lib/srec/input/file/fastload.h \
-		lib/srec/input/file/formatted_binary.h \
-		lib/srec/input/file/four_packed_code.h \
-		lib/srec/input/file/intel.h \
-		lib/srec/input/file/intel16.h lib/srec/input/file/mif.h \
-		lib/srec/input/file/mos_tech.h \
-		lib/srec/input/file/msbin.h \
-		lib/srec/input/file/needham.h \
-		lib/srec/input/file/os65v.h \
-		lib/srec/input/file/signetics.h \
-		lib/srec/input/file/spasm.h \
-		lib/srec/input/file/spectrum.h \
-		lib/srec/input/file/srecord.h \
-		lib/srec/input/file/stewie.h \
-		lib/srec/input/file/tektronix.h \
-		lib/srec/input/file/tektronix_extended.h \
-		lib/srec/input/file/ti_tagged.h \
-		lib/srec/input/file/ti_tagged_16.h \
-		lib/srec/input/file/ti_txt.h lib/srec/input/file/vmem.h \
-		lib/srec/input/file/wilson.h lib/srec/input/filter.h \
-		lib/srec/input/filter/and.h \
-		lib/srec/input/filter/bitrev.h \
-		lib/srec/input/filter/byte_swap.h \
-		lib/srec/input/filter/checksum.h \
-		lib/srec/input/filter/checksum/bitnot.h \
-		lib/srec/input/filter/checksum/negative.h \
-		lib/srec/input/filter/checksum/positive.h \
-		lib/srec/input/filter/crop.h \
-		lib/srec/input/filter/fill.h \
-		lib/srec/input/filter/interval.h \
-		lib/srec/input/filter/interval/length.h \
-		lib/srec/input/filter/interval/maximum.h \
-		lib/srec/input/filter/interval/minimum.h \
-		lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/adler16.h \
-		lib/srec/input/filter/message/adler32.h \
-		lib/srec/input/filter/message/crc16.h \
-		lib/srec/input/filter/message/crc32.h \
-		lib/srec/input/filter/message/fletcher16.h \
-		lib/srec/input/filter/message/fletcher32.h \
-		lib/srec/input/filter/message/gcrypt.h \
-		lib/srec/input/filter/not.h \
-		lib/srec/input/filter/offset.h \
-		lib/srec/input/filter/or.h \
-		lib/srec/input/filter/random_fill.h \
-		lib/srec/input/filter/sequence.h \
-		lib/srec/input/filter/split.h \
-		lib/srec/input/filter/unfill.h \
-		lib/srec/input/filter/unsplit.h \
-		lib/srec/input/filter/xor.h lib/srec/input/generator.h \
-		lib/srec/input/interval.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/output.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/input.cc
-	mv input.o lib/srec/arglex/input.o
-
-lib/srec/arglex/output.o: lib/srec/arglex/output.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/aomf.h \
-		lib/srec/output/file/ascii_hex.h \
-		lib/srec/output/file/asm.h \
-		lib/srec/output/file/atmel_generic.h \
-		lib/srec/output/file/basic.h \
-		lib/srec/output/file/binary.h \
-		lib/srec/output/file/brecord.h lib/srec/output/file/c.h \
-		lib/srec/output/file/cosmac.h \
-		lib/srec/output/file/dec_binary.h \
-		lib/srec/output/file/emon52.h \
-		lib/srec/output/file/fairchild.h \
-		lib/srec/output/file/fastload.h \
-		lib/srec/output/file/formatted_binary.h \
-		lib/srec/output/file/forth.h \
-		lib/srec/output/file/four_packed_code.h \
-		lib/srec/output/file/hexdump.h \
-		lib/srec/output/file/intel.h \
-		lib/srec/output/file/intel16.h \
-		lib/srec/output/file/mif.h \
-		lib/srec/output/file/mos_tech.h \
-		lib/srec/output/file/msbin.h \
-		lib/srec/output/file/needham.h \
-		lib/srec/output/file/os65v.h \
-		lib/srec/output/file/signetics.h \
-		lib/srec/output/file/spasm.h \
-		lib/srec/output/file/spectrum.h \
-		lib/srec/output/file/srecord.h \
-		lib/srec/output/file/stewie.h \
-		lib/srec/output/file/tektronix.h \
-		lib/srec/output/file/tektronix_extended.h \
-		lib/srec/output/file/ti_tagged.h \
-		lib/srec/output/file/ti_tagged_16.h \
-		lib/srec/output/file/ti_txt.h \
-		lib/srec/output/file/vhdl.h lib/srec/output/file/vmem.h \
-		lib/srec/output/file/wilson.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/arglex/output.cc
-	mv output.o lib/srec/arglex/output.o
-
-lib/srec/input.o: lib/srec/input.cc lib/endian.h lib/format_printf.h \
-		lib/quit.h lib/quit/prefix.h lib/srec/input.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input.cc
-	mv input.o lib/srec/input.o
-
-lib/srec/input/catenate.o: lib/srec/input/catenate.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/catenate.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/catenate.cc
-	mv catenate.o lib/srec/input/catenate.o
-
-lib/srec/input/file.o: lib/srec/input/file.cc lib/format_printf.h \
-		lib/srec/input.h lib/srec/input/file.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file.cc
-	mv file.o lib/srec/input/file.o
-
-lib/srec/input/file/aomf.o: lib/srec/input/file/aomf.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/aomf.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/aomf.cc
-	mv aomf.o lib/srec/input/file/aomf.o
-
-lib/srec/input/file/ascii_hex.o: lib/srec/input/file/ascii_hex.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/ascii_hex.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ascii_hex.cc
-	mv ascii_hex.o lib/srec/input/file/ascii_hex.o
-
-lib/srec/input/file/atmel_generic.o: \
-		lib/srec/input/file/atmel_generic.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h \
-		lib/srec/input/file/atmel_generic.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/file/atmel_generic.cc 
-	mv atmel_generic.o lib/srec/input/file/atmel_generic.o
-
-lib/srec/input/file/binary.o: lib/srec/input/file/binary.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/binary.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/binary.cc
-	mv binary.o lib/srec/input/file/binary.o
-
-lib/srec/input/file/brecord.o: lib/srec/input/file/brecord.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/brecord.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/brecord.cc
-	mv brecord.o lib/srec/input/file/brecord.o
-
-lib/srec/input/file/cosmac.o: lib/srec/input/file/cosmac.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/cosmac.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/cosmac.cc
-	mv cosmac.o lib/srec/input/file/cosmac.o
-
-lib/srec/input/file/dec_binary.o: lib/srec/input/file/dec_binary.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/dec_binary.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/dec_binary.cc
-	mv dec_binary.o lib/srec/input/file/dec_binary.o
-
-lib/srec/input/file/emon52.o: lib/srec/input/file/emon52.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/emon52.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/emon52.cc
-	mv emon52.o lib/srec/input/file/emon52.o
-
-lib/srec/input/file/fairchild.o: lib/srec/input/file/fairchild.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/fairchild.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/fairchild.cc
-	mv fairchild.o lib/srec/input/file/fairchild.o
-
-lib/srec/input/file/fastload.o: lib/srec/input/file/fastload.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/fastload.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/fastload.cc
-	mv fastload.o lib/srec/input/file/fastload.o
-
-lib/srec/input/file/formatted_binary.o: \
-		lib/srec/input/file/formatted_binary.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h \
-		lib/srec/input/file/formatted_binary.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/file/formatted_binary.cc 
-	mv formatted_binary.o lib/srec/input/file/formatted_binary.o
-
-lib/srec/input/file/four_packed_code.o: \
-		lib/srec/input/file/four_packed_code.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h \
-		lib/srec/input/file/four_packed_code.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/file/four_packed_code.cc 
-	mv four_packed_code.o lib/srec/input/file/four_packed_code.o
-
-lib/srec/input/file/guess.o: lib/srec/input/file/guess.cc lib/endian.h \
-		lib/format_printf.h lib/quit.h lib/quit/exception.h \
-		lib/srec/input.h lib/srec/input/file.h \
-		lib/srec/input/file/aomf.h \
-		lib/srec/input/file/ascii_hex.h \
-		lib/srec/input/file/atmel_generic.h \
-		lib/srec/input/file/binary.h \
-		lib/srec/input/file/brecord.h \
-		lib/srec/input/file/dec_binary.h \
-		lib/srec/input/file/emon52.h \
-		lib/srec/input/file/fairchild.h \
-		lib/srec/input/file/fastload.h \
-		lib/srec/input/file/formatted_binary.h \
-		lib/srec/input/file/four_packed_code.h \
-		lib/srec/input/file/intel.h \
-		lib/srec/input/file/intel16.h lib/srec/input/file/mif.h \
-		lib/srec/input/file/mos_tech.h \
-		lib/srec/input/file/msbin.h \
-		lib/srec/input/file/needham.h \
-		lib/srec/input/file/os65v.h \
-		lib/srec/input/file/signetics.h \
-		lib/srec/input/file/spasm.h \
-		lib/srec/input/file/spectrum.h \
-		lib/srec/input/file/srecord.h \
-		lib/srec/input/file/stewie.h \
-		lib/srec/input/file/tektronix.h \
-		lib/srec/input/file/tektronix_extended.h \
-		lib/srec/input/file/ti_tagged.h \
-		lib/srec/input/file/ti_txt.h lib/srec/input/file/vmem.h \
-		lib/srec/input/file/wilson.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/guess.cc
-	mv guess.o lib/srec/input/file/guess.o
-
-lib/srec/input/file/intel.o: lib/srec/input/file/intel.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/intel.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/intel.cc
-	mv intel.o lib/srec/input/file/intel.o
-
-lib/srec/input/file/intel16.o: lib/srec/input/file/intel16.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/intel16.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/intel16.cc
-	mv intel16.o lib/srec/input/file/intel16.o
-
-lib/srec/input/file/mif.o: lib/srec/input/file/mif.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/mif.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/mif.cc
-	mv mif.o lib/srec/input/file/mif.o
-
-lib/srec/input/file/mos_tech.o: lib/srec/input/file/mos_tech.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/mos_tech.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/mos_tech.cc
-	mv mos_tech.o lib/srec/input/file/mos_tech.o
-
-lib/srec/input/file/msbin.o: lib/srec/input/file/msbin.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/msbin.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/msbin.cc
-	mv msbin.o lib/srec/input/file/msbin.o
-
-lib/srec/input/file/needham.o: lib/srec/input/file/needham.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/needham.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/needham.cc
-	mv needham.o lib/srec/input/file/needham.o
-
-lib/srec/input/file/os65v.o: lib/srec/input/file/os65v.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/os65v.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/os65v.cc
-	mv os65v.o lib/srec/input/file/os65v.o
-
-lib/srec/input/file/signetics.o: lib/srec/input/file/signetics.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/signetics.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/signetics.cc
-	mv signetics.o lib/srec/input/file/signetics.o
-
-lib/srec/input/file/spasm.o: lib/srec/input/file/spasm.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/spasm.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/spasm.cc
-	mv spasm.o lib/srec/input/file/spasm.o
-
-lib/srec/input/file/spectrum.o: lib/srec/input/file/spectrum.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/spectrum.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/spectrum.cc
-	mv spectrum.o lib/srec/input/file/spectrum.o
-
-lib/srec/input/file/srecord.o: lib/srec/input/file/srecord.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/srecord.h \
-		lib/srec/output.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/srecord.cc
-	mv srecord.o lib/srec/input/file/srecord.o
-
-lib/srec/input/file/stewie.o: lib/srec/input/file/stewie.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/stewie.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/stewie.cc
-	mv stewie.o lib/srec/input/file/stewie.o
-
-lib/srec/input/file/tektronix.o: lib/srec/input/file/tektronix.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/tektronix.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/tektronix.cc
-	mv tektronix.o lib/srec/input/file/tektronix.o
-
-lib/srec/input/file/tektronix_extended.o: \
-		lib/srec/input/file/tektronix_extended.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h \
-		lib/srec/input/file/tektronix_extended.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/file/tektronix_extended.cc 
-	mv tektronix_extended.o lib/srec/input/file/tektronix_extended.o
-
-lib/srec/input/file/ti_tagged.o: lib/srec/input/file/ti_tagged.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/ti_tagged.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ti_tagged.cc
-	mv ti_tagged.o lib/srec/input/file/ti_tagged.o
-
-lib/srec/input/file/ti_tagged_16.o: lib/srec/input/file/ti_tagged_16.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h \
-		lib/srec/input/file/ti_tagged_16.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/file/ti_tagged_16.cc 
-	mv ti_tagged_16.o lib/srec/input/file/ti_tagged_16.o
-
-lib/srec/input/file/ti_txt.o: lib/srec/input/file/ti_txt.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/ti_txt.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/ti_txt.cc
-	mv ti_txt.o lib/srec/input/file/ti_txt.o
-
-lib/srec/input/file/vmem.o: lib/srec/input/file/vmem.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/vmem.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/vmem.cc
-	mv vmem.o lib/srec/input/file/vmem.o
-
-lib/srec/input/file/wilson.o: lib/srec/input/file/wilson.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/input/file/wilson.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/file/wilson.cc
-	mv wilson.o lib/srec/input/file/wilson.o
-
-lib/srec/input/filter.o: lib/srec/input/filter.cc lib/format_printf.h \
-		lib/srec/input.h lib/srec/input/filter.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter.cc
-	mv filter.o lib/srec/input/filter.o
-
-lib/srec/input/filter/and.o: lib/srec/input/filter/and.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/and.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/and.cc
-	mv and.o lib/srec/input/filter/and.o
-
-lib/srec/input/filter/bitrev.o: lib/srec/input/filter/bitrev.cc \
-		lib/bitrev.h lib/endian.h lib/format_printf.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/bitrev.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/bitrev.cc
-	mv bitrev.o lib/srec/input/filter/bitrev.o
-
-lib/srec/input/filter/byte_swap.o: lib/srec/input/filter/byte_swap.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/byte_swap.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/byte_swap.cc 
-	mv byte_swap.o lib/srec/input/filter/byte_swap.o
-
-lib/srec/input/filter/checksum.o: lib/srec/input/filter/checksum.cc \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/checksum.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/checksum.cc
-	mv checksum.o lib/srec/input/filter/checksum.o
-
-lib/srec/input/filter/checksum/bitnot.o: \
-		lib/srec/input/filter/checksum/bitnot.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/checksum.h \
-		lib/srec/input/filter/checksum/bitnot.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/checksum/bitnot.cc 
-	mv bitnot.o lib/srec/input/filter/checksum/bitnot.o
-
-lib/srec/input/filter/checksum/negative.o: \
-		lib/srec/input/filter/checksum/negative.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/checksum.h \
-		lib/srec/input/filter/checksum/negative.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/checksum/negative.cc 
-	mv negative.o lib/srec/input/filter/checksum/negative.o
-
-lib/srec/input/filter/checksum/positive.o: \
-		lib/srec/input/filter/checksum/positive.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/checksum.h \
-		lib/srec/input/filter/checksum/positive.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/checksum/positive.cc 
-	mv positive.o lib/srec/input/filter/checksum/positive.o
-
-lib/srec/input/filter/crop.o: lib/srec/input/filter/crop.cc \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/crop.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/crop.cc
-	mv crop.o lib/srec/input/filter/crop.o
-
-lib/srec/input/filter/fill.o: lib/srec/input/filter/fill.cc \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/fill.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/fill.cc
-	mv fill.o lib/srec/input/filter/fill.o
-
-lib/srec/input/filter/interval.o: lib/srec/input/filter/interval.cc \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/interval.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/interval.cc
-	mv interval.o lib/srec/input/filter/interval.o
-
-lib/srec/input/filter/interval/length.o: \
-		lib/srec/input/filter/interval/length.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/interval.h \
-		lib/srec/input/filter/interval/length.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/interval/length.cc 
-	mv length.o lib/srec/input/filter/interval/length.o
-
-lib/srec/input/filter/interval/maximum.o: \
-		lib/srec/input/filter/interval/maximum.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/interval.h \
-		lib/srec/input/filter/interval/maximum.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/interval/maximum.cc 
-	mv maximum.o lib/srec/input/filter/interval/maximum.o
-
-lib/srec/input/filter/interval/minimum.o: \
-		lib/srec/input/filter/interval/minimum.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/interval.h \
-		lib/srec/input/filter/interval/minimum.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/interval/minimum.cc 
-	mv minimum.o lib/srec/input/filter/interval/minimum.o
-
-lib/srec/input/filter/message.o: lib/srec/input/filter/message.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/message.cc
-	mv message.o lib/srec/input/filter/message.o
-
-lib/srec/input/filter/message/adler16.o: \
-		lib/srec/input/filter/message/adler16.cc lib/adler16.h \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/adler16.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/adler16.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/adler16.cc 
-	mv adler16.o lib/srec/input/filter/message/adler16.o
-
-lib/srec/input/filter/message/adler32.o: \
-		lib/srec/input/filter/message/adler32.cc lib/adler32.h \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/adler32.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/adler32.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/adler32.cc 
-	mv adler32.o lib/srec/input/filter/message/adler32.o
-
-lib/srec/input/filter/message/crc16.o: \
-		lib/srec/input/filter/message/crc16.cc lib/arglex.h \
-		lib/crc16.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/crc16.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/crc16.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/crc16.cc 
-	mv crc16.o lib/srec/input/filter/message/crc16.o
-
-lib/srec/input/filter/message/crc32.o: \
-		lib/srec/input/filter/message/crc32.cc lib/arglex.h \
-		lib/crc32.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/crc32.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/crc32.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/crc32.cc 
-	mv crc32.o lib/srec/input/filter/message/crc32.o
-
-lib/srec/input/filter/message/fletcher16.o: \
-		lib/srec/input/filter/message/fletcher16.cc \
-		lib/arglex.h lib/endian.h lib/fletcher16.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/fletcher16.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/fletcher16.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/fletcher16.cc 
-	mv fletcher16.o lib/srec/input/filter/message/fletcher16.o
-
-lib/srec/input/filter/message/fletcher32.o: \
-		lib/srec/input/filter/message/fletcher32.cc \
-		lib/arglex.h lib/endian.h lib/fletcher32.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/fletcher32.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/fletcher32.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/fletcher32.cc 
-	mv fletcher32.o lib/srec/input/filter/message/fletcher32.o
-
-lib/srec/input/filter/message/gcrypt.o: \
-		lib/srec/input/filter/message/gcrypt.cc lib/endian.h \
-		lib/format_printf.h lib/quit.h lib/sizeof.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/message.h \
-		lib/srec/input/filter/message/gcrypt.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/gcrypt.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/message/gcrypt.cc 
-	mv gcrypt.o lib/srec/input/filter/message/gcrypt.o
-
-lib/srec/input/filter/not.o: lib/srec/input/filter/not.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/not.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/not.cc
-	mv not.o lib/srec/input/filter/not.o
-
-lib/srec/input/filter/offset.o: lib/srec/input/filter/offset.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/offset.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/offset.cc
-	mv offset.o lib/srec/input/filter/offset.o
-
-lib/srec/input/filter/or.o: lib/srec/input/filter/or.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/or.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/or.cc
-	mv or.o lib/srec/input/filter/or.o
-
-lib/srec/input/filter/random_fill.o: \
-		lib/srec/input/filter/random_fill.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/r250.h \
-		lib/srec/input.h lib/srec/input/filter.h \
-		lib/srec/input/filter/random_fill.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/filter/random_fill.cc 
-	mv random_fill.o lib/srec/input/filter/random_fill.o
-
-lib/srec/input/filter/sequence.o: lib/srec/input/filter/sequence.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h \
-		lib/srec/input/filter/sequence.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/sequence.cc
-	mv sequence.o lib/srec/input/filter/sequence.o
-
-lib/srec/input/filter/split.o: lib/srec/input/filter/split.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/split.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/split.cc
-	mv split.o lib/srec/input/filter/split.o
-
-lib/srec/input/filter/unfill.o: lib/srec/input/filter/unfill.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/unfill.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/unfill.cc
-	mv unfill.o lib/srec/input/filter/unfill.o
-
-lib/srec/input/filter/unsplit.o: lib/srec/input/filter/unsplit.cc \
-		lib/endian.h lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/unsplit.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/unsplit.cc
-	mv unsplit.o lib/srec/input/filter/unsplit.o
-
-lib/srec/input/filter/xor.o: lib/srec/input/filter/xor.cc lib/endian.h \
-		lib/format_printf.h lib/srec/input.h \
-		lib/srec/input/filter.h lib/srec/input/filter/xor.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/filter/xor.cc
-	mv xor.o lib/srec/input/filter/xor.o
-
-lib/srec/input/generator.o: lib/srec/input/generator.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/generator.h \
-		lib/srec/input/generator/constant.h \
-		lib/srec/input/generator/random.h \
-		lib/srec/input/generator/repeat.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/generator.cc
-	mv generator.o lib/srec/input/generator.o
-
-lib/srec/input/generator/constant.o: \
-		lib/srec/input/generator/constant.cc \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/generator.h \
-		lib/srec/input/generator/constant.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/generator/constant.cc 
-	mv constant.o lib/srec/input/generator/constant.o
-
-lib/srec/input/generator/random.o: lib/srec/input/generator/random.cc \
-		lib/format_printf.h lib/interval.h lib/r250.h \
-		lib/srec/input.h lib/srec/input/generator.h \
-		lib/srec/input/generator/random.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/generator/random.cc 
-	mv random.o lib/srec/input/generator/random.o
-
-lib/srec/input/generator/repeat.o: lib/srec/input/generator/repeat.cc \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/generator.h \
-		lib/srec/input/generator/repeat.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/input/generator/repeat.cc 
-	mv repeat.o lib/srec/input/generator/repeat.o
-
-lib/srec/input/interval.o: lib/srec/input/interval.cc lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/input/interval.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/input/interval.cc
-	mv interval.o lib/srec/input/interval.o
-
-lib/srec/memory.o: lib/srec/memory.cc lib/endian.h lib/format_printf.h \
-		lib/interval.h lib/srec/input.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/compare.h \
-		lib/srec/memory/walker/continuity.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory.cc
-	mv memory.o lib/srec/memory.o
-
-lib/srec/memory/chunk.o: lib/srec/memory/chunk.cc \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/chunk.cc
-	mv chunk.o lib/srec/memory/chunk.o
-
-lib/srec/memory/walker.o: lib/srec/memory/walker.cc \
-		lib/srec/memory/walker.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker.cc
-	mv walker.o lib/srec/memory/walker.o
-
-lib/srec/memory/walker/adler16.o: lib/srec/memory/walker/adler16.cc \
-		lib/adler16.h lib/format_printf.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/adler16.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/adler16.cc
-	mv adler16.o lib/srec/memory/walker/adler16.o
-
-lib/srec/memory/walker/adler32.o: lib/srec/memory/walker/adler32.cc \
-		lib/adler32.h lib/format_printf.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/adler32.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/adler32.cc
-	mv adler32.o lib/srec/memory/walker/adler32.o
-
-lib/srec/memory/walker/compare.o: lib/srec/memory/walker/compare.cc \
-		lib/format_printf.h lib/interval.h lib/srec/input.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/compare.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/compare.cc
-	mv compare.o lib/srec/memory/walker/compare.o
-
-lib/srec/memory/walker/continuity.o: \
-		lib/srec/memory/walker/continuity.cc \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/continuity.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/memory/walker/continuity.cc 
-	mv continuity.o lib/srec/memory/walker/continuity.o
-
-lib/srec/memory/walker/crc16.o: lib/srec/memory/walker/crc16.cc \
-		lib/crc16.h lib/format_printf.h \
-		lib/srec/memory/walker.h lib/srec/memory/walker/crc16.h \
-		lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/crc16.cc
-	mv crc16.o lib/srec/memory/walker/crc16.o
-
-lib/srec/memory/walker/crc32.o: lib/srec/memory/walker/crc32.cc \
-		lib/crc32.h lib/format_printf.h \
-		lib/srec/memory/walker.h lib/srec/memory/walker/crc32.h \
-		lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/crc32.cc
-	mv crc32.o lib/srec/memory/walker/crc32.o
-
-lib/srec/memory/walker/fletcher16.o: \
-		lib/srec/memory/walker/fletcher16.cc lib/fletcher16.h \
-		lib/format_printf.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/fletcher16.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/memory/walker/fletcher16.cc 
-	mv fletcher16.o lib/srec/memory/walker/fletcher16.o
-
-lib/srec/memory/walker/fletcher32.o: \
-		lib/srec/memory/walker/fletcher32.cc lib/fletcher32.h \
-		lib/format_printf.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/fletcher32.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/memory/walker/fletcher32.cc 
-	mv fletcher32.o lib/srec/memory/walker/fletcher32.o
-
-lib/srec/memory/walker/gcrypt.o: lib/srec/memory/walker/gcrypt.cc \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/gcrypt.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/gcrypt.cc
-	mv gcrypt.o lib/srec/memory/walker/gcrypt.o
-
-lib/srec/memory/walker/writer.o: lib/srec/memory/walker/writer.cc \
-		lib/format_printf.h lib/srec/memory/walker.h \
-		lib/srec/memory/walker/writer.h lib/srec/output.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/memory/walker/writer.cc
-	mv writer.o lib/srec/memory/walker/writer.o
-
-lib/srec/output.o: lib/srec/output.cc lib/endian.h lib/format_printf.h \
-		lib/quit.h lib/srec/output.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output.cc
-	mv output.o lib/srec/output.o
-
-lib/srec/output/file.o: lib/srec/output/file.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/sizeof.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file.cc
-	mv file.o lib/srec/output/file.o
-
-lib/srec/output/file/aomf.o: lib/srec/output/file/aomf.cc lib/endian.h \
-		lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/aomf.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/aomf.cc
-	mv aomf.o lib/srec/output/file/aomf.o
-
-lib/srec/output/file/ascii_hex.o: lib/srec/output/file/ascii_hex.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/ascii_hex.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ascii_hex.cc
-	mv ascii_hex.o lib/srec/output/file/ascii_hex.o
-
-lib/srec/output/file/asm.o: lib/srec/output/file/asm.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/asm.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/asm.cc
-	mv asm.o lib/srec/output/file/asm.o
-
-lib/srec/output/file/atmel_generic.o: \
-		lib/srec/output/file/atmel_generic.cc lib/endian.h \
-		lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h \
-		lib/srec/output/file/atmel_generic.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/atmel_generic.cc 
-	mv atmel_generic.o lib/srec/output/file/atmel_generic.o
-
-lib/srec/output/file/basic.o: lib/srec/output/file/basic.cc \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/basic.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/basic.cc
-	mv basic.o lib/srec/output/file/basic.o
-
-lib/srec/output/file/binary.o: lib/srec/output/file/binary.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/binary.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/binary.cc
-	mv binary.o lib/srec/output/file/binary.o
-
-lib/srec/output/file/brecord.o: lib/srec/output/file/brecord.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/brecord.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/brecord.cc
-	mv brecord.o lib/srec/output/file/brecord.o
-
-lib/srec/output/file/c.o: lib/srec/output/file/c.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/c.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/c.cc
-	mv c.o lib/srec/output/file/c.o
-
-lib/srec/output/file/cosmac.o: lib/srec/output/file/cosmac.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/cosmac.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/cosmac.cc
-	mv cosmac.o lib/srec/output/file/cosmac.o
-
-lib/srec/output/file/dec_binary.o: lib/srec/output/file/dec_binary.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h \
-		lib/srec/output/file/dec_binary.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/dec_binary.cc 
-	mv dec_binary.o lib/srec/output/file/dec_binary.o
-
-lib/srec/output/file/emon52.o: lib/srec/output/file/emon52.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/emon52.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/emon52.cc
-	mv emon52.o lib/srec/output/file/emon52.o
-
-lib/srec/output/file/fairchild.o: lib/srec/output/file/fairchild.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/fairchild.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/fairchild.cc
-	mv fairchild.o lib/srec/output/file/fairchild.o
-
-lib/srec/output/file/fastload.o: lib/srec/output/file/fastload.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/fastload.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/fastload.cc
-	mv fastload.o lib/srec/output/file/fastload.o
-
-lib/srec/output/file/formatted_binary.o: \
-		lib/srec/output/file/formatted_binary.cc lib/endian.h \
-		lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h \
-		lib/srec/output/file/formatted_binary.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/formatted_binary.cc 
-	mv formatted_binary.o lib/srec/output/file/formatted_binary.o
-
-lib/srec/output/file/forth.o: lib/srec/output/file/forth.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/forth.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/forth.cc
-	mv forth.o lib/srec/output/file/forth.o
-
-lib/srec/output/file/four_packed_code.o: \
-		lib/srec/output/file/four_packed_code.cc lib/endian.h \
-		lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h \
-		lib/srec/output/file/four_packed_code.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/four_packed_code.cc 
-	mv four_packed_code.o lib/srec/output/file/four_packed_code.o
-
-lib/srec/output/file/hexdump.o: lib/srec/output/file/hexdump.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/hexdump.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/hexdump.cc
-	mv hexdump.o lib/srec/output/file/hexdump.o
-
-lib/srec/output/file/intel.o: lib/srec/output/file/intel.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/intel.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel.cc
-	mv intel.o lib/srec/output/file/intel.o
-
-lib/srec/output/file/intel16.o: lib/srec/output/file/intel16.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/intel16.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/intel16.cc
-	mv intel16.o lib/srec/output/file/intel16.o
-
-lib/srec/output/file/line_termination.o: \
-		lib/srec/output/file/line_termination.cc lib/arglex.h \
-		lib/format_printf.h lib/sizeof.h lib/srec/output.h \
-		lib/srec/output/file.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/line_termination.cc 
-	mv line_termination.o lib/srec/output/file/line_termination.o
-
-lib/srec/output/file/mif.o: lib/srec/output/file/mif.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/progname.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/mif.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/mif.cc
-	mv mif.o lib/srec/output/file/mif.o
-
-lib/srec/output/file/mos_tech.o: lib/srec/output/file/mos_tech.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/mos_tech.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/mos_tech.cc
-	mv mos_tech.o lib/srec/output/file/mos_tech.o
-
-lib/srec/output/file/msbin.o: lib/srec/output/file/msbin.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/msbin.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/msbin.cc
-	mv msbin.o lib/srec/output/file/msbin.o
-
-lib/srec/output/file/needham.o: lib/srec/output/file/needham.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/needham.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/needham.cc
-	mv needham.o lib/srec/output/file/needham.o
-
-lib/srec/output/file/os65v.o: lib/srec/output/file/os65v.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/os65v.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/os65v.cc
-	mv os65v.o lib/srec/output/file/os65v.o
-
-lib/srec/output/file/signetics.o: lib/srec/output/file/signetics.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/signetics.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/signetics.cc
-	mv signetics.o lib/srec/output/file/signetics.o
-
-lib/srec/output/file/spasm.o: lib/srec/output/file/spasm.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/spasm.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/spasm.cc
-	mv spasm.o lib/srec/output/file/spasm.o
-
-lib/srec/output/file/spectrum.o: lib/srec/output/file/spectrum.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/spectrum.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/spectrum.cc
-	mv spectrum.o lib/srec/output/file/spectrum.o
-
-lib/srec/output/file/srecord.o: lib/srec/output/file/srecord.cc \
-		lib/arglex.h lib/endian.h lib/format_printf.h \
-		lib/srec/arglex.h lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/srecord.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/srecord.cc
-	mv srecord.o lib/srec/output/file/srecord.o
-
-lib/srec/output/file/stewie.o: lib/srec/output/file/stewie.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/stewie.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/stewie.cc
-	mv stewie.o lib/srec/output/file/stewie.o
-
-lib/srec/output/file/tektronix.o: lib/srec/output/file/tektronix.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/tektronix.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/tektronix.cc
-	mv tektronix.o lib/srec/output/file/tektronix.o
-
-lib/srec/output/file/tektronix_extended.o: \
-		lib/srec/output/file/tektronix_extended.cc lib/endian.h \
-		lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h \
-		lib/srec/output/file/tektronix_extended.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/tektronix_extended.cc 
-	mv tektronix_extended.o lib/srec/output/file/tektronix_extended.o
-
-lib/srec/output/file/ti_tagged.o: lib/srec/output/file/ti_tagged.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/ti_tagged.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ti_tagged.cc
-	mv ti_tagged.o lib/srec/output/file/ti_tagged.o
-
-lib/srec/output/file/ti_tagged_16.o: \
-		lib/srec/output/file/ti_tagged_16.cc lib/endian.h \
-		lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h \
-		lib/srec/output/file/ti_tagged_16.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
-		lib/srec/output/file/ti_tagged_16.cc 
-	mv ti_tagged_16.o lib/srec/output/file/ti_tagged_16.o
-
-lib/srec/output/file/ti_txt.o: lib/srec/output/file/ti_txt.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/ti_txt.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/ti_txt.cc
-	mv ti_txt.o lib/srec/output/file/ti_txt.o
-
-lib/srec/output/file/vhdl.o: lib/srec/output/file/vhdl.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/interval.h \
-		lib/progname.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/output.h lib/srec/output/file.h \
-		lib/srec/output/file/vhdl.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vhdl.cc
-	mv vhdl.o lib/srec/output/file/vhdl.o
-
-lib/srec/output/file/vmem.o: lib/srec/output/file/vmem.cc lib/arglex.h \
-		lib/endian.h lib/format_printf.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/vmem.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/vmem.cc
-	mv vmem.o lib/srec/output/file/vmem.o
-
-lib/srec/output/file/wilson.o: lib/srec/output/file/wilson.cc \
-		lib/endian.h lib/format_printf.h lib/srec/output.h \
-		lib/srec/output/file.h lib/srec/output/file/wilson.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/output/file/wilson.cc
-	mv wilson.o lib/srec/output/file/wilson.o
-
-lib/srec/record.o: lib/srec/record.cc lib/endian.h lib/srec/record.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/srec/record.cc
-	mv record.o lib/srec/record.o
-
-lib/versn_stamp.o: lib/versn_stamp.cc lib/patchlevel.h lib/versn_stamp.h
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/versn_stamp.cc
-	mv versn_stamp.o lib/versn_stamp.o
-
-lib/vsnprintf.o: lib/vsnprintf.cc
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c lib/vsnprintf.cc
-	mv vsnprintf.o lib/vsnprintf.o
+libdir/pkgconfig/srecord.pc: libdir/pkgconfig/srecord.pc.in \
+		./config.status 
+	CONFIG_FILES=$@:libdir/pkgconfig/srecord.pc.in CONFIG_HEADERS= \
+		$(SH) ./config.status 
+
+libdir/pkgconfig/.libdir: libdir/.libdir
+	-$(INSTALL) -m 0755 -d $(LIBDIR)/pkgconfig
+	@-test -d $(LIBDIR)/pkgconfig && touch $@
+	@sleep 1
+
+libdir/.libdir:
+	-$(INSTALL) -m 0755 -d $(LIBDIR)
+	@-test -d $(LIBDIR) && touch $@
+	@sleep 1
+
+$(LIBDIR)/pkgconfig/srecord.pc: libdir/pkgconfig/srecord.pc \
+		libdir/pkgconfig/.libdir 
+	$(INSTALL_DATA) libdir/pkgconfig/srecord.pc $@
 
 man/man1/.mandir: man/.mandir
 	-$(INSTALL) -m 0755 -d $(mandir)/man1
@@ -1534,6 +323,23 @@ $(mandir)/man1/srec_input.1: man/man1/srec_input.1 etc/version.so \
 
 $(mandir)/man1/srec_license.1: man/man1/srec_license.1  man/man1/.mandir
 	$(SOELIM) -I. -Iman/man1 man/man1/srec_license.1 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
+man/man3/.mandir: man/.mandir
+	-$(INSTALL) -m 0755 -d $(mandir)/man3
+	@-test -d $(mandir)/man3 && touch $@
+	@sleep 1
+
+$(mandir)/man3/srecord.3: man/man3/srecord.3 etc/version.so \
+		man/man1/z_copyright.so man/man3/.mandir 
+	$(SOELIM) -I. -Iman/man3 man/man3/srecord.3 > tmp
+	$(INSTALL_DATA) tmp $@
+	@rm -f tmp
+
+$(mandir)/man3/srecord_license.3: man/man3/srecord_license.3 \
+		man/man3/.mandir 
+	$(SOELIM) -I. -Iman/man3 man/man3/srecord_license.3 > tmp
 	$(INSTALL_DATA) tmp $@
 	@rm -f tmp
 
@@ -1742,38 +548,2005 @@ bin/test_prelude: script/test_prelude .bin
 	cp script/test_prelude $@
 	chmod a+rx $@
 
-srec_cat/arglex3.o: srec_cat/arglex3.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/output.h srec_cat/arglex3.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/arglex3.cc
-	mv arglex3.o srec_cat/arglex3.o
+srec_cat/arglex3.lo: srec_cat/arglex3.cc srec_cat/arglex3.h \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srec_cat/arglex3.cc -o srec_cat/arglex3.lo 
 
-srec_cat/main.o: srec_cat/main.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/catenate.h lib/srec/input/file.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h \
-		lib/srec/memory/walker/writer.h lib/srec/output.h \
-		lib/srec/output/file.h srec_cat/arglex3.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cat/main.cc
-	mv main.o srec_cat/main.o
+srec_cat/main.lo: srec_cat/main.cc srec_cat/arglex3.h srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/catenate.h srecord/input/file.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h srecord/memory/walker/writer.h \
+		srecord/output.h srecord/output/file.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srec_cat/main.cc -o srec_cat/main.lo 
 
-srec_cmp/main.o: srec_cmp/main.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/srec/arglex.h lib/srec/input.h \
-		lib/srec/input/file.h lib/srec/memory.h \
-		lib/srec/memory/chunk.h lib/srec/memory/walker.h \
-		lib/srec/output.h lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_cmp/main.cc
-	mv main.o srec_cmp/main.o
+srec_cmp/main.lo: srec_cmp/main.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/output.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srec_cmp/main.cc -o srec_cmp/main.lo 
 
-srec_info/main.o: srec_info/main.cc lib/arglex.h lib/endian.h \
-		lib/format_printf.h lib/interval.h lib/srec/arglex.h \
-		lib/srec/input.h lib/srec/input/file.h \
-		lib/srec/memory.h lib/srec/memory/chunk.h \
-		lib/srec/memory/walker.h lib/srec/output.h \
-		lib/srec/record.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c srec_info/main.cc
-	mv main.o srec_info/main.o
+srec_info/main.lo: srec_info/main.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/interval.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srec_info/main.cc -o srec_info/main.lo 
+
+srecord/adler16.lo: srecord/adler16.cc srecord/adler16.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/adler16.cc -o srecord/adler16.lo 
+
+srecord/.incl:
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord
+	@-test -d $(includedir)/srecord && touch $@
+	@sleep 1
+
+$(includedir)/srecord/adler16.h: srecord/adler16.h srecord/.incl
+	$(INSTALL_DATA) srecord/adler16.h $@
+
+srecord/adler32.lo: srecord/adler32.cc srecord/adler32.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/adler32.cc -o srecord/adler32.lo 
+
+$(includedir)/srecord/adler32.h: srecord/adler32.h srecord/.incl
+	$(INSTALL_DATA) srecord/adler32.h $@
+
+srecord/arglex.lo: srecord/arglex.cc srecord/arglex.h \
+		srecord/format_printf.h srecord/progname.h \
+		srecord/quit.h srecord/versn_stamp.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex.cc -o srecord/arglex.lo 
+
+srecord/arglex/tool.lo: srecord/arglex/tool.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool.cc -o srecord/arglex/tool.lo 
+
+srecord/arglex/tool/get_interval.lo: \
+		srecord/arglex/tool/get_interval.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/interval.h srecord/interval.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool/get_interval.cc -o \
+		srecord/arglex/tool/get_interval.lo 
+
+srecord/arglex/tool/get_interval_small.lo: \
+		srecord/arglex/tool/get_interval_small.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/output.h \
+		srecord/pretty_size.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool/get_interval_small.cc -o \
+		srecord/arglex/tool/get_interval_small.lo 
+
+srecord/arglex/tool/get_number.lo: srecord/arglex/tool/get_number.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/interval.h srecord/interval.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool/get_number.cc -o \
+		srecord/arglex/tool/get_number.lo 
+
+srecord/arglex/tool/get_string.lo: srecord/arglex/tool/get_string.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool/get_string.cc -o \
+		srecord/arglex/tool/get_string.lo 
+
+srecord/arglex/tool/input.lo: srecord/arglex/tool/input.cc \
+		srecord/adler16.h srecord/adler32.h srecord/arglex.h \
+		srecord/arglex/tool.h srecord/crc16.h srecord/crc32.h \
+		srecord/endian.h srecord/fletcher16.h \
+		srecord/fletcher32.h srecord/format_printf.h \
+		srecord/input.h srecord/input/catenate.h \
+		srecord/input/file.h srecord/input/file/aomf.h \
+		srecord/input/file/ascii_hex.h \
+		srecord/input/file/atmel_generic.h \
+		srecord/input/file/binary.h \
+		srecord/input/file/brecord.h \
+		srecord/input/file/cosmac.h \
+		srecord/input/file/dec_binary.h \
+		srecord/input/file/emon52.h \
+		srecord/input/file/fairchild.h \
+		srecord/input/file/fastload.h \
+		srecord/input/file/formatted_binary.h \
+		srecord/input/file/four_packed_code.h \
+		srecord/input/file/intel.h srecord/input/file/intel16.h \
+		srecord/input/file/mif.h srecord/input/file/mos_tech.h \
+		srecord/input/file/motorola.h \
+		srecord/input/file/msbin.h srecord/input/file/needham.h \
+		srecord/input/file/os65v.h \
+		srecord/input/file/signetics.h \
+		srecord/input/file/spasm.h \
+		srecord/input/file/spectrum.h \
+		srecord/input/file/stewie.h \
+		srecord/input/file/tektronix.h \
+		srecord/input/file/tektronix_extended.h \
+		srecord/input/file/ti_tagged.h \
+		srecord/input/file/ti_tagged_16.h \
+		srecord/input/file/ti_txt.h srecord/input/file/vmem.h \
+		srecord/input/file/wilson.h srecord/input/filter.h \
+		srecord/input/filter/and.h \
+		srecord/input/filter/bitrev.h \
+		srecord/input/filter/byte_swap.h \
+		srecord/input/filter/checksum.h \
+		srecord/input/filter/checksum/bitnot.h \
+		srecord/input/filter/checksum/negative.h \
+		srecord/input/filter/checksum/positive.h \
+		srecord/input/filter/crop.h srecord/input/filter/fill.h \
+		srecord/input/filter/interval.h \
+		srecord/input/filter/interval/length.h \
+		srecord/input/filter/interval/maximum.h \
+		srecord/input/filter/interval/minimum.h \
+		srecord/input/filter/message.h \
+		srecord/input/filter/message/adler16.h \
+		srecord/input/filter/message/adler32.h \
+		srecord/input/filter/message/crc16.h \
+		srecord/input/filter/message/crc32.h \
+		srecord/input/filter/message/fletcher16.h \
+		srecord/input/filter/message/fletcher32.h \
+		srecord/input/filter/message/gcrypt.h \
+		srecord/input/filter/not.h \
+		srecord/input/filter/offset.h srecord/input/filter/or.h \
+		srecord/input/filter/random_fill.h \
+		srecord/input/filter/sequence.h \
+		srecord/input/filter/split.h \
+		srecord/input/filter/unfill.h \
+		srecord/input/filter/unsplit.h \
+		srecord/input/filter/xor.h srecord/input/generator.h \
+		srecord/input/interval.h srecord/interval.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h srecord/output.h srecord/quit.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool/input.cc -o \
+		srecord/arglex/tool/input.lo 
+
+srecord/arglex/tool/output.lo: srecord/arglex/tool/output.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/aomf.h \
+		srecord/output/file/ascii_hex.h \
+		srecord/output/file/asm.h \
+		srecord/output/file/atmel_generic.h \
+		srecord/output/file/basic.h \
+		srecord/output/file/binary.h \
+		srecord/output/file/brecord.h srecord/output/file/c.h \
+		srecord/output/file/cosmac.h \
+		srecord/output/file/dec_binary.h \
+		srecord/output/file/emon52.h \
+		srecord/output/file/fairchild.h \
+		srecord/output/file/fastload.h \
+		srecord/output/file/formatted_binary.h \
+		srecord/output/file/forth.h \
+		srecord/output/file/four_packed_code.h \
+		srecord/output/file/hexdump.h \
+		srecord/output/file/intel.h \
+		srecord/output/file/intel16.h srecord/output/file/mif.h \
+		srecord/output/file/mos_tech.h \
+		srecord/output/file/motorola.h \
+		srecord/output/file/msbin.h \
+		srecord/output/file/needham.h \
+		srecord/output/file/os65v.h \
+		srecord/output/file/signetics.h \
+		srecord/output/file/spasm.h \
+		srecord/output/file/spectrum.h \
+		srecord/output/file/stewie.h \
+		srecord/output/file/tektronix.h \
+		srecord/output/file/tektronix_extended.h \
+		srecord/output/file/ti_tagged.h \
+		srecord/output/file/ti_tagged_16.h \
+		srecord/output/file/ti_txt.h srecord/output/file/vhdl.h \
+		srecord/output/file/vmem.h srecord/output/file/wilson.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/arglex/tool/output.cc -o \
+		srecord/arglex/tool/output.lo 
+
+srecord/bitrev.lo: srecord/bitrev.cc srecord/bitrev.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/bitrev.cc -o srecord/bitrev.lo 
+
+srecord/crc16.lo: srecord/crc16.cc srecord/bitrev.h srecord/crc16.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/crc16.cc -o srecord/crc16.lo 
+
+$(includedir)/srecord/crc16.h: srecord/crc16.h srecord/.incl
+	$(INSTALL_DATA) srecord/crc16.h $@
+
+srecord/crc32.lo: srecord/crc32.cc srecord/crc32.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/crc32.cc -o srecord/crc32.lo 
+
+$(includedir)/srecord/crc32.h: srecord/crc32.h srecord/.incl
+	$(INSTALL_DATA) srecord/crc32.h $@
+
+srecord/endian.lo: srecord/endian.cc srecord/endian.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/endian.cc -o srecord/endian.lo 
+
+$(includedir)/srecord/endian.h: srecord/endian.h srecord/.incl
+	$(INSTALL_DATA) srecord/endian.h $@
+
+srecord/fletcher16.lo: srecord/fletcher16.cc srecord/fletcher16.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/fletcher16.cc -o srecord/fletcher16.lo 
+
+$(includedir)/srecord/fletcher16.h: srecord/fletcher16.h srecord/.incl
+	$(INSTALL_DATA) srecord/fletcher16.h $@
+
+srecord/fletcher32.lo: srecord/fletcher32.cc srecord/fletcher32.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/fletcher32.cc -o srecord/fletcher32.lo 
+
+$(includedir)/srecord/fletcher32.h: srecord/fletcher32.h srecord/.incl
+	$(INSTALL_DATA) srecord/fletcher32.h $@
+
+$(includedir)/srecord/format_printf.h: srecord/format_printf.h \
+		srecord/.incl 
+	$(INSTALL_DATA) srecord/format_printf.h $@
+
+srecord/input.lo: srecord/input.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/quit.h \
+		srecord/quit/prefix.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input.cc -o srecord/input.lo 
+
+$(includedir)/srecord/input.h: srecord/input.h srecord/.incl
+	$(INSTALL_DATA) srecord/input.h $@
+
+srecord/input/catenate.lo: srecord/input/catenate.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/catenate.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/catenate.cc -o srecord/input/catenate.lo 
+
+srecord/input/.incl: srecord/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input
+	@-test -d $(includedir)/srecord/input && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/catenate.h: srecord/input/catenate.h \
+		srecord/input/.incl 
+	$(INSTALL_DATA) srecord/input/catenate.h $@
+
+srecord/input/file.lo: srecord/input/file.cc srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file.cc -o srecord/input/file.lo 
+
+$(includedir)/srecord/input/file.h: srecord/input/file.h \
+		srecord/input/.incl 
+	$(INSTALL_DATA) srecord/input/file.h $@
+
+srecord/input/file/aomf.lo: srecord/input/file/aomf.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/aomf.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/aomf.cc -o \
+		srecord/input/file/aomf.lo 
+
+srecord/input/file/.incl: srecord/input/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input/file
+	@-test -d $(includedir)/srecord/input/file && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/file/aomf.h: srecord/input/file/aomf.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/aomf.h $@
+
+srecord/input/file/ascii_hex.lo: srecord/input/file/ascii_hex.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/ascii_hex.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/ascii_hex.cc -o \
+		srecord/input/file/ascii_hex.lo 
+
+$(includedir)/srecord/input/file/ascii_hex.h: \
+		srecord/input/file/ascii_hex.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/ascii_hex.h $@
+
+srecord/input/file/atmel_generic.lo: \
+		srecord/input/file/atmel_generic.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/atmel_generic.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/atmel_generic.cc -o \
+		srecord/input/file/atmel_generic.lo 
+
+$(includedir)/srecord/input/file/atmel_generic.h: \
+		srecord/input/file/atmel_generic.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/atmel_generic.h $@
+
+srecord/input/file/binary.lo: srecord/input/file/binary.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/binary.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/binary.cc -o \
+		srecord/input/file/binary.lo 
+
+$(includedir)/srecord/input/file/binary.h: srecord/input/file/binary.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/binary.h $@
+
+srecord/input/file/brecord.lo: srecord/input/file/brecord.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/brecord.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/brecord.cc -o \
+		srecord/input/file/brecord.lo 
+
+$(includedir)/srecord/input/file/brecord.h: \
+		srecord/input/file/brecord.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/brecord.h $@
+
+srecord/input/file/cosmac.lo: srecord/input/file/cosmac.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/cosmac.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/cosmac.cc -o \
+		srecord/input/file/cosmac.lo 
+
+$(includedir)/srecord/input/file/cosmac.h: srecord/input/file/cosmac.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/cosmac.h $@
+
+srecord/input/file/dec_binary.lo: srecord/input/file/dec_binary.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/dec_binary.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/dec_binary.cc -o \
+		srecord/input/file/dec_binary.lo 
+
+$(includedir)/srecord/input/file/dec_binary.h: \
+		srecord/input/file/dec_binary.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/dec_binary.h $@
+
+srecord/input/file/emon52.lo: srecord/input/file/emon52.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/emon52.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/emon52.cc -o \
+		srecord/input/file/emon52.lo 
+
+$(includedir)/srecord/input/file/emon52.h: srecord/input/file/emon52.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/emon52.h $@
+
+srecord/input/file/fairchild.lo: srecord/input/file/fairchild.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/fairchild.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/fairchild.cc -o \
+		srecord/input/file/fairchild.lo 
+
+$(includedir)/srecord/input/file/fairchild.h: \
+		srecord/input/file/fairchild.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/fairchild.h $@
+
+srecord/input/file/fastload.lo: srecord/input/file/fastload.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/fastload.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/fastload.cc -o \
+		srecord/input/file/fastload.lo 
+
+$(includedir)/srecord/input/file/fastload.h: \
+		srecord/input/file/fastload.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/fastload.h $@
+
+srecord/input/file/formatted_binary.lo: \
+		srecord/input/file/formatted_binary.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h \
+		srecord/input/file/formatted_binary.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/formatted_binary.cc -o \
+		srecord/input/file/formatted_binary.lo 
+
+$(includedir)/srecord/input/file/formatted_binary.h: \
+		srecord/input/file/formatted_binary.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/formatted_binary.h $@
+
+srecord/input/file/four_packed_code.lo: \
+		srecord/input/file/four_packed_code.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h \
+		srecord/input/file/four_packed_code.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/four_packed_code.cc -o \
+		srecord/input/file/four_packed_code.lo 
+
+$(includedir)/srecord/input/file/four_packed_code.h: \
+		srecord/input/file/four_packed_code.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/four_packed_code.h $@
+
+srecord/input/file/guess.lo: srecord/input/file/guess.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/aomf.h \
+		srecord/input/file/ascii_hex.h \
+		srecord/input/file/atmel_generic.h \
+		srecord/input/file/binary.h \
+		srecord/input/file/brecord.h \
+		srecord/input/file/dec_binary.h \
+		srecord/input/file/emon52.h \
+		srecord/input/file/fairchild.h \
+		srecord/input/file/fastload.h \
+		srecord/input/file/formatted_binary.h \
+		srecord/input/file/four_packed_code.h \
+		srecord/input/file/intel.h srecord/input/file/intel16.h \
+		srecord/input/file/mif.h srecord/input/file/mos_tech.h \
+		srecord/input/file/motorola.h \
+		srecord/input/file/msbin.h srecord/input/file/needham.h \
+		srecord/input/file/os65v.h \
+		srecord/input/file/signetics.h \
+		srecord/input/file/spasm.h \
+		srecord/input/file/spectrum.h \
+		srecord/input/file/stewie.h \
+		srecord/input/file/tektronix.h \
+		srecord/input/file/tektronix_extended.h \
+		srecord/input/file/ti_tagged.h \
+		srecord/input/file/ti_txt.h srecord/input/file/vmem.h \
+		srecord/input/file/wilson.h srecord/quit.h \
+		srecord/quit/exception.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/guess.cc -o \
+		srecord/input/file/guess.lo 
+
+srecord/input/file/intel.lo: srecord/input/file/intel.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/intel.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/intel.cc -o \
+		srecord/input/file/intel.lo 
+
+$(includedir)/srecord/input/file/intel.h: srecord/input/file/intel.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/intel.h $@
+
+srecord/input/file/intel16.lo: srecord/input/file/intel16.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/intel16.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/intel16.cc -o \
+		srecord/input/file/intel16.lo 
+
+$(includedir)/srecord/input/file/intel16.h: \
+		srecord/input/file/intel16.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/intel16.h $@
+
+srecord/input/file/mif.lo: srecord/input/file/mif.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/mif.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/mif.cc -o srecord/input/file/mif.lo 
+
+$(includedir)/srecord/input/file/mif.h: srecord/input/file/mif.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/mif.h $@
+
+srecord/input/file/mos_tech.lo: srecord/input/file/mos_tech.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/mos_tech.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/mos_tech.cc -o \
+		srecord/input/file/mos_tech.lo 
+
+$(includedir)/srecord/input/file/mos_tech.h: \
+		srecord/input/file/mos_tech.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/mos_tech.h $@
+
+srecord/input/file/motorola.lo: srecord/input/file/motorola.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/motorola.h \
+		srecord/output.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/motorola.cc -o \
+		srecord/input/file/motorola.lo 
+
+srecord/input/file/msbin.lo: srecord/input/file/msbin.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/msbin.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/msbin.cc -o \
+		srecord/input/file/msbin.lo 
+
+$(includedir)/srecord/input/file/msbin.h: srecord/input/file/msbin.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/msbin.h $@
+
+srecord/input/file/needham.lo: srecord/input/file/needham.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/needham.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/needham.cc -o \
+		srecord/input/file/needham.lo 
+
+$(includedir)/srecord/input/file/needham.h: \
+		srecord/input/file/needham.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/needham.h $@
+
+srecord/input/file/os65v.lo: srecord/input/file/os65v.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/os65v.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/os65v.cc -o \
+		srecord/input/file/os65v.lo 
+
+$(includedir)/srecord/input/file/os65v.h: srecord/input/file/os65v.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/os65v.h $@
+
+srecord/input/file/signetics.lo: srecord/input/file/signetics.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/signetics.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/signetics.cc -o \
+		srecord/input/file/signetics.lo 
+
+$(includedir)/srecord/input/file/signetics.h: \
+		srecord/input/file/signetics.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/signetics.h $@
+
+srecord/input/file/spasm.lo: srecord/input/file/spasm.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/spasm.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/spasm.cc -o \
+		srecord/input/file/spasm.lo 
+
+$(includedir)/srecord/input/file/spasm.h: srecord/input/file/spasm.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/spasm.h $@
+
+srecord/input/file/spectrum.lo: srecord/input/file/spectrum.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/spectrum.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/spectrum.cc -o \
+		srecord/input/file/spectrum.lo 
+
+$(includedir)/srecord/input/file/spectrum.h: \
+		srecord/input/file/spectrum.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/spectrum.h $@
+
+srecord/input/file/stewie.lo: srecord/input/file/stewie.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/stewie.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/stewie.cc -o \
+		srecord/input/file/stewie.lo 
+
+$(includedir)/srecord/input/file/stewie.h: srecord/input/file/stewie.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/stewie.h $@
+
+srecord/input/file/tektronix.lo: srecord/input/file/tektronix.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/tektronix.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/tektronix.cc -o \
+		srecord/input/file/tektronix.lo 
+
+$(includedir)/srecord/input/file/tektronix.h: \
+		srecord/input/file/tektronix.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/tektronix.h $@
+
+srecord/input/file/tektronix_extended.lo: \
+		srecord/input/file/tektronix_extended.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/tektronix_extended.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/tektronix_extended.cc -o \
+		srecord/input/file/tektronix_extended.lo 
+
+$(includedir)/srecord/input/file/tektronix_extended.h: \
+		srecord/input/file/tektronix_extended.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/tektronix_extended.h $@
+
+srecord/input/file/ti_tagged.lo: srecord/input/file/ti_tagged.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/ti_tagged.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/ti_tagged.cc -o \
+		srecord/input/file/ti_tagged.lo 
+
+$(includedir)/srecord/input/file/ti_tagged.h: \
+		srecord/input/file/ti_tagged.h srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/ti_tagged.h $@
+
+srecord/input/file/ti_tagged_16.lo: srecord/input/file/ti_tagged_16.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/ti_tagged_16.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/ti_tagged_16.cc -o \
+		srecord/input/file/ti_tagged_16.lo 
+
+$(includedir)/srecord/input/file/ti_tagged_16.h: \
+		srecord/input/file/ti_tagged_16.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/ti_tagged_16.h $@
+
+srecord/input/file/ti_txt.lo: srecord/input/file/ti_txt.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/ti_txt.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/ti_txt.cc -o \
+		srecord/input/file/ti_txt.lo 
+
+$(includedir)/srecord/input/file/ti_txt.h: srecord/input/file/ti_txt.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/ti_txt.h $@
+
+srecord/input/file/vmem.lo: srecord/input/file/vmem.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/vmem.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/vmem.cc -o \
+		srecord/input/file/vmem.lo 
+
+$(includedir)/srecord/input/file/vmem.h: srecord/input/file/vmem.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/vmem.h $@
+
+srecord/input/file/wilson.lo: srecord/input/file/wilson.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/file.h \
+		srecord/input/file/wilson.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/file/wilson.cc -o \
+		srecord/input/file/wilson.lo 
+
+$(includedir)/srecord/input/file/wilson.h: srecord/input/file/wilson.h \
+		srecord/input/file/.incl 
+	$(INSTALL_DATA) srecord/input/file/wilson.h $@
+
+srecord/input/filter.lo: srecord/input/filter.cc \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter.cc -o srecord/input/filter.lo 
+
+$(includedir)/srecord/input/filter.h: srecord/input/filter.h \
+		srecord/input/.incl 
+	$(INSTALL_DATA) srecord/input/filter.h $@
+
+srecord/input/filter/and.lo: srecord/input/filter/and.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/and.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/and.cc -o \
+		srecord/input/filter/and.lo 
+
+srecord/input/filter/.incl: srecord/input/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input/filter
+	@-test -d $(includedir)/srecord/input/filter && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/filter/and.h: srecord/input/filter/and.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/and.h $@
+
+srecord/input/filter/bitrev.lo: srecord/input/filter/bitrev.cc \
+		srecord/bitrev.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/bitrev.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/bitrev.cc -o \
+		srecord/input/filter/bitrev.lo 
+
+$(includedir)/srecord/input/filter/bitrev.h: \
+		srecord/input/filter/bitrev.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/bitrev.h $@
+
+srecord/input/filter/byte_swap.lo: srecord/input/filter/byte_swap.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/byte_swap.h \
+		srecord/output.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/byte_swap.cc -o \
+		srecord/input/filter/byte_swap.lo 
+
+$(includedir)/srecord/input/filter/byte_swap.h: \
+		srecord/input/filter/byte_swap.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/byte_swap.h $@
+
+srecord/input/filter/checksum.lo: srecord/input/filter/checksum.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/checksum.h srecord/interval.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/checksum.cc -o \
+		srecord/input/filter/checksum.lo 
+
+$(includedir)/srecord/input/filter/checksum.h: \
+		srecord/input/filter/checksum.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/checksum.h $@
+
+srecord/input/filter/checksum/bitnot.lo: \
+		srecord/input/filter/checksum/bitnot.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/checksum.h \
+		srecord/input/filter/checksum/bitnot.h \
+		srecord/interval.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/checksum/bitnot.cc -o \
+		srecord/input/filter/checksum/bitnot.lo 
+
+srecord/input/filter/checksum/.incl: srecord/input/filter/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input/filter/checksum
+	@-test -d $(includedir)/srecord/input/filter/checksum && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/filter/checksum/bitnot.h: \
+		srecord/input/filter/checksum/bitnot.h \
+		srecord/input/filter/checksum/.incl 
+	$(INSTALL_DATA) srecord/input/filter/checksum/bitnot.h $@
+
+srecord/input/filter/checksum/negative.lo: \
+		srecord/input/filter/checksum/negative.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/checksum.h \
+		srecord/input/filter/checksum/negative.h \
+		srecord/interval.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/checksum/negative.cc -o \
+		srecord/input/filter/checksum/negative.lo 
+
+$(includedir)/srecord/input/filter/checksum/negative.h: \
+		srecord/input/filter/checksum/negative.h \
+		srecord/input/filter/checksum/.incl 
+	$(INSTALL_DATA) srecord/input/filter/checksum/negative.h $@
+
+srecord/input/filter/checksum/positive.lo: \
+		srecord/input/filter/checksum/positive.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/checksum.h \
+		srecord/input/filter/checksum/positive.h \
+		srecord/interval.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/checksum/positive.cc -o \
+		srecord/input/filter/checksum/positive.lo 
+
+$(includedir)/srecord/input/filter/checksum/positive.h: \
+		srecord/input/filter/checksum/positive.h \
+		srecord/input/filter/checksum/.incl 
+	$(INSTALL_DATA) srecord/input/filter/checksum/positive.h $@
+
+srecord/input/filter/crop.lo: srecord/input/filter/crop.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/crop.h srecord/interval.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/crop.cc -o \
+		srecord/input/filter/crop.lo 
+
+$(includedir)/srecord/input/filter/crop.h: srecord/input/filter/crop.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/crop.h $@
+
+srecord/input/filter/fill.lo: srecord/input/filter/fill.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/fill.h srecord/interval.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/fill.cc -o \
+		srecord/input/filter/fill.lo 
+
+$(includedir)/srecord/input/filter/fill.h: srecord/input/filter/fill.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/fill.h $@
+
+srecord/input/filter/interval.lo: srecord/input/filter/interval.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/interval.h srecord/interval.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/interval.cc -o \
+		srecord/input/filter/interval.lo 
+
+$(includedir)/srecord/input/filter/interval.h: \
+		srecord/input/filter/interval.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/interval.h $@
+
+srecord/input/filter/interval/length.lo: \
+		srecord/input/filter/interval/length.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/interval.h \
+		srecord/input/filter/interval/length.h \
+		srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/interval/length.cc -o \
+		srecord/input/filter/interval/length.lo 
+
+srecord/input/filter/interval/.incl: srecord/input/filter/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input/filter/interval
+	@-test -d $(includedir)/srecord/input/filter/interval && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/filter/interval/length.h: \
+		srecord/input/filter/interval/length.h \
+		srecord/input/filter/interval/.incl 
+	$(INSTALL_DATA) srecord/input/filter/interval/length.h $@
+
+srecord/input/filter/interval/maximum.lo: \
+		srecord/input/filter/interval/maximum.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/interval.h \
+		srecord/input/filter/interval/maximum.h \
+		srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/interval/maximum.cc -o \
+		srecord/input/filter/interval/maximum.lo 
+
+$(includedir)/srecord/input/filter/interval/maximum.h: \
+		srecord/input/filter/interval/maximum.h \
+		srecord/input/filter/interval/.incl 
+	$(INSTALL_DATA) srecord/input/filter/interval/maximum.h $@
+
+srecord/input/filter/interval/minimum.lo: \
+		srecord/input/filter/interval/minimum.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/interval.h \
+		srecord/input/filter/interval/minimum.h \
+		srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/interval/minimum.cc -o \
+		srecord/input/filter/interval/minimum.lo 
+
+$(includedir)/srecord/input/filter/interval/minimum.h: \
+		srecord/input/filter/interval/minimum.h \
+		srecord/input/filter/interval/.incl 
+	$(INSTALL_DATA) srecord/input/filter/interval/minimum.h $@
+
+srecord/input/filter/message.lo: srecord/input/filter/message.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message.cc -o \
+		srecord/input/filter/message.lo 
+
+$(includedir)/srecord/input/filter/message.h: \
+		srecord/input/filter/message.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message.h $@
+
+srecord/input/filter/message/adler16.lo: \
+		srecord/input/filter/message/adler16.cc \
+		srecord/adler16.h srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/input/filter/message/adler16.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/adler16.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/adler16.cc -o \
+		srecord/input/filter/message/adler16.lo 
+
+srecord/input/filter/message/.incl: srecord/input/filter/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input/filter/message
+	@-test -d $(includedir)/srecord/input/filter/message && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/filter/message/adler16.h: \
+		srecord/input/filter/message/adler16.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/adler16.h $@
+
+srecord/input/filter/message/adler32.lo: \
+		srecord/input/filter/message/adler32.cc \
+		srecord/adler32.h srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/input/filter/message/adler32.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/adler32.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/adler32.cc -o \
+		srecord/input/filter/message/adler32.lo 
+
+$(includedir)/srecord/input/filter/message/adler32.h: \
+		srecord/input/filter/message/adler32.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/adler32.h $@
+
+srecord/input/filter/message/crc16.lo: \
+		srecord/input/filter/message/crc16.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/crc16.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/input/filter/message/crc16.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/crc16.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/crc16.cc -o \
+		srecord/input/filter/message/crc16.lo 
+
+$(includedir)/srecord/input/filter/message/crc16.h: \
+		srecord/input/filter/message/crc16.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/crc16.h $@
+
+srecord/input/filter/message/crc32.lo: \
+		srecord/input/filter/message/crc32.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/crc32.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/input/filter/message/crc32.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/crc32.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/crc32.cc -o \
+		srecord/input/filter/message/crc32.lo 
+
+$(includedir)/srecord/input/filter/message/crc32.h: \
+		srecord/input/filter/message/crc32.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/crc32.h $@
+
+srecord/input/filter/message/fletcher16.lo: \
+		srecord/input/filter/message/fletcher16.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/fletcher16.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.h \
+		srecord/input/filter/message/fletcher16.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h \
+		srecord/memory/walker/fletcher16.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/fletcher16.cc -o \
+		srecord/input/filter/message/fletcher16.lo 
+
+$(includedir)/srecord/input/filter/message/fletcher16.h: \
+		srecord/input/filter/message/fletcher16.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/fletcher16.h $@
+
+srecord/input/filter/message/fletcher32.lo: \
+		srecord/input/filter/message/fletcher32.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/fletcher32.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.h \
+		srecord/input/filter/message/fletcher32.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h \
+		srecord/memory/walker/fletcher32.h srecord/output.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/fletcher32.cc -o \
+		srecord/input/filter/message/fletcher32.lo 
+
+$(includedir)/srecord/input/filter/message/fletcher32.h: \
+		srecord/input/filter/message/fletcher32.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/fletcher32.h $@
+
+srecord/input/filter/message/gcrypt.lo: \
+		srecord/input/filter/message/gcrypt.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/input/filter/message/gcrypt.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/gcrypt.h srecord/quit.h \
+		srecord/record.h srecord/sizeof.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/message/gcrypt.cc -o \
+		srecord/input/filter/message/gcrypt.lo 
+
+$(includedir)/srecord/input/filter/message/gcrypt.h: \
+		srecord/input/filter/message/gcrypt.h \
+		srecord/input/filter/message/.incl 
+	$(INSTALL_DATA) srecord/input/filter/message/gcrypt.h $@
+
+srecord/input/filter/not.lo: srecord/input/filter/not.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/not.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/not.cc -o \
+		srecord/input/filter/not.lo 
+
+$(includedir)/srecord/input/filter/not.h: srecord/input/filter/not.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/not.h $@
+
+srecord/input/filter/offset.lo: srecord/input/filter/offset.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/offset.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/offset.cc -o \
+		srecord/input/filter/offset.lo 
+
+$(includedir)/srecord/input/filter/offset.h: \
+		srecord/input/filter/offset.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/offset.h $@
+
+srecord/input/filter/or.lo: srecord/input/filter/or.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/or.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/or.cc -o \
+		srecord/input/filter/or.lo 
+
+$(includedir)/srecord/input/filter/or.h: srecord/input/filter/or.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/or.h $@
+
+srecord/input/filter/random_fill.lo: \
+		srecord/input/filter/random_fill.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h \
+		srecord/input/filter/random_fill.h srecord/interval.h \
+		srecord/r250.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/random_fill.cc -o \
+		srecord/input/filter/random_fill.lo 
+
+$(includedir)/srecord/input/filter/random_fill.h: \
+		srecord/input/filter/random_fill.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/random_fill.h $@
+
+srecord/input/filter/sequence.lo: srecord/input/filter/sequence.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/sequence.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/sequence.cc -o \
+		srecord/input/filter/sequence.lo 
+
+$(includedir)/srecord/input/filter/sequence.h: \
+		srecord/input/filter/sequence.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/sequence.h $@
+
+srecord/input/filter/split.lo: srecord/input/filter/split.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/split.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/split.cc -o \
+		srecord/input/filter/split.lo 
+
+$(includedir)/srecord/input/filter/split.h: \
+		srecord/input/filter/split.h srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/split.h $@
+
+srecord/input/filter/unfill.lo: srecord/input/filter/unfill.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/unfill.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/unfill.cc -o \
+		srecord/input/filter/unfill.lo 
+
+$(includedir)/srecord/input/filter/unfill.h: \
+		srecord/input/filter/unfill.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/unfill.h $@
+
+srecord/input/filter/unsplit.lo: srecord/input/filter/unsplit.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/unsplit.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/unsplit.cc -o \
+		srecord/input/filter/unsplit.lo 
+
+$(includedir)/srecord/input/filter/unsplit.h: \
+		srecord/input/filter/unsplit.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/unsplit.h $@
+
+srecord/input/filter/xor.lo: srecord/input/filter/xor.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/xor.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/filter/xor.cc -o \
+		srecord/input/filter/xor.lo 
+
+$(includedir)/srecord/input/filter/xor.h: srecord/input/filter/xor.h \
+		srecord/input/filter/.incl 
+	$(INSTALL_DATA) srecord/input/filter/xor.h $@
+
+srecord/input/generator.lo: srecord/input/generator.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/generator.h \
+		srecord/input/generator/constant.h \
+		srecord/input/generator/random.h \
+		srecord/input/generator/repeat.h srecord/interval.h \
+		srecord/output.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/generator.cc -o \
+		srecord/input/generator.lo 
+
+$(includedir)/srecord/input/generator.h: srecord/input/generator.h \
+		srecord/input/.incl 
+	$(INSTALL_DATA) srecord/input/generator.h $@
+
+srecord/input/generator/constant.lo: \
+		srecord/input/generator/constant.cc \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/generator.h \
+		srecord/input/generator/constant.h srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/generator/constant.cc -o \
+		srecord/input/generator/constant.lo 
+
+srecord/input/generator/.incl: srecord/input/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/input/generator
+	@-test -d $(includedir)/srecord/input/generator && touch $@
+	@sleep 1
+
+$(includedir)/srecord/input/generator/constant.h: \
+		srecord/input/generator/constant.h \
+		srecord/input/generator/.incl 
+	$(INSTALL_DATA) srecord/input/generator/constant.h $@
+
+srecord/input/generator/random.lo: srecord/input/generator/random.cc \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/generator.h \
+		srecord/input/generator/random.h srecord/interval.h \
+		srecord/r250.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/generator/random.cc -o \
+		srecord/input/generator/random.lo 
+
+$(includedir)/srecord/input/generator/random.h: \
+		srecord/input/generator/random.h \
+		srecord/input/generator/.incl 
+	$(INSTALL_DATA) srecord/input/generator/random.h $@
+
+srecord/input/generator/repeat.lo: srecord/input/generator/repeat.cc \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/generator.h \
+		srecord/input/generator/repeat.h srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/generator/repeat.cc -o \
+		srecord/input/generator/repeat.lo 
+
+$(includedir)/srecord/input/generator/repeat.h: \
+		srecord/input/generator/repeat.h \
+		srecord/input/generator/.incl 
+	$(INSTALL_DATA) srecord/input/generator/repeat.h $@
+
+srecord/input/interval.lo: srecord/input/interval.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/interval.h srecord/interval.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/input/interval.cc -o srecord/input/interval.lo 
+
+srecord/interval.lo: srecord/interval.cc srecord/interval.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/interval.cc -o srecord/interval.lo 
+
+$(includedir)/srecord/interval.h: srecord/interval.h srecord/.incl
+	$(INSTALL_DATA) srecord/interval.h $@
+
+srecord/interval/coverage.lo: srecord/interval/coverage.cc \
+		srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/interval/coverage.cc -o \
+		srecord/interval/coverage.lo 
+
+srecord/interval/flatten.lo: srecord/interval/flatten.cc \
+		srecord/interval.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/interval/flatten.cc -o \
+		srecord/interval/flatten.lo 
+
+srecord/memory.lo: srecord/memory.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/compare.h \
+		srecord/memory/walker/continuity.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory.cc -o srecord/memory.lo 
+
+$(includedir)/srecord/memory.h: srecord/memory.h srecord/.incl
+	$(INSTALL_DATA) srecord/memory.h $@
+
+srecord/memory/chunk.lo: srecord/memory/chunk.cc srecord/memory/chunk.h \
+		srecord/memory/walker.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/chunk.cc -o srecord/memory/chunk.lo 
+
+srecord/memory/.incl: srecord/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/memory
+	@-test -d $(includedir)/srecord/memory && touch $@
+	@sleep 1
+
+$(includedir)/srecord/memory/chunk.h: srecord/memory/chunk.h \
+		srecord/memory/.incl 
+	$(INSTALL_DATA) srecord/memory/chunk.h $@
+
+srecord/memory/walker.lo: srecord/memory/walker.cc \
+		srecord/memory/walker.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker.cc -o srecord/memory/walker.lo 
+
+$(includedir)/srecord/memory/walker.h: srecord/memory/walker.h \
+		srecord/memory/.incl 
+	$(INSTALL_DATA) srecord/memory/walker.h $@
+
+srecord/memory/walker/adler16.lo: srecord/memory/walker/adler16.cc \
+		srecord/adler16.h srecord/format_printf.h \
+		srecord/memory/walker.h srecord/memory/walker/adler16.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/adler16.cc -o \
+		srecord/memory/walker/adler16.lo 
+
+srecord/memory/walker/adler32.lo: srecord/memory/walker/adler32.cc \
+		srecord/adler32.h srecord/format_printf.h \
+		srecord/memory/walker.h srecord/memory/walker/adler32.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/adler32.cc -o \
+		srecord/memory/walker/adler32.lo 
+
+srecord/memory/walker/compare.lo: srecord/memory/walker/compare.cc \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/compare.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/compare.cc -o \
+		srecord/memory/walker/compare.lo 
+
+srecord/memory/walker/.incl: srecord/memory/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/memory/walker
+	@-test -d $(includedir)/srecord/memory/walker && touch $@
+	@sleep 1
+
+$(includedir)/srecord/memory/walker/compare.h: \
+		srecord/memory/walker/compare.h \
+		srecord/memory/walker/.incl 
+	$(INSTALL_DATA) srecord/memory/walker/compare.h $@
+
+srecord/memory/walker/continuity.lo: \
+		srecord/memory/walker/continuity.cc \
+		srecord/memory/walker.h \
+		srecord/memory/walker/continuity.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/continuity.cc -o \
+		srecord/memory/walker/continuity.lo 
+
+$(includedir)/srecord/memory/walker/continuity.h: \
+		srecord/memory/walker/continuity.h \
+		srecord/memory/walker/.incl 
+	$(INSTALL_DATA) srecord/memory/walker/continuity.h $@
+
+srecord/memory/walker/crc16.lo: srecord/memory/walker/crc16.cc \
+		srecord/crc16.h srecord/format_printf.h \
+		srecord/memory/walker.h srecord/memory/walker/crc16.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/crc16.cc -o \
+		srecord/memory/walker/crc16.lo 
+
+srecord/memory/walker/crc32.lo: srecord/memory/walker/crc32.cc \
+		srecord/crc32.h srecord/format_printf.h \
+		srecord/memory/walker.h srecord/memory/walker/crc32.h \
+		srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/crc32.cc -o \
+		srecord/memory/walker/crc32.lo 
+
+srecord/memory/walker/fletcher16.lo: \
+		srecord/memory/walker/fletcher16.cc \
+		srecord/fletcher16.h srecord/format_printf.h \
+		srecord/memory/walker.h \
+		srecord/memory/walker/fletcher16.h srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/fletcher16.cc -o \
+		srecord/memory/walker/fletcher16.lo 
+
+srecord/memory/walker/fletcher32.lo: \
+		srecord/memory/walker/fletcher32.cc \
+		srecord/fletcher32.h srecord/format_printf.h \
+		srecord/memory/walker.h \
+		srecord/memory/walker/fletcher32.h srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/fletcher32.cc -o \
+		srecord/memory/walker/fletcher32.lo 
+
+srecord/memory/walker/gcrypt.lo: srecord/memory/walker/gcrypt.cc \
+		srecord/memory/walker.h srecord/memory/walker/gcrypt.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/gcrypt.cc -o \
+		srecord/memory/walker/gcrypt.lo 
+
+$(includedir)/srecord/memory/walker/gcrypt.h: \
+		srecord/memory/walker/gcrypt.h \
+		srecord/memory/walker/.incl 
+	$(INSTALL_DATA) srecord/memory/walker/gcrypt.h $@
+
+srecord/memory/walker/writer.lo: srecord/memory/walker/writer.cc \
+		srecord/format_printf.h srecord/memory/walker.h \
+		srecord/memory/walker/writer.h srecord/output.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/memory/walker/writer.cc -o \
+		srecord/memory/walker/writer.lo 
+
+$(includedir)/srecord/memory/walker/writer.h: \
+		srecord/memory/walker/writer.h \
+		srecord/memory/walker/.incl 
+	$(INSTALL_DATA) srecord/memory/walker/writer.h $@
+
+srecord/output.lo: srecord/output.cc srecord/endian.h \
+		srecord/format_printf.h srecord/output.h srecord/quit.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output.cc -o srecord/output.lo 
+
+$(includedir)/srecord/output.h: srecord/output.h srecord/.incl
+	$(INSTALL_DATA) srecord/output.h $@
+
+srecord/output/file.lo: srecord/output/file.cc srecord/arglex.h \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h srecord/record.h \
+		srecord/sizeof.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file.cc -o srecord/output/file.lo 
+
+srecord/output/.incl: srecord/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/output
+	@-test -d $(includedir)/srecord/output && touch $@
+	@sleep 1
+
+$(includedir)/srecord/output/file.h: srecord/output/file.h \
+		srecord/output/.incl 
+	$(INSTALL_DATA) srecord/output/file.h $@
+
+srecord/output/file/aomf.lo: srecord/output/file/aomf.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/aomf.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/aomf.cc -o \
+		srecord/output/file/aomf.lo 
+
+srecord/output/file/.incl: srecord/output/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/output/file
+	@-test -d $(includedir)/srecord/output/file && touch $@
+	@sleep 1
+
+$(includedir)/srecord/output/file/aomf.h: srecord/output/file/aomf.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/aomf.h $@
+
+srecord/output/file/ascii_hex.lo: srecord/output/file/ascii_hex.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/ascii_hex.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/ascii_hex.cc -o \
+		srecord/output/file/ascii_hex.lo 
+
+$(includedir)/srecord/output/file/ascii_hex.h: \
+		srecord/output/file/ascii_hex.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/ascii_hex.h $@
+
+srecord/output/file/asm.lo: srecord/output/file/asm.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/asm.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/asm.cc -o \
+		srecord/output/file/asm.lo 
+
+$(includedir)/srecord/output/file/asm.h: srecord/output/file/asm.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/asm.h $@
+
+srecord/output/file/atmel_generic.lo: \
+		srecord/output/file/atmel_generic.cc srecord/endian.h \
+		srecord/format_printf.h srecord/output.h \
+		srecord/output/file.h \
+		srecord/output/file/atmel_generic.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/atmel_generic.cc -o \
+		srecord/output/file/atmel_generic.lo 
+
+$(includedir)/srecord/output/file/atmel_generic.h: \
+		srecord/output/file/atmel_generic.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/atmel_generic.h $@
+
+srecord/output/file/basic.lo: srecord/output/file/basic.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/interval.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/basic.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/basic.cc -o \
+		srecord/output/file/basic.lo 
+
+$(includedir)/srecord/output/file/basic.h: srecord/output/file/basic.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/basic.h $@
+
+srecord/output/file/binary.lo: srecord/output/file/binary.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/binary.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/binary.cc -o \
+		srecord/output/file/binary.lo 
+
+$(includedir)/srecord/output/file/binary.h: \
+		srecord/output/file/binary.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/binary.h $@
+
+srecord/output/file/brecord.lo: srecord/output/file/brecord.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/brecord.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/brecord.cc -o \
+		srecord/output/file/brecord.lo 
+
+$(includedir)/srecord/output/file/brecord.h: \
+		srecord/output/file/brecord.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/brecord.h $@
+
+srecord/output/file/c.lo: srecord/output/file/c.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/c.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/c.cc -o srecord/output/file/c.lo 
+
+$(includedir)/srecord/output/file/c.h: srecord/output/file/c.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/c.h $@
+
+srecord/output/file/cosmac.lo: srecord/output/file/cosmac.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/cosmac.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/cosmac.cc -o \
+		srecord/output/file/cosmac.lo 
+
+$(includedir)/srecord/output/file/cosmac.h: \
+		srecord/output/file/cosmac.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/cosmac.h $@
+
+srecord/output/file/dec_binary.lo: srecord/output/file/dec_binary.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/dec_binary.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/dec_binary.cc -o \
+		srecord/output/file/dec_binary.lo 
+
+$(includedir)/srecord/output/file/dec_binary.h: \
+		srecord/output/file/dec_binary.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/dec_binary.h $@
+
+srecord/output/file/emon52.lo: srecord/output/file/emon52.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/emon52.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/emon52.cc -o \
+		srecord/output/file/emon52.lo 
+
+$(includedir)/srecord/output/file/emon52.h: \
+		srecord/output/file/emon52.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/emon52.h $@
+
+srecord/output/file/fairchild.lo: srecord/output/file/fairchild.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/fairchild.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/fairchild.cc -o \
+		srecord/output/file/fairchild.lo 
+
+$(includedir)/srecord/output/file/fairchild.h: \
+		srecord/output/file/fairchild.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/fairchild.h $@
+
+srecord/output/file/fastload.lo: srecord/output/file/fastload.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/fastload.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/fastload.cc -o \
+		srecord/output/file/fastload.lo 
+
+$(includedir)/srecord/output/file/fastload.h: \
+		srecord/output/file/fastload.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/fastload.h $@
+
+srecord/output/file/formatted_binary.lo: \
+		srecord/output/file/formatted_binary.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/formatted_binary.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/formatted_binary.cc -o \
+		srecord/output/file/formatted_binary.lo 
+
+$(includedir)/srecord/output/file/formatted_binary.h: \
+		srecord/output/file/formatted_binary.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/formatted_binary.h $@
+
+srecord/output/file/forth.lo: srecord/output/file/forth.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/forth.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/forth.cc -o \
+		srecord/output/file/forth.lo 
+
+$(includedir)/srecord/output/file/forth.h: srecord/output/file/forth.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/forth.h $@
+
+srecord/output/file/four_packed_code.lo: \
+		srecord/output/file/four_packed_code.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/four_packed_code.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/four_packed_code.cc -o \
+		srecord/output/file/four_packed_code.lo 
+
+$(includedir)/srecord/output/file/four_packed_code.h: \
+		srecord/output/file/four_packed_code.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/four_packed_code.h $@
+
+srecord/output/file/hexdump.lo: srecord/output/file/hexdump.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/hexdump.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/hexdump.cc -o \
+		srecord/output/file/hexdump.lo 
+
+$(includedir)/srecord/output/file/hexdump.h: \
+		srecord/output/file/hexdump.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/hexdump.h $@
+
+srecord/output/file/intel.lo: srecord/output/file/intel.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/intel.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/intel.cc -o \
+		srecord/output/file/intel.lo 
+
+$(includedir)/srecord/output/file/intel.h: srecord/output/file/intel.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/intel.h $@
+
+srecord/output/file/intel16.lo: srecord/output/file/intel16.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/intel16.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/intel16.cc -o \
+		srecord/output/file/intel16.lo 
+
+$(includedir)/srecord/output/file/intel16.h: \
+		srecord/output/file/intel16.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/intel16.h $@
+
+srecord/output/file/line_termination.lo: \
+		srecord/output/file/line_termination.cc \
+		srecord/arglex.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h srecord/sizeof.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/line_termination.cc -o \
+		srecord/output/file/line_termination.lo 
+
+srecord/output/file/mif.lo: srecord/output/file/mif.cc srecord/arglex.h \
+		srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/mif.h srecord/progname.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/mif.cc -o \
+		srecord/output/file/mif.lo 
+
+$(includedir)/srecord/output/file/mif.h: srecord/output/file/mif.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/mif.h $@
+
+srecord/output/file/mos_tech.lo: srecord/output/file/mos_tech.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/mos_tech.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/mos_tech.cc -o \
+		srecord/output/file/mos_tech.lo 
+
+$(includedir)/srecord/output/file/mos_tech.h: \
+		srecord/output/file/mos_tech.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/mos_tech.h $@
+
+srecord/output/file/motorola.lo: srecord/output/file/motorola.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/motorola.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/motorola.cc -o \
+		srecord/output/file/motorola.lo 
+
+srecord/output/file/msbin.lo: srecord/output/file/msbin.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/msbin.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/msbin.cc -o \
+		srecord/output/file/msbin.lo 
+
+$(includedir)/srecord/output/file/msbin.h: srecord/output/file/msbin.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/msbin.h $@
+
+srecord/output/file/needham.lo: srecord/output/file/needham.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/needham.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/needham.cc -o \
+		srecord/output/file/needham.lo 
+
+$(includedir)/srecord/output/file/needham.h: \
+		srecord/output/file/needham.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/needham.h $@
+
+srecord/output/file/os65v.lo: srecord/output/file/os65v.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/os65v.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/os65v.cc -o \
+		srecord/output/file/os65v.lo 
+
+$(includedir)/srecord/output/file/os65v.h: srecord/output/file/os65v.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/os65v.h $@
+
+srecord/output/file/signetics.lo: srecord/output/file/signetics.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/signetics.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/signetics.cc -o \
+		srecord/output/file/signetics.lo 
+
+$(includedir)/srecord/output/file/signetics.h: \
+		srecord/output/file/signetics.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/signetics.h $@
+
+srecord/output/file/spasm.lo: srecord/output/file/spasm.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/spasm.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/spasm.cc -o \
+		srecord/output/file/spasm.lo 
+
+$(includedir)/srecord/output/file/spasm.h: srecord/output/file/spasm.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/spasm.h $@
+
+srecord/output/file/spectrum.lo: srecord/output/file/spectrum.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/spectrum.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/spectrum.cc -o \
+		srecord/output/file/spectrum.lo 
+
+$(includedir)/srecord/output/file/spectrum.h: \
+		srecord/output/file/spectrum.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/spectrum.h $@
+
+srecord/output/file/stewie.lo: srecord/output/file/stewie.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/stewie.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/stewie.cc -o \
+		srecord/output/file/stewie.lo 
+
+$(includedir)/srecord/output/file/stewie.h: \
+		srecord/output/file/stewie.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/stewie.h $@
+
+srecord/output/file/tektronix.lo: srecord/output/file/tektronix.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/tektronix.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/tektronix.cc -o \
+		srecord/output/file/tektronix.lo 
+
+$(includedir)/srecord/output/file/tektronix.h: \
+		srecord/output/file/tektronix.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/tektronix.h $@
+
+srecord/output/file/tektronix_extended.lo: \
+		srecord/output/file/tektronix_extended.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/tektronix_extended.h \
+		srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/tektronix_extended.cc -o \
+		srecord/output/file/tektronix_extended.lo 
+
+$(includedir)/srecord/output/file/tektronix_extended.h: \
+		srecord/output/file/tektronix_extended.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/tektronix_extended.h $@
+
+srecord/output/file/ti_tagged.lo: srecord/output/file/ti_tagged.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/ti_tagged.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/ti_tagged.cc -o \
+		srecord/output/file/ti_tagged.lo 
+
+$(includedir)/srecord/output/file/ti_tagged.h: \
+		srecord/output/file/ti_tagged.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/ti_tagged.h $@
+
+srecord/output/file/ti_tagged_16.lo: \
+		srecord/output/file/ti_tagged_16.cc srecord/endian.h \
+		srecord/format_printf.h srecord/output.h \
+		srecord/output/file.h \
+		srecord/output/file/ti_tagged_16.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/ti_tagged_16.cc -o \
+		srecord/output/file/ti_tagged_16.lo 
+
+$(includedir)/srecord/output/file/ti_tagged_16.h: \
+		srecord/output/file/ti_tagged_16.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/ti_tagged_16.h $@
+
+srecord/output/file/ti_txt.lo: srecord/output/file/ti_txt.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/ti_txt.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/ti_txt.cc -o \
+		srecord/output/file/ti_txt.lo 
+
+$(includedir)/srecord/output/file/ti_txt.h: \
+		srecord/output/file/ti_txt.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/ti_txt.h $@
+
+srecord/output/file/vhdl.lo: srecord/output/file/vhdl.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/vhdl.h \
+		srecord/progname.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/vhdl.cc -o \
+		srecord/output/file/vhdl.lo 
+
+$(includedir)/srecord/output/file/vhdl.h: srecord/output/file/vhdl.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/vhdl.h $@
+
+srecord/output/file/vmem.lo: srecord/output/file/vmem.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/vmem.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/vmem.cc -o \
+		srecord/output/file/vmem.lo 
+
+$(includedir)/srecord/output/file/vmem.h: srecord/output/file/vmem.h \
+		srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/vmem.h $@
+
+srecord/output/file/wilson.lo: srecord/output/file/wilson.cc \
+		srecord/endian.h srecord/format_printf.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/wilson.h srecord/record.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/output/file/wilson.cc -o \
+		srecord/output/file/wilson.lo 
+
+$(includedir)/srecord/output/file/wilson.h: \
+		srecord/output/file/wilson.h srecord/output/file/.incl 
+	$(INSTALL_DATA) srecord/output/file/wilson.h $@
+
+srecord/pretty_size.lo: srecord/pretty_size.cc srecord/pretty_size.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/pretty_size.cc -o srecord/pretty_size.lo 
+
+srecord/progname.lo: srecord/progname.cc srecord/progname.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/progname.cc -o srecord/progname.lo 
+
+srecord/quit.lo: srecord/quit.cc srecord/format_printf.h srecord/quit.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/quit.cc -o srecord/quit.lo 
+
+$(includedir)/srecord/quit.h: srecord/quit.h srecord/.incl
+	$(INSTALL_DATA) srecord/quit.h $@
+
+srecord/quit/exception.lo: srecord/quit/exception.cc \
+		srecord/format_printf.h srecord/quit.h \
+		srecord/quit/exception.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/quit/exception.cc -o srecord/quit/exception.lo 
+
+srecord/quit/.incl: srecord/.incl
+	-$(INSTALL) -m 0755 -d $(includedir)/srecord/quit
+	@-test -d $(includedir)/srecord/quit && touch $@
+	@sleep 1
+
+$(includedir)/srecord/quit/exception.h: srecord/quit/exception.h \
+		srecord/quit/.incl 
+	$(INSTALL_DATA) srecord/quit/exception.h $@
+
+srecord/quit/normal.lo: srecord/quit/normal.cc srecord/format_printf.h \
+		srecord/progname.h srecord/quit.h srecord/quit/normal.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/quit/normal.cc -o srecord/quit/normal.lo 
+
+$(includedir)/srecord/quit/normal.h: srecord/quit/normal.h \
+		srecord/quit/.incl 
+	$(INSTALL_DATA) srecord/quit/normal.h $@
+
+srecord/quit/prefix.lo: srecord/quit/prefix.cc srecord/format_printf.h \
+		srecord/quit.h srecord/quit/prefix.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/quit/prefix.cc -o srecord/quit/prefix.lo 
+
+$(includedir)/srecord/quit/prefix.h: srecord/quit/prefix.h \
+		srecord/quit/.incl 
+	$(INSTALL_DATA) srecord/quit/prefix.h $@
+
+srecord/r250.lo: srecord/r250.cc srecord/r250.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/r250.cc -o srecord/r250.lo 
+
+srecord/record.lo: srecord/record.cc srecord/endian.h srecord/record.h
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/record.cc -o srecord/record.lo 
+
+$(includedir)/srecord/record.h: srecord/record.h srecord/.incl
+	$(INSTALL_DATA) srecord/record.h $@
+
+$(includedir)/srecord/srecord.h: srecord/srecord.h srecord/.incl
+	$(INSTALL_DATA) srecord/srecord.h $@
+
+srecord/versn_stamp.lo: srecord/versn_stamp.cc srecord/patchlevel.h \
+		srecord/progname.h srecord/versn_stamp.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/versn_stamp.cc -o srecord/versn_stamp.lo 
+
+srecord/vsnprintf.lo: srecord/vsnprintf.cc
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		srecord/vsnprintf.cc -o srecord/vsnprintf.lo 
 
 t0001a: test/00/t0001a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/00/t0001a.sh
@@ -2267,172 +3040,181 @@ t0197a: test/01/t0197a.sh all
 t0198a: test/01/t0198a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/01/t0198a.sh
 
-test_crc16/main.o: test_crc16/main.cc lib/bitrev.h lib/crc16.h \
-		lib/format_printf.h lib/progname.h lib/quit.h 
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c test_crc16/main.cc
-	mv main.o test_crc16/main.o
+test_crc16/main.lo: test_crc16/main.cc srecord/bitrev.h srecord/crc16.h \
+		srecord/format_printf.h srecord/progname.h \
+		srecord/quit.h srecord/versn_stamp.h 
+	$(LIBTOOL) --mode=compile $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. -c \
+		test_crc16/main.cc -o test_crc16/main.lo 
 
-lib_obj = lib/adler16.o lib/adler32.o lib/arglex.o lib/bitrev.o \
-		lib/crc16.o lib/crc32.o lib/endian.o lib/fletcher16.o \
-		lib/fletcher32.o lib/interval.o lib/interval/coverage.o \
-		lib/interval/flatten.o lib/pretty_size.o lib/progname.o \
-		lib/quit.o lib/quit/exception.o lib/quit/normal.o \
-		lib/quit/prefix.o lib/r250.o lib/srec/arglex.o \
-		lib/srec/arglex/get_interval.o \
-		lib/srec/arglex/get_interval_small.o \
-		lib/srec/arglex/get_number.o \
-		lib/srec/arglex/get_string.o lib/srec/arglex/input.o \
-		lib/srec/arglex/output.o lib/srec/input.o \
-		lib/srec/input/catenate.o lib/srec/input/file.o \
-		lib/srec/input/file/aomf.o \
-		lib/srec/input/file/ascii_hex.o \
-		lib/srec/input/file/atmel_generic.o \
-		lib/srec/input/file/binary.o \
-		lib/srec/input/file/brecord.o \
-		lib/srec/input/file/cosmac.o \
-		lib/srec/input/file/dec_binary.o \
-		lib/srec/input/file/emon52.o \
-		lib/srec/input/file/fairchild.o \
-		lib/srec/input/file/fastload.o \
-		lib/srec/input/file/formatted_binary.o \
-		lib/srec/input/file/four_packed_code.o \
-		lib/srec/input/file/guess.o lib/srec/input/file/intel.o \
-		lib/srec/input/file/intel16.o lib/srec/input/file/mif.o \
-		lib/srec/input/file/mos_tech.o \
-		lib/srec/input/file/msbin.o \
-		lib/srec/input/file/needham.o \
-		lib/srec/input/file/os65v.o \
-		lib/srec/input/file/signetics.o \
-		lib/srec/input/file/spasm.o \
-		lib/srec/input/file/spectrum.o \
-		lib/srec/input/file/srecord.o \
-		lib/srec/input/file/stewie.o \
-		lib/srec/input/file/tektronix.o \
-		lib/srec/input/file/tektronix_extended.o \
-		lib/srec/input/file/ti_tagged.o \
-		lib/srec/input/file/ti_tagged_16.o \
-		lib/srec/input/file/ti_txt.o lib/srec/input/file/vmem.o \
-		lib/srec/input/file/wilson.o lib/srec/input/filter.o \
-		lib/srec/input/filter/and.o \
-		lib/srec/input/filter/bitrev.o \
-		lib/srec/input/filter/byte_swap.o \
-		lib/srec/input/filter/checksum.o \
-		lib/srec/input/filter/checksum/bitnot.o \
-		lib/srec/input/filter/checksum/negative.o \
-		lib/srec/input/filter/checksum/positive.o \
-		lib/srec/input/filter/crop.o \
-		lib/srec/input/filter/fill.o \
-		lib/srec/input/filter/interval.o \
-		lib/srec/input/filter/interval/length.o \
-		lib/srec/input/filter/interval/maximum.o \
-		lib/srec/input/filter/interval/minimum.o \
-		lib/srec/input/filter/message.o \
-		lib/srec/input/filter/message/adler16.o \
-		lib/srec/input/filter/message/adler32.o \
-		lib/srec/input/filter/message/crc16.o \
-		lib/srec/input/filter/message/crc32.o \
-		lib/srec/input/filter/message/fletcher16.o \
-		lib/srec/input/filter/message/fletcher32.o \
-		lib/srec/input/filter/message/gcrypt.o \
-		lib/srec/input/filter/not.o \
-		lib/srec/input/filter/offset.o \
-		lib/srec/input/filter/or.o \
-		lib/srec/input/filter/random_fill.o \
-		lib/srec/input/filter/sequence.o \
-		lib/srec/input/filter/split.o \
-		lib/srec/input/filter/unfill.o \
-		lib/srec/input/filter/unsplit.o \
-		lib/srec/input/filter/xor.o lib/srec/input/generator.o \
-		lib/srec/input/generator/constant.o \
-		lib/srec/input/generator/random.o \
-		lib/srec/input/generator/repeat.o \
-		lib/srec/input/interval.o lib/srec/memory.o \
-		lib/srec/memory/chunk.o lib/srec/memory/walker.o \
-		lib/srec/memory/walker/adler16.o \
-		lib/srec/memory/walker/adler32.o \
-		lib/srec/memory/walker/compare.o \
-		lib/srec/memory/walker/continuity.o \
-		lib/srec/memory/walker/crc16.o \
-		lib/srec/memory/walker/crc32.o \
-		lib/srec/memory/walker/fletcher16.o \
-		lib/srec/memory/walker/fletcher32.o \
-		lib/srec/memory/walker/gcrypt.o \
-		lib/srec/memory/walker/writer.o lib/srec/output.o \
-		lib/srec/output/file.o lib/srec/output/file/aomf.o \
-		lib/srec/output/file/ascii_hex.o \
-		lib/srec/output/file/asm.o \
-		lib/srec/output/file/atmel_generic.o \
-		lib/srec/output/file/basic.o \
-		lib/srec/output/file/binary.o \
-		lib/srec/output/file/brecord.o lib/srec/output/file/c.o \
-		lib/srec/output/file/cosmac.o \
-		lib/srec/output/file/dec_binary.o \
-		lib/srec/output/file/emon52.o \
-		lib/srec/output/file/fairchild.o \
-		lib/srec/output/file/fastload.o \
-		lib/srec/output/file/formatted_binary.o \
-		lib/srec/output/file/forth.o \
-		lib/srec/output/file/four_packed_code.o \
-		lib/srec/output/file/hexdump.o \
-		lib/srec/output/file/intel.o \
-		lib/srec/output/file/intel16.o \
-		lib/srec/output/file/line_termination.o \
-		lib/srec/output/file/mif.o \
-		lib/srec/output/file/mos_tech.o \
-		lib/srec/output/file/msbin.o \
-		lib/srec/output/file/needham.o \
-		lib/srec/output/file/os65v.o \
-		lib/srec/output/file/signetics.o \
-		lib/srec/output/file/spasm.o \
-		lib/srec/output/file/spectrum.o \
-		lib/srec/output/file/srecord.o \
-		lib/srec/output/file/stewie.o \
-		lib/srec/output/file/tektronix.o \
-		lib/srec/output/file/tektronix_extended.o \
-		lib/srec/output/file/ti_tagged.o \
-		lib/srec/output/file/ti_tagged_16.o \
-		lib/srec/output/file/ti_txt.o \
-		lib/srec/output/file/vhdl.o lib/srec/output/file/vmem.o \
-		lib/srec/output/file/wilson.o lib/srec/record.o \
-		lib/versn_stamp.o lib/vsnprintf.o 
+lib_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
+		srecord/arglex/tool.lo \
+		srecord/arglex/tool/get_interval.lo \
+		srecord/arglex/tool/get_interval_small.lo \
+		srecord/arglex/tool/get_number.lo \
+		srecord/arglex/tool/get_string.lo \
+		srecord/arglex/tool/input.lo \
+		srecord/arglex/tool/output.lo srecord/bitrev.lo \
+		srecord/crc16.lo srecord/crc32.lo srecord/endian.lo \
+		srecord/fletcher16.lo srecord/fletcher32.lo \
+		srecord/input.lo srecord/input/catenate.lo \
+		srecord/input/file.lo srecord/input/file/aomf.lo \
+		srecord/input/file/ascii_hex.lo \
+		srecord/input/file/atmel_generic.lo \
+		srecord/input/file/binary.lo \
+		srecord/input/file/brecord.lo \
+		srecord/input/file/cosmac.lo \
+		srecord/input/file/dec_binary.lo \
+		srecord/input/file/emon52.lo \
+		srecord/input/file/fairchild.lo \
+		srecord/input/file/fastload.lo \
+		srecord/input/file/formatted_binary.lo \
+		srecord/input/file/four_packed_code.lo \
+		srecord/input/file/guess.lo srecord/input/file/intel.lo \
+		srecord/input/file/intel16.lo srecord/input/file/mif.lo \
+		srecord/input/file/mos_tech.lo \
+		srecord/input/file/motorola.lo \
+		srecord/input/file/msbin.lo \
+		srecord/input/file/needham.lo \
+		srecord/input/file/os65v.lo \
+		srecord/input/file/signetics.lo \
+		srecord/input/file/spasm.lo \
+		srecord/input/file/spectrum.lo \
+		srecord/input/file/stewie.lo \
+		srecord/input/file/tektronix.lo \
+		srecord/input/file/tektronix_extended.lo \
+		srecord/input/file/ti_tagged.lo \
+		srecord/input/file/ti_tagged_16.lo \
+		srecord/input/file/ti_txt.lo srecord/input/file/vmem.lo \
+		srecord/input/file/wilson.lo srecord/input/filter.lo \
+		srecord/input/filter/and.lo \
+		srecord/input/filter/bitrev.lo \
+		srecord/input/filter/byte_swap.lo \
+		srecord/input/filter/checksum.lo \
+		srecord/input/filter/checksum/bitnot.lo \
+		srecord/input/filter/checksum/negative.lo \
+		srecord/input/filter/checksum/positive.lo \
+		srecord/input/filter/crop.lo \
+		srecord/input/filter/fill.lo \
+		srecord/input/filter/interval.lo \
+		srecord/input/filter/interval/length.lo \
+		srecord/input/filter/interval/maximum.lo \
+		srecord/input/filter/interval/minimum.lo \
+		srecord/input/filter/message.lo \
+		srecord/input/filter/message/adler16.lo \
+		srecord/input/filter/message/adler32.lo \
+		srecord/input/filter/message/crc16.lo \
+		srecord/input/filter/message/crc32.lo \
+		srecord/input/filter/message/fletcher16.lo \
+		srecord/input/filter/message/fletcher32.lo \
+		srecord/input/filter/message/gcrypt.lo \
+		srecord/input/filter/not.lo \
+		srecord/input/filter/offset.lo \
+		srecord/input/filter/or.lo \
+		srecord/input/filter/random_fill.lo \
+		srecord/input/filter/sequence.lo \
+		srecord/input/filter/split.lo \
+		srecord/input/filter/unfill.lo \
+		srecord/input/filter/unsplit.lo \
+		srecord/input/filter/xor.lo srecord/input/generator.lo \
+		srecord/input/generator/constant.lo \
+		srecord/input/generator/random.lo \
+		srecord/input/generator/repeat.lo \
+		srecord/input/interval.lo srecord/interval.lo \
+		srecord/interval/coverage.lo \
+		srecord/interval/flatten.lo srecord/memory.lo \
+		srecord/memory/chunk.lo srecord/memory/walker.lo \
+		srecord/memory/walker/adler16.lo \
+		srecord/memory/walker/adler32.lo \
+		srecord/memory/walker/compare.lo \
+		srecord/memory/walker/continuity.lo \
+		srecord/memory/walker/crc16.lo \
+		srecord/memory/walker/crc32.lo \
+		srecord/memory/walker/fletcher16.lo \
+		srecord/memory/walker/fletcher32.lo \
+		srecord/memory/walker/gcrypt.lo \
+		srecord/memory/walker/writer.lo srecord/output.lo \
+		srecord/output/file.lo srecord/output/file/aomf.lo \
+		srecord/output/file/ascii_hex.lo \
+		srecord/output/file/asm.lo \
+		srecord/output/file/atmel_generic.lo \
+		srecord/output/file/basic.lo \
+		srecord/output/file/binary.lo \
+		srecord/output/file/brecord.lo srecord/output/file/c.lo \
+		srecord/output/file/cosmac.lo \
+		srecord/output/file/dec_binary.lo \
+		srecord/output/file/emon52.lo \
+		srecord/output/file/fairchild.lo \
+		srecord/output/file/fastload.lo \
+		srecord/output/file/formatted_binary.lo \
+		srecord/output/file/forth.lo \
+		srecord/output/file/four_packed_code.lo \
+		srecord/output/file/hexdump.lo \
+		srecord/output/file/intel.lo \
+		srecord/output/file/intel16.lo \
+		srecord/output/file/line_termination.lo \
+		srecord/output/file/mif.lo \
+		srecord/output/file/mos_tech.lo \
+		srecord/output/file/motorola.lo \
+		srecord/output/file/msbin.lo \
+		srecord/output/file/needham.lo \
+		srecord/output/file/os65v.lo \
+		srecord/output/file/signetics.lo \
+		srecord/output/file/spasm.lo \
+		srecord/output/file/spectrum.lo \
+		srecord/output/file/stewie.lo \
+		srecord/output/file/tektronix.lo \
+		srecord/output/file/tektronix_extended.lo \
+		srecord/output/file/ti_tagged.lo \
+		srecord/output/file/ti_tagged_16.lo \
+		srecord/output/file/ti_txt.lo \
+		srecord/output/file/vhdl.lo srecord/output/file/vmem.lo \
+		srecord/output/file/wilson.lo srecord/pretty_size.lo \
+		srecord/progname.lo srecord/quit.lo \
+		srecord/quit/exception.lo srecord/quit/normal.lo \
+		srecord/quit/prefix.lo srecord/r250.lo \
+		srecord/record.lo srecord/versn_stamp.lo \
+		srecord/vsnprintf.lo 
 
-lib/libsrecord.a: $(lib_obj)
+srecord/libsrecord.la: $(lib_obj)
 	rm -f $@
-	$(AR) qc $@ $(lib_obj)
-	$(RANLIB) $@
+	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(lib_obj) $(LIBS) -rpath $(LIBDIR) -version-info 0:0:0 
 
-srec_cat_obj = srec_cat/arglex3.o srec_cat/main.o
+$(LIBDIR)/libsrecord.la: srecord/libsrecord.la
+	$(LIBTOOL) --mode=install $(INSTALL_DATA) srecord/libsrecord.la $@
 
-bin/srec_cat: $(srec_cat_obj) lib/libsrecord.a .bin
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_cat_obj) \
-		lib/libsrecord.a $(LIBS) 
+srec_cat_obj = srec_cat/arglex3.lo srec_cat/main.lo
+
+bin/srec_cat: $(srec_cat_obj) srecord/libsrecord.la .bin
+	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(srec_cat_obj) srecord/libsrecord.la 
 
 $(bindir)/srec_cat: bin/srec_cat .bindir
-	$(INSTALL_PROGRAM) bin/srec_cat $@
+	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) bin/srec_cat $@
 
-srec_cmp_obj = srec_cmp/main.o
+srec_cmp_obj = srec_cmp/main.lo
 
-bin/srec_cmp: $(srec_cmp_obj) lib/libsrecord.a .bin
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_cmp_obj) \
-		lib/libsrecord.a $(LIBS) 
+bin/srec_cmp: $(srec_cmp_obj) srecord/libsrecord.la .bin
+	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(srec_cmp_obj) srecord/libsrecord.la 
 
 $(bindir)/srec_cmp: bin/srec_cmp .bindir
-	$(INSTALL_PROGRAM) bin/srec_cmp $@
+	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) bin/srec_cmp $@
 
-srec_info_obj = srec_info/main.o
+srec_info_obj = srec_info/main.lo
 
-bin/srec_info: $(srec_info_obj) lib/libsrecord.a .bin
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(srec_info_obj) \
-		lib/libsrecord.a $(LIBS) 
+bin/srec_info: $(srec_info_obj) srecord/libsrecord.la .bin
+	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(srec_info_obj) srecord/libsrecord.la 
 
 $(bindir)/srec_info: bin/srec_info .bindir
-	$(INSTALL_PROGRAM) bin/srec_info $@
+	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) bin/srec_info $@
 
-test_crc16_obj = test_crc16/main.o
+test_crc16_obj = test_crc16/main.lo
 
-bin/test_crc16: $(test_crc16_obj) lib/libsrecord.a .bin
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ $(test_crc16_obj) \
-		lib/libsrecord.a $(LIBS) 
+bin/test_crc16: $(test_crc16_obj) srecord/libsrecord.la .bin
+	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(test_crc16_obj) srecord/libsrecord.la 
 
 all: all-bin all-doc
 all-bin: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_crc16 \
@@ -2625,168 +3407,184 @@ clean-obj:
 	rm -f .bindir
 	rm -f bin/test_prelude
 	rm -f core
-	rm -f lib/adler16.o
-	rm -f lib/adler32.o
-	rm -f lib/arglex.o
-	rm -f lib/bitrev.o
-	rm -f lib/crc16.o
-	rm -f lib/crc32.o
-	rm -f lib/endian.o
-	rm -f lib/fletcher16.o
-	rm -f lib/fletcher32.o
-	rm -f lib/interval.o
-	rm -f lib/interval/coverage.o
-	rm -f lib/interval/flatten.o
-	rm -f lib/libsrecord.a
-	rm -f lib/pretty_size.o
-	rm -f lib/progname.o
-	rm -f lib/quit.o
-	rm -f lib/quit/exception.o
-	rm -f lib/quit/normal.o
-	rm -f lib/quit/prefix.o
-	rm -f lib/r250.o
-	rm -f lib/srec/arglex.o
-	rm -f lib/srec/arglex/get_interval.o
-	rm -f lib/srec/arglex/get_interval_small.o
-	rm -f lib/srec/arglex/get_number.o
-	rm -f lib/srec/arglex/get_string.o
-	rm -f lib/srec/arglex/input.o
-	rm -f lib/srec/arglex/output.o
-	rm -f lib/srec/input.o
-	rm -f lib/srec/input/catenate.o
-	rm -f lib/srec/input/file.o
-	rm -f lib/srec/input/file/aomf.o
-	rm -f lib/srec/input/file/ascii_hex.o
-	rm -f lib/srec/input/file/atmel_generic.o
-	rm -f lib/srec/input/file/binary.o
-	rm -f lib/srec/input/file/brecord.o
-	rm -f lib/srec/input/file/cosmac.o
-	rm -f lib/srec/input/file/dec_binary.o
-	rm -f lib/srec/input/file/emon52.o
-	rm -f lib/srec/input/file/fairchild.o
-	rm -f lib/srec/input/file/fastload.o
-	rm -f lib/srec/input/file/formatted_binary.o
-	rm -f lib/srec/input/file/four_packed_code.o
-	rm -f lib/srec/input/file/guess.o
-	rm -f lib/srec/input/file/intel.o
-	rm -f lib/srec/input/file/intel16.o
-	rm -f lib/srec/input/file/mif.o
-	rm -f lib/srec/input/file/mos_tech.o
-	rm -f lib/srec/input/file/msbin.o
-	rm -f lib/srec/input/file/needham.o
-	rm -f lib/srec/input/file/os65v.o
-	rm -f lib/srec/input/file/signetics.o
-	rm -f lib/srec/input/file/spasm.o
-	rm -f lib/srec/input/file/spectrum.o
-	rm -f lib/srec/input/file/srecord.o
-	rm -f lib/srec/input/file/stewie.o
-	rm -f lib/srec/input/file/tektronix.o
-	rm -f lib/srec/input/file/tektronix_extended.o
-	rm -f lib/srec/input/file/ti_tagged.o
-	rm -f lib/srec/input/file/ti_tagged_16.o
-	rm -f lib/srec/input/file/ti_txt.o
-	rm -f lib/srec/input/file/vmem.o
-	rm -f lib/srec/input/file/wilson.o
-	rm -f lib/srec/input/filter.o
-	rm -f lib/srec/input/filter/and.o
-	rm -f lib/srec/input/filter/bitrev.o
-	rm -f lib/srec/input/filter/byte_swap.o
-	rm -f lib/srec/input/filter/checksum.o
-	rm -f lib/srec/input/filter/checksum/bitnot.o
-	rm -f lib/srec/input/filter/checksum/negative.o
-	rm -f lib/srec/input/filter/checksum/positive.o
-	rm -f lib/srec/input/filter/crop.o
-	rm -f lib/srec/input/filter/fill.o
-	rm -f lib/srec/input/filter/interval.o
-	rm -f lib/srec/input/filter/interval/length.o
-	rm -f lib/srec/input/filter/interval/maximum.o
-	rm -f lib/srec/input/filter/interval/minimum.o
-	rm -f lib/srec/input/filter/message.o
-	rm -f lib/srec/input/filter/message/adler16.o
-	rm -f lib/srec/input/filter/message/adler32.o
-	rm -f lib/srec/input/filter/message/crc16.o
-	rm -f lib/srec/input/filter/message/crc32.o
-	rm -f lib/srec/input/filter/message/fletcher16.o
-	rm -f lib/srec/input/filter/message/fletcher32.o
-	rm -f lib/srec/input/filter/message/gcrypt.o
-	rm -f lib/srec/input/filter/not.o
-	rm -f lib/srec/input/filter/offset.o
-	rm -f lib/srec/input/filter/or.o
-	rm -f lib/srec/input/filter/random_fill.o
-	rm -f lib/srec/input/filter/sequence.o
-	rm -f lib/srec/input/filter/split.o
-	rm -f lib/srec/input/filter/unfill.o
-	rm -f lib/srec/input/filter/unsplit.o
-	rm -f lib/srec/input/filter/xor.o
-	rm -f lib/srec/input/generator.o
-	rm -f lib/srec/input/generator/constant.o
-	rm -f lib/srec/input/generator/random.o
-	rm -f lib/srec/input/generator/repeat.o
-	rm -f lib/srec/input/interval.o
-	rm -f lib/srec/memory.o
-	rm -f lib/srec/memory/chunk.o
-	rm -f lib/srec/memory/walker.o
-	rm -f lib/srec/memory/walker/adler16.o
-	rm -f lib/srec/memory/walker/adler32.o
-	rm -f lib/srec/memory/walker/compare.o
-	rm -f lib/srec/memory/walker/continuity.o
-	rm -f lib/srec/memory/walker/crc16.o
-	rm -f lib/srec/memory/walker/crc32.o
-	rm -f lib/srec/memory/walker/fletcher16.o
-	rm -f lib/srec/memory/walker/fletcher32.o
-	rm -f lib/srec/memory/walker/gcrypt.o
-	rm -f lib/srec/memory/walker/writer.o
-	rm -f lib/srec/output.o
-	rm -f lib/srec/output/file.o
-	rm -f lib/srec/output/file/aomf.o
-	rm -f lib/srec/output/file/ascii_hex.o
-	rm -f lib/srec/output/file/asm.o
-	rm -f lib/srec/output/file/atmel_generic.o
-	rm -f lib/srec/output/file/basic.o
-	rm -f lib/srec/output/file/binary.o
-	rm -f lib/srec/output/file/brecord.o
-	rm -f lib/srec/output/file/c.o
-	rm -f lib/srec/output/file/cosmac.o
-	rm -f lib/srec/output/file/dec_binary.o
-	rm -f lib/srec/output/file/emon52.o
-	rm -f lib/srec/output/file/fairchild.o
-	rm -f lib/srec/output/file/fastload.o
-	rm -f lib/srec/output/file/formatted_binary.o
-	rm -f lib/srec/output/file/forth.o
-	rm -f lib/srec/output/file/four_packed_code.o
-	rm -f lib/srec/output/file/hexdump.o
-	rm -f lib/srec/output/file/intel.o
-	rm -f lib/srec/output/file/intel16.o
-	rm -f lib/srec/output/file/line_termination.o
-	rm -f lib/srec/output/file/mif.o
-	rm -f lib/srec/output/file/mos_tech.o
-	rm -f lib/srec/output/file/msbin.o
-	rm -f lib/srec/output/file/needham.o
-	rm -f lib/srec/output/file/os65v.o
-	rm -f lib/srec/output/file/signetics.o
-	rm -f lib/srec/output/file/spasm.o
-	rm -f lib/srec/output/file/spectrum.o
-	rm -f lib/srec/output/file/srecord.o
-	rm -f lib/srec/output/file/stewie.o
-	rm -f lib/srec/output/file/tektronix.o
-	rm -f lib/srec/output/file/tektronix_extended.o
-	rm -f lib/srec/output/file/ti_tagged.o
-	rm -f lib/srec/output/file/ti_tagged_16.o
-	rm -f lib/srec/output/file/ti_txt.o
-	rm -f lib/srec/output/file/vhdl.o
-	rm -f lib/srec/output/file/vmem.o
-	rm -f lib/srec/output/file/wilson.o
-	rm -f lib/srec/record.o
-	rm -f lib/versn_stamp.o
-	rm -f lib/vsnprintf.o
+	rm -f libdir/.libdir
+	rm -f libdir/pkgconfig/.libdir
 	rm -f man/.mandir
 	rm -f man/man1/.mandir
+	rm -f man/man3/.mandir
 	rm -f man/man5/.mandir
-	rm -f srec_cat/arglex3.o
-	rm -f srec_cat/main.o
-	rm -f srec_cmp/main.o
-	rm -f srec_info/main.o
-	rm -f test_crc16/main.o
+	rm -f srec_cat/arglex3.lo
+	rm -f srec_cat/main.lo
+	rm -f srec_cmp/main.lo
+	rm -f srec_info/main.lo
+	rm -f srecord/.incl
+	rm -f srecord/adler16.lo
+	rm -f srecord/adler32.lo
+	rm -f srecord/arglex.lo
+	rm -f srecord/arglex/tool.lo
+	rm -f srecord/arglex/tool/get_interval.lo
+	rm -f srecord/arglex/tool/get_interval_small.lo
+	rm -f srecord/arglex/tool/get_number.lo
+	rm -f srecord/arglex/tool/get_string.lo
+	rm -f srecord/arglex/tool/input.lo
+	rm -f srecord/arglex/tool/output.lo
+	rm -f srecord/bitrev.lo
+	rm -f srecord/crc16.lo
+	rm -f srecord/crc32.lo
+	rm -f srecord/endian.lo
+	rm -f srecord/fletcher16.lo
+	rm -f srecord/fletcher32.lo
+	rm -f srecord/input.lo
+	rm -f srecord/input/.incl
+	rm -f srecord/input/catenate.lo
+	rm -f srecord/input/file.lo
+	rm -f srecord/input/file/.incl
+	rm -f srecord/input/file/aomf.lo
+	rm -f srecord/input/file/ascii_hex.lo
+	rm -f srecord/input/file/atmel_generic.lo
+	rm -f srecord/input/file/binary.lo
+	rm -f srecord/input/file/brecord.lo
+	rm -f srecord/input/file/cosmac.lo
+	rm -f srecord/input/file/dec_binary.lo
+	rm -f srecord/input/file/emon52.lo
+	rm -f srecord/input/file/fairchild.lo
+	rm -f srecord/input/file/fastload.lo
+	rm -f srecord/input/file/formatted_binary.lo
+	rm -f srecord/input/file/four_packed_code.lo
+	rm -f srecord/input/file/guess.lo
+	rm -f srecord/input/file/intel.lo
+	rm -f srecord/input/file/intel16.lo
+	rm -f srecord/input/file/mif.lo
+	rm -f srecord/input/file/mos_tech.lo
+	rm -f srecord/input/file/motorola.lo
+	rm -f srecord/input/file/msbin.lo
+	rm -f srecord/input/file/needham.lo
+	rm -f srecord/input/file/os65v.lo
+	rm -f srecord/input/file/signetics.lo
+	rm -f srecord/input/file/spasm.lo
+	rm -f srecord/input/file/spectrum.lo
+	rm -f srecord/input/file/stewie.lo
+	rm -f srecord/input/file/tektronix.lo
+	rm -f srecord/input/file/tektronix_extended.lo
+	rm -f srecord/input/file/ti_tagged.lo
+	rm -f srecord/input/file/ti_tagged_16.lo
+	rm -f srecord/input/file/ti_txt.lo
+	rm -f srecord/input/file/vmem.lo
+	rm -f srecord/input/file/wilson.lo
+	rm -f srecord/input/filter.lo
+	rm -f srecord/input/filter/.incl
+	rm -f srecord/input/filter/and.lo
+	rm -f srecord/input/filter/bitrev.lo
+	rm -f srecord/input/filter/byte_swap.lo
+	rm -f srecord/input/filter/checksum.lo
+	rm -f srecord/input/filter/checksum/.incl
+	rm -f srecord/input/filter/checksum/bitnot.lo
+	rm -f srecord/input/filter/checksum/negative.lo
+	rm -f srecord/input/filter/checksum/positive.lo
+	rm -f srecord/input/filter/crop.lo
+	rm -f srecord/input/filter/fill.lo
+	rm -f srecord/input/filter/interval.lo
+	rm -f srecord/input/filter/interval/.incl
+	rm -f srecord/input/filter/interval/length.lo
+	rm -f srecord/input/filter/interval/maximum.lo
+	rm -f srecord/input/filter/interval/minimum.lo
+	rm -f srecord/input/filter/message.lo
+	rm -f srecord/input/filter/message/.incl
+	rm -f srecord/input/filter/message/adler16.lo
+	rm -f srecord/input/filter/message/adler32.lo
+	rm -f srecord/input/filter/message/crc16.lo
+	rm -f srecord/input/filter/message/crc32.lo
+	rm -f srecord/input/filter/message/fletcher16.lo
+	rm -f srecord/input/filter/message/fletcher32.lo
+	rm -f srecord/input/filter/message/gcrypt.lo
+	rm -f srecord/input/filter/not.lo
+	rm -f srecord/input/filter/offset.lo
+	rm -f srecord/input/filter/or.lo
+	rm -f srecord/input/filter/random_fill.lo
+	rm -f srecord/input/filter/sequence.lo
+	rm -f srecord/input/filter/split.lo
+	rm -f srecord/input/filter/unfill.lo
+	rm -f srecord/input/filter/unsplit.lo
+	rm -f srecord/input/filter/xor.lo
+	rm -f srecord/input/generator.lo
+	rm -f srecord/input/generator/.incl
+	rm -f srecord/input/generator/constant.lo
+	rm -f srecord/input/generator/random.lo
+	rm -f srecord/input/generator/repeat.lo
+	rm -f srecord/input/interval.lo
+	rm -f srecord/interval.lo
+	rm -f srecord/interval/coverage.lo
+	rm -f srecord/interval/flatten.lo
+	rm -f srecord/libsrecord.la
+	rm -f srecord/memory.lo
+	rm -f srecord/memory/.incl
+	rm -f srecord/memory/chunk.lo
+	rm -f srecord/memory/walker.lo
+	rm -f srecord/memory/walker/.incl
+	rm -f srecord/memory/walker/adler16.lo
+	rm -f srecord/memory/walker/adler32.lo
+	rm -f srecord/memory/walker/compare.lo
+	rm -f srecord/memory/walker/continuity.lo
+	rm -f srecord/memory/walker/crc16.lo
+	rm -f srecord/memory/walker/crc32.lo
+	rm -f srecord/memory/walker/fletcher16.lo
+	rm -f srecord/memory/walker/fletcher32.lo
+	rm -f srecord/memory/walker/gcrypt.lo
+	rm -f srecord/memory/walker/writer.lo
+	rm -f srecord/output.lo
+	rm -f srecord/output/.incl
+	rm -f srecord/output/file.lo
+	rm -f srecord/output/file/.incl
+	rm -f srecord/output/file/aomf.lo
+	rm -f srecord/output/file/ascii_hex.lo
+	rm -f srecord/output/file/asm.lo
+	rm -f srecord/output/file/atmel_generic.lo
+	rm -f srecord/output/file/basic.lo
+	rm -f srecord/output/file/binary.lo
+	rm -f srecord/output/file/brecord.lo
+	rm -f srecord/output/file/c.lo
+	rm -f srecord/output/file/cosmac.lo
+	rm -f srecord/output/file/dec_binary.lo
+	rm -f srecord/output/file/emon52.lo
+	rm -f srecord/output/file/fairchild.lo
+	rm -f srecord/output/file/fastload.lo
+	rm -f srecord/output/file/formatted_binary.lo
+	rm -f srecord/output/file/forth.lo
+	rm -f srecord/output/file/four_packed_code.lo
+	rm -f srecord/output/file/hexdump.lo
+	rm -f srecord/output/file/intel.lo
+	rm -f srecord/output/file/intel16.lo
+	rm -f srecord/output/file/line_termination.lo
+	rm -f srecord/output/file/mif.lo
+	rm -f srecord/output/file/mos_tech.lo
+	rm -f srecord/output/file/motorola.lo
+	rm -f srecord/output/file/msbin.lo
+	rm -f srecord/output/file/needham.lo
+	rm -f srecord/output/file/os65v.lo
+	rm -f srecord/output/file/signetics.lo
+	rm -f srecord/output/file/spasm.lo
+	rm -f srecord/output/file/spectrum.lo
+	rm -f srecord/output/file/stewie.lo
+	rm -f srecord/output/file/tektronix.lo
+	rm -f srecord/output/file/tektronix_extended.lo
+	rm -f srecord/output/file/ti_tagged.lo
+	rm -f srecord/output/file/ti_tagged_16.lo
+	rm -f srecord/output/file/ti_txt.lo
+	rm -f srecord/output/file/vhdl.lo
+	rm -f srecord/output/file/vmem.lo
+	rm -f srecord/output/file/wilson.lo
+	rm -f srecord/pretty_size.lo
+	rm -f srecord/progname.lo
+	rm -f srecord/quit.lo
+	rm -f srecord/quit/.incl
+	rm -f srecord/quit/exception.lo
+	rm -f srecord/quit/normal.lo
+	rm -f srecord/quit/prefix.lo
+	rm -f srecord/r250.lo
+	rm -f srecord/record.lo
+	rm -f srecord/versn_stamp.lo
+	rm -f srecord/vsnprintf.lo
+	rm -f test_crc16/main.lo
 	rm -f y.output
 	rm -f y.tab.c
 	rm -f y.tab.h
@@ -2808,15 +3606,17 @@ distclean: clean
 	rm -f config.log
 	rm -f config.status
 	rm -f etc/Howto.conf
-	rm -f lib/config.h
+	rm -f libdir/pkgconfig/srecord.pc
 	rm -f script/test_prelude
+	rm -f srecord/config.h
 
 install-bin: $(bindir)/srec_cat $(bindir)/srec_cmp $(bindir)/srec_info
 
 install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man1/srec_examples.1 \
 		$(mandir)/man1/srec_info.1 $(mandir)/man1/srec_input.1 \
-		$(mandir)/man1/srec_license.1 \
+		$(mandir)/man1/srec_license.1 $(mandir)/man3/srecord.3 \
+		$(mandir)/man3/srecord_license.3 \
 		$(mandir)/man5/srec_aomf.5 \
 		$(mandir)/man5/srec_ascii_hex.5 \
 		$(mandir)/man5/srec_atmel_generic.5 \
@@ -2847,4 +3647,136 @@ install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man5/srec_ti_txt.5 $(mandir)/man5/srec_vmem.5 \
 		$(mandir)/man5/srec_wilson.5 
 
-install: install-bin install-man
+install-libdir: $(LIBDIR)/libsrecord.la $(LIBDIR)/pkgconfig/srecord.pc
+
+install-include: \
+$(includedir)/srecord/adler16.h \
+$(includedir)/srecord/adler32.h \
+$(includedir)/srecord/crc16.h \
+$(includedir)/srecord/crc32.h \
+$(includedir)/srecord/endian.h \
+$(includedir)/srecord/fletcher16.h \
+$(includedir)/srecord/fletcher32.h \
+$(includedir)/srecord/format_printf.h \
+$(includedir)/srecord/input.h \
+$(includedir)/srecord/input/catenate.h \
+$(includedir)/srecord/input/file.h \
+$(includedir)/srecord/input/file/aomf.h \
+$(includedir)/srecord/input/file/ascii_hex.h \
+$(includedir)/srecord/input/file/atmel_generic.h \
+$(includedir)/srecord/input/file/binary.h \
+$(includedir)/srecord/input/file/brecord.h \
+$(includedir)/srecord/input/file/cosmac.h \
+$(includedir)/srecord/input/file/dec_binary.h \
+$(includedir)/srecord/input/file/emon52.h \
+$(includedir)/srecord/input/file/fairchild.h \
+$(includedir)/srecord/input/file/fastload.h \
+$(includedir)/srecord/input/file/formatted_binary.h \
+$(includedir)/srecord/input/file/four_packed_code.h \
+$(includedir)/srecord/input/file/intel.h \
+$(includedir)/srecord/input/file/intel16.h \
+$(includedir)/srecord/input/file/mif.h \
+$(includedir)/srecord/input/file/mos_tech.h \
+$(includedir)/srecord/input/file/msbin.h \
+$(includedir)/srecord/input/file/needham.h \
+$(includedir)/srecord/input/file/os65v.h \
+$(includedir)/srecord/input/file/signetics.h \
+$(includedir)/srecord/input/file/spasm.h \
+$(includedir)/srecord/input/file/spectrum.h \
+$(includedir)/srecord/input/file/stewie.h \
+$(includedir)/srecord/input/file/tektronix.h \
+$(includedir)/srecord/input/file/tektronix_extended.h \
+$(includedir)/srecord/input/file/ti_tagged.h \
+$(includedir)/srecord/input/file/ti_tagged_16.h \
+$(includedir)/srecord/input/file/ti_txt.h \
+$(includedir)/srecord/input/file/vmem.h \
+$(includedir)/srecord/input/file/wilson.h \
+$(includedir)/srecord/input/filter.h \
+$(includedir)/srecord/input/filter/and.h \
+$(includedir)/srecord/input/filter/bitrev.h \
+$(includedir)/srecord/input/filter/byte_swap.h \
+$(includedir)/srecord/input/filter/checksum.h \
+$(includedir)/srecord/input/filter/checksum/bitnot.h \
+$(includedir)/srecord/input/filter/checksum/negative.h \
+$(includedir)/srecord/input/filter/checksum/positive.h \
+$(includedir)/srecord/input/filter/crop.h \
+$(includedir)/srecord/input/filter/fill.h \
+$(includedir)/srecord/input/filter/interval.h \
+$(includedir)/srecord/input/filter/interval/length.h \
+$(includedir)/srecord/input/filter/interval/maximum.h \
+$(includedir)/srecord/input/filter/interval/minimum.h \
+$(includedir)/srecord/input/filter/message.h \
+$(includedir)/srecord/input/filter/message/adler16.h \
+$(includedir)/srecord/input/filter/message/adler32.h \
+$(includedir)/srecord/input/filter/message/crc16.h \
+$(includedir)/srecord/input/filter/message/crc32.h \
+$(includedir)/srecord/input/filter/message/fletcher16.h \
+$(includedir)/srecord/input/filter/message/fletcher32.h \
+$(includedir)/srecord/input/filter/message/gcrypt.h \
+$(includedir)/srecord/input/filter/not.h \
+$(includedir)/srecord/input/filter/offset.h \
+$(includedir)/srecord/input/filter/or.h \
+$(includedir)/srecord/input/filter/random_fill.h \
+$(includedir)/srecord/input/filter/sequence.h \
+$(includedir)/srecord/input/filter/split.h \
+$(includedir)/srecord/input/filter/unfill.h \
+$(includedir)/srecord/input/filter/unsplit.h \
+$(includedir)/srecord/input/filter/xor.h \
+$(includedir)/srecord/input/generator.h \
+$(includedir)/srecord/input/generator/constant.h \
+$(includedir)/srecord/input/generator/random.h \
+$(includedir)/srecord/input/generator/repeat.h \
+$(includedir)/srecord/interval.h \
+$(includedir)/srecord/memory.h \
+$(includedir)/srecord/memory/chunk.h \
+$(includedir)/srecord/memory/walker.h \
+$(includedir)/srecord/memory/walker/compare.h \
+$(includedir)/srecord/memory/walker/continuity.h \
+$(includedir)/srecord/memory/walker/gcrypt.h \
+$(includedir)/srecord/memory/walker/writer.h \
+$(includedir)/srecord/output.h \
+$(includedir)/srecord/output/file.h \
+$(includedir)/srecord/output/file/aomf.h \
+$(includedir)/srecord/output/file/ascii_hex.h \
+$(includedir)/srecord/output/file/asm.h \
+$(includedir)/srecord/output/file/atmel_generic.h \
+$(includedir)/srecord/output/file/basic.h \
+$(includedir)/srecord/output/file/binary.h \
+$(includedir)/srecord/output/file/brecord.h \
+$(includedir)/srecord/output/file/c.h \
+$(includedir)/srecord/output/file/cosmac.h \
+$(includedir)/srecord/output/file/dec_binary.h \
+$(includedir)/srecord/output/file/emon52.h \
+$(includedir)/srecord/output/file/fairchild.h \
+$(includedir)/srecord/output/file/fastload.h \
+$(includedir)/srecord/output/file/formatted_binary.h \
+$(includedir)/srecord/output/file/forth.h \
+$(includedir)/srecord/output/file/four_packed_code.h \
+$(includedir)/srecord/output/file/hexdump.h \
+$(includedir)/srecord/output/file/intel.h \
+$(includedir)/srecord/output/file/intel16.h \
+$(includedir)/srecord/output/file/mif.h \
+$(includedir)/srecord/output/file/mos_tech.h \
+$(includedir)/srecord/output/file/msbin.h \
+$(includedir)/srecord/output/file/needham.h \
+$(includedir)/srecord/output/file/os65v.h \
+$(includedir)/srecord/output/file/signetics.h \
+$(includedir)/srecord/output/file/spasm.h \
+$(includedir)/srecord/output/file/spectrum.h \
+$(includedir)/srecord/output/file/stewie.h \
+$(includedir)/srecord/output/file/tektronix.h \
+$(includedir)/srecord/output/file/tektronix_extended.h \
+$(includedir)/srecord/output/file/ti_tagged.h \
+$(includedir)/srecord/output/file/ti_tagged_16.h \
+$(includedir)/srecord/output/file/ti_txt.h \
+$(includedir)/srecord/output/file/vhdl.h \
+$(includedir)/srecord/output/file/vmem.h \
+$(includedir)/srecord/output/file/wilson.h \
+$(includedir)/srecord/quit.h \
+$(includedir)/srecord/quit/exception.h \
+$(includedir)/srecord/quit/normal.h \
+$(includedir)/srecord/quit/prefix.h \
+$(includedir)/srecord/record.h \
+$(includedir)/srecord/srecord.h
+
+install: install-bin install-man install-libdir install-include

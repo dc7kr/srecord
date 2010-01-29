@@ -1,6 +1,6 @@
 dnl
 dnl  srecord - manipulate eprom load files
-dnl  Copyright (C) 1998, 1999, 2002, 2006-2009 Peter Miller
+dnl  Copyright (C) 1998, 1999, 2002, 2006-2010 Peter Miller
 dnl
 dnl  This program is free software; you can redistribute it and/or modify
 dnl  it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@ dnl  You should have received a copy of the GNU General Public License
 dnl  along with this program. If not, see <http://www.gnu.org/licenses/>.
 dnl
 AC_INIT(install-sh)
-AC_CONFIG_HEADER(lib/config.h)
+AC_CONFIG_HEADER(srecord/config.h)
 AC_PROG_CXX
 AC_PROG_CPP
 AC_LANG(C++)
@@ -89,6 +89,76 @@ AC_DEFINE(HAVE_SPARSE_LSEEK, 1, [Define this symbol if your
 operating system has support for sparse file seeking.])
 AC_MSG_RESULT(yes),AC_MSG_RESULT(no))dnl
 
+dnl!
+dnl! Test to see if libgcrypt is sufficiently modern.
+dnl!
+AC_MSG_CHECKING([for gcrypt SHA224 support])
+AC_TRY_COMPILE([#include <gcrypt.h>],
+[gcry_md_hd_t handle; return 0;],
+AC_DEFINE(HAVE_GCRY_MD_HD_T, 1, [Define this symbol if your
+operating system has a libgcrypt that defines the gcry_md_hd_t symbol.])
+AC_MSG_RESULT(yes),AC_MSG_RESULT(no))dnl
+
+dnl!
+dnl! Test to see if libgcrypt is sufficiently modern.
+dnl!
+AC_MSG_CHECKING([for gcrypt SHA224 support])
+AC_TRY_COMPILE([#include <gcrypt.h>],
+[return GCRY_MD_SHA224;],
+AC_DEFINE(HAVE_LIBGCRYPT_SHA224, 1, [Define this symbol if your
+operating system has a libgcrypt that supports SHA224.])
+AC_MSG_RESULT(yes),AC_MSG_RESULT(no))dnl
+
+dnl!
+dnl! Test to see if libgcrypt is sufficiently modern.
+dnl!
+AC_MSG_CHECKING([for gcrypt WHIRLPOOL support])
+AC_TRY_COMPILE([#include <gcrypt.h>],
+[return GCRY_MD_WHIRLPOOL;],
+AC_DEFINE(HAVE_LIBGCRYPT_WHIRLPOOL, 1, [Define this symbol if your
+operating system has a libgcrypt that supports WHIRLPOOL.])
+AC_MSG_RESULT(yes),AC_MSG_RESULT(no))dnl
+
+dnl!
+dnl!  Now look for libtool.
+dnl!
+AC_CHECK_PROGS(LIBTOOL, libtool)
+if test -z "$LIBTOOL"
+then
+  AC_MSG_RESULT([
+        You must have GNU Libtool installed to build srecord.
+        Homepage: http://www.gnu.org/software/libtool/])
+  OK=no
+  if apt-get --version > /dev/null 2> /dev/null; then
+    AC_MSG_RESULT([
+        The following command may be used to install it:
+        sudo apt-get install libtool
+    ])
+    OK=yes
+  fi
+  if yum --version > /dev/null 2> /dev/null; then
+    AC_MSG_RESULT([
+        The following command may be used to install it:
+        sudo yum install libtool
+    ])
+    OK=yes
+  fi
+  if pkg_info -a > /dev/null 2> /dev/null; then
+    AC_MSG_RESULT([
+        The following command may be used to install it:
+        sudo pkg_add -r libtool
+    ])
+    OK=yes
+  fi
+  if test "$OK" != "yes"; then
+    AC_MSG_RESULT([
+        If you are using a package based install, you will need the
+        libtool package.
+    ])
+  fi
+  exit 1
+fi
+
 dnl
 dnl     If the soelim program exists, and understands the -I option,
 dnl     arrange for the Makefile to install the .ps files from the
@@ -125,7 +195,7 @@ AC_SUBST(HAVE_GROFF)
 #
 # Evaluate some of the variables, to remove ${prefix} references.
 # This way, they can be used in C programs and Roff input.
-# Make sure that srecord is mentioned in the libdir and datadir paths;
+# Make sure that srecord is mentioned in the datadir path;
 # add it if it is not already there.
 #
 test "x$prefix" = xNONE && prefix="${ac_default_prefix-/usr/local}"
@@ -136,14 +206,6 @@ eval "datarootdir=$datarootdir"
 eval "mandir=$mandir"
 eval "libdir=$libdir"
 eval "datadir=$datadir"
-case "$libdir" in
-*/srecord/* | */srecord )
-    ;;
-*)
-    libdir="${libdir}/srecord"
-    AC_MSG_RESULT([Rewriting --libdir=$libdir])
-    ;;
-esac
 case "$datadir" in
     */srecord/* | */srecord )
     ;;
@@ -154,10 +216,9 @@ case "$datadir" in
 esac
 
 
-
 AH_TOP([/*
  * srecord - manipulate eprom load files
- * Copyright (C) 1998-2002, 2006-2009 Peter Miller
+ * Copyright (C) 1998-2002, 2006-2010 Peter Miller
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -184,7 +245,7 @@ AH_BOTTOM([
  * the above information, so there is no need for you to edit the file,
  * if you are configuring Aegis manually.
  */
-#include <lib/config.messy.h>
+#include <srecord/config.messy.h>
 
 #endif /* LIB_CONFIG_H */])
 

@@ -1,6 +1,6 @@
 '\" t
 .\"     srecord - The "srecord" program.
-.\"     Copyright (C) 2007-2009 Peter Miller
+.\"     Copyright (C) 2007-2010 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -42,9 +42,10 @@ file for the rest of its command line, like this
 srec_cat @fred.txt
 .ft R
 .RE
-This also has the advantage of allowing comments, several lines and even
-indenting to make it more clear.  Comments start at a \[lq]\fB#\fP\[rq]
-and extend to the end of the line.  Blank lines are ignored.
+This also has the advantage of allowing comments, allowing you to write
+your command line options over several lines, and even indenting to
+make the command more clear.  Comments start at a \[lq]\fB#\fP\[rq] and
+extend to the end of the line.  Blank lines are ignored.
 .PP
 .nr y4 \n[yr]+1900
 .nr yd \n[y4]-1992
@@ -391,7 +392,7 @@ the command line:
 .RS
 .ft CW
 .nf
-srec_cat \f[I]infile\fP \-offset \[mi] \-minimum \f[I]infile\fP \e
+srec_cat \f[I]infile\fP \-offset \[mi] \-minimum\[hy]addr \f[I]infile\fP \e
     \-o \f[I]outfile\fP
 .fi
 .ft R
@@ -502,9 +503,9 @@ otherwise be a much longer script.
 .SS Striping
 A second use for the \-SPlit filter is memory striping.
 .PP
-You don't have to split into byte-wide parts, you can choose other
-sizes.  It is common to want to convert 32-bit wide data into two set of
-16-bit wide data.
+You don't have to split into byte\[hy]wide parts, you can choose other
+sizes.  It is common to want to convert 32\[hy]bit wide data into two set of
+16\[hy]bit wide data.
 .RS
 .nf
 .ft CW
@@ -532,7 +533,7 @@ A more peculiar example of striping is the
 Microchip dsPIC33F microcontroller, that
 has a weird memory storage pattern and they are able to store 3 bytes
 in an address that should only contain 2 bytes.
-The result is a hex file that has zero-filled the top byte (little endian),
+The result is a hex file that has zero\[hy]filled the top byte (little endian),
 and all addresses are doubled from what they are in the chip.
 Here is an example:
 .RS
@@ -551,7 +552,7 @@ like this:
 .RS
 .nf
 .ft CW
-srec_cat example.srec -split 4 0 3 -o no_dross.srec
+srec_cat example.srec \-split 4 0 3 \-o no_dross.srec
 .ft R
 .fi
 .RE
@@ -1008,57 +1009,67 @@ hexadecimal dump format.
 .\" as used by the linux kernel in the \f[CW]lib/crc16.c\fP file, use
 .\" the \f[B]0x8005 \-least\[hy]to\[hy]most\fP modifiers.  For both of
 .\" these, augment or not, as required.
-.SS Where Am I?
+.SS Where Is My Data?
 There are several properties of you EPROM image that you may wish to
 insert into the data.
 .RS
 .ft CW
 .nf
-srec_cat \f[I]infile\fP \-b\[hy]e\[hy]minimum 0xFFFFFE 2 \-o \f[I]outfile\fP
+srec_cat \f[I]infile\fP \-b\[hy]e\[hy]minimum 0xFFFE 2 \-o \f[I]outfile\fP
 .fi
 .ft R
 .RE
-The above example inserts the minimum address of the data
-(\f[I]low water\fP)
-into the data.  This includes the minimum itself.
-If the data already contains bytes at the given address,
-you need to use an exclude filter.
-The value will be written with the most significant byte first.
+The above example inserts the minimum address of the data (\f[I]low
+water\fP) into the data, as two bytes in big\[hy]endian order at address
+0xFFFE.  This includes the minimum itself.  If the data already
+contains bytes at the given address, you need to use an exclude
+filter.
 The number of bytes defaults to 4.
-There is also a little\[hy]endian variant, and two variants called
-\[lq]exclusive\[rq] that do not include the minimum itself.
+.PP
+There is also a
+\-l\[hy]e\[hy]minimum filter for inserting little\[hy]endian values,
+and two more filters called \-b\[hy]e\[hy]exclusive\[hy]minimum and
+\-l\[hy]e\[hy]exclusive\[hy]minimum that do not include the minimum
+itself in the calculation of the minimum data address.
 .RS
 .ft CW
 .nf
-srec_cat \f[I]infile\fP \-b\[hy]e\[hy]maximum 0xFFFFFE 2 \-o \f[I]outfile\fP
+srec_cat \f[I]infile\fP \-b\[hy]e\[hy]maximum 0xFFFFFC 4 \-o \f[I]outfile\fP
 .fi
 .ft R
 .RE
 The above example inserts the maximum address of the data
 (\f[I]high water + 1\fP, just like address ranges)
-into the data.  This includes the maximum itself.
+into the data, as four bytes in big\[hy]endian order at address 0xFFFFFC.
+This includes the maximum itself.
 If the data already contains bytes at the given address,
 you need to use an exclude filter.
-The value will be written with the most significant byte first.
 The number of bytes defaults to 4.
-There is also a little\[hy]endian variant, and two variants called
-\[lq]exclusive\[rq] that do not include the maximum itself.
+.PP
+There is also a \-l\[hy]e\[hy]maximum filter for
+inserting little\[hy]endian values, and two more
+filters called \-b\[hy]e\[hy]exclusive\[hy]maximum and
+\-l\[hy]e\[hy]exclusive\[hy]maximum that do not include the maximum
+itself in the calculation of the maximum data address.
 .RS
 .ft CW
 .nf
-srec_cat \f[I]infile\fP \-b\[hy]e\[hy]length 0xFFFFFE 2 \-o \f[I]outfile\fP
+srec_cat \f[I]infile\fP \-b\[hy]e\[hy]length 0xFFFFFC 4 \-o \f[I]outfile\fP
 .fi
 .ft R
 .RE
 The above example inserts the length of the data
-(\f[I]high water\fP + 1 \[mi] \f[I]low water\fP) into the data.
+(\f[I]high water\fP + 1 \[mi] \f[I]low water\fP) into the data,
+as four bytes in big\[hy]endian order at address 0xFFFFFC.
 This includes the length itself.
 If the data already contains bytes at the length location,
 you need to use an exclude filter.
-The value will be written with the most significant byte first.
 The number of bytes defaults to 4.
-There is also a little\[hy]endian variant, and two variants called
-\[lq]exclusive\[rq] that do not include the length itself.
+.PP
+There is also a \-l\[hy]e\[hy]length filter for inserting a
+little\[hy]endian length, and the \-b\[hy]e\[hy]exclusive\[hy]length
+and \-l\[hy]e\[hy]exclusive\[hy]length filters that do not include the
+length itself in the calaculation.
 .SS What Format Is This?
 You can obtain a variety of information about an EPROM load file
 by using the \f[I]srec_info\fP(1) command.

@@ -591,6 +591,7 @@ ac_includes_default="\
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
 HAVE_GROFF
+LIBTOOL
 SH
 SOELIM
 GROFF
@@ -2146,7 +2147,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
-ac_config_headers="$ac_config_headers lib/config.h"
+ac_config_headers="$ac_config_headers srecord/config.h"
 
 ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
@@ -4265,6 +4266,175 @@ else
 $as_echo "no" >&6; }
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt SHA224 support" >&5
+$as_echo_n "checking for gcrypt SHA224 support... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <gcrypt.h>
+int
+main ()
+{
+gcry_md_hd_t handle; return 0;
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+
+$as_echo "#define HAVE_GCRY_MD_HD_T 1" >>confdefs.h
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt SHA224 support" >&5
+$as_echo_n "checking for gcrypt SHA224 support... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <gcrypt.h>
+int
+main ()
+{
+return GCRY_MD_SHA224;
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+
+$as_echo "#define HAVE_LIBGCRYPT_SHA224 1" >>confdefs.h
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt WHIRLPOOL support" >&5
+$as_echo_n "checking for gcrypt WHIRLPOOL support... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+#include <gcrypt.h>
+int
+main ()
+{
+return GCRY_MD_WHIRLPOOL;
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_compile "$LINENO"; then :
+
+$as_echo "#define HAVE_LIBGCRYPT_WHIRLPOOL 1" >>confdefs.h
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+for ac_prog in libtool
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_LIBTOOL+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$LIBTOOL"; then
+  ac_cv_prog_LIBTOOL="$LIBTOOL" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_LIBTOOL="$ac_prog"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+fi
+fi
+LIBTOOL=$ac_cv_prog_LIBTOOL
+if test -n "$LIBTOOL"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $LIBTOOL" >&5
+$as_echo "$LIBTOOL" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  test -n "$LIBTOOL" && break
+done
+
+if test -z "$LIBTOOL"
+then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+        You must have GNU Libtool installed to build srecord.
+        Homepage: http://www.gnu.org/software/libtool/" >&5
+$as_echo "
+        You must have GNU Libtool installed to build srecord.
+        Homepage: http://www.gnu.org/software/libtool/" >&6; }
+  OK=no
+  if apt-get --version > /dev/null 2> /dev/null; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+        The following command may be used to install it:
+        sudo apt-get install libtool
+    " >&5
+$as_echo "
+        The following command may be used to install it:
+        sudo apt-get install libtool
+    " >&6; }
+    OK=yes
+  fi
+  if yum --version > /dev/null 2> /dev/null; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+        The following command may be used to install it:
+        sudo yum install libtool
+    " >&5
+$as_echo "
+        The following command may be used to install it:
+        sudo yum install libtool
+    " >&6; }
+    OK=yes
+  fi
+  if pkg_info -a > /dev/null 2> /dev/null; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+        The following command may be used to install it:
+        sudo pkg_add -r libtool
+    " >&5
+$as_echo "
+        The following command may be used to install it:
+        sudo pkg_add -r libtool
+    " >&6; }
+    OK=yes
+  fi
+  if test "$OK" != "yes"; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result:
+        If you are using a package based install, you will need the
+        libtool package.
+    " >&5
+$as_echo "
+        If you are using a package based install, you will need the
+        libtool package.
+    " >&6; }
+  fi
+  exit 1
+fi
+
 if test -n "$SOELIM"
 then
   if $SOELIM -I. /dev/null > /dev/null 2>&1
@@ -4307,7 +4477,7 @@ fi
 #
 # Evaluate some of the variables, to remove ${prefix} references.
 # This way, they can be used in C programs and Roff input.
-# Make sure that srecord is mentioned in the libdir and datadir paths;
+# Make sure that srecord is mentioned in the datadir path;
 # add it if it is not already there.
 #
 test "x$prefix" = xNONE && prefix="${ac_default_prefix-/usr/local}"
@@ -4318,15 +4488,6 @@ eval "datarootdir=$datarootdir"
 eval "mandir=$mandir"
 eval "libdir=$libdir"
 eval "datadir=$datadir"
-case "$libdir" in
-*/srecord/* | */srecord )
-    ;;
-*)
-    libdir="${libdir}/srecord"
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: Rewriting --libdir=$libdir" >&5
-$as_echo "Rewriting --libdir=$libdir" >&6; }
-    ;;
-esac
 case "$datadir" in
     */srecord/* | */srecord )
     ;;
@@ -4336,7 +4497,6 @@ case "$datadir" in
 $as_echo "Rewriting --datadir=$datadir" >&6; }
 ;;
 esac
-
 
 
 
@@ -5024,7 +5184,7 @@ cat >>$CONFIG_STATUS <<\_ACEOF || ac_write_fail=1
 for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
-    "lib/config.h") CONFIG_HEADERS="$CONFIG_HEADERS lib/config.h" ;;
+    "srecord/config.h") CONFIG_HEADERS="$CONFIG_HEADERS srecord/config.h" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

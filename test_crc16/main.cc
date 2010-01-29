@@ -1,6 +1,6 @@
 //
 // srecord - The "srecord" program.
-// Copyright (C) 2007-2009 Peter Miller
+// Copyright (C) 2007-2010 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,34 +19,51 @@
 #include <cstdio>
 #include <cstdlib>
 #include <unistd.h>
+#include <getopt.h>
 
-#include <lib/bitrev.h>
-#include <lib/crc16.h>
-#include <lib/progname.h>
-#include <lib/quit.h>
+#include <srecord/bitrev.h>
+#include <srecord/crc16.h>
+#include <srecord/progname.h>
+#include <srecord/quit.h>
+#include <srecord/versn_stamp.h>
 
 
 static void
 usage()
 {
-    fprintf(stderr, "Usage: [ -av ] %s\n", progname_get());
+    fprintf(stderr, "Usage: [ -av ] %s\n", srecord::progname_get());
     exit(1);
 }
+
+
+static const struct option options[] =
+{
+    { "augment", 0, 0, 'a' },
+    { "broken", 0, 0, 'b' },
+    { "ccitt", 0, 0, 'c' },
+    { "help", 0, 0, 'h' },
+    { "polynomial", 1, 0, 'p' },
+    { "reverse", 0, 0, 'r' },
+    { "table", 0, 0, 't' },
+    { "version", 0, 0, 'V' },
+    { "xmodem", 0, 0, 'x' },
+};
 
 
 int
 main(int argc, char **argv)
 {
-    progname_set(argv[0]);
-    crc16::seed_mode_t seed_mode = crc16::seed_mode_ccitt;
+    srecord::progname_set(argv[0]);
+    srecord::crc16::seed_mode_t seed_mode = srecord::crc16::seed_mode_ccitt;
     bool augment = true;
-    unsigned short polynomial = crc16::polynomial_ccitt;
+    unsigned short polynomial = srecord::crc16::polynomial_ccitt;
     bool print_table = false;
-    crc16::bit_direction_t bitdir = crc16::bit_direction_most_to_least;
+    srecord::crc16::bit_direction_t bitdir =
+        srecord::crc16::bit_direction_most_to_least;
     bool h_flag = false;
     for (;;)
     {
-        int c = getopt(argc, argv, "abchp:rtx");
+        int c = getopt_long(argc, argv, "abchp:rtVx", options, 0);
         if (c == EOF)
             break;
         switch (c)
@@ -56,11 +73,11 @@ main(int argc, char **argv)
             break;
 
         case 'b':
-            seed_mode = crc16::seed_mode_broken;
+            seed_mode = srecord::crc16::seed_mode_broken;
             break;
 
         case 'c':
-            seed_mode = crc16::seed_mode_ccitt;
+            seed_mode = srecord::crc16::seed_mode_ccitt;
             break;
 
         case 'h':
@@ -72,7 +89,7 @@ main(int argc, char **argv)
             break;
 
         case 'r':
-            bitdir = crc16::bit_direction_least_to_most;
+            bitdir = srecord::crc16::bit_direction_least_to_most;
             break;
 
         case 't':
@@ -80,8 +97,12 @@ main(int argc, char **argv)
             break;
 
         case 'x':
-            seed_mode = crc16::seed_mode_xmodem;
+            seed_mode = srecord::crc16::seed_mode_xmodem;
             break;
+
+        case 'V':
+            srecord::print_version();
+            return 0;
 
         default:
             usage();
@@ -91,7 +112,7 @@ main(int argc, char **argv)
     if (optind != argc)
         usage();
 
-    crc16 check(seed_mode, augment, polynomial, bitdir);
+    srecord::crc16 check(seed_mode, augment, polynomial, bitdir);
     if (print_table)
     {
         check.print_table();
@@ -102,13 +123,13 @@ main(int argc, char **argv)
         char buffer[1024];
         int n = read(0, buffer, sizeof(buffer));
         if (n < 0)
-            quit_default.fatal_error_errno("read stdin");
+            srecord::quit_default.fatal_error_errno("read stdin");
         if (!n)
             break;
         if (h_flag)
         {
             for (int j = 0; j < n; ++j)
-                buffer[j] = bitrev8(buffer[j]);
+                buffer[j] = srecord::bitrev8(buffer[j]);
         }
         check.nextbuf(buffer, n);
     }
@@ -117,7 +138,7 @@ main(int argc, char **argv)
     // Because that code calculate the CRC bit reversed, we bit reverse
     // here so that we can test for identical-ness.
     if (h_flag)
-        printf("0x%04X\n", bitrev16(check.get()));
+        printf("0x%04X\n", srecord::bitrev16(check.get()));
     else
         printf("0x%04X\n", check.get());
     return 0;

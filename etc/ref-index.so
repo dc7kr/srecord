@@ -235,6 +235,13 @@ T}	T{
 .ad l
 EPROM load files
 T}
+srecord(3)	\*[Page*Of*srecord(3)]	T{
+.ad r
+SRecord - library to manipulate
+T}	T{
+.ad l
+EPROM load files
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp - compare two
@@ -536,6 +543,13 @@ T}	T{
 .ad l
 files
 T}
+srecord(3)	\*[Page*Of*srecord(3)]	T{
+.ad r
+SRecord - library to manipulate EPROM load
+T}	T{
+.ad l
+files
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp - compare two EPROM load
@@ -823,6 +837,13 @@ T}	T{
 .ad l
 Freescale MC68EZ328 Dragonball bootstrap record format
 T}
+srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
+.ad r
+LGPG - GNU Lesser
+T}	T{
+.ad l
+General Public License
+T}
 srec_atmel_generic(5)	\*[Page*Of*srec_atmel_generic(5)]	T{
 .ad r
 srec atmel
@@ -836,6 +857,13 @@ srec atmel generic - Atmel
 T}	T{
 .ad l
 Generic file format
+T}
+srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
+.ad r
+LGPG -
+T}	T{
+.ad l
+GNU Lesser General Public License
 T}
 srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
 .ad r
@@ -984,6 +1012,34 @@ T}	T{
 .ad l
 intel - Intel Hexadecimal object file format specification
 T}
+srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
+.ad r
+LGPG - GNU
+T}	T{
+.ad l
+Lesser General Public License
+T}
+srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
+.ad r
+
+T}	T{
+.ad l
+LGPG - GNU Lesser General Public License
+T}
+srecord(3)	\*[Page*Of*srecord(3)]	T{
+.ad r
+SRecord -
+T}	T{
+.ad l
+library to manipulate EPROM load files
+T}
+srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
+.ad r
+LGPG - GNU Lesser General Public
+T}	T{
+.ad l
+License
+T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
 srec os65v - OS65V
@@ -1012,6 +1068,13 @@ T}	T{
 .ad l
 load files
 T}
+srecord(3)	\*[Page*Of*srecord(3)]	T{
+.ad r
+SRecord - library to manipulate EPROM
+T}	T{
+.ad l
+load files
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp - compare two EPROM
@@ -1036,6 +1099,13 @@ T}
 srec_cat(1)	\*[Page*Of*srec_cat(1)]	T{
 .ad r
 srec cat -
+T}	T{
+.ad l
+manipulate EPROM load files
+T}
+srecord(3)	\*[Page*Of*srecord(3)]	T{
+.ad r
+SRecord - library to
 T}	T{
 .ad l
 manipulate EPROM load files
@@ -1172,6 +1242,13 @@ srec needham - Needham EMP-series
 T}	T{
 .ad l
 programmer ASCII file format
+T}
+srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
+.ad r
+LGPG - GNU Lesser General
+T}	T{
+.ad l
+Public License
 T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
@@ -1459,6 +1536,13 @@ srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 T}	T{
 .ad l
 SRecord - Intel Absolute Object Module Format
+T}
+srecord(3)	\*[Page*Of*srecord(3)]	T{
+.ad r
+
+T}	T{
+.ad l
+SRecord - library to manipulate EPROM load files
 T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r

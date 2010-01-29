@@ -229,11 +229,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.53.README   # Description, from the tar file
-           File:   srecord-1.53.lsm      # Description, LSM format
-           File:   srecord-1.53.spec     # RedHat package specification
-           File:   srecord-1.53.tar.gz   # the complete source
-           File:   srecord-1.53.pdf      # Reference Manual
+           File:   srecord-1.54.README   # Description, from the tar file
+           File:   srecord-1.54.lsm      # Description, LSM format
+           File:   srecord-1.54.spec     # RedHat package specification
+           File:   srecord-1.54.tar.gz   # the complete source
+           File:   srecord-1.54.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -245,9 +245,9 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.53
+       srecord version 1.54
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
-       2007, 2008, 2009 Peter Miller
+       2007, 2008, 2009, 2010 Peter Miller
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -274,87 +274,27 @@ RELEASE NOTES
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
-       * The Intel format now emits the redundant extended linear address
-       record at the start of the file; some loaders couldn't cope without it.
+   Version 1.55 (2010-Jan-29)
+       * There is now a shared library installed, including the necessary
+       header files so that you can use all of the file formats and filters in
+       your own projects.
 
-       * The Binary format now copes with writing to pipes.
+       * The license on the shared library code is GNU Lesser General Public
+       License, version 3.0 or later.
 
-       * The Motorola format now understands the S6 (24-bit data record count)
-       records for reading and writing.
+       * The code can cope with older versions of GNU Libgcrypt.  In the case
+       of very old versions, by ignoring it.
 
-       * The DEC Binary format now works correctly on Windows machines.
+       * A number of build problems have been fixed.
 
-       * The LSI Logic Fast Load format is now understood for both reading and
-       writing.  See srec_fastload(5) for more information.
-
-   Version 1.9 (2001-Nov-27)
-       * The DEC Binary (XXDP) format is now understood for both reading and
-       writing.  See srec_dec_binary(5) for more information.
-
-       * The Elektor Monitor (EMON52) format is now understood for both
-       reading and writing.  See srec_emon52(5) for more information.
-
-       * The Signetics format is now understood for both reading and writing.
-       See srec_signetics(5) for more information.
-
-       * The Four Packed Code (FPC) format is now understood for both reading
-       and writing.  See srec_fpc(5) for more information.
-
-       * Wherever possible, header data is now passed through by srec_cat(1).
-       There is also a new srec_cat -header option, so that you can set the
-       header comment from the command line.
-
-       * The Atmel Generic format for Atmel AVR programmers is now understood
-       for both reading and writing.  See srec_atmel_generic(5) for more
-       information.
-
-       * The handling of termination records has been improved.  It caused
-       problems for a number of filters, including the -fill filter.
-
-       * A bug has been fixed in the checksum calculations for the Tektronix
-       format.
-
-       * There is a new SPASM format for PIC programmers.  See srec_spasm(5)
-       for more information.
-
-   Version 1.8 (2001-Apr-20)
-       * There is a new "unfill" filter, which may be used to perform the
-       reverse effect of the "fill" filter.
-
-       * There is a new bit-wise NOT filter, which may be used to invert the
-       data.
-
-       * A couple of bugs have been fixed in the CRC filters.
-
-   Version 1.7 (2001-Mar-19)
-       * The documentation is now in PDF format.  This was in order to make it
-       more accessible to a wider range of people.
-
-       * There is a new srec_cat --address-length option, so that you can set
-       the length of the address fields in the output file.  For example, if
-       you always want S3 data records in a Motorola hex file, use --address-
-       length=4.  This helps when talking to brain-dead EPROM programmers
-       which do not fully implement the format specification.
-
-       * There is a new --multiple option to the commands, which permits an
-       input file to contain multiple (contradictory) values for some memory
-       locations.  The last value in the file will be used.
-
-       * A problem has been fixed which stopped SRecord from building under
-       Cygwin.
-
-       * A bug has been fixed in the C array output.  It used to generate
-       invalid output when the input had holes in the data.
-
-   Version 1.6 (2000-Dec-03)
    Version 1.53 (2009-Nov-10)
        * There is a new MsBin (Windows CE Binary Image Data) file format,
        supported for both reading and writing.
 
        * The lintian(1) warning about hyphen in the manual pages has been
-       silenced, by careful use of -, and - as appropriate. Sure makes some of
-       the sources ugly, tho.  The lintian(1) warning about the undefined .XX
-       macro has been silenced, by making it conditional.
+       silenced, by careful use of -, - and - as appropriate. Sure makes some
+       of the sources ugly, tho.  The lintian(1) warning about the undefined
+       .XX macro has been silenced, by making it conditional.
 
        * The code will build without libgcrypt.
 
@@ -373,26 +313,6 @@ RELEASE NOTES
        segments.
 
    Version 1.50 (2009-Jul-09)
-       * A bug has been fixed in the C array output.  (Holes in the input
-       caused an invalid C file to be produced.)
-
-       * There is are new CRC input filters, both 16-bit and 32-bit, both big
-       and little endian.  See srec_cat(1) for more information.
-
-       * There is a new VHDL output format.
-
-       * There are new checksum filters: in addition to the existing one's
-       complement (bit not) checksum filter, there are now negative and
-       positive checksum filters.  See srec_cat(1) for more information.
-
-       * The checksum filters are now able to sum over 16-bit and 32-bit
-       values, in addition to the existing byte sums.
-
-       * The srec_cmp program now has a --verbose option, which gives more
-       information about how the two inputs differ.  See srec_cmp(1) for more
-       information.
-
-   Version 1.5 (2000-Mar-06)
        * The CRC16 code has been enhanced to provide low-to-high bit order, in
        addition to the previous high-to-low bit order.  It is also possible to
        specify the polynomial, with the default the CCITT standard polynomial,
@@ -501,40 +421,6 @@ RELEASE NOTES
        been updated.
 
    Version 1.40 (2008-Mar-13)
-       * There is now a command line option to guess the input file format;
-       all of the tools understand this option.
-
-       * The "MOS Technologies" file format is now understood for reading and
-       writing.  See srec_mos_tech(5) for more information.
-
-       * The "Tektronix Extended" file format is now understood for reading
-       and writing.  See srec_tektronix_extended(5) for more information.
-
-       * The "Texas Instruments Tagged" file format is now understood for
-       reading and writing.  (Also known as the TI-Tagged or SDSMAC format.)
-       See srec_ti_tagged(5) for more information.
-
-       * The "ascii-hex" file format is now understood for reading and
-       writing.  (Also known as the ascii-space-hex format.)  See
-       srec_ascii_hex(5) for more information.
-
-       * There is a new byte swap input filter, allowing pairs of odd and even
-       input bytes to be swapped.  See srec_cat(1) for more information.
-
-       * The "wilson" file format is now understood for reading and writing.
-       This mystery format was added for a mysterious type of EPROM writer.
-       See srec_wilson(5) for more information.
-
-       * The srec_cat program now has a -data-only option, which suppresses
-       all output except for the data records.  This helps when talking to
-       brain-dead EPROM programmers which barf at anything but data.  See
-       srec_cat(1) for more information.
-
-       * There is a new -Line-Length option for the srec_cat program, allowing
-       you to specify the maximum width of output lines.  See srec_cat(1) for
-       more information.
-
-   Version 1.4 (2000-Jan-13)
        * An RPM build problem has been fixed.
 
        * The dependency on the Boost library is now documented in the BUILDING
@@ -635,11 +521,6 @@ RELEASE NOTES
        reading and writing.
 
    Version 1.30 (2007-Mar-21)
-       * SRecord can now cope with CRLF sequences in Unix files.  This was
-       unfortunately common where the file was generated on a PC, but SRecord
-       was being used on Unix.
-
-   Version 1.3 (1999-May-12)
        * The ascii-hex output format has been improved.
 
        * The ti-tagged-16-bit format is now understood for reading and
@@ -738,20 +619,6 @@ RELEASE NOTES
        * A number of build problems have been fixed.
 
    Version 1.20 (2004-Feb-08)
-       * A bug has been fixed which would cause the crop and exclude filters
-       to dump core sometimes.
-
-       * A bug has been fixed where binary files were handled incorrectly on
-       Windows NT (actually, any system in which text files aren't the same as
-       binary files).
-
-       * There are three new data filters.  The --OR filter, which may be used
-       to bit-wise OR a value to each data byte; the --AND filter, which may
-       be used to bit-wise AND a value to each data byte; and the --eXclusive-
-       OR filter, which may be used to bit-wise XOR a value to each data byte.
-       See srec_cat(1) for more information.
-
-   Version 1.2 (1998-Nov-04)
        * The AOMF format now accepts (and ignores) more record types.
 
    Version 1.19 (2004-Jan-03)
@@ -838,6 +705,152 @@ RELEASE NOTES
        * Some build problems have been fixed.
 
    Version 1.10 (2002-Jun-14)
+       * The Intel format now emits the redundant extended linear address
+       record at the start of the file; some loaders couldn't cope without it.
+
+       * The Binary format now copes with writing to pipes.
+
+       * The Motorola format now understands the S6 (24-bit data record count)
+       records for reading and writing.
+
+       * The DEC Binary format now works correctly on Windows machines.
+
+       * The LSI Logic Fast Load format is now understood for both reading and
+       writing.  See srec_fastload(5) for more information.
+
+   Version 1.9 (2001-Nov-27)
+       * The DEC Binary (XXDP) format is now understood for both reading and
+       writing.  See srec_dec_binary(5) for more information.
+
+       * The Elektor Monitor (EMON52) format is now understood for both
+       reading and writing.  See srec_emon52(5) for more information.
+
+       * The Signetics format is now understood for both reading and writing.
+       See srec_signetics(5) for more information.
+
+       * The Four Packed Code (FPC) format is now understood for both reading
+       and writing.  See srec_fpc(5) for more information.
+
+       * Wherever possible, header data is now passed through by srec_cat(1).
+       There is also a new srec_cat -header option, so that you can set the
+       header comment from the command line.
+
+       * The Atmel Generic format for Atmel AVR programmers is now understood
+       for both reading and writing.  See srec_atmel_generic(5) for more
+       information.
+
+       * The handling of termination records has been improved.  It caused
+       problems for a number of filters, including the -fill filter.
+
+       * A bug has been fixed in the checksum calculations for the Tektronix
+       format.
+
+       * There is a new SPASM format for PIC programmers.  See srec_spasm(5)
+       for more information.
+
+   Version 1.8 (2001-Apr-20)
+       * There is a new "unfill" filter, which may be used to perform the
+       reverse effect of the "fill" filter.
+
+       * There is a new bit-wise NOT filter, which may be used to invert the
+       data.
+
+       * A couple of bugs have been fixed in the CRC filters.
+
+   Version 1.7 (2001-Mar-19)
+       * The documentation is now in PDF format.  This was in order to make it
+       more accessible to a wider range of people.
+
+       * There is a new srec_cat --address-length option, so that you can set
+       the length of the address fields in the output file.  For example, if
+       you always want S3 data records in a Motorola hex file, use --address-
+       length=4.  This helps when talking to brain-dead EPROM programmers
+       which do not fully implement the format specification.
+
+       * There is a new --multiple option to the commands, which permits an
+       input file to contain multiple (contradictory) values for some memory
+       locations.  The last value in the file will be used.
+
+       * A problem has been fixed which stopped SRecord from building under
+       Cygwin.
+
+       * A bug has been fixed in the C array output.  It used to generate
+       invalid output when the input had holes in the data.
+
+   Version 1.6 (2000-Dec-03)
+       * A bug has been fixed in the C array output.  (Holes in the input
+       caused an invalid C file to be produced.)
+
+       * There is are new CRC input filters, both 16-bit and 32-bit, both big
+       and little endian.  See srec_cat(1) for more information.
+
+       * There is a new VHDL output format.
+
+       * There are new checksum filters: in addition to the existing one's
+       complement (bit not) checksum filter, there are now negative and
+       positive checksum filters.  See srec_cat(1) for more information.
+
+       * The checksum filters are now able to sum over 16-bit and 32-bit
+       values, in addition to the existing byte sums.
+
+       * The srec_cmp program now has a --verbose option, which gives more
+       information about how the two inputs differ.  See srec_cmp(1) for more
+       information.
+
+   Version 1.5 (2000-Mar-06)
+       * There is now a command line option to guess the input file format;
+       all of the tools understand this option.
+
+       * The "MOS Technologies" file format is now understood for reading and
+       writing.  See srec_mos_tech(5) for more information.
+
+       * The "Tektronix Extended" file format is now understood for reading
+       and writing.  See srec_tektronix_extended(5) for more information.
+
+       * The "Texas Instruments Tagged" file format is now understood for
+       reading and writing.  (Also known as the TI-Tagged or SDSMAC format.)
+       See srec_ti_tagged(5) for more information.
+
+       * The "ascii-hex" file format is now understood for reading and
+       writing.  (Also known as the ascii-space-hex format.)  See
+       srec_ascii_hex(5) for more information.
+
+       * There is a new byte swap input filter, allowing pairs of odd and even
+       input bytes to be swapped.  See srec_cat(1) for more information.
+
+       * The "wilson" file format is now understood for reading and writing.
+       This mystery format was added for a mysterious type of EPROM writer.
+       See srec_wilson(5) for more information.
+
+       * The srec_cat program now has a -data-only option, which suppresses
+       all output except for the data records.  This helps when talking to
+       brain-dead EPROM programmers which barf at anything but data.  See
+       srec_cat(1) for more information.
+
+       * There is a new -Line-Length option for the srec_cat program, allowing
+       you to specify the maximum width of output lines.  See srec_cat(1) for
+       more information.
+
+   Version 1.4 (2000-Jan-13)
+       * SRecord can now cope with CRLF sequences in Unix files.  This was
+       unfortunately common where the file was generated on a PC, but SRecord
+       was being used on Unix.
+
+   Version 1.3 (1999-May-12)
+       * A bug has been fixed which would cause the crop and exclude filters
+       to dump core sometimes.
+
+       * A bug has been fixed where binary files were handled incorrectly on
+       Windows NT (actually, any system in which text files aren't the same as
+       binary files).
+
+       * There are three new data filters.  The --OR filter, which may be used
+       to bit-wise OR a value to each data byte; the --AND filter, which may
+       be used to bit-wise AND a value to each data byte; and the --eXclusive-
+       OR filter, which may be used to bit-wise XOR a value to each data byte.
+       See srec_cat(1) for more information.
+
+   Version 1.2 (1998-Nov-04)
        * This release includes file format man pages.  The web page also
        includes a PostScript reference manual, containing all of the man
        pages.
