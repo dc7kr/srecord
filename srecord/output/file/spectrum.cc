@@ -29,7 +29,8 @@ srecord::output_file_spectrum::~output_file_spectrum()
 
 
 srecord::output_file_spectrum::output_file_spectrum(
-        const std::string &a_filename) :
+    const std::string &a_filename
+) :
     srecord::output_file(a_filename)
 {
 }
@@ -103,6 +104,13 @@ void
 srecord::output_file_spectrum::address_length_set(int)
 {
     // ignore
+}
+
+
+bool
+srecord::output_file_spectrum::preferred_block_size_set(int nbytes)
+{
+    return (nbytes == 1);
 }
 
 

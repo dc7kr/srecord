@@ -24,8 +24,16 @@
 
 srecord::output_file_msbin::~output_file_msbin()
 {
+    flush_pending_records();
+
     if (start_address_set && enable_goto_addr_flag)
     {
+        if (beginning_of_file)
+        {
+            // This could be possible to support, but then a file
+            // header with fake data would have to be generated.
+            fatal_error("no data, only the execution start record present");
+        }
         write_record_header(0, start_address, 0);
     }
     else
@@ -40,17 +48,14 @@ srecord::output_file_msbin::~output_file_msbin()
 
 
 srecord::output_file_msbin::output_file_msbin(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     start_address_set(false),
     start_address(0),
     beginning_of_file(true)
-#ifdef MSBIN_CONCATENATE_ADJACENT_RECORDS
-    ,current_addr(0)
-#endif
 {
-    if (line_termination == line_termination_native)
-        line_termination = line_termination_binary;
+    line_termination = line_termination_binary;
 }
 
 
@@ -62,7 +67,7 @@ srecord::output_file_msbin::create(const std::string &a_file_name)
 
 
 void
-srecord::output_file_msbin::write_qword_le(uint32_t d)
+srecord::output_file_msbin::write_dword_le(uint32_t d)
 {
     unsigned char c[sizeof(uint32_t)];
 
@@ -95,8 +100,8 @@ srecord::output_file_msbin::write_file_header(uint32_t start, uint32_t length)
         put_char(Magic[i]);
 
     // Write header itself
-    write_qword_le(start);
-    write_qword_le(length);
+    write_dword_le(start);
+    write_dword_le(length);
 }
 
 
@@ -104,9 +109,123 @@ void
 srecord::output_file_msbin::write_record_header(uint32_t addr, uint32_t length,
     uint32_t checksum)
 {
-    write_qword_le(addr);
-    write_qword_le(length);
-    write_qword_le(checksum);
+    write_dword_le(addr);
+    write_dword_le(length);
+    write_dword_le(checksum);
+}
+
+
+void
+srecord::output_file_msbin::write_data(const record &r)
+{
+    const unsigned char *data = r.get_data();
+    size_t length = r.get_length();
+    while (length-- > 0)
+        put_char(*data++);
+}
+
+
+void
+srecord::output_file_msbin::flush_pending_records(const record *r)
+{
+    if (!pending_records.empty() || r != NULL)
+    {
+        // write header
+        const record::address_t start =
+            (
+                pending_records.empty()
+            ?
+                r->get_address()
+            :
+                pending_records.front()->get_address()
+            );
+
+        const record::address_t end =
+            (
+                r
+            ?
+                r->get_address_end()
+            :
+                pending_records.back()->get_address_end()
+            );
+
+        record_vector::const_iterator it;
+        uint32_t chksum = 0;
+        for (it = pending_records.begin(); it != pending_records.end(); ++it)
+            chksum += checksum((*it)->get_data(), (*it)->get_length());
+
+        if (r)
+            chksum += checksum(r->get_data(), r->get_length());
+
+        write_record_header(start, end - start, chksum);
+
+        // write data
+        for (it = pending_records.begin(); it != pending_records.end(); ++it)
+            write_data(*(*it));
+
+        if (r)
+            write_data(*r);
+
+        pending_records.clear();
+    }
+}
+
+
+void
+srecord::output_file_msbin::append_pending_record(const record &r)
+{
+    static const char *warning_size_exceeded =
+        "cannot concatenate records: internal memory limit "
+        "exceeded; creating a new record";
+
+    if (r.get_address() == 0)
+    {
+        fatal_error
+        (
+            "the MsBin format cannot express a data value at "
+            "the address 0"
+        );
+    }
+
+    // check if record can be appended
+    if
+    (
+        pending_records.empty()
+    ||
+        pending_records.back()->get_address_end() == r.get_address()
+    )
+    {
+        // can be possibly appended, check size constraints
+        size_t pending_size = 0;
+        for (record_vector::const_iterator it = pending_records.begin();
+            it != pending_records.end(); ++it)
+            pending_size += (*it)->get_length();
+
+        if (pending_size + r.get_length() > MAX_PENDING_DATA_SIZE)
+        {
+            // cannot append the record due to max pending data size
+            // limit, but r immediatelly follows pending_records =>
+            // flush (pending_records, r)
+            warning("%s", warning_size_exceeded);
+            flush_pending_records(&r);
+        }
+        else
+            pending_records.push_back(boost::shared_ptr<record>(new record(r)));
+    }
+    else
+    {
+        flush_pending_records();
+        assert(pending_records.empty());
+
+        if (r.get_length() > MAX_PENDING_DATA_SIZE)
+        {
+            // r cannot be stored at all => write it out immediatelly
+            warning("%s", warning_size_exceeded);
+            flush_pending_records(&r);
+        }
+        else
+            pending_records.push_back(boost::shared_ptr<record>(new record(r)));
+    }
 }
 
 
@@ -130,52 +249,20 @@ srecord::output_file_msbin::write(const srecord::record &record)
         break;
 
     case srecord::record::type_data:
+        if (beginning_of_file)
         {
-            // Write data.
-            if (beginning_of_file)
-            {
-                // Write file header
-                const unsigned long start = record.get_address();
-                const unsigned long length = upper_bound - start;
-                write_file_header(start, length);
-                beginning_of_file = false;
-            }
-
-            assert(record.get_length() == 0 ||
-                (record.get_address() + record.get_length() <= upper_bound));
-
-#ifdef MSBIN_CONCATENATE_ADJACENT_RECORDS
-            if (current_addr != record.get_address())
-#endif
-            {
-                if (record.get_address() == 0)
-                {
-                    fatal_error
-                    (
-                        "the MsBin format cannot express a data value at "
-                        "the address 0"
-                    );
-                }
-                write_record_header
-                (
-                    record.get_address(),
-                    record.get_length(),
-                    checksum(record.get_data(), record.get_length())
-                );
-#ifdef MSBIN_CONCATENATE_ADJACENT_RECORDS
-                current_addr = record.get_address();
-#endif
-            }
-
-            const unsigned char *data = record.get_data();
-            size_t length = record.get_length();
-            while (length-- > 0)
-                put_char(*data++);
-
-#ifdef MSBIN_CONCATENATE_ADJACENT_RECORDS
-            current_addr += record.get_length();
-#endif
+            const unsigned long start = record.get_address();
+            const unsigned long length = upper_bound - start;
+            write_file_header(start, length);
+            beginning_of_file = false;
         }
+        assert
+        (
+            record.get_length() == 0
+        ||
+            record.get_address() + record.get_length() <= upper_bound
+        );
+        append_pending_record(record);
         break;
 
     case srecord::record::type_header:
@@ -202,6 +289,13 @@ srecord::output_file_msbin::address_length_set(int)
     //
     // Irrelevant.  Ignore.
     //
+}
+
+
+bool
+srecord::output_file_msbin::preferred_block_size_set(int nbytes)
+{
+    return (nbytes >= 1 && nbytes <= record::max_data_length);
 }
 
 

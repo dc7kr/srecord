@@ -28,7 +28,8 @@ srecord::output_file_tektronix_extended::~output_file_tektronix_extended()
 
 
 srecord::output_file_tektronix_extended::output_file_tektronix_extended(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     pref_block_size(32),
     address_length(4)
@@ -178,6 +179,18 @@ srecord::output_file_tektronix_extended::address_length_set(int n)
     if (n > 4)
         n = 4;
     address_length = n;
+}
+
+
+bool
+srecord::output_file_tektronix_extended::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    if (nbytes > 123)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

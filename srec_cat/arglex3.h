@@ -37,6 +37,9 @@ public:
         token_enable,
         token_disable,
         token_line_termination,
+        token_output_block_size,
+        token_output_block_packing,
+        token_output_block_align,
         token_MAX
     };
 

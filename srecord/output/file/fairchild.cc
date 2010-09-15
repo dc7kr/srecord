@@ -27,7 +27,8 @@ srecord::output_file_fairchild::~output_file_fairchild()
 
 
 srecord::output_file_fairchild::output_file_fairchild(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     address(~0uL)
 {
@@ -65,6 +66,10 @@ srecord::output_file_fairchild::write(const srecord::record &record)
     switch (record.get_type())
     {
     case srecord::record::type_header:
+        if (!enable_optional_address_flag)
+            address = (unsigned long)-1L;
+        break;
+
     case srecord::record::type_unknown:
     case srecord::record::type_data_count:
         // ignore
@@ -123,6 +128,13 @@ void
 srecord::output_file_fairchild::address_length_set(int)
 {
     // ignore
+}
+
+
+bool
+srecord::output_file_fairchild::preferred_block_size_set(int nbytes)
+{
+    return (nbytes == 8);
 }
 
 

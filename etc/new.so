@@ -1,3 +1,5 @@
+.so etc/new.1.56.so
+.so etc/new.1.55.so
 .so etc/new.1.54.so
 .so etc/new.1.53.so
 .so etc/new.1.52.so

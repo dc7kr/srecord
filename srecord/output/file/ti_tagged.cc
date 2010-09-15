@@ -36,7 +36,8 @@ srecord::output_file_ti_tagged::~output_file_ti_tagged()
 
 
 srecord::output_file_ti_tagged::output_file_ti_tagged(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     address(0),
     column(0),
@@ -98,6 +99,8 @@ srecord::output_file_ti_tagged::write(const srecord::record &record)
                 put_char(c);
             }
         }
+        if (!enable_optional_address_flag)
+            address = (unsigned long)-1;
         break;
 
     case srecord::record::type_data:
@@ -164,6 +167,18 @@ void
 srecord::output_file_ti_tagged::address_length_set(int)
 {
     // ignore (this is a 16-bit format)
+}
+
+
+bool
+srecord::output_file_ti_tagged::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 2 || nbytes > record::max_data_length)
+        return false;
+    if (nbytes & 1)
+        return false;
+    line_length = (nbytes / 2) * 5;
+    return true;
 }
 
 

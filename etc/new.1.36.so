@@ -1,6 +1,6 @@
 .\"
 .\" srecord - The "srecord" program.
-.\" Copyright (C) 2007 Peter Miller
+.\" Copyright (C) 2007, 2010 Peter Miller
 .\"
 .\" This program is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
@@ -16,19 +16,19 @@
 .\" along with this program. If not, see <http://www.gnu.org/licenses/>.
 .\"
 .\" ------------------------------------------------------------------------
-.PP
+.TP 2n
 .if n *
 .if t \(bu
 .\" Change 15
 It is now possible to have negative expressions on the command
-line, to facilitate \[lq]--offset - -minimum foo\[rq] usages.
-.PP
+line, to facilitate \[lq]\-\-offset \- \-minimum foo\[rq] usages.
+.TP 2n
 .if n *
 .if t \(bu
 .\" Change 12
 The \f[I]srec_cat\fP(1) command now has a simple hexadecimal dump output
 format.
-.PP
+.TP 2n
 .if n *
 .if t \(bu
 .\" Change 11
@@ -36,5 +36,5 @@ The use of \f[I]uudecode\fP(1) in the tests has been removed,
 so \f[I]sharutils\fP is no longer a build dependency.
 .\" ------------------------------------------------------------------------
 .\" Add new entries above this line.
-.SS Version 1.36 (2007-Aug-07)
+.SS Version 1.36 (2007\[hy]Aug\[hy]07)
 .\" vim:ts=8:sw=4:et

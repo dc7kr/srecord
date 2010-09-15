@@ -27,7 +27,9 @@ srecord::output_file_atmel_generic::~output_file_atmel_generic()
 
 
 srecord::output_file_atmel_generic::output_file_atmel_generic(
-        const std::string &a_file_name, endian_t a_end) :
+    const std::string &a_file_name,
+    endian_t a_end
+) :
     srecord::output_file(a_file_name),
     end(a_end)
 {
@@ -90,6 +92,13 @@ srecord::output_file_atmel_generic::address_length_set(int)
     //
     // Irrelevant.  Ignore.
     //
+}
+
+
+bool
+srecord::output_file_atmel_generic::preferred_block_size_set(int nbytes)
+{
+    return (nbytes == 2);
 }
 
 

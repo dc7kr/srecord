@@ -411,6 +411,9 @@ srecord::output_file_asm::write(const srecord::record & record)
                 put_stringf("        RSEG    CODE\n");
                 put_stringf("%s\n", prefix.c_str());
             }
+
+            if (!enable_optional_address_flag)
+                current_address = (unsigned long)-1L;
         }
 
         if (current_address != record.get_address())
@@ -512,6 +515,17 @@ void
 srecord::output_file_asm::address_length_set(int)
 {
     // ignore
+}
+
+
+bool
+srecord::output_file_asm::preferred_block_size_set(int nbytes)
+{
+    if (nbytes <= 0)
+        return false;
+    if (!output_word)
+        return true;
+    return ((nbytes & 1) == 0);
 }
 
 

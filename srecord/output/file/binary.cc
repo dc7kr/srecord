@@ -27,7 +27,8 @@ srecord::output_file_binary::~output_file_binary()
 
 
 srecord::output_file_binary::output_file_binary(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name)
 {
     if (line_termination == line_termination_native)
@@ -71,6 +72,14 @@ srecord::output_file_binary::address_length_set(int)
     //
     // Irrelevant.  Ignore.
     //
+}
+
+
+bool
+srecord::output_file_binary::preferred_block_size_set(int)
+{
+    // Ignore.
+    return true;
 }
 
 

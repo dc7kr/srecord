@@ -17,16 +17,22 @@
 #
 Summary: srecord
 Name: srecord
-Version: 1.54.D001
+Version: 1.56.D001
 Release: 1
 License: GPL
 Group: Development/Tools
-Source: http://srecord.sourceforge.net/%{name}-%{version}.tar.gzURL: http://srecord.sourceforge.net/
+Source: http://srecord.sourceforge.net/%{name}-%{version}.tar.gz
+URL: http://srecord.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: diffutils, groff, libboost-dev, libgcrypt11-dev, libtool, sharutils
+BuildRequires: boost-devel
+BuildRequires: diffutils
+BuildRequires: groff
+BuildRequires: libgcrypt-devel
+BuildRequires: libtool
+BuildRequires: sharutils
 
 %description
-collection of powerful tools for manipulating EPROM load files
+A collection of powerful tools for manipulating EPROM load files
 
 
 %prep
@@ -54,12 +60,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr (-,root,root,-)
 %doc LICENSE BUILDING README
-${_includedir}/srecord
-${_libdir}/libsrecord.a
-${_libdir}/libsrecord.la
-${_libdir}/libsrecord.so
-${_libdir}/libsrecord.so.*
-${_libdir}/pkgconfig/srecord.pc
 %{_bindir}/srec_cat
 %{_bindir}/srec_cmp
 %{_bindir}/srec_info
@@ -69,8 +69,6 @@ ${_libdir}/pkgconfig/srecord.pc
 %{_mandir}/man1/srec_info.1
 %{_mandir}/man1/srec_input.1
 %{_mandir}/man1/srec_license.1
-%{_mandir}/man3/srecord.3
-%{_mandir}/man3/srecord_license.3
 %{_mandir}/man5/srec_aomf.5
 %{_mandir}/man5/srec_ascii_hex.5
 %{_mandir}/man5/srec_atmel_generic.5
@@ -103,3 +101,22 @@ ${_libdir}/pkgconfig/srecord.pc
 %{_mandir}/man5/srec_ti_txt.5
 %{_mandir}/man5/srec_vmem.5
 %{_mandir}/man5/srec_wilson.5
+
+
+%files libs
+%defattr (-,root,root,-)
+%{_libdir}/libsrecord.so
+%{_libdir}/libsrecord.so.*
+
+
+%files devel
+%defattr (-,root,root,-)
+%dir %{_includedir}/srecord
+%dir %{_libdir}/pkgconfig
+%dir %{_mandir}/man3
+%{_includedir}/srecord/*.h
+%{_libdir}/libsrecord.a
+%{_libdir}/libsrecord.la
+%{_libdir}/pkgconfig/srecord.pc
+%{_mandir}/man3/srecord.3
+%{_mandir}/man3/srecord_license.3

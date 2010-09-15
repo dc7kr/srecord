@@ -1,8 +1,164 @@
+srecord (1.56.D001-1) unstable; urgency=low
+
+  * This change set prepares SRecord for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 15 Sep 2010 21:42:33 +1000
+
+srecord (1.55.D017-1) unstable; urgency=low
+
+  * False negative for two tests (for gcrypt functionality) have been fixed,
+    they can now cope with SHA224 and WHIRLPOOL being absent from the gcrypt
+    library.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 13 Sep 2010 14:26:25 +1000
+
+srecord (1.55.D016-1) unstable; urgency=low
+
+  * The version of libgcrypt in Hardy does not have SHA224.  The test suite now
+    copes with this, rather than giving a false negative.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Sep 2010 23:14:01 +1000
+
+srecord (1.55.D015-1) unstable; urgency=low
+
+  * This change set adds a LP PPA link to the download page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Sep 2010 22:53:47 +1000
+
+srecord (1.55.D014-1) unstable; urgency=low
+
+  * This change set cleans up some of the terminology in the msbin sourec files.
+  * My thanks to David Kozub <zub@linux.fjfi.cvut.cz> for this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 11 Aug 2010 11:10:05 +1000
+
+srecord (1.55.D013-1) unstable; urgency=low
+
+  * the aede-policy now includes comment checking.  Problems found have been
+    fixed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 08 Aug 2010 22:07:30 +1000
+
+srecord (1.55.D012-1) unstable; urgency=low
+
+  * Three noisy tests have been silenced; though they are functionally
+    unchanged.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 08 Aug 2010 22:03:25 +1000
+
+srecord (1.55.D011-1) unstable; urgency=low
+
+  * A bug has been fixed in the MsBin output, it now concatenates records
+    correctly, and calaulate checksums appropriately.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 06 Aug 2010 13:01:19 +1000
+
+srecord (1.55.D010-1) unstable; urgency=low
+
+  * Additional build steps have been added to ensure that trhe Lintina hyphen
+    warning does not occur.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 03 Aug 2010 15:55:20 +1000
+
+srecord (1.55.D009-1) unstable; urgency=low
+
+  * It is now possible to ask the Fletcher 16 filter to give you a specific
+    answer, and adjusting the checksum to achieve that result. It is also
+    possible to specify different seed values for the sums.
+  * My thanks to Gene Smith <Gene.Smith@siemens.com> for this patch, although
+    heavily modified.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 17 Jul 2010 17:20:52 +1000
+
+srecord (1.55.D008-1) unstable; urgency=low
+
+  * This change set adds a request to include "srecord" in the Subject: of all
+    emails about srecord.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 15 Jul 2010 11:35:18 +1000
+
+srecord (1.55.D007-1) unstable; urgency=low
+
+  * There is a new srec_cat --enable=optional-address to cause coutpit formats
+    capable of omitting addresses, to omit a leading zero address, as those
+    formats usually default the address to zero, if no address information is
+    seen before the first data record.	Defaults to false (disabled).
+  * My thanks to Stuart MacDonald <stuart.macdonald@christiedigital.com> for
+    this suggestion.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 28 Apr 2010 01:08:13 +1000
+
+srecord (1.55.D006-1) unstable; urgency=low
+
+  * There is a new srec_cat --output-block-packing option, that may be used to
+    pack output records even when they cross internal SRecord boundaries.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 27 Apr 2010 23:33:46 +1000
+
+srecord (1.55.D005-1) unstable; urgency=low
+
+  * There is a new srec_cat --output-block-size so that you can specify the
+    block size exactly, rather than implying it with the line length option.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 27 Apr 2010 23:01:27 +1000
+
+srecord (1.55.D004-1) unstable; urgency=low
+
+  * This change set fixes various typos found in code comments.
+  * My thanks to Stuart MacDonald <stuart.macdonald@christiedigital.com>  for
+    this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 27 Apr 2010 15:12:41 +1000
+
+srecord (1.55.D003-1) unstable; urgency=low
+
+  * This change set fixes a couple of signed-ness warnings frok gcc.
+  * My thanks to Stuart MacDonald <stuart.macdonald@christiedigital.com> for
+    this patch.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 27 Apr 2010 14:58:10 +1000
+
+srecord (1.55.D002-1) unstable; urgency=low
+
+  * This change set adds some additional text to the srec_input(1) man page, and
+    also mirrors the Joe Geluso document (now gone from the interwebs).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 31 Mar 2010 11:52:09 +1100
+
+srecord (1.55.D001-1) unstable; urgency=low
+
+  * This change set prepares SRecord foe the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 11 Feb 2010 00:09:02 +1100
+
+srecord (1.54.D004-1) unstable; urgency=low
+
+  * The rpm.spec file has been improved, it now separates the commands, shared
+    libraries and development files.
+  * This change set also rebuilds the Makefile.in file, now that aemakegen has
+    the bug fixed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 10 Feb 2010 23:27:43 +1100
+
+srecord (1.54.D003-1) unstable; urgency=low
+
+  * This change set changes the way recipes are echoed during the build, for a
+    much cleaner experience.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 02 Feb 2010 12:00:04 +1100
+
+srecord (1.54.D002-1) unstable; urgency=low
+
+  * This change set corrects a number of read_inner classes to return bool (the
+    int was left-over C from years ago).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 01 Feb 2010 08:47:08 +1100
+
 srecord (1.54.D001-1) unstable; urgency=low
 
   * This change set prepares SRecord for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Fri, 29 Jan 2010 16:09:25 +1100
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 29 Jan 2010 16:14:20 +1100
 
 srecord (1.53.D031-1) unstable; urgency=low
 

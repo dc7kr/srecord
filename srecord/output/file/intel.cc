@@ -30,7 +30,7 @@ srecord::output_file_intel::~output_file_intel()
 
 srecord::output_file_intel::output_file_intel(const std::string &a_file_name) :
     srecord::output_file(a_file_name),
-    address_base(1),
+    address_base(0),
     pref_block_size(32),
     mode(linear)
 {
@@ -86,6 +86,8 @@ srecord::output_file_intel::write(const srecord::record &record)
         //
         // This format can't do header records
         //
+        if (!enable_optional_address_flag)
+            address_base = 1;
         break;
 
     case srecord::record::type_data:
@@ -202,6 +204,18 @@ void
 srecord::output_file_intel::address_length_set(int x)
 {
     mode = (x <= 2 ? segmented : linear);
+}
+
+
+bool
+srecord::output_file_intel::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    if (nbytes > 255)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

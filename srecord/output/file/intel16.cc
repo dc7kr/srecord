@@ -29,7 +29,8 @@ srecord::output_file_intel16::~output_file_intel16()
 
 
 srecord::output_file_intel16::output_file_intel16(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     address_base(0),
     pref_block_size(32)
@@ -89,6 +90,8 @@ srecord::output_file_intel16::write(const srecord::record &record)
         //
         // This format can't do header records
         //
+        if (!enable_optional_address_flag)
+            address_base = 1;
         break;
 
     case srecord::record::type_data:
@@ -170,6 +173,18 @@ void
 srecord::output_file_intel16::address_length_set(int)
 {
     // ignore
+}
+
+
+bool
+srecord::output_file_intel16::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 2 || nbytes > record::max_data_length)
+        return false;
+    if (nbytes & 1)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

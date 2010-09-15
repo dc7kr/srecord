@@ -31,7 +31,8 @@ srecord::output_file_signetics::~output_file_signetics()
 
 
 srecord::output_file_signetics::output_file_signetics(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     pref_block_size(32),
     last_address(0)
@@ -126,6 +127,18 @@ void
 srecord::output_file_signetics::address_length_set(int)
 {
     // ignore (this is only a 16-bit format)
+}
+
+
+bool
+srecord::output_file_signetics::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    if (nbytes > 255)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

@@ -26,7 +26,8 @@ srecord::output_file_cosmac::~output_file_cosmac()
 
 
 srecord::output_file_cosmac::output_file_cosmac(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     address(0),
     address_length(4),
@@ -67,6 +68,9 @@ srecord::output_file_cosmac::write(const srecord::record &record)
             put_stringf("!M%.*lX ", (int)address_length, address);
             column = address_length + 3;
             header_required = false;
+
+            if (!enable_optional_address_flag)
+                address = (unsigned long)-1L;
         }
         if (address != record.get_address())
         {
@@ -118,11 +122,24 @@ srecord::output_file_cosmac::address_length_set(int x)
 }
 
 
+bool
+srecord::output_file_cosmac::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    line_length = 2 * nbytes + 1;
+    return true;
+}
+
+
 int
 srecord::output_file_cosmac::preferred_block_size_get()
     const
 {
-    return ((line_length - 1) / 2);
+    int n = ((line_length - 1) / 2);
+    if (n > record::max_data_length)
+        n = record::max_data_length;
+    return n;
 }
 
 

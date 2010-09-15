@@ -31,7 +31,8 @@ srecord::output_file_ti_txt::~output_file_ti_txt()
 
 
 srecord::output_file_ti_txt::output_file_ti_txt(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     address(),
     address_set(false),
@@ -76,6 +77,8 @@ srecord::output_file_ti_txt::write(const srecord::record &record)
     {
     case srecord::record::type_header:
         // All header data is discarded
+        if (enable_optional_address_flag)
+            address_set = true;
         break;
 
     case srecord::record::type_data:
@@ -141,6 +144,17 @@ srecord::output_file_ti_txt::address_length_set(int n)
     if (n > 4)
         n = 4;
     address_length = n;
+}
+
+
+bool
+srecord::output_file_ti_txt::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    pref_block_size = nbytes;
+    line_length = pref_block_size * 3 - 1;
+    return true;
 }
 
 

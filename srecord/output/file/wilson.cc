@@ -29,7 +29,8 @@ srecord::output_file_wilson::~output_file_wilson()
 
 
 srecord::output_file_wilson::output_file_wilson(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     pref_block_size(32)
 {
@@ -194,6 +195,18 @@ srecord::output_file_wilson::address_length_set(int)
 {
     // ignore  (this may change if I ever get a formal spec for
     // this format)
+}
+
+
+bool
+srecord::output_file_wilson::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    if (nbytes > 250)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

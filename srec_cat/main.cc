@@ -1,20 +1,19 @@
 //
-//      srecord - manipulate eprom load files
-//      Copyright (C) 1998, 1999, 2001-2008, 2010 Peter Miller
+// srecord - manipulate eprom load files
+// Copyright (C) 1998, 1999, 2001-2008, 2010 Peter Miller
 //
-//      This program is free software; you can redistribute it and/or modify
-//      it under the terms of the GNU General Public License as published by
-//      the Free Software Foundation; either version 3 of the License, or
-//      (at your option) any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
-//      This program is distributed in the hope that it will be useful,
-//      but WITHOUT ANY WARRANTY; without even the implied warranty of
-//      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//      GNU General Public License for more details.
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
 //
-//      You should have received a copy of the GNU General Public License
-//      along with this program. If not, see
-//      <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU General Public License
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
 #include <iostream>
@@ -26,6 +25,8 @@
 #include <srecord/memory/walker/writer.h>
 #include <srecord/output.h>
 #include <srecord/output/file.h>
+#include <srecord/output/filter/reblock.h>
+#include <srecord/record.h>
 
 #include <srec_cat/arglex3.h>
 
@@ -43,6 +44,9 @@ main(int argc, char **argv)
     bool header_set = false;
     unsigned long execution_start_address = 0;
     bool execution_start_address_set = false;
+    int output_block_size = 0;
+    bool output_block_packing = false;
+    bool output_block_align = false;
     while (cmdline.token_cur() != srecord::arglex::token_eoln)
     {
         switch (cmdline.token_cur())
@@ -80,6 +84,25 @@ main(int argc, char **argv)
             {
                 std::cerr << "the line length " << line_length << " is invalid"
                     << std::endl;
+                exit(1);
+            }
+            break;
+
+        case srec_cat_arglex3::token_output_block_size:
+            if (output_block_size > 0)
+                cmdline.usage();
+            if (cmdline.token_next() != srecord::arglex::token_number)
+                cmdline.usage();
+            output_block_size = cmdline.value_number();
+            if
+            (
+                output_block_size <= 0
+            ||
+                output_block_size > srecord::record::max_data_length
+            )
+            {
+                std::cerr << "the block size " << output_block_size
+                    << " is invalid" << std::endl;
                 exit(1);
             }
             break;
@@ -164,6 +187,14 @@ main(int argc, char **argv)
             execution_start_address_set = true;
             srecord::output_file::enable_goto_addr(true);
             continue;
+
+        case srec_cat_arglex3::token_output_block_packing:
+            output_block_packing = true;
+            break;
+
+        case srec_cat_arglex3::token_output_block_align:
+            output_block_align = true;
+            break;
         }
         cmdline.token_next();
     }
@@ -171,10 +202,36 @@ main(int argc, char **argv)
         infile = cmdline.get_input();
     if (!outfile)
         outfile = cmdline.get_output();
+
+    if (output_block_packing || output_block_align)
+    {
+        //
+        // Reblock the output so that it matches the output file's block
+        // size exactly.  That way SRecord's internal memory chunk size
+        // does not cause output artifacts.  This requires lost of
+        // memory copying back and forth, so only do it if they asked
+        // for it.
+        //
+        // This filter makes no semantic difference to the output.
+        // (If it does, it's a bug.)
+        //
+        outfile =
+            srecord::output_filter_reblock::create(outfile, output_block_align);
+    }
+
     if (address_length > 0)
         outfile->address_length_set(address_length);
     if (line_length > 0)
         outfile->line_length_set(line_length);
+    if (output_block_size > 0)
+    {
+        if (!outfile->preferred_block_size_set(output_block_size))
+        {
+            std::cerr << "output block size " << output_block_size
+                << " was rejected by " << outfile->format_name() << std::endl;
+            exit(1);
+        }
+    }
 
     //
     // Read the input into memory.  This allows the data to be
@@ -194,7 +251,7 @@ main(int argc, char **argv)
         m.set_execution_start_address(execution_start_address);
 
     //
-    // Open the output file and write the remembered data out to it.
+    // Write the remembered data out to the output.
     //
     srecord::memory_walker::pointer w =
         srecord::memory_walker_writer::create(outfile);

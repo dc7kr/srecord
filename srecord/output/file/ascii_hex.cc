@@ -28,7 +28,8 @@ srecord::output_file_ascii_hex::~output_file_ascii_hex()
 
 
 srecord::output_file_ascii_hex::output_file_ascii_hex(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     address(0),
     column(0),
@@ -93,6 +94,9 @@ srecord::output_file_ascii_hex::write(const srecord::record &record)
             put_char(2);
             ++column;
             start_code_emitted = true;
+
+            if (!enable_optional_address_flag)
+                address = (unsigned long)-1L;
         }
         if (address != record.get_address())
         {
@@ -176,6 +180,17 @@ srecord::output_file_ascii_hex::line_length_set(int linlen)
         n = srecord::record::max_data_length;
     pref_block_size = n;
     line_length = pref_block_size * 3 - 1;
+}
+
+
+bool
+srecord::output_file_ascii_hex::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > srecord::record::max_data_length)
+        return false;
+    pref_block_size = nbytes;
+    line_length = pref_block_size * 3 - 1;
+    return true;
 }
 
 

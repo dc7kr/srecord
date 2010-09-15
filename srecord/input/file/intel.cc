@@ -49,7 +49,7 @@ srecord::input_file_intel::create(const std::string &a_file_name)
 }
 
 
-int
+bool
 srecord::input_file_intel::read_inner(srecord::record &record)
 {
     if (pushback)
@@ -57,7 +57,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
         record = *pushback;
         delete pushback;
         pushback = 0;
-        return 1;
+        return true;
     }
 
     //
@@ -74,7 +74,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
         // end of file means we are done
         //
         if (c < 0)
-            return 0;
+            return false;
 
         //
         // quietly ignore blank lines
@@ -97,7 +97,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
             {
                 c = get_char();
                 if (c < 0)
-                    return 0;
+                    return false;
                 if (c == '\n')
                     break;
             }
@@ -205,7 +205,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
                 fatal_error("address field must be zero");
             end_seen = true;
             seek_to_end();
-            return 0;
+            return false;
 
         case 2:
             //
@@ -244,7 +244,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
                     0,
                     0
                 );
-            return 1;
+            return true;
 
         case 4:
             //
@@ -281,7 +281,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
                     0,
                     0
                 );
-            return 1;
+            return true;
         }
 
         //
@@ -295,7 +295,7 @@ srecord::input_file_intel::read_inner(srecord::record &record)
                 buffer + 4,
                 buffer[0]
             );
-        return 1;
+        return true;
     }
 }
 
@@ -320,7 +320,7 @@ srecord::input_file_intel::read(srecord::record &record)
                 // Address Record (0x02) and the Extended Linear Address
                 // Record (0x04) are both optional. The respective
                 // addresses default to 0 until either type of record is
-                // encounterd.''
+                // encountered.''
                 //
                 termination_seen = true;
 #if 0

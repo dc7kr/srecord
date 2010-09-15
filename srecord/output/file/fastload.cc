@@ -39,7 +39,8 @@ srecord::output_file_fastload::~output_file_fastload()
 
 
 srecord::output_file_fastload::output_file_fastload(
-        const std::string &a_filename) :
+    const std::string &a_filename
+) :
     srecord::output_file(a_filename),
     line_length(0),
     address(~0uL),
@@ -124,6 +125,8 @@ srecord::output_file_fastload::write(const srecord::record &record)
     {
     case srecord::record::type_header:
         // This format can't do header records
+        if (!enable_optional_address_flag)
+            address = (unsigned long)-1L;
         break;
 
     case srecord::record::type_data:
@@ -236,6 +239,40 @@ void
 srecord::output_file_fastload::address_length_set(int)
 {
     // ignore
+}
+
+
+bool
+srecord::output_file_fastload::preferred_block_size_set(int nbytes)
+{
+    if (nbytes > srecord::record::max_data_length)
+        return false;
+
+    // Don't go bigger than this, or you get undetectable errors.
+    enum { MAX = 256 };
+
+    int ll = (nbytes / 3) * 4;
+
+    int bytes_on_last_line = ((ll - 9) / 4) * 3;
+    if (bytes_on_last_line > MAX)
+        return false;
+    else if (bytes_on_last_line < 0)
+        return false;
+
+    int bytes_on_other_lines = (ll / 4) * 3;
+    if (bytes_on_other_lines > MAX)
+        return false;
+    else if (bytes_on_other_lines < 1)
+        return false;
+
+    int num_other_lines =
+        (MAX - bytes_on_last_line) / bytes_on_other_lines;
+
+    max_since_checksum =
+        num_other_lines * bytes_on_other_lines + bytes_on_last_line;
+
+    line_length = ll;
+    return true;
 }
 
 

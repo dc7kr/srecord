@@ -1,6 +1,6 @@
 '\" t
 .\" srecord - manipulate eprom load files
-.\" Copyright (C) 1998, 2000-2009 Peter Miller
+.\" Copyright (C) 1998, 2000-2010 Peter Miller
 .\"
 .\" This program is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
@@ -436,16 +436,24 @@ Headers often, but not always, include descriptive text.
 Data_Count
 This feature controls the presence of data record count records, which
 appear aftre the data, and state how many data records preceeded them.
-Usually a data intergrity mechanism.
+Usually a data integrity mechanism.
 .TP 8n
 Execution_Start_Address
-The feature controls the presence of execution start address records,
+This feature controls the presence of execution start address records,
 which is where the monitor will jump to and start executing code once
 the hex file has finished loading.
 .TP 8n
 Footer
 This feature controls the presence of a file termination record,
 one that \f[I]does not\fP double as an execution start address record.
+.TP
+Optional_Address
+In formats that have the address and the data separated or partially
+separated (as opposed to having a complete address in every record) it
+is possible to disable emitting the first address where that address
+would be zero, as these format often default the address to zero if
+no address is seen beofre the first data record.  This is disabled by
+default, the zero address is always emitted.
 .PP
 Not all formats have all of the above features.
 Not all formats are able to optionally omit any or all the above features.
@@ -510,6 +518,23 @@ Please note: the execution start address is a different concept than the
 first address in memory of your data.  If you want to change where your
 data starts in memory, use the \fB\-offset\fP filter.
 .RE
+.TP 8n
+\fB\-Output_Block_Size\fP \f[I]number\fP
+This option may be used to specify the exact number of data bytes to
+appear in each output record.  There are format\[hy]specific limitations on
+this value, you will get an error if the value isn't valid.
+.TP 8n
+\fB\-Output_Block_Packing\fP
+From time to time, with large files, you may notice that your data
+records are spit unexpectedly on output.  This usually happens where
+record lengths are not a power of 2.  If this bothers you (or your
+comparison tools) this option may be used to repack the output so that
+SRecord's internal block boundaries are not visable in the output.
+.TP 8n
+\fB\-Output_Block_Alignment\fP
+This option is similar to the \fB\-Output_Block_Packing\fP option,
+except that short records are used after holes to cause subsequent
+records to be placed on a block size boundary.
 .so man/man1/o_multiple.so
 .PP
 All other options will produce a diagnostic error.

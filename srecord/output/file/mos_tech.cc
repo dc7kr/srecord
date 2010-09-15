@@ -42,7 +42,8 @@ srecord::output_file_mos_tech::~output_file_mos_tech()
 
 
 srecord::output_file_mos_tech::output_file_mos_tech(
-        const std::string &a_filename) :
+    const std::string &a_filename
+) :
     srecord::output_file(a_filename),
     pref_block_size(24),
     data_record_count(0)
@@ -131,6 +132,16 @@ void
 srecord::output_file_mos_tech::address_length_set(int)
 {
     // ignore (this is only a 16-bit format)
+}
+
+
+bool
+srecord::output_file_mos_tech::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

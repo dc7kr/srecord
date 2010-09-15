@@ -72,18 +72,15 @@ protected:
     int preferred_block_size_get() const;
 
     // See base class for documentation.
+    bool preferred_block_size_set(int nbytes);
+
+    // See base class for documentation.
     void command_line(arglex_tool *cmdln);
 
     // See base class for documentation.
     const char *format_name() const;
 
 private:
-    /**
-      * The address instance variable is used to remember where we are
-      * up to in the output.  Used to limit the number of $A line emitted.
-      */
-    unsigned long address;
-
     /**
      * The FORTH store command to use. Either C! for RAM or EEC! for EEPROM
      */

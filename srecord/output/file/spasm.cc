@@ -26,8 +26,10 @@ srecord::output_file_spasm::~output_file_spasm()
 }
 
 
-srecord::output_file_spasm::output_file_spasm(const std::string &a_file_name,
-        endian_t a_end) :
+srecord::output_file_spasm::output_file_spasm(
+    const std::string &a_file_name,
+    endian_t a_end
+) :
     srecord::output_file(a_file_name),
     end(a_end)
 {
@@ -91,6 +93,13 @@ srecord::output_file_spasm::address_length_set(int)
     //
     // Irrelevant.  Ignore.
     //
+}
+
+
+bool
+srecord::output_file_spasm::preferred_block_size_set(int nbytes)
+{
+    return (nbytes == 2);
 }
 
 

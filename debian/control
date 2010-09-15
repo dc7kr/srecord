@@ -5,13 +5,13 @@ Maintainer: Peter Miller <pmiller@opensource.org.au>
 Homepage: http://srecord.sourceforge.net
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 5), groff, libboost-dev, libgcrypt11-dev, libtool
-Standards-Version: 3.8.3
+Standards-Version: 3.8.4
 
 Package: srecord
 Section: utils
 Priority: extra
 Architecture: any
-Description: collection of powerful tools for manipulating EPROM load files
+Description: A collection of powerful tools for manipulating EPROM load files
  The srecord package is a collection of powerful tools for manipulating EPROM
  load files. It reads and writes numerous EPROM file formats, and can perform
  many different manipulations.

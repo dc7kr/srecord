@@ -32,7 +32,8 @@ srecord::output_file_motorola::~output_file_motorola()
 
 
 srecord::output_file_motorola::output_file_motorola(
-        const std::string &a_file_name) :
+    const std::string &a_file_name
+) :
     srecord::output_file(a_file_name),
     data_count(0),
     pref_block_size(32),
@@ -292,6 +293,16 @@ srecord::output_file_motorola::address_length_set(int n)
     else if (n > 4)
         n = 4;
     address_length = n;
+}
+
+
+bool
+srecord::output_file_motorola::preferred_block_size_set(int nbytes)
+{
+    if (nbytes < 1 || nbytes > record::max_data_length)
+        return false;
+    pref_block_size = nbytes;
+    return true;
 }
 
 

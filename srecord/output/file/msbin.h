@@ -25,8 +25,7 @@
 #include <stdint.h>
 #include <srecord/output/file.h>
 #include <srecord/record.h>
-
-#define MSBIN_CONCATENATE_ADJACENT_RECORDS
+#include <vector>
 
 namespace srecord
 {
@@ -81,6 +80,9 @@ protected:
     int preferred_block_size_get() const;
 
     // See base class for documentation.
+    bool preferred_block_size_set(int nbytes);
+
+    // See base class for documentation.
     const char *format_name() const;
 
     // See base class for documentation.
@@ -88,13 +90,20 @@ protected:
 
 private:
     /**
-      * The write_qword_le method is used to write a little endian quad
-      * word into the output.
+      * MAX_PENDING_DATA_SIZE is the upper limit of the size of data
+      * we are willing to keep in the pending_records vector.
+      * (50MiB)
+      */
+    enum { MAX_PENDING_DATA_SIZE = 50*1024*1024 };
+
+    /**
+      * The write_dword_le method is used to write a little endian
+      * double word into the output.
       *
       * @param d
       *     The data to be written.
       */
-    void write_qword_le(uint32_t d);
+    void write_dword_le(uint32_t d);
 
     /**
       * The checksum method is used to calculate the checksum of a given
@@ -122,7 +131,7 @@ private:
     void write_file_header(uint32_t start, uint32_t length);
 
     /**
-      * The write_record_header method is used to Writes a record header
+      * The write_record_header method is used to write a record header
       * into the output.
       *
       * @param addr
@@ -133,6 +142,41 @@ private:
       *     The checksum of the data bytes in the record.
       */
     void write_record_header(uint32_t addr, uint32_t length, uint32_t checksum);
+
+    /**
+      * The write_data method is used to write the data contrained in
+      * a record to the output.
+      *
+      * @param r
+      *     The record containing the data to be written to output.
+      */
+    void write_data(const record &r);
+
+    /**
+      * The flush_pending_records method is used to write out all the
+      * data contained in the vector pending_records plus optionally
+      * a record r to the output, forming a single record in the output.
+      * The vector pending_records is cleared.
+      *
+      * @param r
+      *     Optional pointer to a record that should be treated as if
+      *     it's the last element of pending_records vector.
+      */
+    void flush_pending_records(const record *r = NULL);
+
+    /**
+      * The append_pending_record handles addind a new record. If the
+      * new record could form a single continuous record in the output
+      * file and this would fit in the MAX_PENDING_DATA_SIZE limit,
+      * it's appended to the pending_records vector. Otherwise,
+      * pending records are written to the output and depending on the
+      * size of the record to be added, it's either copied to the
+      * pending_records vector, or written directly to the output.
+      *
+      * @param r
+      *     The record to be added.
+      */
+    void append_pending_record(const record &r);
 
     /**
       * The start_address_set instance variable is used to remember
@@ -162,13 +206,18 @@ private:
       */
     bool beginning_of_file;
 
-#ifdef MSBIN_CONCATENATE_ADJACENT_RECORDS
     /**
-      * The current_addr instance variable is used to remember the
-      * current address, used for concatenating adjacent records.
+      * Type holding copies of records.
       */
-    record::address_t current_addr;
-#endif
+    typedef std::vector<boost::shared_ptr<record> > record_vector;
+
+    /**
+      * The pending_records instance variable is used to keep pending
+      * records before they can be written to the output file.
+      * This is needed to implement the concatenation of adjacent
+      * records.
+      */
+    record_vector pending_records;
 
     /**
       * The default constructor.  Do not use.
