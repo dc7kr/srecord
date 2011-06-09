@@ -1,6 +1,6 @@
 //
 // srecord - Manipulate EPROM load files
-// Copyright (C) 2009, 2010 Peter Miller
+// Copyright (C) 2009-2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -19,6 +19,12 @@
 #include <cassert>
 
 #include <srecord/fletcher16.h>
+
+//
+// http://en.wikipedia.org/wiki/Fletcher%27s_checksum
+// RFC 1146
+// RFC 905 Annex B
+//
 
 
 srecord::fletcher16::~fletcher16()
@@ -179,7 +185,7 @@ srecord::fletcher16::get()
         sum2a = (sum2a & 0xff) + (sum2a >> 8);
         sum1a = tmp;
 
-        return ((sum1a & 0xFF) | ((sum2a & 0xFF) << 8));
+        return (((sum1a & 0xFF) << 8) | (sum2a & 0xFF));
 #else
         // exhaustive search
         for (unsigned short c1 = 0; c1 < 256; ++c1)
@@ -201,7 +207,7 @@ srecord::fletcher16::get()
                 sum2b &= 0xFF;
 
                 if (f1 == sum1b && f2 == sum2b)
-                    return (sum1b | (sum2b << 8));
+                    return ((sum1b << 8) | sum2b);
             }
         }
         // This is common when one or both of f1 and f2 are zero.
@@ -209,7 +215,7 @@ srecord::fletcher16::get()
 #endif
     }
 
-    return (((sum2 & 0xFF) << 8) | (sum1 & 0xFF));
+    return (((sum1 & 0xFF) << 8) | (sum2 & 0xFF));
 }
 
-// vim:ts=8:sw=4:et
+// vim: set ts=8 sw=4 et :

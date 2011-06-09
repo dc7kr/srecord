@@ -123,6 +123,11 @@ includedir = $(DESTDIR)@includedir@
 LIBTOOL = @LIBTOOL@
 
 #
+# extra linker options
+#
+LDFLAGS = @LDFLAGS@
+
+#
 # extra libraries required for your system
 #
 LIBS = @LIBS@
@@ -175,9 +180,9 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
-		etc/new.1.55.so etc/new.1.56.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -197,10 +202,28 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
-		etc/new.1.55.so etc/new.1.56.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so 
+		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so 
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
+
+etc/debian.png: etc/debian.png.uue
+	uudecode -o etc/debian.png etc/debian.png.uue
+
+etc/doc_cat.png: etc/doc_cat.png.uue
+	uudecode -o etc/doc_cat.png etc/doc_cat.png.uue
+
+etc/doc_chip.png: etc/doc_chip.png.uue
+	uudecode -o etc/doc_chip.png etc/doc_chip.png.uue
+
+etc/doc_gen.png: etc/doc_gen.png.uue
+	uudecode -o etc/doc_gen.png etc/doc_gen.png.uue
+
+etc/doc_lens.png: etc/doc_lens.png.uue
+	uudecode -o etc/doc_lens.png etc/doc_lens.png.uue
+
+etc/doc_lib.png: etc/doc_lib.png.uue
+	uudecode -o etc/doc_lib.png etc/doc_lib.png.uue
 
 etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		etc/coding-style.so etc/new-file-format.so \
@@ -221,23 +244,23 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
-		etc/new.1.55.so etc/new.1.56.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so \
-		etc/version.so man/man1/o_at.so \
-		man/man1/o_ignore_checksums.so man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/o_sequence.so \
-		man/man1/srec_cat.1 man/man1/srec_cmp.1 \
-		man/man1/srec_examples.1 man/man1/srec_info.1 \
-		man/man1/srec_input.1 man/man1/srec_license.1 \
-		man/man1/z_copyright.so man/man1/z_exit.so \
-		man/man1/z_options.so man/man3/srecord.3 \
-		man/man3/srecord_license.3 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 \
+		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/ref-index.so \
+		etc/ref-parts.so etc/ref-toc.so etc/version.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/o_sequence.so man/man1/srec_cat.1 \
+		man/man1/srec_cmp.1 man/man1/srec_examples.1 \
+		man/man1/srec_info.1 man/man1/srec_input.1 \
+		man/man1/srec_license.1 man/man1/z_copyright.so \
+		man/man1/z_exit.so man/man1/z_options.so \
+		man/man3/srecord.3 man/man3/srecord_license.3 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
+		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_forth.5 \
 		man/man5/srec_fpc.5 man/man5/srec_intel.5 \
 		man/man5/srec_intel16.5 man/man5/srec_mif.5 \
@@ -251,6 +274,12 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		man/man5/srec_ti_txt.5 man/man5/srec_vmem.5 \
 		man/man5/srec_wilson.5 
 	$(GROFF) -s -I. -t -man etc/reference.man > $@
+
+etc/srecord.png: etc/srecord.png.uue
+	uudecode -o etc/srecord.png etc/srecord.png.uue
+
+etc/whining.png: etc/whining.png.uue
+	uudecode -o etc/whining.png etc/whining.png.uue
 
 libdir/pkgconfig/srecord.pc: libdir/pkgconfig/srecord.pc.in \
 		./config.status 
@@ -3130,6 +3159,12 @@ t0203a: test/02/t0203a.sh all
 t0205a: test/02/t0205a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0205a.sh
 
+t0206a: test/02/t0206a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0206a.sh
+
+t0207a: test/02/t0207a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0207a.sh
+
 test_crc16/main.lo: test_crc16/main.cc srecord/bitrev.h srecord/crc16.h \
 		srecord/format_printf.h srecord/progname.h \
 		srecord/quit.h srecord/versn_stamp.h 
@@ -3286,8 +3321,9 @@ srecord/.libdir:
 
 srecord/libsrecord.la: $(lib_obj)
 	rm -f $@
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(lib_obj) $(LIBS) -rpath $(LIBDIR) -version-info 0:0:0 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(lib_obj) $(LDFLAGS) $(LIBS) -rpath $(LIBDIR) \
+		-version-info 0:0:0 
 
 $(LIBDIR)/libsrecord.la: srecord/libsrecord.la srecord/.libdir
 	$(LIBTOOL) --mode=install $(INSTALL_DATA) srecord/libsrecord.la $@
@@ -3295,8 +3331,9 @@ $(LIBDIR)/libsrecord.la: srecord/libsrecord.la srecord/.libdir
 srec_cat_obj = srec_cat/arglex3.lo srec_cat/main.lo
 
 bin/srec_cat: $(srec_cat_obj) srecord/libsrecord.la .bin
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(srec_cat_obj) srecord/libsrecord.la $(LIBS) 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(srec_cat_obj) srecord/libsrecord.la $(LDFLAGS) \
+		$(LIBS) 
 
 $(bindir)/srec_cat: bin/srec_cat .bindir
 	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) bin/srec_cat $@
@@ -3304,8 +3341,9 @@ $(bindir)/srec_cat: bin/srec_cat .bindir
 srec_cmp_obj = srec_cmp/main.lo
 
 bin/srec_cmp: $(srec_cmp_obj) srecord/libsrecord.la .bin
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(srec_cmp_obj) srecord/libsrecord.la $(LIBS) 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(srec_cmp_obj) srecord/libsrecord.la $(LDFLAGS) \
+		$(LIBS) 
 
 $(bindir)/srec_cmp: bin/srec_cmp .bindir
 	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) bin/srec_cmp $@
@@ -3313,8 +3351,9 @@ $(bindir)/srec_cmp: bin/srec_cmp .bindir
 srec_info_obj = srec_info/main.lo
 
 bin/srec_info: $(srec_info_obj) srecord/libsrecord.la .bin
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(srec_info_obj) srecord/libsrecord.la $(LIBS) 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(srec_info_obj) srecord/libsrecord.la $(LDFLAGS) \
+		$(LIBS) 
 
 $(bindir)/srec_info: bin/srec_info .bindir
 	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) bin/srec_info $@
@@ -3322,20 +3361,23 @@ $(bindir)/srec_info: bin/srec_info .bindir
 test_crc16_obj = test_crc16/main.lo
 
 bin/test_crc16: $(test_crc16_obj) srecord/libsrecord.la .bin
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(test_crc16_obj) srecord/libsrecord.la $(LIBS) 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(test_crc16_obj) srecord/libsrecord.la \
+		$(LDFLAGS) $(LIBS) 
 
 test_fletcher16_obj = test_fletcher16/main.lo
 
 bin/test_fletcher16: $(test_fletcher16_obj) srecord/libsrecord.la .bin
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(test_fletcher16_obj) srecord/libsrecord.la $(LIBS) 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(test_fletcher16_obj) srecord/libsrecord.la \
+		$(LDFLAGS) $(LIBS) 
 
 test_hyphen_obj = test_hyphen/main.lo
 
 bin/test_hyphen: $(test_hyphen_obj) srecord/libsrecord.la .bin
-	$(LIBTOOL) --mode=link $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
-		$(test_hyphen_obj) srecord/libsrecord.la $(LIBS) 
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+		-o $@ $(test_hyphen_obj) srecord/libsrecord.la \
+		$(LDFLAGS) $(LIBS) 
 
 all: all-bin all-doc
 all-bin: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_crc16 \
@@ -3526,7 +3568,9 @@ t0200a \
 t0201a \
 t0202a \
 t0203a \
-t0205a
+t0205a \
+t0206a \
+t0207a
 	@echo Passed All Tests
 
 clean-obj:
@@ -3902,6 +3946,14 @@ distclean: clean
 	rm -f config.log
 	rm -f config.status
 	rm -f etc/Howto.conf
+	rm -f etc/debian.png
+	rm -f etc/doc_cat.png
+	rm -f etc/doc_chip.png
+	rm -f etc/doc_gen.png
+	rm -f etc/doc_lens.png
+	rm -f etc/doc_lib.png
+	rm -f etc/srecord.png
+	rm -f etc/whining.png
 	rm -f libdir/pkgconfig/srecord.pc
 	rm -f script/test_prelude
 	rm -f srecord/config.h

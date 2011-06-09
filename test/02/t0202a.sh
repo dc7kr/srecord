@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # srecord - Manipulate EPROM load files
-# Copyright (C) 2010 Peter Miller
+# Copyright (C) 2010, 2011 Peter Miller
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ fubar
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-0x2877
+0x7728
 fubar
 if test $? -ne 0; then no_result; fi
 
@@ -45,4 +45,4 @@ if test $? -ne 0; then fail; fi
 #
 pass
 
-# vim:ts=8:sw=4:et
+# vim: set ts=8 sw=4 et :

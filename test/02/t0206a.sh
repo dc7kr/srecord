@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # srecord - Manipulate EPROM load files
-# Copyright (C) 2009-2011 Peter Miller
+# Copyright (C) 2011 Peter Miller
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,53 +17,35 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-TEST_SUBJECT="SHA224"
+TEST_SUBJECT="ancient Intel end-of-file records"
 . test_prelude
 
 cat > test.in << 'fubar'
-S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
-S9030000FC
+:1000000012C02CC02BC02AC029C028C027C026C0BF
+:1000100025C0FBC123C080C245C2EBC11FC01EC0AA
+:1017F000000000000201010053454C20200034BBD2
+:00FF0F01F1
 fubar
 if test $? -ne 0; then no_result; fi
 
 cat > test.ok << 'fubar'
-S00600004844521B
-S111000048656C6C6F2C20576F726C64210A7B
-S11F0100C547CF5D6BF6B795ABBE4C5CC7CAC00F1D5EC17BCD74281EA89E61089C
-S5030002FA
-S9030000FC
+:020000040000FA
+:2000000012C02CC02BC02AC029C028C027C026C025C0FBC123C080C245C2EBC11FC01EC079
+:1017F000000000000201010053454C20200034BBD2
+:040000050000FF0FE9
+:00000001FF
 fubar
 if test $? -ne 0; then no_result; fi
 
-cat > ok2 << 'fubar'
-srec_cat: libgcrypt SHA224 not available
-fubar
-if test $? -ne 0; then no_result; fi
-
-srec_cat test.in -sha224 0x100 -o test.out > LOG 2>&1
+srec_cat test.in -intel -o test.out -intel > log 2>&1
 if test $? -ne 0
 then
-    # if SHA224 not available, pass by default
-    if diff ok2 LOG > /dev/null 2> /dev/null
-    then
-        echo
-        echo "    Your gcrypt library does not appear to have SHA224 support,"
-        echo "    this test is therefore declaraed to pass by default."
-        echo
-        pass
-    fi
-
-    # some other error
-    cat LOG
+    cat log
     fail
 fi
 
 diff test.ok test.out
-if test $? -ne 0
-then
-    fail
-fi
+if test $? -ne 0; then fail; fi
 
 #
 # The things tested here, worked.

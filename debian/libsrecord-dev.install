@@ -1,8 +1,3 @@
-usr/lib/pkgconfig/srecord.pc
-usr/share/man/man3/srecord.3
-usr/lib/libsrecord.a
-usr/lib/libsrecord.la
-usr/lib/libsrecord.so
 usr/include/srecord/adler16.h
 usr/include/srecord/adler32.h
 usr/include/srecord/crc16.h
@@ -131,3 +126,7 @@ usr/include/srecord/quit/normal.h
 usr/include/srecord/quit/prefix.h
 usr/include/srecord/record.h
 usr/include/srecord/srecord.h
+usr/lib/libsrecord.a
+usr/lib/libsrecord.la
+usr/lib/libsrecord.so
+usr/lib/pkgconfig/srecord.pc

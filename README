@@ -229,11 +229,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.56.README   # Description, from the tar file
-           File:   srecord-1.56.lsm      # Description, LSM format
-           File:   srecord-1.56.spec     # RedHat package specification
-           File:   srecord-1.56.tar.gz   # the complete source
-           File:   srecord-1.56.pdf      # Reference Manual
+           File:   srecord-1.57.README   # Description, from the tar file
+           File:   srecord-1.57.lsm      # Description, LSM format
+           File:   srecord-1.57.spec     # RedHat package specification
+           File:   srecord-1.57.tar.gz   # the complete source
+           File:   srecord-1.57.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -245,9 +245,9 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.56
+       srecord version 1.57
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
-       2007, 2008, 2009, 2010 Peter Miller
+       2007, 2008, 2009, 2010, 2011 Peter Miller
 
        This program is free software; you can redistribute it and/or modify it
        under the terms of the GNU General Public License as published by the
@@ -273,6 +273,32 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.57 (2011-Jun-09)
+       * The byte order of the fletcher16 output has been reversed.
+
+       * The meaning of the --address-length option has been change for the
+         Intel output format. Previously, 2 meant using i16hex 20-bit
+         segmented addressing, and >2 meant using i32hex extended addressing.
+         This has been changed: a value of 2 requests i8hex 16-bit addressing,
+         a value of 3 requests i16hex 20-bit segment addressing, and a value
+         >=4 requests i32hex 32-bit addressing.  My thanks to Stephen R.
+         Phillips <srp@CSECorporation.com> for reporting the absence of i8hex
+         support.
+
+       * The --generate --repeat-string option is now able to take a string
+         that looks like a number as the text to be repeated. My thanks to
+         Stephen R. Phillips <srp@CSECorporation.com> for reporting this
+         problem.
+
+       * Luca Giancristofaro <luca.giancristofaro@prosa.com> discovered a
+         WinAVR linker that is a sandwich short of a picnic: it generated non-
+         conforming Intel hex end-of-file records.  This is no longer an
+         error, but only a warning.
+
+       * There were some problems with the RPM spec file, these have been
+         improved.  My thanks to Galen Seitz <galens@seitzassoc.com> for
+         reporting this problem.
 
    Version 1.56 (2010-Sep-15)
        * A bug has been fixed in the MsBin output, it now concatenates records

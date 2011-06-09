@@ -5,11 +5,9 @@ Maintainer: Peter Miller <pmiller@opensource.org.au>
 Homepage: http://srecord.sourceforge.net
 DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 5), groff, libboost-dev, libgcrypt11-dev, libtool
-Standards-Version: 3.8.4
+Standards-Version: 3.9.1
 
 Package: srecord
-Section: utils
-Priority: extra
 Architecture: any
 Description: A collection of powerful tools for manipulating EPROM load files
  The srecord package is a collection of powerful tools for manipulating EPROM
@@ -29,7 +27,6 @@ Depends: ${misc:Depends}, ${shlibs:Depends}, libsrecord0
 
 Package: libsrecord0
 Section: libs
-Priority: extra
 Architecture: any
 Description: Manipulate EPROM load files - runtime library
  This package is a collection of powerful C++ classes for manipulating EPROM
@@ -39,7 +36,6 @@ Depends: ${misc:Depends}, ${shlibs:Depends}
 
 Package: libsrecord0-dbg
 Section: debug
-Priority: extra
 Architecture: any
 Description: Manipulate EPROM load files - debugging symbols
  This package is a collection of powerful C++ classes for manipulating EPROM
@@ -49,7 +45,6 @@ Depends: ${misc:Depends}, ${shlibs:Depends}, libsrecord0 (= ${binary:Version})
 
 Package: libsrecord-dev
 Section: libdevel
-Priority: extra
 Architecture: any
 Description: Manipulate EPROM load files - development files
  This package is a collection of powerful C++ classes for manipulating EPROM

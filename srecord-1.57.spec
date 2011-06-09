@@ -17,7 +17,7 @@
 #
 Summary: srecord
 Name: srecord
-Version: 1.56.D001
+Version: 1.57.D001
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -32,7 +32,26 @@ BuildRequires: libtool
 BuildRequires: sharutils
 
 %description
-A collection of powerful tools for manipulating EPROM load files
+The srecord package is a collection of powerful tools for manipulating EPROM
+load files. It reads and writes numerous EPROM file formats, and can perform
+many different manipulations.
+
+%package libs
+Summary: srecord libraries
+Group: Development/Tools
+
+%description libs
+This package contains the shared libraries for programs that manipulate EPROM
+load files.
+
+%package devel
+Summary: srecord development files
+Group: Development/Tools
+Requires: srecord-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description devel
+This package contains static libraries and header files for compiling programs
+that manipulate EPROM load files.
 
 
 %prep
@@ -105,16 +124,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr (-,root,root,-)
-%{_libdir}/libsrecord.so
-%{_libdir}/libsrecord.so.*
+%{_libdir}/libsrecord.so*
 
 
 %files devel
 %defattr (-,root,root,-)
-%dir %{_includedir}/srecord
-%dir %{_libdir}/pkgconfig
-%dir %{_mandir}/man3
-%{_includedir}/srecord/*.h
+%{_includedir}/srecord
 %{_libdir}/libsrecord.a
 %{_libdir}/libsrecord.la
 %{_libdir}/pkgconfig/srecord.pc

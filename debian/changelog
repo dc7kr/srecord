@@ -1,8 +1,91 @@
+srecord (1.57.D001-1) unstable; urgency=low
+
+  * This change set prepares SRecord for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Jun 2011 10:38:20 +1000
+
+srecord (1.56.D011-1) unstable; urgency=low
+
+  * This change set updates the fletcher16 code to be consistent with http://
+    en.wikipedia.org/wiki/Fletcher%27s_checksum, and also with RFC 1146, and
+    also with RFC 905 Annex B
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 08 Jun 2011 23:19:34 +1000
+
+srecord (1.56.D010-1) unstable; urgency=low
+
+  * The meaning of the --address-length option has been change for the Intel
+    output format.  Previously, 2 meant using i16hex 20-bit segmented
+    addressing, and >2 meant using i32hex extended addressing.	This has been
+    changed: a value of 2 requests i8hex 16-bit addressing, a value of 3
+    requests i16hex 20-bit segment addressing, and a value >=4 requests i32hex
+    32-bit addressing.
+  * My thanks to Stephen R. Phillips <srp@CSECorporation.com> for reporting this
+    problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 08 Jun 2011 23:03:57 +1000
+
+srecord (1.56.D009-1) unstable; urgency=low
+
+  * This change set refactors how address ranges are check in the various output
+    formats, to use the same consistent test.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 08 Jun 2011 22:26:31 +1000
+
+srecord (1.56.D008-1) unstable; urgency=low
+
+  * The --generate --repeat-string option is now able to take a string that
+    looks like a number as the text to be repeated.  My thanks to Stephen R.
+    Phillips <srp@CSECorporation.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 08 Jun 2011 22:05:56 +1000
+
+srecord (1.56.D007-1) unstable; urgency=low
+
+  * This change set fixes the vim mode lines.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 15 Apr 2011 23:51:03 +1000
+
+srecord (1.56.D006-1) unstable; urgency=low
+
+  * Luca Giancristofaro <luca.giancristofaro@prosa.com> discovered a WinAVR
+    linker that is a sandwich short of a picnic: it generated non-conforming
+    Intel hex end-of-file records.  This is no longer an error, but only a
+    warning.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 19 Jan 2011 23:51:04 +1100
+
+srecord (1.56.D005-1) unstable; urgency=low
+
+  * This change set fixes a small grammatical error in the o_input.so file, used
+    by the 3 command line tools.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 06 Jan 2011 18:24:37 +1100
+
+srecord (1.56.D004-1) unstable; urgency=low
+
+  * This change set adds Ubuntu Natty to the list of releases to upload against.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 06 Jan 2011 16:11:27 +1100
+
+srecord (1.56.D003-1) unstable; urgency=low
+
+  * This change set fixes some problems with the RPM spec file.	 My thanks to
+    Galen Seitz <galens@seitzassoc.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 07 Nov 2010 17:32:35 +1100
+
+srecord (1.56.D002-1) unstable; urgency=low
+
+  * This change set adds a hit counter to the download page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 05 Oct 2010 21:52:53 +1100
+
 srecord (1.56.D001-1) unstable; urgency=low
 
   * This change set prepares SRecord for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Wed, 15 Sep 2010 21:42:33 +1000
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 15 Sep 2010 21:46:01 +1000
 
 srecord (1.55.D017-1) unstable; urgency=low
 

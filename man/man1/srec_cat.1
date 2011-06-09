@@ -1,6 +1,6 @@
 '\" t
 .\" srecord - manipulate eprom load files
-.\" Copyright (C) 1998, 2000-2010 Peter Miller
+.\" Copyright (C) 1998, 2000-2011 Peter Miller
 .\"
 .\" This program is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
@@ -265,8 +265,10 @@ An Intel hex format file will be written.
 (See
 .IR srec_intel (5)
 for a description of this file format.)
-The default is to emit 32\[hy]bit linear addressing;
-if you want 16\[hy]bit extended segment addressing
+The default is to emit \[lq]i32hex\[rq] 32\[hy]bit linear addressing;
+if you want \[lq]i16hex\[rq] 20\[hy]bit extended segment addressing
+use the \fB\-address\[hy]length=3\fP option,
+if you want \[lq]i8hex\[rq] 16\[hy]bit addressing
 use the \fB\-address\[hy]length=2\fP option.
 .TP 8n
 \fB\-Intel_16\fP
@@ -498,6 +500,8 @@ Style names may be abbreviated like command line option names.
 This option may be used to limit the length of the output lines to at
 most \f[I]number\fP characters.  (Not meaningful for binary file format.)
 Defaults to something less than 80 characters, depending on the format.
+If you need to control the maximum number of bytes in each output record,
+use the \fB\-\-Ouput_Block_Size\fP option.
 .TP 8n
 \fB\-HEAder\fP \f[I]string\fP
 This option may be used to set the header comment,
@@ -523,6 +527,8 @@ data starts in memory, use the \fB\-offset\fP filter.
 This option may be used to specify the exact number of data bytes to
 appear in each output record.  There are format\[hy]specific limitations on
 this value, you will get an error if the value isn't valid.
+If you need to control the maximum number of characters on a line of
+text output, use the \fB\-\-Line_Length\fP option.
 .TP 8n
 \fB\-Output_Block_Packing\fP
 From time to time, with large files, you may notice that your data

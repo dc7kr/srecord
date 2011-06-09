@@ -1,7 +1,7 @@
 #!/bin/sh
 #
-# ${project trunk_name} - ${project trunk_description}
-# Copyright (C) ${date %Y} ${copyright_owner}
+# srecord - Manipulate EPROM load files
+# Copyright (C) 2011 Peter Miller
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,6 +17,24 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-exit 0
+TEST_SUBJECT="-gen -repeat-string nnn"
+. test_prelude
+
+cat > test.ok << 'fubar'
+00000000: 39 38 37 39 38 37 39 38 37 39 38 37 39 38 37 39  9879879879879879
+fubar
+if test $? -ne 0; then no_result; fi
+
+srec_cat -gen 0 16 -repeat-string 987 -o test.out -hexdump
+if test $? -ne 0; then fail; fi
+
+diff test.ok test.out
+if test $? -ne 0; then fail; fi
+
+#
+# The things tested here, worked.
+# No other guarantees are made.
+#
+pass
 
 # vim: set ts=8 sw=4 et :
