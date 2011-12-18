@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2001-2003, 2006-2008, 2010 Peter Miller
+// Copyright (C) 2001-2003, 2006-2008, 2010, 2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,8 +17,9 @@
 // <http://www.gnu.org/licenses/>.
 //
 
+#include <cctype>
+
 #include <srecord/input/file/spasm.h>
-#include <ctype.h>
 #include <srecord/record.h>
 
 
@@ -27,8 +28,10 @@ srecord::input_file_spasm::~input_file_spasm()
 }
 
 
-srecord::input_file_spasm::input_file_spasm(const std::string &a_file_name,
-        endian_t a_end) :
+srecord::input_file_spasm::input_file_spasm(
+    const std::string &a_file_name,
+    endian_t a_end
+) :
     input_file(a_file_name),
     seen_some_input(false),
     end(a_end)
@@ -36,14 +39,14 @@ srecord::input_file_spasm::input_file_spasm(const std::string &a_file_name,
 }
 
 
-srecord::input::pointer
+srecord::input_file::pointer
 srecord::input_file_spasm::create_be(const std::string &a_file_name)
 {
     return create(a_file_name, endian_big);
 }
 
 
-srecord::input::pointer
+srecord::input_file::pointer
 srecord::input_file_spasm::create(const std::string &a_file_name,
     endian_t a_end)
 {
@@ -101,7 +104,7 @@ srecord::input_file_spasm::read(record &result)
 
 
 const char *
-srecord::input_file_spasm::get_file_format_name()
+srecord::input_file_spasm::get_file_format_name(void)
     const
 {
     return
@@ -113,3 +116,14 @@ srecord::input_file_spasm::get_file_format_name()
             "SPASM (little-endian)"
         );
 }
+
+
+const char *
+srecord::input_file_spasm::format_option_name(void)
+    const
+{
+    return (end == endian_big ? "-SPAsm_BigEndian" : "-SPAsm_LittleEndian");
+}
+
+
+// vim: set ts=8 sw=4 et :

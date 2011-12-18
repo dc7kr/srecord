@@ -2,7 +2,7 @@
 
 /*
  * srecord - manipulate eprom load files
- * Copyright (C) 1998-2002, 2006-2010 Peter Miller
+ * Copyright (C) 1998-2002, 2006-2011 Peter Miller
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,6 +46,9 @@
 /* Define this symbol if your operating system has a libgcrypt that supports
    WHIRLPOOL. */
 #undef HAVE_LIBGCRYPT_WHIRLPOOL
+
+/* Define to 1 if you have the `gpg-error' library (-lgpg-error). */
+#undef HAVE_LIBGPG_ERROR
 
 /* Define to 1 if you have the <memory.h> header file. */
 #undef HAVE_MEMORY_H

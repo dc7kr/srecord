@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2009, 2010 Peter Miller
+// Copyright (C) 2009-2011 Peter Miller
 //
 // Code contribution by David Kozub <zub@linux.fjfi.cvut.cz>
 // Copyright assigned to Peter Miller 27-Jan-2010.
@@ -19,10 +19,11 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <srecord/input/file/msbin.h>
-#include <limits>
 #include <algorithm>
-#include <string.h>
+#include <limits>
+#include <cstring>
+
+#include <srecord/input/file/msbin.h>
 
 
 srecord::input_file_msbin::~input_file_msbin()
@@ -68,7 +69,7 @@ srecord::input_file_msbin::input_file_msbin(const std::string &a_file_name) :
 }
 
 
-srecord::input::pointer
+srecord::input_file::pointer
 srecord::input_file_msbin::create(const std::string &a_file_name)
 {
     return pointer(new input_file_msbin(a_file_name));
@@ -76,7 +77,7 @@ srecord::input_file_msbin::create(const std::string &a_file_name)
 
 
 uint32_t
-srecord::input_file_msbin::read_dword_le()
+srecord::input_file_msbin::read_dword_le(void)
 {
     unsigned char c[sizeof(uint32_t)];
 
@@ -95,7 +96,7 @@ srecord::input_file_msbin::read_dword_le()
 
 
 void
-srecord::input_file_msbin::read_file_header()
+srecord::input_file_msbin::read_file_header(void)
 {
     // Optional magic
     static const unsigned char Magic[7] =
@@ -298,17 +299,28 @@ srecord::input_file_msbin::read(record &result)
 }
 
 
-const char *
-srecord::input_file_msbin::mode()
+bool
+srecord::input_file_msbin::is_binary(void)
     const
 {
-    return "rb";
+    return true;
 }
 
 
 const char *
-srecord::input_file_msbin::get_file_format_name()
+srecord::input_file_msbin::get_file_format_name(void)
     const
 {
     return "Windows CE Binary Image Data Format";
 }
+
+
+const char *
+srecord::input_file_msbin::format_option_name(void)
+    const
+{
+    return "-MsBin";
+}
+
+
+// vim: set ts=8 sw=4 et :

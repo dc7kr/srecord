@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 1998, 1999, 2001-2003, 2006-2010 Peter Miller
+// Copyright (C) 1998, 1999, 2001-2003, 2006-2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -48,8 +48,11 @@ public:
     /**
       * The write method is used to write a recordonto an output.
       * Derived classes must implement this method.
+      *
+      * @param rec
+      *     The record to be written.
       */
-    virtual void write(const record &) = 0;
+    virtual void write(const record &rec) = 0;
 
     /**
       * The write_header method is used to write a header record
@@ -60,7 +63,7 @@ public:
 
     /**
       * The write_data method is used to write data to the output.
-      * A suitable data record wil be produced.  The write method
+      * A suitable data record wil be produced.  The #write method
       * will be called.
       */
     virtual void write_data(unsigned long, const void *, size_t);
@@ -68,7 +71,7 @@ public:
     /**
       * The write_execution_start_address method is used to write an
       * execution start address record to the output.  If no record is
-      * specified, a default record will be supplied.  The write method
+      * specified, a default record will be supplied.  The #write method
       * will be called.
       */
     virtual void write_execution_start_address(const record * = 0);
@@ -78,17 +81,23 @@ public:
       * length of an output line, for those formats for which
       * this is a meaningful concept, and the line length is at
       * all controllable.  Derived classes must implement this method.
+      *
+      * @param cols
+      *     The page width in fixed width text columns.
       */
-    virtual void line_length_set(int) = 0;
+    virtual void line_length_set(int cols) = 0;
 
     /**
       * The address_length_set method is used to set the minimum
       * number of bytes to be written for addresses in the output,
       * for those formats for which this is a meaningful concept, and
-      * the address length is at all controllable.      Derived classes
+      * the address length is at all controllable.  Derived classes
       * must implement this method.
+      *
+      * @param nbytes
+      *     The number of byte to use for the address (2..4).
       */
-    virtual void address_length_set(int) = 0;
+    virtual void address_length_set(int nbytes) = 0;
 
     /**
       * The preferred_block_size_get method is used to get the
@@ -96,7 +105,7 @@ public:
       * always, influenced by the line_lebgth_set method.  Derived
       * classes must implement this method.
       */
-    virtual int preferred_block_size_get() const = 0;
+    virtual int preferred_block_size_get(void) const = 0;
 
     /**
       * The preferred_block_size_set method is is to set a precific
@@ -115,7 +124,7 @@ public:
 
     /**
       * The fatal_error method is used to report fatal errors.
-      * The `fmt' string is in the same style a standard C printf
+      * The 'fmt' string is in the same style a standard C printf
       * function.  It calls the fatal_error_v method.  This method
       * does not return.
       */
@@ -123,37 +132,37 @@ public:
                                                         FORMAT_PRINTF(2, 3);
     /**
       * The fatal_error_v method is used to report fatal errors.
-      * The `fmt' string is in the same style a standard C vprintf
-      * function.  It calls ::exit.  This method does not return.
+      * The 'fmt' string is in the same style a standard C vprintf
+      * function.  It calls global exit.  This method does not return.
       */
     virtual void fatal_error_v(const char *fmt, va_list ap) const;
 
     /**
       * The fatal_error_errno method is used to report fatal errors,
-      * and append the string equivalent of errno.  The `fmt' string
+      * and append the string equivalent of errno.  The 'fmt' string
       * is in the same style a standard C printf function.  It calls
-      * ::exit().  This method does not return.
+      * global exit().  This method does not return.
       */
     virtual void fatal_error_errno(const char *fmt, ...) const
                                                         FORMAT_PRINTF(2, 3);
     /**
       * The fatal_error_errno_v method is used to report fatal
-      * errors.  The `fmt' string is in the same style a standard C
-      * vprintf function.  It calls the ::exit function.
+      * errors.  The 'fmt' string is in the same style a standard C
+      * vprintf function.  It calls the global exit function.
       * This method does not return.
       */
     virtual void fatal_error_errno_v(const char *fmt, va_list ap) const;
 
     /**
       * The warning method is used to likely but non-fatal errors.
-      * The `fmt' string is in the same style a standard C printf
-      * function.  It calls the warning_v method.
+      * The 'fmt' string is in the same style a standard C printf
+      * function.  It calls the #warning_v method.
       */
     virtual void warning(const char *fmt, ...) const
                                                         FORMAT_PRINTF(2, 3);
     /**
       * The warning_v method is used to report likely but non-fatal
-      * errors.  The `fmt' string is in the same style a standard
+      * errors.  The 'fmt' string is in the same style a standard
       * C vprintf function.
       */
     virtual void warning_v(const char *fmt, va_list ap) const;
@@ -163,13 +172,13 @@ public:
       * output file.  It is used for the various error messages.
       * Derived classes must implement this method.
       */
-    virtual const std::string filename() const = 0;
+    virtual const std::string filename(void) const = 0;
 
     /**
       * The format_name method is used to obtain the name of this output
       * format.
       */
-    virtual const char *format_name() const = 0;
+    virtual const char *format_name(void) const = 0;
 
     /**
       * The notify_upper_bound method is used to notify the output class

@@ -39,6 +39,7 @@ install: build
 	mkdir -p $(CURDIR)/debian/tmp/usr/lib
 	mkdir -p $(CURDIR)/debian/tmp/usr/share
 	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
+	-rm $(CURDIR)/debian/tmp/usr/lib/*.la
 	rm $(CURDIR)/debian/tmp/usr/share/man/man1/srec_license.1
 	rm $(CURDIR)/debian/tmp/usr/share/man/man3/srecord_license.3
 

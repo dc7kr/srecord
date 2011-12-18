@@ -1,6 +1,6 @@
 '\" t
 .\"     srecord - manipulate eprom load files
-.\"     Copyright (C) 1998, 2000-2004, 2006-2010 Peter Miller
+.\"     Copyright (C) 1998, 2000-2004, 2006-2011 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -80,7 +80,7 @@ The EMON52 format is understood for both reading and writing.
 Fairchild Fairbug
 The Fairchild Fairbug format is understood for both reading and writing.
 .TP
-hexdump
+Hexdump
 It is possible to get a simple hexdump as output.
 .TP
 LSI Logic Fast Load
@@ -91,6 +91,9 @@ The Formatted Binary format is understood for both reading and writing.
 .TP
 Four Packed Code (FPC)
 The FPC format is understood for both reading and writing.
+.TP 8n
+IDT/sim
+The IDT/sim binary file format is understood for both reading and writing.
 .TP 8n
 Intel
 The Intel hexadecimal format is understood for both reading and writing.
@@ -112,6 +115,9 @@ MOS Technology
 The MOS Technology hexadecimal format is understood for both reading
 and writing.
 .TP 8n
+MIPS\[hy]Flash
+The MIPS Flash file format is supported for both reading and writing.
+.TP 8n
 Motorola S\[hy]Record
 The Motorola hexadecimal S\[hy]Record format is understood for both reading
 and writing.
@@ -121,12 +127,21 @@ MsBin
 The Windows CE Binary Image Data Format is supported both for reading
 and writing.
 .TP 8n
+Needham
 The Needham Electronics ASCII file format is understood for noth reading
 and writing.
 .TP 8n
 OS65V
 The Ohio Scientific hexadecimal format is understood for both reading
 and writing.
+.TP 8n
+PPB
+The Stag Prom Programmer binary format is understood for both reading
+and writing.
+.TP 8n
+PPX
+The Stag Prom Programmer hexadecimal format is understood for both
+reading and writing.
 .TP 8n
 Signetics
 The Signetics format is understood for both reading and writing.

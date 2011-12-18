@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2001-2003, 2006-2008, 2010 Peter Miller
+// Copyright (C) 2001-2003, 2006-2008, 2010, 2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -17,9 +17,9 @@
 // <http://www.gnu.org/licenses/>.
 //
 
+#include <cctype>
 
 #include <srecord/input/file/atmel_generic.h>
-#include <ctype.h>
 #include <srecord/record.h>
 
 
@@ -37,14 +37,14 @@ srecord::input_file_atmel_generic::input_file_atmel_generic(
 }
 
 
-srecord::input::pointer
+srecord::input_file::pointer
 srecord::input_file_atmel_generic::create_be(const std::string &a_file_name)
 {
     return create(a_file_name, endian_big);
 }
 
 
-srecord::input::pointer
+srecord::input_file::pointer
 srecord::input_file_atmel_generic::create(const std::string &a_file_name,
     endian_t a_end)
 {
@@ -107,3 +107,21 @@ srecord::input_file_atmel_generic::get_file_format_name()
             "Atmel Generic (little-endian)"
         );
 }
+
+
+const char *
+srecord::input_file_atmel_generic::format_option_name(void)
+    const
+{
+    return
+        (
+            end == endian_big
+        ?
+            "-Atmel_Generic_BigEndian"
+        :
+            "-Atmel_Generic_LittleEndian"
+        );
+}
+
+
+// vim: set ts=8 sw=4 et :

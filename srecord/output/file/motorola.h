@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 1998, 1999, 2001, 2002, 2005-2008, 2010 Peter Miller
+// Copyright (C) 1998, 1999, 2001, 2002, 2005-2008, 2010, 2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -28,6 +28,10 @@ namespace srecord
 /**
   * The srecord::output_file_motorola class is used to represent an output
   * file which emits Motorola S-Record format.
+  *
+  * @sa
+  *     #srecord::output_file_idt,
+  *     #srecord::output_file_wilson,
   */
 class output_file_motorola:
     public output_file
@@ -70,7 +74,7 @@ protected:
     void address_length_set(int);
 
     // See base class for documentation.
-    int preferred_block_size_get() const;
+    int preferred_block_size_get(void) const;
 
     // See base class for documentation.
     bool preferred_block_size_set(int nbytes);
@@ -79,7 +83,7 @@ protected:
     void command_line(arglex_tool *cmdln);
 
     // See base class for documentation.
-    const char *format_name() const;
+    const char *format_name(void) const;
 
 private:
     /**
@@ -127,7 +131,7 @@ private:
       * The write_data_count method is used to write out a data count
       * record, if one is required.
       */
-    void write_data_count();
+    void write_data_count(void);
 
     /**
       * The write_inner method is used to write a line of output.

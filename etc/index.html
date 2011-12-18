@@ -1,6 +1,6 @@
 .\"
 .\"     srecord - manipulate eprom load files
-.\"     Copyright (C) 1998, 2000-2004, 2006-2010 Peter Miller
+.\"     Copyright (C) 1998, 2000-2004, 2006-2011 Peter Miller
 .\"
 .\"     This program is free software; you can redistribute it and/or modify
 .\"     it under the terms of the GNU General Public License as published by
@@ -84,7 +84,7 @@ to Linux.
 <img src="doc_chip.png" align="right" width=98 height=128 />
 <b>The File Formats</b></p>
 <p>
-The <i>SRecord</i> package understands a number of file formats:
+The <i>SRecord</i> package understands a huge number of file formats:
 <dl>
 <dt>
 Ascii-Hex
@@ -149,7 +149,7 @@ Fairchild Fairbug
 The Fairchild Fairbug format is understood for both reading and writing.
 <p>
 <dt>
-hexdump
+Hexdump
 <dd>
 It is possible, for output only, to produce a simple hexadecimal listing.
 This can be useful for developer debugging.
@@ -168,6 +168,11 @@ The Formatted Binary (XXDP) format is understood for both reading and writing.
 Four Packed Code (FPC)
 <dd>
 The FPC format is understood for both reading and writing.
+<p>
+<dt>
+IDT/sim
+<dd>
+The IDT/sim binary file format is understood for both reading and writing.
 <p>
 <dt>
 Intel
@@ -192,6 +197,11 @@ MIF
 <dd>
 The Memory Initialization File (MIF) format by Altera is understood for
 both reading and writing.
+<p>
+<dt>
+MIPS-Flash
+<dd>
+The MIPS Flash file format is understood for both reading and writing.
 <p>
 <dt>
 MOS Technology
@@ -222,6 +232,18 @@ and writing.
 Ohio Scientific
 <dd>
 The Ohio Scientific hexadecimal format is understood for both reading
+and writing.
+<p>
+<dt>
+PPB
+<dd>
+The Stag Prom Programmer binary format is understood for both reading
+and writing.
+<p>
+<dt>
+PPX
+<dd>
+The Stag Prom Programmer hexadecimal format is understood for both reading
 and writing.
 <p>
 <dt>

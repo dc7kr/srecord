@@ -24,10 +24,13 @@ usr/include/srecord/input/file/four_packed_code.h
 usr/include/srecord/input/file/intel.h
 usr/include/srecord/input/file/intel16.h
 usr/include/srecord/input/file/mif.h
+usr/include/srecord/input/file/mips_flash.h
 usr/include/srecord/input/file/mos_tech.h
 usr/include/srecord/input/file/msbin.h
 usr/include/srecord/input/file/needham.h
 usr/include/srecord/input/file/os65v.h
+usr/include/srecord/input/file/ppb.h
+usr/include/srecord/input/file/ppx.h
 usr/include/srecord/input/file/signetics.h
 usr/include/srecord/input/file/spasm.h
 usr/include/srecord/input/file/spectrum.h
@@ -104,10 +107,13 @@ usr/include/srecord/output/file/hexdump.h
 usr/include/srecord/output/file/intel.h
 usr/include/srecord/output/file/intel16.h
 usr/include/srecord/output/file/mif.h
+usr/include/srecord/output/file/mips_flash.h
 usr/include/srecord/output/file/mos_tech.h
 usr/include/srecord/output/file/msbin.h
 usr/include/srecord/output/file/needham.h
 usr/include/srecord/output/file/os65v.h
+usr/include/srecord/output/file/ppb.h
+usr/include/srecord/output/file/ppx.h
 usr/include/srecord/output/file/signetics.h
 usr/include/srecord/output/file/spasm.h
 usr/include/srecord/output/file/spectrum.h
@@ -127,6 +133,5 @@ usr/include/srecord/quit/prefix.h
 usr/include/srecord/record.h
 usr/include/srecord/srecord.h
 usr/lib/libsrecord.a
-usr/lib/libsrecord.la
 usr/lib/libsrecord.so
 usr/lib/pkgconfig/srecord.pc

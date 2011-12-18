@@ -260,6 +260,10 @@ A human readable hexadecimal dump (including ASCII)
 will be printed.
 .\" -----   --output -I*   -------------------------------------------------
 .TP 8n
+\fB\-IDT\fP
+An IDT System Integration Manager (IDT/sim) binary file will be written.
+(See \f[I]srec_idt\fP(5) for a description of this file format.)
+.TP 8n
 \fB\-Intel\fP
 An Intel hex format file will be written.
 (See
@@ -271,8 +275,8 @@ use the \fB\-address\[hy]length=3\fP option,
 if you want \[lq]i8hex\[rq] 16\[hy]bit addressing
 use the \fB\-address\[hy]length=2\fP option.
 .TP 8n
-\fB\-Intel_16\fP
-An Intel\[hy]16 hex format file will be written.
+\fB\-Intel_HeX_16\fP
+An Intel\[hy]16 hex format (INHX16) file will be written.
 (See
 .IR srec_intel16 (5)
 for a description of this file format.)
@@ -285,6 +289,12 @@ for a description of this file format.)
 (Altera) Memory Initialization File (MIF) format will be written.
 The \f[I]width\fP defaults to 8 bits.
 (See \f[I]srec_mif\fP(5) for a description of this file format.)
+.TP 8n
+\fB\-Mips_Flash_BigEndian\fP
+.TP 8n
+\fB\-Mips_Flash_LittleEndian\fP
+MIPS Flash file format will be written.
+(See \f[I]srec_mips_flash\fP(5) for a description of this file format.)
 .TP 8n
 \fB\-MOS_Technologies\fP
 An Mos Technologies format file will be written.
@@ -327,6 +337,14 @@ file format.
 This option says to use the Ohio Scientific hexadecimal format.
 See \f[I]srec_os65v\fP(5) for a description of this format.
 .\" -----   --output -P*   -------------------------------------------------
+.TP 8n
+\fB\-PPB\fP
+This option says to use the Stag Prom Programmer binary format.
+See \f[I]srec_ppb\fP(5) for a description of this format.
+.TP 8n
+\fB\-PPX\fP
+This option says to use the Stag Prom Programmer hexadecimal format.
+See \f[I]srec_ppx\fP(5) for a description of this format.
 .\" -----   --output -Q*   -------------------------------------------------
 .\" -----   --output -R*   -------------------------------------------------
 .\" -----   --output -S*   -------------------------------------------------

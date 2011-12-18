@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2000, 2002, 2003, 2006-2010 Peter Miller
+// Copyright (C) 2000, 2002, 2003, 2006-2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -28,7 +28,8 @@ srecord::input_file_ti_tagged::~input_file_ti_tagged()
 
 
 srecord::input_file_ti_tagged::input_file_ti_tagged(
-        const std::string &a_filename) :
+    const std::string &a_filename
+) :
     input_file(a_filename),
     address(0),
     csum(0)
@@ -36,7 +37,7 @@ srecord::input_file_ti_tagged::input_file_ti_tagged(
 }
 
 
-srecord::input::pointer
+srecord::input_file::pointer
 srecord::input_file_ti_tagged::create(const std::string &a_file_name)
 {
     return pointer(new input_file_ti_tagged(a_file_name));
@@ -44,7 +45,7 @@ srecord::input_file_ti_tagged::create(const std::string &a_file_name)
 
 
 int
-srecord::input_file_ti_tagged::get_char()
+srecord::input_file_ti_tagged::get_char(void)
 {
     int c = inherited::get_char();
     if (c < 0 || c == '\n')
@@ -167,7 +168,7 @@ srecord::input_file_ti_tagged::read(record &result)
                 if (n > max)
                     n = max;
                 result = record(record::type_header, 0, buffer, n);
-                delete buffer;
+                delete [] buffer;
             }
             return true;
         }
@@ -176,8 +177,19 @@ srecord::input_file_ti_tagged::read(record &result)
 
 
 const char *
-srecord::input_file_ti_tagged::get_file_format_name()
+srecord::input_file_ti_tagged::get_file_format_name(void)
     const
 {
     return "Texas Instruments Tagged (SDSMAC)";
 }
+
+
+const char *
+srecord::input_file_ti_tagged::format_option_name(void)
+    const
+{
+    return "-Texas_Instruments_Tagged";
+}
+
+
+// vim: set ts=8 sw=4 et :

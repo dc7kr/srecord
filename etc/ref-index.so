@@ -74,12 +74,26 @@ T}	T{
 .ad l
 Binary file format
 T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+srec idt - IDT/sim
+T}	T{
+.ad l
+binary file format
+T}
 srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
 .ad r
 srec stewie - Stewie's
 T}	T{
 .ad l
 binary file format
+T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+srec ppb - Stag Prom Programmer
+T}	T{
+.ad l
+binary format
 T}
 srec_formatted_binary(5)	\*[Page*Of*srec_formatted_binary(5)]	T{
 .ad r
@@ -382,6 +396,20 @@ T}	T{
 .ad l
 file format
 T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+srec idt - IDT/sim binary
+T}	T{
+.ad l
+file format
+T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+srec mips flash - MIPS-Flash
+T}	T{
+.ad l
+file format
+T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
 srec mos tech - MOS Technology
@@ -564,6 +592,20 @@ T}	T{
 .ad l
 file specifications
 T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+srec mips flash - MIPS-
+T}	T{
+.ad l
+Flash file format
+T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+srec mips
+T}	T{
+.ad l
+flash - MIPS-Flash file format
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp - compare two EPROM load files
@@ -634,9 +676,23 @@ T}	T{
 .ad l
 format
 T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+srec idt - IDT/sim binary file
+T}	T{
+.ad l
+format
+T}
 srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
 .ad r
 srec mif - Memory Initialization File (MIF)
+T}	T{
+.ad l
+format
+T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+srec mips flash - MIPS-Flash file
 T}	T{
 .ad l
 format
@@ -707,6 +763,20 @@ T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
 srec os65v - OS65V Loader file
+T}	T{
+.ad l
+format
+T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+srec ppb - Stag Prom Programmer binary
+T}	T{
+.ad l
+format
+T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+srec ppx - Stag Prom Programmer hexadecimal
 T}	T{
 .ad l
 format
@@ -893,6 +963,13 @@ T}	T{
 .ad l
 hexadecimal file format
 T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+srec ppx - Stag Prom Programmer
+T}	T{
+.ad l
+hexadecimal format
+T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
 srec intel - Intel
@@ -920,6 +997,20 @@ srec examples - examples of
 T}	T{
 .ad l
 how to use SRecord
+T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+idt - IDT/sim binary file format
+T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+srec idt -
+T}	T{
+.ad l
+IDT/sim binary file format
 T}
 srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
 .ad r
@@ -1138,6 +1229,20 @@ T}	T{
 .ad l
 mif - Memory Initialization File (MIF) format
 T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+srec mips flash -
+T}	T{
+.ad l
+MIPS-Flash file format
+T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+mips flash - MIPS-Flash file format
+T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
 SRecord - Intel Absolute Object
@@ -1236,12 +1341,54 @@ T}	T{
 .ad l
 packed code file format
 T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+ppb - Stag Prom Programmer binary format
+T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+ppx - Stag Prom Programmer hexadecimal format
+T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
 srec needham - Needham EMP-series
 T}	T{
 .ad l
 programmer ASCII file format
+T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+srec ppb - Stag Prom
+T}	T{
+.ad l
+Programmer binary format
+T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+srec ppx - Stag Prom
+T}	T{
+.ad l
+Programmer hexadecimal format
+T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+srec ppb - Stag
+T}	T{
+.ad l
+Prom Programmer binary format
+T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+srec ppx - Stag
+T}	T{
+.ad l
+Prom Programmer hexadecimal format
 T}
 srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
 .ad r
@@ -1305,6 +1452,13 @@ SRecord -
 T}	T{
 .ad l
 Signetics file format
+T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+srec idt - IDT/
+T}	T{
+.ad l
+sim binary file format
 T}
 srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 .ad r
@@ -1439,6 +1593,13 @@ T}	T{
 .ad l
 srec forth - FORTH file format
 T}
+srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec idt - IDT/sim binary file format
+T}
 srec_info(1)	\*[Page*Of*srec_info(1)]	T{
 .ad r
 
@@ -1466,6 +1627,13 @@ srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
 T}	T{
 .ad l
 srec mif - Memory Initialization File (MIF) format
+T}
+srec_mips_flash(5)	\*[Page*Of*srec_mips_flash(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec mips flash - MIPS-Flash file format
 T}
 srec_mos_tech(5)	\*[Page*Of*srec_mos_tech(5)]	T{
 .ad r
@@ -1565,6 +1733,20 @@ T}	T{
 .ad l
 srec os65v - OS65V Loader file format
 T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec ppb - Stag Prom Programmer binary format
+T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec ppx - Stag Prom Programmer hexadecimal format
+T}
 srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 .ad r
 
@@ -1634,6 +1816,20 @@ srec_wilson(5)	\*[Page*Of*srec_wilson(5)]	T{
 T}	T{
 .ad l
 srec wilson - wilson file format
+T}
+srec_ppb(5)	\*[Page*Of*srec_ppb(5)]	T{
+.ad r
+srec ppb -
+T}	T{
+.ad l
+Stag Prom Programmer binary format
+T}
+srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
+.ad r
+srec ppx -
+T}	T{
+.ad l
+Stag Prom Programmer hexadecimal format
 T}
 srec_stewie(5)	\*[Page*Of*srec_stewie(5)]	T{
 .ad r

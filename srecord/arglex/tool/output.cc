@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2001-2004, 2006-2010 Peter Miller
+// Copyright (C) 2001-2004, 2006-2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -34,14 +34,18 @@
 #include <srecord/output/file/forth.h>
 #include <srecord/output/file/four_packed_code.h>
 #include <srecord/output/file/hexdump.h>
+#include <srecord/output/file/idt.h>
 #include <srecord/output/file/intel.h>
 #include <srecord/output/file/intel16.h>
 #include <srecord/output/file/mif.h>
+#include <srecord/output/file/mips_flash.h>
 #include <srecord/output/file/mos_tech.h>
 #include <srecord/output/file/motorola.h>
 #include <srecord/output/file/msbin.h>
 #include <srecord/output/file/needham.h>
 #include <srecord/output/file/os65v.h>
+#include <srecord/output/file/ppb.h>
+#include <srecord/output/file/ppx.h>
 #include <srecord/output/file/signetics.h>
 #include <srecord/output/file/spasm.h>
 #include <srecord/output/file/spectrum.h>
@@ -202,6 +206,11 @@ srecord::arglex_tool::get_output()
         ofp = srecord::output_file_intel::create(fn);
         break;
 
+    case token_idt:
+        token_next();
+        ofp = srecord::output_file_idt::create(fn);
+        break;
+
     case token_intel16:
         token_next();
         ofp = srecord::output_file_intel16::create(fn);
@@ -210,6 +219,16 @@ srecord::arglex_tool::get_output()
     case token_memory_initialization_file:
         token_next();
         ofp = srecord::output_file_mif::create(fn);
+        break;
+
+    case token_mips_flash_be:
+        token_next();
+        ofp = srecord::output_file_mips_flash::create_be(fn);
+        break;
+
+    case token_mips_flash_le:
+        token_next();
+        ofp = srecord::output_file_mips_flash::create_le(fn);
         break;
 
     case token_mos_tech:
@@ -230,6 +249,16 @@ srecord::arglex_tool::get_output()
     case token_ohio_scientific:
         token_next();
         ofp = srecord::output_file_os65v::create(fn);
+        break;
+
+    case token_ppb:
+        token_next();
+        ofp = srecord::output_file_ppb::create(fn);
+        break;
+
+    case token_ppx:
+        token_next();
+        ofp = srecord::output_file_ppx::create(fn);
         break;
 
     case token_signetics:

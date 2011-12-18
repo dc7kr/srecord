@@ -21,7 +21,7 @@ TEST_SUBJECT="-gen -repeat-string nnn"
 . test_prelude
 
 cat > test.ok << 'fubar'
-00000000: 39 38 37 39 38 37 39 38 37 39 38 37 39 38 37 39  9879879879879879
+00000000: 39 38 37 39 38 37 39 38 37 39 38 37 39 38 37 39  #9879879879879879
 fubar
 if test $? -ne 0; then no_result; fi
 

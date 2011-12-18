@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2000-2002, 2005-2008, 2010 Peter Miller
+// Copyright (C) 2000-2002, 2005-2008, 2010, 2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -26,8 +26,14 @@ namespace srecord
 {
 
 /**
-  * The srecord::output_file_wilson class is used to
-  * represent an output file which is in Tektronix format.
+  * The srecord::output_file_wilson class is used to represent an output
+  * file which is in "wilson" format.  This file format was reverse
+  * engineered, it wasn't documented anywhere.  More information would
+  * be welcome.
+  *
+  * @sa
+  *     #srecord::output_file_motorola,
+  *     #srecord::output_file_idt,
   */
 class output_file_wilson:
     public output_file
@@ -80,6 +86,9 @@ protected:
 
     // See base class for documentation.
     const char *format_name() const;
+
+    // See base class for documentation.
+    bool is_binary(void) const;
 
 private:
     /**

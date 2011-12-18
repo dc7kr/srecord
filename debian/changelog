@@ -1,8 +1,128 @@
+srecord (1.58.D001-1) unstable; urgency=low
+
+  * This change set prepares SRecord for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 20:25:42 +1100
+
+srecord (1.57.D017-1) unstable; urgency=low
+
+  * This change set fixes several spelling errors in the manual pages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 19:31:34 +1100
+
+srecord (1.57.D016-1) unstable; urgency=low
+
+  * For symmetry with output_file::is_binary the output_file::mode method has
+    been replaced with output_file::is_binary
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 19:24:19 +1100
+
+srecord (1.57.D015-1) unstable; urgency=low
+
+  * The --guess command line option, for guessing the file format, now also
+    tells you the command line option you could have used instead of --guess.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 19:04:32 +1100
+
+srecord (1.57.D014-1) unstable; urgency=low
+
+  * The Intergated Device Technology (IDT) system integration manager (IDT/sim)
+    binary format is now understood for both reading and writing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 10:56:34 +1100
+
+srecord (1.57.D013-1) unstable; urgency=low
+
+  * The Stag Prom Programmer binary format is now supported for both reading and
+    writing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 17 Dec 2011 23:04:20 +1100
+
+srecord (1.57.D012-1) unstable; urgency=low
+
+  * The Stag Prom Programer hexadecimal format is now understood for both
+    reading and writing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 17 Dec 2011 18:47:19 +1100
+
+srecord (1.57.D011-1) unstable; urgency=low
+
+  * The MIPS-Flash fiel format is now supported for both reading and writing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 17 Dec 2011 14:15:05 +1100
+
+srecord (1.57.D010-1) unstable; urgency=low
+
+  * This change set adds some more cross references to the srec_binary(5) man
+    page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 15 Sep 2011 22:02:22 +1000
+
+srecord (1.57.D009-1) unstable; urgency=low
+
+  * Bernhard Weirich <Bernhard.Weirich@riedel.net> discovered that a backward
+    compatible option had been omitted when the -INtel_16 option was renamed -
+    INtel_HeX_16 to more closely match the usual abbreviation (INHX16) for this
+    format.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 13 Sep 2011 21:46:54 +1000
+
+srecord (1.57.D008-1) unstable; urgency=low
+
+  * The windows build instructions have been greatly imptoved, based on the
+    experiences of Jens Heilig <jens@familie-heilig.net> which he has generously
+    shared.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 31 Jul 2011 20:41:17 +1000
+
+srecord (1.57.D007-1) unstable; urgency=low
+
+  * The srec_cat command is now able to read some hexdump files (although it is
+    possible for it to guess wrong about where data bytes appear in each line).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 23 Jul 2011 23:38:26 +1000
+
+srecord (1.57.D006-1) unstable; urgency=low
+
+  * This change set improves the documentation in the manual about sequence
+    warnings.  The -disable-sequence-warnings must come before the input file on
+    the command line.
+  * My thanks to emil gracic <emil_kruki@yahoo.com> for reporting this problem.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 22 Jul 2011 09:27:20 +1000
+
+srecord (1.57.D005-1) unstable; urgency=low
+
+  * This change set fixes bugs found by the cppcheck(1) command.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 29 Jun 2011 19:15:39 +1000
+
+srecord (1.57.D004-1) unstable; urgency=low
+
+  * The debian folk take exception to the "almost always useless" *.la files
+    install by libtool.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 29 Jun 2011 19:05:52 +1000
+
+srecord (1.57.D003-1) unstable; urgency=low
+
+  * This change set silences the Lintian warning about unnecessaryily linked
+    shared libraries.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 12 Jun 2011 17:02:07 +1000
+
+srecord (1.57.D002-1) unstable; urgency=low
+
+  * This change set adds an "apt:" link to the download page, for automagic
+    software install on Ubuntu.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 11 Jun 2011 09:40:47 +1000
+
 srecord (1.57.D001-1) unstable; urgency=low
 
   * This change set prepares SRecord for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Jun 2011 10:38:20 +1000
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Jun 2011 10:42:06 +1000
 
 srecord (1.56.D011-1) unstable; urgency=low
 

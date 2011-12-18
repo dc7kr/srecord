@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 1998-2010 Peter Miller
+// Copyright (C) 1998-2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -34,14 +34,19 @@
 #include <srecord/input/file/fastload.h>
 #include <srecord/input/file/formatted_binary.h>
 #include <srecord/input/file/four_packed_code.h>
+#include <srecord/input/file/hexdump.h>
+#include <srecord/input/file/idt.h>
 #include <srecord/input/file/intel.h>
 #include <srecord/input/file/intel16.h>
 #include <srecord/input/file/mif.h>
+#include <srecord/input/file/mips_flash.h>
 #include <srecord/input/file/mos_tech.h>
 #include <srecord/input/file/motorola.h>
 #include <srecord/input/file/msbin.h>
 #include <srecord/input/file/needham.h>
 #include <srecord/input/file/os65v.h>
+#include <srecord/input/file/ppb.h>
+#include <srecord/input/file/ppx.h>
 #include <srecord/input/file/signetics.h>
 #include <srecord/input/file/spasm.h>
 #include <srecord/input/file/spectrum.h>
@@ -106,6 +111,7 @@ srecord::arglex_tool::get_endian_by_token(int tok)
     case token_length_be:
     case token_maximum_be:
     case token_minimum_be:
+    case token_mips_flash_be:
     case token_spasm_be:
         return endian_big;
 
@@ -126,6 +132,7 @@ srecord::arglex_tool::get_endian_by_token(int tok)
     case token_maximum_le:
     case token_minimum_le:
     case token_msbin:
+    case token_mips_flash_le:
     case token_spasm_le:
         return endian_little;
 
@@ -182,7 +189,7 @@ srecord::arglex_tool::get_inclusive_by_token(int tok)
 
 
 srecord::input::pointer
-srecord::arglex_tool::get_simple_input()
+srecord::arglex_tool::get_simple_input(void)
 {
     std::string fn = "-";
     switch (token_cur())
@@ -333,6 +340,16 @@ srecord::arglex_tool::get_simple_input()
         ifp = input_file::guess(fn);
         break;
 
+    case token_hexdump:
+        token_next();
+        ifp = input_file_hexdump::create(fn);
+        break;
+
+    case token_idt:
+        token_next();
+        ifp = input_file_idt::create(fn);
+        break;
+
     case token_intel:
         token_next();
         ifp = input_file_intel::create(fn);
@@ -348,6 +365,16 @@ srecord::arglex_tool::get_simple_input()
         ifp = input_file_mif::create(fn);
         break;
 
+    case token_mips_flash_be:
+        token_next();
+        ifp = input_file_mips_flash::create_be(fn);
+        break;
+
+    case token_mips_flash_le:
+        token_next();
+        ifp = input_file_mips_flash::create_le(fn);
+        break;
+
     case token_mos_tech:
         token_next();
         ifp = input_file_mos_tech::create(fn);
@@ -358,14 +385,24 @@ srecord::arglex_tool::get_simple_input()
         ifp = input_file_msbin::create(fn);
         break;
 
+    case token_needham_hex:
+        token_next();
+        ifp = input_file_needham::create(fn);
+        break;
+
     case token_ohio_scientific:
         token_next();
         ifp = input_file_os65v::create(fn);
         break;
 
-    case token_needham_hex:
+    case token_ppx:
         token_next();
-        ifp = input_file_needham::create(fn);
+        ifp = input_file_ppx::create(fn);
+        break;
+
+    case token_ppb:
+        token_next();
+        ifp = input_file_ppb::create(fn);
         break;
 
     case token_signetics:

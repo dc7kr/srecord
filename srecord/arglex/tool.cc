@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 1998-2010 Peter Miller
+// Copyright (C) 1998-2011 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -31,6 +31,7 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
 {
     static const table_ty table[] =
     {
+        // sort using "!LANG=C sort -f"
         { "(", token_paren_begin, },
         { ")", token_paren_end, },
         { "+", token_union, },
@@ -106,9 +107,11 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-HAVal", token_haval, },
         { "-HEXadecimal_Dump", token_hexdump, },
         { "-HEXadecimal_STyle", token_style_hexadecimal, },
+        { "-Integrated_Device_Technology", token_idt, },
         { "-IGnore_Checksums", token_ignore_checksums, },
         { "-INCLude", token_include, },
         { "-INtel_HeXadecimal_16", token_intel16, },
+        { "-INtel_16", token_intel16, }, // not the preferred name
         { "-Intel", token_intel, },
         { "-International_Telecommunication_Union", token_crc16_ccitt,},
         { "-INTERSection", token_intersection, },
@@ -143,6 +146,8 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-MInimum-Address", token_minimum_address, },
         { "-MInimum", token_minimum_address, },        // deprecated, put second
         { "-MINUs", token_minus, },
+        { "-Mips_Flash_BigEndian", token_mips_flash_be, },
+        { "-Mips_Flash_LittleEndian", token_mips_flash_le, },
         { "-MOS_Technologies", token_mos_tech, },
         { "-Most_To_Least", token_crc16_most_to_least },
         { "-Motorola", token_motorola, },
@@ -160,6 +165,8 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-Output", token_output, },
         { "-Output_Words", token_output_word, },
         { "-OVer", token_over, },
+        { "-Prom_Pogrammer_Binary", token_ppb, },
+        { "-Prom_Pogrammer_heXadecimal", token_ppx, },
         { "-RAM", token_ram, },
         { "-Random_Fill", token_random_fill, },
         { "-RANDom", token_random, },
@@ -186,6 +193,9 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-SPEctrum", token_spectrum, },
         { "-SPlit", token_split, },
         { "-S_record", token_motorola, },
+        { "-Stag_Binary", token_ppb, },
+        { "-Stag_Hexadecimal", token_ppx, },
+        { "-Signed_BiNary", token_stewie, },
         { "-STewie", token_stewie, },
         { "-SUBtract", token_minus, },
         { "-Tektronix_Extended", token_tektronix_extended, },

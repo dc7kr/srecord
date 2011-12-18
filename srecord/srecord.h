@@ -37,10 +37,13 @@
 #include <srecord/input/file/intel.h>
 #include <srecord/input/file/intel16.h>
 #include <srecord/input/file/mif.h>
+#include <srecord/input/file/mips_flash.h>
 #include <srecord/input/file/mos_tech.h>
 #include <srecord/input/file/msbin.h>
 #include <srecord/input/file/needham.h>
 #include <srecord/input/file/os65v.h>
+#include <srecord/input/file/ppb.h>
+#include <srecord/input/file/ppx.h>
 #include <srecord/input/file/signetics.h>
 #include <srecord/input/file/spasm.h>
 #include <srecord/input/file/spectrum.h>
@@ -117,10 +120,13 @@
 #include <srecord/output/file/intel.h>
 #include <srecord/output/file/intel16.h>
 #include <srecord/output/file/mif.h>
+#include <srecord/output/file/mips_flash.h>
 #include <srecord/output/file/mos_tech.h>
 #include <srecord/output/file/msbin.h>
 #include <srecord/output/file/needham.h>
 #include <srecord/output/file/os65v.h>
+#include <srecord/output/file/ppb.h>
+#include <srecord/output/file/ppx.h>
 #include <srecord/output/file/signetics.h>
 #include <srecord/output/file/spasm.h>
 #include <srecord/output/file/spectrum.h>

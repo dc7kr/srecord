@@ -61,7 +61,7 @@ DESCRIPTION
                The Fairchild Fairbug format is understood for both reading and
                writing.
 
-       hexdump It is possible to get a simple hexdump as output.
+       Hexdump It is possible to get a simple hexdump as output.
 
        LSI Logic Fast Load
                The LSI Logic Fast Load format is understood for both reading
@@ -73,6 +73,9 @@ DESCRIPTION
 
        Four Packed Code (FPC)
                The FPC format is understood for both reading and writing.
+
+       IDT/sim The IDT/sim binary file format is understood for both reading
+               and writing.
 
        Intel   The Intel hexadecimal format is understood for both reading and
                writing.  (Also known as the Intel MCS-86 Object format.)
@@ -92,6 +95,10 @@ DESCRIPTION
                The MOS Technology hexadecimal format is understood for both
                reading and writing.
 
+       MIPS-Flash
+               The MIPS Flash file format is supported for both reading and
+               writing.
+
        Motorola S-Record
                The Motorola hexadecimal S-Record format is understood for both
                reading and writing.  (Also known as the Exorciser, Exormacs or
@@ -100,12 +107,17 @@ DESCRIPTION
        MsBin   The Windows CE Binary Image Data Format is supported both for
                reading and writing.
 
-       The Needham Electronics ASCII file format is understood for noth
-       reading
-               and writing.
+       Needham The Needham Electronics ASCII file format is understood for
+               noth reading and writing.
 
        OS65V   The Ohio Scientific hexadecimal format is understood for both
                reading and writing.
+
+       PPB     The Stag Prom Programmer binary format is understood for both
+               reading and writing.
+
+       PPX     The Stag Prom Programmer hexadecimal format is understood for
+               both reading and writing.
 
        Signetics
                The Signetics format is understood for both reading and
@@ -229,11 +241,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.57.README   # Description, from the tar file
-           File:   srecord-1.57.lsm      # Description, LSM format
-           File:   srecord-1.57.spec     # RedHat package specification
-           File:   srecord-1.57.tar.gz   # the complete source
-           File:   srecord-1.57.pdf      # Reference Manual
+           File:   srecord-1.58.README   # Description, from the tar file
+           File:   srecord-1.58.lsm      # Description, LSM format
+           File:   srecord-1.58.spec     # RedHat package specification
+           File:   srecord-1.58.tar.gz   # the complete source
+           File:   srecord-1.58.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -245,7 +257,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.57
+       srecord version 1.58
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008, 2009, 2010, 2011 Peter Miller
 
@@ -274,10 +286,43 @@ RELEASE NOTES
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
 
+   Version 1.58 (2011-Dec-18)
+       * The -guess command line option, for guessing the file format, now
+         also tells you the command line option you could have used instead of
+         -guess for the exact format.
+
+       * The Intergated Device Technology (IDT) system integration manager
+         (IDT/sim) binary format is now understood for both reading and
+         writing.
+
+       * The Stag Prom Programmer binary format is now supported for both
+         reading and writing.
+
+       * The Stag Prom Programer hexadecimal format is now understood for both
+         reading and writing.
+
+       * The MIPS-Flash fiel format is now supported for both reading and
+         writing.
+
+       * Bernhard Weirich <Bernhard.Weirich@riedel.net> discovered that a
+         backward compatible option had been omitted when the -INtel_16 option
+         was renamed -INtel_HeX_16 to more closely match the usual
+         abbreviation (INHX16) for this format.  The backwards compatible
+         option name has been reintroduced.
+
+       * The windows build instructions have been greatly imptoved, based on
+         the experiences of Jens Heilig <jens@familie-heilig.net> which he has
+         generously shared.
+
+       * The documentation in the manual about sequence warnings has been
+         improved.  The -disable-sequence-warnings option must come before the
+         input file on the command line.  My thanks to Emil Gracic
+         <emil_kruki@yahoo.com> for reporting this problem.
+
    Version 1.57 (2011-Jun-09)
        * The byte order of the fletcher16 output has been reversed.
 
-       * The meaning of the --address-length option has been change for the
+       * The meaning of the -address-length option has been change for the
          Intel output format. Previously, 2 meant using i16hex 20-bit
          segmented addressing, and >2 meant using i32hex extended addressing.
          This has been changed: a value of 2 requests i8hex 16-bit addressing,
@@ -286,10 +331,9 @@ RELEASE NOTES
          Phillips <srp@CSECorporation.com> for reporting the absence of i8hex
          support.
 
-       * The --generate --repeat-string option is now able to take a string
-         that looks like a number as the text to be repeated. My thanks to
-         Stephen R. Phillips <srp@CSECorporation.com> for reporting this
-         problem.
+       * The -generate -repeat-string option is now able to take a string that
+         looks like a number as the text to be repeated. My thanks to Stephen
+         R. Phillips <srp@CSECorporation.com> for reporting this problem.
 
        * Luca Giancristofaro <luca.giancristofaro@prosa.com> discovered a
          WinAVR linker that is a sandwich short of a picnic: it generated non-
@@ -314,11 +358,11 @@ RELEASE NOTES
          address information is seen before the first data record.  Defaults
          to false (disabled).
 
-       * There is a new srec_cat -output-block-packing option, that may be
+       * There is a new srec_cat(1) -output-block-packing option, that may be
          used to pack output records even when they cross internal SRecord
          boundaries.
 
-       * There is a new srec_cat -output-block-size so that you can specify
+       * There is a new srec_cat(1) -output-block-size so that you can specify
          the block size exactly, rather than implying it with the line length
          option.
 
