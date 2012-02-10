@@ -176,9 +176,9 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so etc/new.1.11.so \
 		etc/new.1.45.so etc/new.1.46.so etc/new.1.47.so etc/new.1.48.so \
 		etc/new.1.49.so etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so \
-		etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/version.so
+		etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so \
+		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so \
+		etc/new.so etc/version.so
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -195,8 +195,8 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.48.so etc/new.1.49.so etc/new.1.5.so etc/new.1.50.so \
 		etc/new.1.51.so etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
 		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so \
-		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so \
-		etc/new.so etc/version.so
+		etc/new.1.59.so etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
 
 etc/debian.png: etc/debian.png.uue
@@ -232,27 +232,28 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		etc/new.1.46.so etc/new.1.47.so etc/new.1.48.so etc/new.1.49.so \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so etc/new.1.52.so \
 		etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so etc/new.1.56.so \
-		etc/new.1.57.so etc/new.1.58.so etc/new.1.6.so etc/new.1.7.so \
-		etc/new.1.8.so etc/new.1.9.so etc/new.so etc/ref-index.so \
-		etc/ref-parts.so etc/ref-toc.so etc/version.so man/man1/o_at.so \
-		man/man1/o_ignore_checksums.so man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/o_sequence.so \
-		man/man1/srec_cat.1 man/man1/srec_cmp.1 man/man1/srec_examples.1 \
-		man/man1/srec_info.1 man/man1/srec_input.1 \
-		man/man1/srec_license.1 man/man1/z_copyright.so \
-		man/man1/z_exit.so man/man1/z_options.so man/man3/srecord.3 \
-		man/man3/srecord_license.3 man/man5/srec_aomf.5 \
-		man/man5/srec_ascii_hex.5 man/man5/srec_atmel_generic.5 \
-		man/man5/srec_binary.5 man/man5/srec_brecord.5 \
-		man/man5/srec_cosmac.5 man/man5/srec_dec_binary.5 \
-		man/man5/srec_emon52.5 man/man5/srec_fairchild.5 \
-		man/man5/srec_fastload.5 man/man5/srec_formatted_binary.5 \
-		man/man5/srec_forth.5 man/man5/srec_fpc.5 man/man5/srec_idt.5 \
-		man/man5/srec_intel.5 man/man5/srec_intel16.5 \
-		man/man5/srec_mif.5 man/man5/srec_mips_flash.5 \
-		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
-		man/man5/srec_msbin.5 man/man5/srec_needham.5 \
-		man/man5/srec_os65v.5 man/man5/srec_ppb.5 man/man5/srec_ppx.5 \
+		etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so \
+		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
+		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so etc/version.so \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/o_sequence.so man/man1/srec_cat.1 man/man1/srec_cmp.1 \
+		man/man1/srec_examples.1 man/man1/srec_info.1 \
+		man/man1/srec_input.1 man/man1/srec_license.1 \
+		man/man1/z_copyright.so man/man1/z_exit.so man/man1/z_options.so \
+		man/man3/srecord.3 man/man3/srecord_license.3 \
+		man/man5/srec_aomf.5 man/man5/srec_ascii_hex.5 \
+		man/man5/srec_atmel_generic.5 man/man5/srec_binary.5 \
+		man/man5/srec_brecord.5 man/man5/srec_cosmac.5 \
+		man/man5/srec_dec_binary.5 man/man5/srec_emon52.5 \
+		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
+		man/man5/srec_formatted_binary.5 man/man5/srec_forth.5 \
+		man/man5/srec_fpc.5 man/man5/srec_idt.5 man/man5/srec_intel.5 \
+		man/man5/srec_intel16.5 man/man5/srec_mif.5 \
+		man/man5/srec_mips_flash.5 man/man5/srec_mos_tech.5 \
+		man/man5/srec_motorola.5 man/man5/srec_msbin.5 \
+		man/man5/srec_needham.5 man/man5/srec_os65v.5 \
+		man/man5/srec_ppb.5 man/man5/srec_ppx.5 \
 		man/man5/srec_signetics.5 man/man5/srec_spasm.5 \
 		man/man5/srec_spectrum.5 man/man5/srec_stewie.5 \
 		man/man5/srec_tektronix.5 man/man5/srec_tektronix_extended.5 \
@@ -794,7 +795,8 @@ srecord/bitrev.lo: srecord/bitrev.cc srecord/bitrev.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/bitrev.cc -o srecord/bitrev.lo
 
-srecord/crc16.lo: srecord/crc16.cc srecord/bitrev.h srecord/crc16.h
+srecord/crc16.lo: srecord/crc16.cc srecord/bitrev.h srecord/crc16.h \
+		srecord/format_printf.h srecord/quit.h srecord/sizeof.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/crc16.cc -o srecord/crc16.lo
 
@@ -3017,6 +3019,9 @@ t0218a: test/02/t0218a.sh all
 t0219a: test/02/t0219a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0219a.sh
 
+t0220a: test/02/t0220a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0220a.sh
+
 test_crc16/main.lo: test_crc16/main.cc srecord/bitrev.h srecord/crc16.h \
 		srecord/format_printf.h srecord/progname.h srecord/quit.h \
 		srecord/versn_stamp.h
@@ -3230,7 +3235,7 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a t0010a \
 		t0187a t0188a t0189a t0191a t0192a t0193a t0195a t0196a t0197a \
 		t0198a t0199a t0200a t0201a t0202a t0203a t0205a t0206a t0207a \
 		t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a t0218a \
-		t0219a
+		t0219a t0220a
 	@echo Passed All Tests
 
 clean-obj:

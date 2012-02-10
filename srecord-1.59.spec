@@ -16,7 +16,7 @@
 #
 Summary: srecord
 Name: srecord
-Version: 1.58.D001
+Version: 1.59.D001
 Release: 1
 License: GPL
 Group: Development/Tools

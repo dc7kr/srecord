@@ -13,10 +13,17 @@ about EPROM load files
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
-SRecord - Intel
+srec aomf - Intel
 T}	T{
 .ad l
 Absolute Object Module Format
+T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+aomf - Intel Absolute Object Module Format
 T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
@@ -59,6 +66,13 @@ srec
 T}	T{
 .ad l
 binary - binary file format
+T}
+srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
+.ad r
+srec dec
+T}	T{
+.ad l
+binary - DEC Binary (XXDP) file format
 T}
 srec_binary(5)	\*[Page*Of*srec_binary(5)]	T{
 .ad r
@@ -104,14 +118,14 @@ binary - Formatted Binary file format
 T}
 srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
 .ad r
-SRecord - Windows CE
+srec msbin - Windows CE
 T}	T{
 .ad l
 Binary Image Data Format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
-SRecord - DEC
+srec dec binary - DEC
 T}	T{
 .ad l
 Binary (XXDP) file format
@@ -146,7 +160,7 @@ cat - manipulate EPROM load files
 T}
 srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
 .ad r
-SRecord - Windows
+srec msbin - Windows
 T}	T{
 .ad l
 CE Binary Image Data Format
@@ -160,7 +174,7 @@ cmp - compare two EPROM load files for equality
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
-SRecord - four packed
+srec fpc - four packed
 T}	T{
 .ad l
 code file format
@@ -188,14 +202,21 @@ cosmac - RCA Cosmac Elf file format
 T}
 srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
 .ad r
-SRecord - Windows CE Binary Image
+srec msbin - Windows CE Binary Image
 T}	T{
 .ad l
 Data Format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
-SRecord -
+srec
+T}	T{
+.ad l
+dec binary - DEC Binary (XXDP) file format
+T}
+srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
+.ad r
+srec dec binary -
 T}	T{
 .ad l
 DEC Binary (XXDP) file format
@@ -209,7 +230,7 @@ Dragonball bootstrap record format
 T}
 srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
 .ad r
-SRecord -
+srec emon52 -
 T}	T{
 .ad l
 Elektor Monitor (EMON52) file format
@@ -223,7 +244,14 @@ Elf file format
 T}
 srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
 .ad r
-SRecord - Elektor Monitor (
+srec
+T}	T{
+.ad l
+emon52 - Elektor Monitor (EMON52) file format
+T}
+srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
+.ad r
+srec emon52 - Elektor Monitor (
 T}	T{
 .ad l
 EMON52) file format
@@ -251,7 +279,7 @@ EPROM load files
 T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
-SRecord - library to manipulate
+srecord - library to manipulate
 T}	T{
 .ad l
 EPROM load files
@@ -368,6 +396,20 @@ T}	T{
 .ad l
 file format
 T}
+srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
+.ad r
+srec dec binary - DEC Binary (XXDP)
+T}	T{
+.ad l
+file format
+T}
+srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
+.ad r
+srec emon52 - Elektor Monitor (EMON52)
+T}	T{
+.ad l
+file format
+T}
 srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
 .ad r
 srec fairchild - Fairchild Fairbug
@@ -392,6 +434,13 @@ T}
 srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
 .ad r
 srec forth - FORTH
+T}	T{
+.ad l
+file format
+T}
+srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
+.ad r
+srec fpc - four packed code
 T}	T{
 .ad l
 file format
@@ -431,37 +480,16 @@ T}	T{
 .ad l
 file format
 T}
-srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
+srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
-SRecord - DEC Binary (XXDP)
-T}	T{
-.ad l
-file format
-T}
-srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
-.ad r
-SRecord - Elektor Monitor (EMON52)
-T}	T{
-.ad l
-file format
-T}
-srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
-.ad r
-SRecord - four packed code
+srec os65v - OS65V Loader
 T}	T{
 .ad l
 file format
 T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r
-SRecord - Signetics
-T}	T{
-.ad l
-file format
-T}
-srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
-.ad r
-srec os65v - OS65V Loader
+srec signetics - Signetics
 T}	T{
 .ad l
 file format
@@ -573,7 +601,7 @@ files
 T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
-SRecord - library to manipulate EPROM load
+srecord - library to manipulate EPROM load
 T}	T{
 .ad l
 files
@@ -613,6 +641,13 @@ T}	T{
 .ad l
 for equality
 T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+srec aomf - Intel Absolute Object Module
+T}	T{
+.ad l
+Format
+T}
 srec_ascii_hex(5)	\*[Page*Of*srec_ascii_hex(5)]	T{
 .ad r
 srec ascii hex - Ascii-Hex file
@@ -648,6 +683,20 @@ T}	T{
 .ad l
 format
 T}
+srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
+.ad r
+srec dec binary - DEC Binary (XXDP) file
+T}	T{
+.ad l
+format
+T}
+srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
+.ad r
+srec emon52 - Elektor Monitor (EMON52) file
+T}	T{
+.ad l
+format
+T}
 srec_fairchild(5)	\*[Page*Of*srec_fairchild(5)]	T{
 .ad r
 srec fairchild - Fairchild Fairbug file
@@ -672,6 +721,13 @@ T}
 srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
 .ad r
 srec forth - FORTH file
+T}	T{
+.ad l
+format
+T}
+srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
+.ad r
+srec fpc - four packed code file
 T}	T{
 .ad l
 format
@@ -711,54 +767,19 @@ T}	T{
 .ad l
 format
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+srec msbin - Windows CE Binary Image Data
+T}	T{
+.ad l
+Format
+T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
 srec needham - Needham EMP-series programmer ASCII file
 T}	T{
 .ad l
 format
-T}
-srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
-.ad r
-SRecord - DEC Binary (XXDP) file
-T}	T{
-.ad l
-format
-T}
-srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
-.ad r
-SRecord - Elektor Monitor (EMON52) file
-T}	T{
-.ad l
-format
-T}
-srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
-.ad r
-SRecord - four packed code file
-T}	T{
-.ad l
-format
-T}
-srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
-.ad r
-SRecord - Intel Absolute Object Module
-T}	T{
-.ad l
-Format
-T}
-srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
-.ad r
-SRecord - Signetics file
-T}	T{
-.ad l
-format
-T}
-srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
-.ad r
-SRecord - Windows CE Binary Image Data
-T}	T{
-.ad l
-Format
 T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
@@ -777,6 +798,13 @@ T}
 srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
 .ad r
 srec ppx - Stag Prom Programmer hexadecimal
+T}	T{
+.ad l
+format
+T}
+srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
+.ad r
+srec signetics - Signetics file
 T}	T{
 .ad l
 format
@@ -895,10 +923,17 @@ forth - FORTH file format
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
-SRecord -
+srec fpc -
 T}	T{
 .ad l
 four packed code file format
+T}
+srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+fpc - four packed code file format
 T}
 srec_brecord(5)	\*[Page*Of*srec_brecord(5)]	T{
 .ad r
@@ -1014,7 +1049,7 @@ IDT/sim binary file format
 T}
 srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
 .ad r
-SRecord - Windows CE Binary
+srec msbin - Windows CE Binary
 T}	T{
 .ad l
 Image Data Format
@@ -1077,7 +1112,7 @@ intel16 - Intel Hexadecimal 16-bit file format specification
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
-SRecord -
+srec aomf -
 T}	T{
 .ad l
 Intel Absolute Object Module Format
@@ -1119,7 +1154,7 @@ LGPG - GNU Lesser General Public License
 T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
-SRecord -
+srecord -
 T}	T{
 .ad l
 library to manipulate EPROM load files
@@ -1161,7 +1196,7 @@ load files
 T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
-SRecord - library to manipulate EPROM
+srecord - library to manipulate EPROM
 T}	T{
 .ad l
 load files
@@ -1196,7 +1231,7 @@ manipulate EPROM load files
 T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
-SRecord - library to
+srecord - library to
 T}	T{
 .ad l
 manipulate EPROM load files
@@ -1245,14 +1280,14 @@ mips flash - MIPS-Flash file format
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
-SRecord - Intel Absolute Object
+srec aomf - Intel Absolute Object
 T}	T{
 .ad l
 Module Format
 T}
 srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
 .ad r
-SRecord - Elektor
+srec emon52 - Elektor
 T}	T{
 .ad l
 Monitor (EMON52) file format
@@ -1285,6 +1320,13 @@ T}	T{
 .ad l
 Motorola S-Record hexadecimal file format
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+msbin - Windows CE Binary Image Data Format
+T}
 srec_ti_txt(5)	\*[Page*Of*srec_ti_txt(5)]	T{
 .ad r
 srec ti txt - Texas Instruments ti-txt (
@@ -1315,7 +1357,7 @@ object file format specification
 T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
-SRecord - Intel Absolute
+srec aomf - Intel Absolute
 T}	T{
 .ad l
 Object Module Format
@@ -1336,7 +1378,7 @@ os65v - OS65V Loader file format
 T}
 srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
 .ad r
-SRecord - four
+srec fpc - four
 T}	T{
 .ad l
 packed code file format
@@ -1448,10 +1490,17 @@ series programmer ASCII file format
 T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r
-SRecord -
+srec signetics -
 T}	T{
 .ad l
 Signetics file format
+T}
+srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+signetics - Signetics file format
 T}
 srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
 .ad r
@@ -1509,6 +1558,13 @@ T}	T{
 .ad l
 spectrum - Spectrum file format
 T}
+srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec aomf - Intel Absolute Object Module Format
+T}
 srec_ascii_hex(5)	\*[Page*Of*srec_ascii_hex(5)]	T{
 .ad r
 
@@ -1558,6 +1614,20 @@ T}	T{
 .ad l
 srec cosmac - RCA Cosmac Elf file format
 T}
+srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec dec binary - DEC Binary (XXDP) file format
+T}
+srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec emon52 - Elektor Monitor (EMON52) file format
+T}
 srec_examples(1)	\*[Page*Of*srec_examples(1)]	T{
 .ad r
 
@@ -1592,6 +1662,13 @@ srec_forth(5)	\*[Page*Of*srec_forth(5)]	T{
 T}	T{
 .ad l
 srec forth - FORTH file format
+T}
+srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec fpc - four packed code file format
 T}
 srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
 .ad r
@@ -1649,6 +1726,13 @@ T}	T{
 .ad l
 srec motorola - Motorola S-Record hexadecimal file format
 T}
+srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec msbin - Windows CE Binary Image Data Format
+T}
 srec_needham(5)	\*[Page*Of*srec_needham(5)]	T{
 .ad r
 
@@ -1662,27 +1746,6 @@ srec examples - examples of how to use
 T}	T{
 .ad l
 SRecord
-T}
-srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
-.ad r
-
-T}	T{
-.ad l
-SRecord - DEC Binary (XXDP) file format
-T}
-srec_emon52(5)	\*[Page*Of*srec_emon52(5)]	T{
-.ad r
-
-T}	T{
-.ad l
-SRecord - Elektor Monitor (EMON52) file format
-T}
-srec_fpc(5)	\*[Page*Of*srec_fpc(5)]	T{
-.ad r
-
-T}	T{
-.ad l
-SRecord - four packed code file format
 T}
 srec_motorola(5)	\*[Page*Of*srec_motorola(5)]	T{
 .ad r
@@ -1698,33 +1761,12 @@ T}	T{
 .ad l
 SRecord - input file specifications
 T}
-srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
-.ad r
-
-T}	T{
-.ad l
-SRecord - Intel Absolute Object Module Format
-T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
 
 T}	T{
 .ad l
-SRecord - library to manipulate EPROM load files
-T}
-srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
-.ad r
-
-T}	T{
-.ad l
-SRecord - Signetics file format
-T}
-srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
-.ad r
-
-T}	T{
-.ad l
-SRecord - Windows CE Binary Image Data Format
+srecord - library to manipulate EPROM load files
 T}
 srec_os65v(5)	\*[Page*Of*srec_os65v(5)]	T{
 .ad r
@@ -1746,6 +1788,13 @@ srec_ppx(5)	\*[Page*Of*srec_ppx(5)]	T{
 T}	T{
 .ad l
 srec ppx - Stag Prom Programmer hexadecimal format
+T}
+srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec signetics - Signetics file format
 T}
 srec_spasm(5)	\*[Page*Of*srec_spasm(5)]	T{
 .ad r
@@ -2036,14 +2085,14 @@ wilson - wilson file format
 T}
 srec_msbin(5)	\*[Page*Of*srec_msbin(5)]	T{
 .ad r
-SRecord -
+srec msbin -
 T}	T{
 .ad l
 Windows CE Binary Image Data Format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r
-SRecord - DEC Binary (
+srec dec binary - DEC Binary (
 T}	T{
 .ad l
 XXDP) file format

@@ -1,8 +1,36 @@
+srecord (1.59.D001-1) unstable; urgency=low
+
+  * This change set prepares the SReocrd project for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 10 Feb 2012 12:30:32 +1100
+
+srecord (1.58.D004-1) unstable; urgency=low
+
+  * This change set adds a number of additional CRC-16 polynomials, plus the
+    ability to select a polynomial by name, rather than by value. See http://
+    en.wikipedia.org/wiki/Cyclic_redundancy_check for a table of names and
+    values.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 09 Feb 2012 20:26:23 +1100
+
+srecord (1.58.D003-1) unstable; urgency=low
+
+  * This change set provides all of the man pages on the web site, with suitable
+    links from the front page.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 19 Dec 2011 12:01:10 +1100
+
+srecord (1.58.D002-1) unstable; urgency=low
+
+  * This change set fixes several errors reported by lintian(1).
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 21:15:27 +1100
+
 srecord (1.58.D001-1) unstable; urgency=low
 
   * This change set prepares SRecord for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 20:25:42 +1100
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 18 Dec 2011 20:29:31 +1100
 
 srecord (1.57.D017-1) unstable; urgency=low
 
