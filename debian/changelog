@@ -1,8 +1,111 @@
+srecord (1.60.D001-1) unstable; urgency=low
+
+  * This change set prepares the SRecord project for its next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 19 May 2012 19:44:04 +1000
+
+srecord (1.59.D014-1) unstable; urgency=low
+
+  * This change et fixes a typo in the STM copyright assignment.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 21:43:46 +1000
+
+srecord (1.59.D013-1) unstable; urgency=low
+
+  * This change set fixes the TRS80 input format, so that we can cope with the
+    longest of the possible data records.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 21:26:58 +1000
+
+srecord (1.59.D012-1) unstable; urgency=low
+
+  * This change et adds a reference to the STM data sheet, for details of the
+    STM32 algorithm.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 19:59:59 +1000
+
+srecord (1.59.D011-1) unstable; urgency=low
+
+  * Hendrik Beijeman <hbeyeman@gmail.com> contributed a patch that adds support
+    for generating a CRC used by the hardware CRC unit on the STM32 series of
+    ARM MPUs.  The algorithm used by the STM32 hardware unit is just a CRC with
+    a different polynomial and word-fed instead of byte-fed.  The MPU is little
+    endian.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 19:51:41 +1000
+
+srecord (1.59.D010-1) unstable; urgency=low
+
+  * This change set updates the srec_examples(1) page, to use the new suffix for
+    m of the filter command line options.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 16:55:56 +1000
+
+srecord (1.59.D009-1) unstable; urgency=low
+
+  * The names of the command line options have been changed (with backwards
+    compatibility) to consistently use _Big_Endian and _Little_Endian suffixes.
+    Previously there was an inconsistent mixture of prefixes and suffixes.  By
+    using suffixes, the emphasis on the purpose of the command line option,
+    rather then the endian-ness.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 16:18:05 +1000
+
+srecord (1.59.D008-1) unstable; urgency=low
+
+  * This change set adds strict unchange file policy.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 12:58:00 +1000
+
+srecord (1.59.D007-1) unstable; urgency=low
+
+  * This change set adds automation for needed packages, so does it
+    automagically after upgrades.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 05 May 2012 12:04:22 +1000
+
+srecord (1.59.D006-1) unstable; urgency=low
+
+  * This change refactors output-file::put-word into a big-endian and little-
+    endian form, because code duplication was creeping in for the little-endian
+    case.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 16 Mar 2012 23:24:31 +1100
+
+srecord (1.59.D005-1) unstable; urgency=low
+
+  * This change set refactors the input_file::get_word implementation into
+    specific get_word_be for big-endian and get_word_le for little-endian
+    because there was code duplication appearing for the little endian variety.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 16 Mar 2012 23:10:27 +1100
+
+srecord (1.59.D004-1) unstable; urgency=low
+
+  * Eric Smith <eric@brouhaha.com> contributed code to read and write TRS-80
+    binary load module format.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 16 Mar 2012 22:49:25 +1100
+
+srecord (1.59.D003-1) unstable; urgency=low
+
+  * This change set makes sure the images are placed in the appropriate place
+    when turning man pages into web pages.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 11 Feb 2012 21:25:19 +1100
+
+srecord (1.59.D002-1) unstable; urgency=low
+
+  * This change set adds links from the format names on the front page to the
+    format manual pages on the web site.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 11 Feb 2012 20:18:28 +1100
+
 srecord (1.59.D001-1) unstable; urgency=low
 
   * This change set prepares the SReocrd project for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Fri, 10 Feb 2012 12:30:32 +1100
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 10 Feb 2012 12:34:20 +1100
 
 srecord (1.58.D004-1) unstable; urgency=low
 

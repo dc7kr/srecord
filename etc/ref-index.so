@@ -578,6 +578,13 @@ T}	T{
 .ad l
 file format specification
 T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 - Radio Shack TRS-80 object
+T}	T{
+.ad l
+file format specification
+T}
 srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
 .ad r
 srec mif - Memory Initialization
@@ -889,6 +896,13 @@ T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
 srec intel - Intel Hexadecimal object file
+T}	T{
+.ad l
+format specification
+T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 - Radio Shack TRS-80 object file
 T}	T{
 .ad l
 format specification
@@ -1355,6 +1369,13 @@ T}	T{
 .ad l
 object file format specification
 T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 - Radio Shack TRS-80
+T}	T{
+.ad l
+object file format specification
+T}
 srec_aomf(5)	\*[Page*Of*srec_aomf(5)]	T{
 .ad r
 srec aomf - Intel Absolute
@@ -1439,6 +1460,13 @@ T}	T{
 .ad l
 Public License
 T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 -
+T}	T{
+.ad l
+Radio Shack TRS-80 object file format specification
+T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
 srec cosmac -
@@ -1488,6 +1516,13 @@ T}	T{
 .ad l
 series programmer ASCII file format
 T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 - Radio
+T}	T{
+.ad l
+Shack TRS-80 object file format specification
+T}
 srec_signetics(5)	\*[Page*Of*srec_signetics(5)]	T{
 .ad r
 srec signetics -
@@ -1533,6 +1568,13 @@ T}
 srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 .ad r
 srec intel - Intel Hexadecimal object file format
+T}	T{
+.ad l
+specification
+T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 - Radio Shack TRS-80 object file format
 T}	T{
 .ad l
 specification
@@ -1852,6 +1894,13 @@ T}	T{
 .ad l
 srec ti txt - Texas Instruments ti-txt (MSP430) file format
 T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec trs80 - Radio Shack TRS-80 object file format specification
+T}
 srec_vmem(5)	\*[Page*Of*srec_vmem(5)]	T{
 .ad r
 
@@ -2012,6 +2061,20 @@ srec
 T}	T{
 .ad l
 ti txt - Texas Instruments ti-txt (MSP430) file format
+T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec trs80 - Radio Shack
+T}	T{
+.ad l
+TRS-80 object file format specification
+T}
+srec_trs80(5)	\*[Page*Of*srec_trs80(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+trs80 - Radio Shack TRS-80 object file format specification
 T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r

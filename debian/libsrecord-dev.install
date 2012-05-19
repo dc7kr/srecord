@@ -40,6 +40,7 @@ usr/include/srecord/input/file/tektronix_extended.h
 usr/include/srecord/input/file/ti_tagged.h
 usr/include/srecord/input/file/ti_tagged_16.h
 usr/include/srecord/input/file/ti_txt.h
+usr/include/srecord/input/file/trs80.h
 usr/include/srecord/input/file/vmem.h
 usr/include/srecord/input/file/wilson.h
 usr/include/srecord/input/filter.h
@@ -123,6 +124,7 @@ usr/include/srecord/output/file/tektronix_extended.h
 usr/include/srecord/output/file/ti_tagged.h
 usr/include/srecord/output/file/ti_tagged_16.h
 usr/include/srecord/output/file/ti_txt.h
+usr/include/srecord/output/file/trs80.h
 usr/include/srecord/output/file/vhdl.h
 usr/include/srecord/output/file/vmem.h
 usr/include/srecord/output/file/wilson.h

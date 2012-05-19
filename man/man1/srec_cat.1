@@ -1,6 +1,6 @@
 '\" t
 .\" srecord - manipulate eprom load files
-.\" Copyright (C) 1998, 2000-2011 Peter Miller
+.\" Copyright (C) 1998, 2000-2012 Peter Miller
 .\"
 .\" This program is free software; you can redistribute it and/or modify
 .\" it under the terms of the GNU General Public License as published by
@@ -290,9 +290,9 @@ for a description of this file format.)
 The \f[I]width\fP defaults to 8 bits.
 (See \f[I]srec_mif\fP(5) for a description of this file format.)
 .TP 8n
-\fB\-Mips_Flash_BigEndian\fP
+\fB\-Mips_Flash_Big_Endian\fP
 .TP 8n
-\fB\-Mips_Flash_LittleEndian\fP
+\fB\-Mips_Flash_Little_Endian\fP
 MIPS Flash file format will be written.
 (See \f[I]srec_mips_flash\fP(5) for a description of this file format.)
 .TP 8n
@@ -358,7 +358,7 @@ This option says to use the SPASM assembler output format (commonly used
 by PIC programmers).
 See \f[I]srec_spasm\fP(5) for a description of this format.
 .TP 8n
-\fB\-SPAsm_LittleEndian\fP
+\fB\-SPAsm_Little_Endian\fP
 This option says to use the SPASM assembler output format (commonly used
 by PIC programmers).  But with the data the other way around.
 .TP 8n
@@ -396,6 +396,11 @@ for a description of this file format.)
 \fB\-Texas_Instruments_TeXT\fP
 This option says to use the Texas Instruments TXT (MSP430) format to
 write the file.  See \f[I]srec_ti_txt\fP(5) for a description of this
+file format.
+.TP 8n
+\fB\-TRS80\fP
+This option says to use the Radio Shack TRS\[hy]80 object file format
+to write the file.  See \f[I]srec_trs80\fP(5) for a description of this
 file format.
 .\" -----   --output -U*   -------------------------------------------------
 .\" -----   --output -V*   -------------------------------------------------
@@ -565,3 +570,4 @@ All other options will produce a diagnostic error.
 .so man/man1/z_options.so
 .so man/man1/z_exit.so
 .so man/man1/z_copyright.so
+.\" vim: set ts=8 sw=4 et :

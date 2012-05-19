@@ -1,20 +1,19 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 1998-2011 Peter Miller
+// Copyright (C) 1998-2012 Peter Miller
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation; either version 3 of the License, or
-// (at your option) any later version.
+// This program is free software; you can redistribute it and/or modify it
+// under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at your
+// option) any later version.
 //
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
+// for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with this program. If not, see
-// <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
 #include <iostream>
@@ -56,6 +55,7 @@
 #include <srecord/input/file/ti_tagged.h>
 #include <srecord/input/file/ti_tagged_16.h>
 #include <srecord/input/file/ti_txt.h>
+#include <srecord/input/file/trs80.h>
 #include <srecord/input/file/vmem.h>
 #include <srecord/input/file/wilson.h>
 #include <srecord/input/filter/and.h>
@@ -73,6 +73,7 @@
 #include <srecord/input/filter/message/adler32.h>
 #include <srecord/input/filter/message/crc16.h>
 #include <srecord/input/filter/message/crc32.h>
+#include <srecord/input/filter/message/stm32.h>
 #include <srecord/input/filter/message/fletcher16.h>
 #include <srecord/input/filter/message/fletcher32.h>
 #include <srecord/input/filter/message/gcrypt.h>
@@ -113,6 +114,7 @@ srecord::arglex_tool::get_endian_by_token(int tok)
     case token_minimum_be:
     case token_mips_flash_be:
     case token_spasm_be:
+    case token_stm32_crc_be:
         return endian_big;
 
     case token_adler16_le:
@@ -134,6 +136,7 @@ srecord::arglex_tool::get_endian_by_token(int tok)
     case token_msbin:
     case token_mips_flash_le:
     case token_spasm_le:
+    case token_stm32_crc_le:
         return endian_little;
 
     default:
@@ -452,6 +455,11 @@ srecord::arglex_tool::get_simple_input(void)
     case token_ti_txt:
         token_next();
         ifp = input_file_ti_txt::create(fn);
+        break;
+
+    case token_trs80:
+        token_next();
+        ifp = input_file_trs80::create(fn);
         break;
 
     case token_vmem:
@@ -1017,6 +1025,18 @@ srecord::arglex_tool::get_input()
             }
             break;
 
+        case token_stm32_crc_be:
+        case token_stm32_crc_le:
+            {
+                const char *name = token_name();
+                endian_t endian = get_endian_by_token();
+                token_next();
+                unsigned long address = 0;
+                get_address(name, address);
+                ifp = input_filter_message_stm32::create(ifp, address, endian);
+            }
+            break;
+
         case token_tiger:
             {
                 const char *name = token_name();
@@ -1119,3 +1139,6 @@ srecord::arglex_tool::get_input()
         ifp->command_line(this);
     }
 }
+
+
+// vim: set ts=8 sw=4 et :

@@ -16,7 +16,7 @@
 #
 Summary: srecord
 Name: srecord
-Version: 1.59.D001
+Version: 1.60.D001
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -135,6 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/srec_ti_tagged.5.gz
 %{_mandir}/man5/srec_ti_tagged_16.5.gz
 %{_mandir}/man5/srec_ti_txt.5.gz
+%{_mandir}/man5/srec_trs80.5.gz
 %{_mandir}/man5/srec_vmem.5.gz
 %{_mandir}/man5/srec_wilson.5.gz
 

@@ -177,8 +177,8 @@ etc/README.ps: etc/README.man etc/new.1.1.so etc/new.1.10.so etc/new.1.11.so \
 		etc/new.1.49.so etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so \
 		etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so \
-		etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so \
-		etc/new.so etc/version.so
+		etc/new.1.6.so etc/new.1.60.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/new.so etc/version.so
 	$(GROFF) -s -I. -t -man etc/README.man > $@
 
 etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
@@ -195,8 +195,8 @@ etc/change_log.ps: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.48.so etc/new.1.49.so etc/new.1.5.so etc/new.1.50.so \
 		etc/new.1.51.so etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
 		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so \
-		etc/new.1.59.so etc/new.1.6.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so etc/new.so etc/version.so
+		etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so etc/new.so etc/version.so
 	$(GROFF) -s -I. -t -man etc/change_log.man > $@
 
 etc/debian.png: etc/debian.png.uue
@@ -233,9 +233,9 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		etc/new.1.5.so etc/new.1.50.so etc/new.1.51.so etc/new.1.52.so \
 		etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so etc/new.1.56.so \
 		etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so etc/new.so \
-		etc/ref-index.so etc/ref-parts.so etc/ref-toc.so etc/version.so \
-		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		etc/new.1.60.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so \
+		etc/new.so etc/ref-index.so etc/ref-parts.so etc/ref-toc.so \
+		etc/version.so man/man1/o_at.so man/man1/o_ignore_checksums.so \
 		man/man1/o_input.so man/man1/o_multiple.so \
 		man/man1/o_sequence.so man/man1/srec_cat.1 man/man1/srec_cmp.1 \
 		man/man1/srec_examples.1 man/man1/srec_info.1 \
@@ -258,8 +258,8 @@ etc/reference.ps: etc/reference.man etc/BUILDING.man etc/README.man \
 		man/man5/srec_spectrum.5 man/man5/srec_stewie.5 \
 		man/man5/srec_tektronix.5 man/man5/srec_tektronix_extended.5 \
 		man/man5/srec_ti_tagged.5 man/man5/srec_ti_tagged_16.5 \
-		man/man5/srec_ti_txt.5 man/man5/srec_vmem.5 \
-		man/man5/srec_wilson.5
+		man/man5/srec_ti_txt.5 man/man5/srec_trs80.5 \
+		man/man5/srec_vmem.5 man/man5/srec_wilson.5
 	$(GROFF) -s -I. -t -man etc/reference.man > $@
 
 etc/srecord.png: etc/srecord.png.uue
@@ -590,6 +590,13 @@ $(mandir)/man5/srec_ti_txt.5: man/man5/srec_ti_txt.5 etc/version.so \
 	$(INSTALL_DATA) man/man5/srec_ti_txt.5.tmp $@
 	@rm -f man/man5/srec_ti_txt.5.tmp
 
+$(mandir)/man5/srec_trs80.5: man/man5/srec_trs80.5 etc/version.so \
+		man/man1/z_copyright.so man/man5/.mandir
+	$(SOELIM) -I. -Iman/man5 man/man5/srec_trs80.5 > \
+		man/man5/srec_trs80.5.tmp
+	$(INSTALL_DATA) man/man5/srec_trs80.5.tmp $@
+	@rm -f man/man5/srec_trs80.5.tmp
+
 $(mandir)/man5/srec_vmem.5: man/man5/srec_vmem.5 etc/version.so \
 		man/man1/z_copyright.so man/man5/.mandir
 	$(SOELIM) -I. -Iman/man5 man/man5/srec_vmem.5 > man/man5/srec_vmem.5.tmp
@@ -729,10 +736,11 @@ srecord/arglex/tool/input.lo: srecord/arglex/tool/input.cc srecord/adler16.h \
 		srecord/input/file/stewie.h srecord/input/file/tektronix.h \
 		srecord/input/file/tektronix_extended.h \
 		srecord/input/file/ti_tagged.h srecord/input/file/ti_tagged_16.h \
-		srecord/input/file/ti_txt.h srecord/input/file/vmem.h \
-		srecord/input/file/wilson.h srecord/input/filter.h \
-		srecord/input/filter/and.h srecord/input/filter/bitrev.h \
-		srecord/input/filter/byte_swap.h srecord/input/filter/checksum.h \
+		srecord/input/file/ti_txt.h srecord/input/file/trs80.h \
+		srecord/input/file/vmem.h srecord/input/file/wilson.h \
+		srecord/input/filter.h srecord/input/filter/and.h \
+		srecord/input/filter/bitrev.h srecord/input/filter/byte_swap.h \
+		srecord/input/filter/checksum.h \
 		srecord/input/filter/checksum/bitnot.h \
 		srecord/input/filter/checksum/negative.h \
 		srecord/input/filter/checksum/positive.h \
@@ -748,7 +756,8 @@ srecord/arglex/tool/input.lo: srecord/arglex/tool/input.cc srecord/adler16.h \
 		srecord/input/filter/message/crc32.h \
 		srecord/input/filter/message/fletcher16.h \
 		srecord/input/filter/message/fletcher32.h \
-		srecord/input/filter/message/gcrypt.h srecord/input/filter/not.h \
+		srecord/input/filter/message/gcrypt.h \
+		srecord/input/filter/message/stm32.h srecord/input/filter/not.h \
 		srecord/input/filter/offset.h srecord/input/filter/or.h \
 		srecord/input/filter/random_fill.h \
 		srecord/input/filter/sequence.h srecord/input/filter/split.h \
@@ -756,7 +765,7 @@ srecord/arglex/tool/input.lo: srecord/arglex/tool/input.cc srecord/adler16.h \
 		srecord/input/filter/xor.h srecord/input/generator.h \
 		srecord/input/interval.h srecord/interval.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h srecord/output.h \
-		srecord/quit.h srecord/record.h
+		srecord/quit.h srecord/record.h srecord/stm32.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/input.cc -o srecord/arglex/tool/input.lo
 
@@ -785,8 +794,9 @@ srecord/arglex/tool/output.lo: srecord/arglex/tool/output.cc srecord/arglex.h \
 		srecord/output/file/tektronix_extended.h \
 		srecord/output/file/ti_tagged.h \
 		srecord/output/file/ti_tagged_16.h srecord/output/file/ti_txt.h \
-		srecord/output/file/vhdl.h srecord/output/file/vmem.h \
-		srecord/output/file/wilson.h srecord/record.h
+		srecord/output/file/trs80.h srecord/output/file/vhdl.h \
+		srecord/output/file/vmem.h srecord/output/file/wilson.h \
+		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/output.cc -o \
 		srecord/arglex/tool/output.lo
@@ -816,6 +826,11 @@ srecord/endian.lo: srecord/endian.cc srecord/endian.h
 
 $(includedir)/srecord/endian.h: srecord/endian.h srecord/.incl
 	$(INSTALL_DATA) srecord/endian.h $@
+
+srecord/endian/decode_word.lo: srecord/endian/decode_word.cc srecord/endian.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/endian/decode_word.cc -o \
+		srecord/endian/decode_word.lo
 
 srecord/fletcher16.lo: srecord/fletcher16.cc srecord/endian.h \
 		srecord/fletcher16.h
@@ -1026,8 +1041,9 @@ srecord/input/file/guess.lo: srecord/input/file/guess.cc srecord/endian.h \
 		srecord/input/file/stewie.h srecord/input/file/tektronix.h \
 		srecord/input/file/tektronix_extended.h \
 		srecord/input/file/ti_tagged.h srecord/input/file/ti_txt.h \
-		srecord/input/file/vmem.h srecord/input/file/wilson.h \
-		srecord/quit.h srecord/quit/exception.h srecord/record.h
+		srecord/input/file/trs80.h srecord/input/file/vmem.h \
+		srecord/input/file/wilson.h srecord/quit.h \
+		srecord/quit/exception.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/guess.cc -o srecord/input/file/guess.lo
 
@@ -1258,6 +1274,16 @@ srecord/input/file/ti_txt.lo: srecord/input/file/ti_txt.cc srecord/endian.h \
 $(includedir)/srecord/input/file/ti_txt.h: srecord/input/file/ti_txt.h \
 		srecord/input/file/.incl
 	$(INSTALL_DATA) srecord/input/file/ti_txt.h $@
+
+srecord/input/file/trs80.lo: srecord/input/file/trs80.cc srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/input/file/trs80.h srecord/record.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/input/file/trs80.cc -o srecord/input/file/trs80.lo
+
+$(includedir)/srecord/input/file/trs80.h: srecord/input/file/trs80.h \
+		srecord/input/file/.incl
+	$(INSTALL_DATA) srecord/input/file/trs80.h $@
 
 srecord/input/file/vmem.lo: srecord/input/file/vmem.cc srecord/endian.h \
 		srecord/format_printf.h srecord/input.h srecord/input/file.h \
@@ -1602,6 +1628,18 @@ $(includedir)/srecord/input/filter/message/gcrypt.h: \
 		srecord/input/filter/message/.incl
 	$(INSTALL_DATA) srecord/input/filter/message/gcrypt.h $@
 
+srecord/input/filter/message/stm32.lo: srecord/input/filter/message/stm32.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.h \
+		srecord/input/filter/message/stm32.h srecord/memory.h \
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/stm32.h srecord/output.h srecord/record.h \
+		srecord/stm32.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/input/filter/message/stm32.cc -o \
+		srecord/input/filter/message/stm32.lo
+
 srecord/input/filter/not.lo: srecord/input/filter/not.cc srecord/endian.h \
 		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
 		srecord/input/filter/not.h srecord/record.h
@@ -1780,6 +1818,7 @@ srecord/interval/flatten.lo: srecord/interval/flatten.cc srecord/interval.h
 srecord/memory.lo: srecord/memory.cc srecord/endian.h srecord/format_printf.h \
 		srecord/input.h srecord/interval.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/memory/walker/alignment.h \
 		srecord/memory/walker/compare.h \
 		srecord/memory/walker/continuity.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1825,6 +1864,12 @@ srecord/memory/walker/adler32.lo: srecord/memory/walker/adler32.cc \
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/memory/walker/adler32.cc -o \
 		srecord/memory/walker/adler32.lo
+
+srecord/memory/walker/alignment.lo: srecord/memory/walker/alignment.cc \
+		srecord/memory/walker.h srecord/memory/walker/alignment.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/memory/walker/alignment.cc -o \
+		srecord/memory/walker/alignment.lo
 
 srecord/memory/walker/compare.lo: srecord/memory/walker/compare.cc \
 		srecord/format_printf.h srecord/input.h srecord/interval.h \
@@ -1892,6 +1937,13 @@ srecord/memory/walker/gcrypt.lo: srecord/memory/walker/gcrypt.cc \
 $(includedir)/srecord/memory/walker/gcrypt.h: srecord/memory/walker/gcrypt.h \
 		srecord/memory/walker/.incl
 	$(INSTALL_DATA) srecord/memory/walker/gcrypt.h $@
+
+srecord/memory/walker/stm32.lo: srecord/memory/walker/stm32.cc srecord/arglex.h \
+		srecord/format_printf.h srecord/memory/walker.h \
+		srecord/memory/walker/stm32.h srecord/output.h srecord/stm32.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/memory/walker/stm32.cc -o \
+		srecord/memory/walker/stm32.lo
 
 srecord/memory/walker/writer.lo: srecord/memory/walker/writer.cc \
 		srecord/format_printf.h srecord/memory/walker.h \
@@ -2358,6 +2410,16 @@ $(includedir)/srecord/output/file/ti_txt.h: srecord/output/file/ti_txt.h \
 		srecord/output/file/.incl
 	$(INSTALL_DATA) srecord/output/file/ti_txt.h $@
 
+srecord/output/file/trs80.lo: srecord/output/file/trs80.cc srecord/endian.h \
+		srecord/format_printf.h srecord/output.h srecord/output/file.h \
+		srecord/output/file/trs80.h srecord/record.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/output/file/trs80.cc -o srecord/output/file/trs80.lo
+
+$(includedir)/srecord/output/file/trs80.h: srecord/output/file/trs80.h \
+		srecord/output/file/.incl
+	$(INSTALL_DATA) srecord/output/file/trs80.h $@
+
 srecord/output/file/vhdl.lo: srecord/output/file/vhdl.cc srecord/arglex.h \
 		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
 		srecord/input.h srecord/interval.h srecord/output.h \
@@ -2463,6 +2525,10 @@ $(includedir)/srecord/record.h: srecord/record.h srecord/.incl
 
 $(includedir)/srecord/srecord.h: srecord/srecord.h srecord/.incl
 	$(INSTALL_DATA) srecord/srecord.h $@
+
+srecord/stm32.lo: srecord/stm32.cc srecord/stm32.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/stm32.cc -o srecord/stm32.lo
 
 srecord/versn_stamp.lo: srecord/versn_stamp.cc srecord/patchlevel.h \
 		srecord/progname.h srecord/versn_stamp.h
@@ -3022,6 +3088,21 @@ t0219a: test/02/t0219a.sh all
 t0220a: test/02/t0220a.sh all
 	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0220a.sh
 
+t0221a: test/02/t0221a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0221a.sh
+
+t0222a: test/02/t0222a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0222a.sh
+
+t0223a: test/02/t0223a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0223a.sh
+
+t0225a: test/02/t0225a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0225a.sh
+
+t0227a: test/02/t0227a.sh all
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0227a.sh
+
 test_crc16/main.lo: test_crc16/main.cc srecord/bitrev.h srecord/crc16.h \
 		srecord/format_printf.h srecord/progname.h srecord/quit.h \
 		srecord/versn_stamp.h
@@ -3044,10 +3125,10 @@ lib_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/arglex/tool/get_number.lo \
 		srecord/arglex/tool/get_string.lo srecord/arglex/tool/input.lo \
 		srecord/arglex/tool/output.lo srecord/bitrev.lo srecord/crc16.lo \
-		srecord/crc32.lo srecord/endian.lo srecord/fletcher16.lo \
-		srecord/fletcher32.lo srecord/input.lo srecord/input/catenate.lo \
-		srecord/input/file.lo srecord/input/file/aomf.lo \
-		srecord/input/file/ascii_hex.lo \
+		srecord/crc32.lo srecord/endian.lo srecord/endian/decode_word.lo \
+		srecord/fletcher16.lo srecord/fletcher32.lo srecord/input.lo \
+		srecord/input/catenate.lo srecord/input/file.lo \
+		srecord/input/file/aomf.lo srecord/input/file/ascii_hex.lo \
 		srecord/input/file/atmel_generic.lo srecord/input/file/binary.lo \
 		srecord/input/file/brecord.lo srecord/input/file/cosmac.lo \
 		srecord/input/file/dec_binary.lo srecord/input/file/emon52.lo \
@@ -3067,9 +3148,10 @@ lib_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/input/file/tektronix_extended.lo \
 		srecord/input/file/ti_tagged.lo \
 		srecord/input/file/ti_tagged_16.lo srecord/input/file/ti_txt.lo \
-		srecord/input/file/vmem.lo srecord/input/file/wilson.lo \
-		srecord/input/filter.lo srecord/input/filter/and.lo \
-		srecord/input/filter/bitrev.lo srecord/input/filter/byte_swap.lo \
+		srecord/input/file/trs80.lo srecord/input/file/vmem.lo \
+		srecord/input/file/wilson.lo srecord/input/filter.lo \
+		srecord/input/filter/and.lo srecord/input/filter/bitrev.lo \
+		srecord/input/filter/byte_swap.lo \
 		srecord/input/filter/checksum.lo \
 		srecord/input/filter/checksum/bitnot.lo \
 		srecord/input/filter/checksum/negative.lo \
@@ -3087,6 +3169,7 @@ lib_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/input/filter/message/fletcher16.lo \
 		srecord/input/filter/message/fletcher32.lo \
 		srecord/input/filter/message/gcrypt.lo \
+		srecord/input/filter/message/stm32.lo \
 		srecord/input/filter/not.lo srecord/input/filter/offset.lo \
 		srecord/input/filter/or.lo srecord/input/filter/random_fill.lo \
 		srecord/input/filter/sequence.lo srecord/input/filter/split.lo \
@@ -3100,15 +3183,17 @@ lib_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/memory/chunk.lo srecord/memory/walker.lo \
 		srecord/memory/walker/adler16.lo \
 		srecord/memory/walker/adler32.lo \
+		srecord/memory/walker/alignment.lo \
 		srecord/memory/walker/compare.lo \
 		srecord/memory/walker/continuity.lo \
 		srecord/memory/walker/crc16.lo srecord/memory/walker/crc32.lo \
 		srecord/memory/walker/fletcher16.lo \
 		srecord/memory/walker/fletcher32.lo \
-		srecord/memory/walker/gcrypt.lo srecord/memory/walker/writer.lo \
-		srecord/output.lo srecord/output/file.lo \
-		srecord/output/file/aomf.lo srecord/output/file/ascii_hex.lo \
-		srecord/output/file/asm.lo srecord/output/file/atmel_generic.lo \
+		srecord/memory/walker/gcrypt.lo srecord/memory/walker/stm32.lo \
+		srecord/memory/walker/writer.lo srecord/output.lo \
+		srecord/output/file.lo srecord/output/file/aomf.lo \
+		srecord/output/file/ascii_hex.lo srecord/output/file/asm.lo \
+		srecord/output/file/atmel_generic.lo \
 		srecord/output/file/basic.lo srecord/output/file/binary.lo \
 		srecord/output/file/brecord.lo srecord/output/file/c.lo \
 		srecord/output/file/cosmac.lo srecord/output/file/dec_binary.lo \
@@ -3130,13 +3215,14 @@ lib_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/output/file/tektronix_extended.lo \
 		srecord/output/file/ti_tagged.lo \
 		srecord/output/file/ti_tagged_16.lo \
-		srecord/output/file/ti_txt.lo srecord/output/file/vhdl.lo \
-		srecord/output/file/vmem.lo srecord/output/file/wilson.lo \
-		srecord/output/filter.lo srecord/output/filter/reblock.lo \
-		srecord/pretty_size.lo srecord/progname.lo srecord/quit.lo \
-		srecord/quit/exception.lo srecord/quit/normal.lo \
-		srecord/quit/prefix.lo srecord/r250.lo srecord/record.lo \
-		srecord/versn_stamp.lo srecord/vsnprintf.lo
+		srecord/output/file/ti_txt.lo srecord/output/file/trs80.lo \
+		srecord/output/file/vhdl.lo srecord/output/file/vmem.lo \
+		srecord/output/file/wilson.lo srecord/output/filter.lo \
+		srecord/output/filter/reblock.lo srecord/pretty_size.lo \
+		srecord/progname.lo srecord/quit.lo srecord/quit/exception.lo \
+		srecord/quit/normal.lo srecord/quit/prefix.lo srecord/r250.lo \
+		srecord/record.lo srecord/stm32.lo srecord/versn_stamp.lo \
+		srecord/vsnprintf.lo
 
 srecord/.libdir:
 	-$(INSTALL) -m 0755 -d $(libdir)
@@ -3235,7 +3321,7 @@ sure: t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a t0010a \
 		t0187a t0188a t0189a t0191a t0192a t0193a t0195a t0196a t0197a \
 		t0198a t0199a t0200a t0201a t0202a t0203a t0205a t0206a t0207a \
 		t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a t0218a \
-		t0219a t0220a
+		t0219a t0220a t0221a t0222a t0223a t0225a t0227a
 	@echo Passed All Tests
 
 clean-obj:
@@ -3256,14 +3342,15 @@ clean-obj:
 	rm -f srecord/arglex/tool/output.lo srecord/arglex/tool/output.o
 	rm -f srecord/bitrev.lo srecord/bitrev.o srecord/crc16.lo
 	rm -f srecord/crc16.o srecord/crc32.lo srecord/crc32.o srecord/endian.lo
-	rm -f srecord/endian.o srecord/fletcher16.lo srecord/fletcher16.o
-	rm -f srecord/fletcher32.lo srecord/fletcher32.o srecord/input.lo
-	rm -f srecord/input.o srecord/input/.incl srecord/input/catenate.lo
-	rm -f srecord/input/catenate.o srecord/input/file.lo
-	rm -f srecord/input/file.o srecord/input/file/.incl
-	rm -f srecord/input/file/aomf.lo srecord/input/file/aomf.o
-	rm -f srecord/input/file/ascii_hex.lo srecord/input/file/ascii_hex.o
-	rm -f srecord/input/file/atmel_generic.lo
+	rm -f srecord/endian.o srecord/endian/decode_word.lo
+	rm -f srecord/endian/decode_word.o srecord/fletcher16.lo
+	rm -f srecord/fletcher16.o srecord/fletcher32.lo srecord/fletcher32.o
+	rm -f srecord/input.lo srecord/input.o srecord/input/.incl
+	rm -f srecord/input/catenate.lo srecord/input/catenate.o
+	rm -f srecord/input/file.lo srecord/input/file.o
+	rm -f srecord/input/file/.incl srecord/input/file/aomf.lo
+	rm -f srecord/input/file/aomf.o srecord/input/file/ascii_hex.lo
+	rm -f srecord/input/file/ascii_hex.o srecord/input/file/atmel_generic.lo
 	rm -f srecord/input/file/atmel_generic.o srecord/input/file/binary.lo
 	rm -f srecord/input/file/binary.o srecord/input/file/brecord.lo
 	rm -f srecord/input/file/brecord.o srecord/input/file/cosmac.lo
@@ -3300,7 +3387,8 @@ clean-obj:
 	rm -f srecord/input/file/ti_tagged.lo srecord/input/file/ti_tagged.o
 	rm -f srecord/input/file/ti_tagged_16.lo
 	rm -f srecord/input/file/ti_tagged_16.o srecord/input/file/ti_txt.lo
-	rm -f srecord/input/file/ti_txt.o srecord/input/file/vmem.lo
+	rm -f srecord/input/file/ti_txt.o srecord/input/file/trs80.lo
+	rm -f srecord/input/file/trs80.o srecord/input/file/vmem.lo
 	rm -f srecord/input/file/vmem.o srecord/input/file/wilson.lo
 	rm -f srecord/input/file/wilson.o srecord/input/filter.lo
 	rm -f srecord/input/filter.o srecord/input/filter/.incl
@@ -3340,7 +3428,9 @@ clean-obj:
 	rm -f srecord/input/filter/message/fletcher32.lo
 	rm -f srecord/input/filter/message/fletcher32.o
 	rm -f srecord/input/filter/message/gcrypt.lo
-	rm -f srecord/input/filter/message/gcrypt.o srecord/input/filter/not.lo
+	rm -f srecord/input/filter/message/gcrypt.o
+	rm -f srecord/input/filter/message/stm32.lo
+	rm -f srecord/input/filter/message/stm32.o srecord/input/filter/not.lo
 	rm -f srecord/input/filter/not.o srecord/input/filter/offset.lo
 	rm -f srecord/input/filter/offset.o srecord/input/filter/or.lo
 	rm -f srecord/input/filter/or.o srecord/input/filter/random_fill.lo
@@ -3365,7 +3455,9 @@ clean-obj:
 	rm -f srecord/memory/walker.o srecord/memory/walker/.incl
 	rm -f srecord/memory/walker/adler16.lo srecord/memory/walker/adler16.o
 	rm -f srecord/memory/walker/adler32.lo srecord/memory/walker/adler32.o
-	rm -f srecord/memory/walker/compare.lo srecord/memory/walker/compare.o
+	rm -f srecord/memory/walker/alignment.lo
+	rm -f srecord/memory/walker/alignment.o srecord/memory/walker/compare.lo
+	rm -f srecord/memory/walker/compare.o
 	rm -f srecord/memory/walker/continuity.lo
 	rm -f srecord/memory/walker/continuity.o srecord/memory/walker/crc16.lo
 	rm -f srecord/memory/walker/crc16.o srecord/memory/walker/crc32.lo
@@ -3373,7 +3465,8 @@ clean-obj:
 	rm -f srecord/memory/walker/fletcher16.o
 	rm -f srecord/memory/walker/fletcher32.lo
 	rm -f srecord/memory/walker/fletcher32.o srecord/memory/walker/gcrypt.lo
-	rm -f srecord/memory/walker/gcrypt.o srecord/memory/walker/writer.lo
+	rm -f srecord/memory/walker/gcrypt.o srecord/memory/walker/stm32.lo
+	rm -f srecord/memory/walker/stm32.o srecord/memory/walker/writer.lo
 	rm -f srecord/memory/walker/writer.o srecord/output.lo srecord/output.o
 	rm -f srecord/output/.incl srecord/output/file.lo srecord/output/file.o
 	rm -f srecord/output/file/.incl srecord/output/file/aomf.lo
@@ -3420,7 +3513,8 @@ clean-obj:
 	rm -f srecord/output/file/ti_tagged.lo srecord/output/file/ti_tagged.o
 	rm -f srecord/output/file/ti_tagged_16.lo
 	rm -f srecord/output/file/ti_tagged_16.o srecord/output/file/ti_txt.lo
-	rm -f srecord/output/file/ti_txt.o srecord/output/file/vhdl.lo
+	rm -f srecord/output/file/ti_txt.o srecord/output/file/trs80.lo
+	rm -f srecord/output/file/trs80.o srecord/output/file/vhdl.lo
 	rm -f srecord/output/file/vhdl.o srecord/output/file/vmem.lo
 	rm -f srecord/output/file/vmem.o srecord/output/file/wilson.lo
 	rm -f srecord/output/file/wilson.o srecord/output/filter.lo
@@ -3431,11 +3525,11 @@ clean-obj:
 	rm -f srecord/quit/exception.lo srecord/quit/exception.o
 	rm -f srecord/quit/normal.lo srecord/quit/normal.o
 	rm -f srecord/quit/prefix.lo srecord/quit/prefix.o srecord/r250.lo
-	rm -f srecord/r250.o srecord/record.lo srecord/record.o
-	rm -f srecord/versn_stamp.lo srecord/versn_stamp.o srecord/vsnprintf.lo
-	rm -f srecord/vsnprintf.o test_crc16/main.lo test_crc16/main.o
-	rm -f test_fletcher16/main.lo test_fletcher16/main.o test_hyphen/main.lo
-	rm -f test_hyphen/main.o y.output y.tab.c y.tab.h
+	rm -f srecord/r250.o srecord/record.lo srecord/record.o srecord/stm32.lo
+	rm -f srecord/stm32.o srecord/versn_stamp.lo srecord/versn_stamp.o
+	rm -f srecord/vsnprintf.lo srecord/vsnprintf.o test_crc16/main.lo
+	rm -f test_crc16/main.o test_fletcher16/main.lo test_fletcher16/main.o
+	rm -f test_hyphen/main.lo test_hyphen/main.o y.output y.tab.c y.tab.h
 
 clean: clean-obj
 	rm -f bin/srec_cat bin/srec_cmp bin/srec_info bin/test_crc16
@@ -3449,7 +3543,7 @@ distclean: clean
 	rm -f libdir/pkgconfig/srecord.pc script/test_prelude srecord/config.h
 	rm -rf bin srec_cat/.libs srec_cmp/.libs srec_info/.libs srecord/.libs
 	rm -rf srecord/arglex/.libs srecord/arglex/tool/.libs
-	rm -rf srecord/input/.libs srecord/input/file/.libs
+	rm -rf srecord/endian/.libs srecord/input/.libs srecord/input/file/.libs
 	rm -rf srecord/input/filter/.libs srecord/input/filter/checksum/.libs
 	rm -rf srecord/input/filter/interval/.libs
 	rm -rf srecord/input/filter/message/.libs srecord/input/generator/.libs
@@ -3484,7 +3578,8 @@ install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man5/srec_tektronix_extended.5 \
 		$(mandir)/man5/srec_ti_tagged.5 \
 		$(mandir)/man5/srec_ti_tagged_16.5 $(mandir)/man5/srec_ti_txt.5 \
-		$(mandir)/man5/srec_vmem.5 $(mandir)/man5/srec_wilson.5
+		$(mandir)/man5/srec_trs80.5 $(mandir)/man5/srec_vmem.5 \
+		$(mandir)/man5/srec_wilson.5
 
 install-libdir: $(libdir)/libsrecord.la $(pkgconfigdir)/srecord.pc
 
@@ -3528,6 +3623,7 @@ install-include: $(includedir)/srecord/adler16.h $(includedir)/srecord/adler32.h
 		$(includedir)/srecord/input/file/ti_tagged.h \
 		$(includedir)/srecord/input/file/ti_tagged_16.h \
 		$(includedir)/srecord/input/file/ti_txt.h \
+		$(includedir)/srecord/input/file/trs80.h \
 		$(includedir)/srecord/input/file/vmem.h \
 		$(includedir)/srecord/input/file/wilson.h \
 		$(includedir)/srecord/input/filter.h \
@@ -3610,6 +3706,7 @@ install-include: $(includedir)/srecord/adler16.h $(includedir)/srecord/adler32.h
 		$(includedir)/srecord/output/file/ti_tagged.h \
 		$(includedir)/srecord/output/file/ti_tagged_16.h \
 		$(includedir)/srecord/output/file/ti_txt.h \
+		$(includedir)/srecord/output/file/trs80.h \
 		$(includedir)/srecord/output/file/vhdl.h \
 		$(includedir)/srecord/output/file/vmem.h \
 		$(includedir)/srecord/output/file/wilson.h \

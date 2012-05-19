@@ -144,6 +144,9 @@ DESCRIPTION
                format is used with the bootstrap loader of the Texas
                Instruments MSP430 family of processors.
 
+       TRS-80  The Radio Shack TRS-80 object file format is understood for
+               reading and writing.
+
        VHDL    It is possible to write VHDL file.  This is only supported for
                output.
 
@@ -191,7 +194,8 @@ DESCRIPTION
                The byte swap filter may be used to swap pairs of add and even
                bytes.
 
-       CRC     The crc filters may be used to insert a CRC into the data.
+       CRC     The various crc filters may be used to insert a CRC into the
+               data.
 
        checksum
                The checksum filters may be used to insert a checksum into the
@@ -241,11 +245,11 @@ ARCHIVE SITE
 
            URL:    http://srecord.sourceforge.net/
            File:   index.html            # the SRecord page
-           File:   srecord-1.59.README   # Description, from the tar file
-           File:   srecord-1.59.lsm      # Description, LSM format
-           File:   srecord-1.59.spec     # RedHat package specification
-           File:   srecord-1.59.tar.gz   # the complete source
-           File:   srecord-1.59.pdf      # Reference Manual
+           File:   srecord-1.60.README   # Description, from the tar file
+           File:   srecord-1.60.lsm      # Description, LSM format
+           File:   srecord-1.60.spec     # RedHat package specification
+           File:   srecord-1.60.tar.gz   # the complete source
+           File:   srecord-1.60.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the BUILDING
@@ -257,7 +261,7 @@ BUILDING SRECORD
        Windows binaries.
 
 COPYRIGHT
-       srecord version 1.59
+       srecord version 1.60
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
        2007, 2008, 2009, 2010, 2011, 2012 Peter Miller
 
@@ -285,6 +289,12 @@ RELEASE NOTES
        releases.  For excruciating and complete detail, and also credits for
        those of you who have generously sent me suggestions and bug reports,
        see the etc/CHANGES.* files.
+
+   Version 1.60 (2012-May-19)
+       * There are now several additional CRC-16 polynomials, plus the ability
+       to select a polynomial by name, rather than by value. See
+       http://en.wikipedia.org/wiki/Cyclic_redundancy_check for a table of
+       names and values.
 
    Version 1.59 (2012-Feb-10)
        * A number of additional CRC-16 polynomials have been added, as well as

@@ -41,5 +41,6 @@ usr/share/man/man5/srec_tektronix_extended.5
 usr/share/man/man5/srec_ti_tagged.5
 usr/share/man/man5/srec_ti_tagged_16.5
 usr/share/man/man5/srec_ti_txt.5
+usr/share/man/man5/srec_trs80.5
 usr/share/man/man5/srec_vmem.5
 usr/share/man/man5/srec_wilson.5
