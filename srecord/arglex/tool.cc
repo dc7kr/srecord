@@ -1,6 +1,6 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 1998-2012 Peter Miller
+// Copyright (C) 1998-2013 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
@@ -54,7 +54,7 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-BAsic", token_basic_data, },
         { "-BIG", token_big, },
         { "-BINary", token_binary, },
-        { "-Bit_Reverse", token_bitrev },
+        { "-Bit_REVerse", token_bitrev },
         { "-BROken", token_crc16_broken, },
         { "-Byte_Swap", token_byte_swap, },
         { "-B_Record", token_brecord, },
@@ -73,6 +73,7 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-Checksum_Positive_Big_Endian", token_checksum_be_positive, },
         { "-Checksum_Positive_Little_Endian", token_checksum_le_positive, },
         { "-CL430", token_cl430, },
+        { "-COE", token_xilinx_coefficient_file },
         { "-Comite_Consultatif_International_Telephonique_et_Telegraphique",
             token_crc16_ccitt,},
         { "-CONSTant", token_constant, },
@@ -99,10 +100,10 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-Exclusive_Length", token_exclusive_length, },
         { "-Exclusive_Length_Big_Endian", token_exclusive_length_be, },
         { "-Exclusive_Length_Little_Endian", token_exclusive_length_le, },
-        { "-Exclusive_Maximum", token_exclusive_maximum, },
+        { "-Exclusive_MAximum", token_exclusive_maximum, },
         { "-Exclusive_MAximum_Big_Endian", token_exclusive_maximum_be, },
         { "-Exclusive_MAximum_Little_Endian", token_exclusive_maximum_le, },
-        { "-Exclusive_Minimum", token_exclusive_minimum, },
+        { "-Exclusive_MInimum", token_exclusive_minimum, },
         { "-Exclusive_MInimum_Big_Endian",token_exclusive_minimum_be, },
         { "-Exclusive_MInimum_Little_Endian", token_exclusive_minimum_le, },
         { "-FAIrchild", token_fairchild, },
@@ -131,6 +132,8 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-INtel_HeXadecimal_16", token_intel16, },
         { "-International_Telecommunication_Union", token_crc16_ccitt,},
         { "-INTERSection", token_intersection, },
+        { "-Lattice_Memory_Initialization_Format",
+            token_lattice_memory_initialization_format },
         { "-Least_To_Most", token_crc16_least_to_most },
         { "-Length", token_length, },
         { "-Length_Big_Endian", token_length_be, },
@@ -138,6 +141,7 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-MAximum-Address", token_maximum_address, },
         { "-MAximum_Big_Endian", token_maximum_be, },
         { "-MAximum_Little_Endian", token_maximum_le, },
+        { "-MEM", token_lattice_memory_initialization_format },
         { "-Memory_Initialization_File", token_memory_initialization_file },
         { "-Message_Digest_2", token_md2 },
         { "-Message_Digest_5", token_md5 },
@@ -202,7 +206,7 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-SUBtract", token_minus, },
         { "-S_record", token_motorola, },
         { "-Tektronix", token_tektronix, },
-        { "-Tektronix_Extended", token_tektronix_extended, },
+        { "-Tektronix_EXtended", token_tektronix_extended, },
         { "-Texas_Instruments_Tagged", token_ti_tagged, },
         { "-Texas_Instruments_Tagged_16", token_ti_tagged_16, },
         { "-Texas_Instruments_TeXT", token_ti_txt, },
@@ -216,6 +220,7 @@ srecord::arglex_tool::arglex_tool(int argc, char **argv) :
         { "-WHIrlpool", token_whirlpool },
         { "-WILson", token_wilson, },
         { "-Within", token_within, },
+        { "-Xilinx_Coefficient_File", token_xilinx_coefficient_file },
         { "-XOR", token_xor, },
         { "-X_MODEM", token_crc16_xmodem, },
         { "[", token_paren_begin, },

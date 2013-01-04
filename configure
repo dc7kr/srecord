@@ -4650,15 +4650,6 @@ eval "datarootdir=$datarootdir"
 eval "mandir=$mandir"
 eval "libdir=$libdir"
 eval "datadir=$datadir"
-case "$datadir" in
-    */srecord/* | */srecord )
-    ;;
-*)
-    datadir="${datadir}/srecord"
-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: Rewriting --datadir=$datadir" >&5
-$as_echo "Rewriting --datadir=$datadir" >&6; }
-;;
-esac
 
 
 

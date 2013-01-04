@@ -137,3 +137,4 @@ usr/include/srecord/srecord.h
 usr/lib/libsrecord.a
 usr/lib/libsrecord.so
 usr/lib/pkgconfig/srecord.pc
+usr/share/man/man3/srecord.3

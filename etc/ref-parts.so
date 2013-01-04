@@ -11,6 +11,7 @@
 .so man/man5/srec_atmel_generic.5
 .so man/man5/srec_binary.5
 .so man/man5/srec_brecord.5
+.so man/man5/srec_coe.5
 .so man/man5/srec_cosmac.5
 .so man/man5/srec_dec_binary.5
 .so man/man5/srec_emon52.5
@@ -22,6 +23,7 @@
 .so man/man5/srec_idt.5
 .so man/man5/srec_intel16.5
 .so man/man5/srec_intel.5
+.so man/man5/srec_mem.5
 .so man/man5/srec_mif.5
 .so man/man5/srec_mips_flash.5
 .so man/man5/srec_mos_tech.5

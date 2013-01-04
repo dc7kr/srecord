@@ -1,8 +1,105 @@
+srecord (1.61.D001-1) unstable; urgency=low
+
+  * This change ser prepares the srecord project for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 12:28:03 +1100
+
+srecord (1.60.D014-1) unstable; urgency=low
+
+  * This change set fixes yet another build glitch concerning the test_prelude
+    file.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 12:12:33 +1100
+
+srecord (1.60.D013-1) unstable; urgency=low
+
+  * This change set tries once again to get test_prelude to build properly.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 10:51:07 +1100
+
+srecord (1.60.D012-1) unstable; urgency=low
+
+  * This change set fixes another problem with building the test_prelude script.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 09:54:35 +1100
+
+srecord (1.60.D011-1) unstable; urgency=low
+
+  * This change set fixes a coupel of small build glitches.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 07:57:54 +1100
+
+srecord (1.60.D010-1) unstable; urgency=low
+
+  * This change set adds checks for ambiguous option abbreviations. This will be
+    of most use when adding additional command line options.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 03 Jan 2013 21:37:28 +1100
+
+srecord (1.60.D009-1) unstable; urgency=low
+
+  * This change set replaces input_file::format_option_name with input_
+    file::format_option_number, so that the --guess error messages always agree
+    with the actual option names.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 03 Jan 2013 20:43:30 +1100
+
+srecord (1.60.D008-1) unstable; urgency=low
+
+  * This change moves the apt-get of essential packages into its own .cook file,
+    and improves some aspects of the quiet build.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 03 Jan 2013 16:29:50 +1100
+
+srecord (1.60.D007-1) unstable; urgency=low
+
+  * This change set fixes a bug in the Tektronix-Extenden format line checksum
+    calculations.  The comparison should have been in 8 bits, not int.
+  * My thanks to Izzet Ozcelik <izzetozcelik@cscope.co.uk> for reporting this
+    bug.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 03 Jan 2013 11:49:36 +1100
+
+srecord (1.60.D006-1) unstable; urgency=low
+
+  * This change set adds ~pm~ to the ppa version numbers, so the source is
+    obvious when installed.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 14 Nov 2012 20:10:15 +1100
+
+srecord (1.60.D005-1) unstable; urgency=low
+
+  * This change set replaces the png2ico command woth convert(1) from the
+    imagemagick package.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Mon, 05 Nov 2012 21:56:15 +1100
+
+srecord (1.60.D004-1) unstable; urgency=low
+
+  * Daniel Anselmi <danselmi@gmx.ch> contributed a Memory Initialization Format
+    by Lattice Semiconductor, for output only.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 07 Sep 2012 16:16:39 +1000
+
+srecord (1.60.D003-1) unstable; urgency=low
+
+  * Daniel Anselmi <danselmi@gmx.ch> contributed a Xilinx Coefficient File
+    Format (.coe) output class.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 07 Sep 2012 11:25:06 +1000
+
+srecord (1.60.D002-1) unstable; urgency=low
+
+  * This change set fixes the problem of the Doxygen documentation missing from
+    the web site.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 11 Jul 2012 21:04:56 +1000
+
 srecord (1.60.D001-1) unstable; urgency=low
 
   * This change set prepares the SRecord project for its next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Sat, 19 May 2012 19:44:04 +1000
+ -- Peter Miller <pmiller@opensource.org.au>  Sat, 19 May 2012 19:48:28 +1000
 
 srecord (1.59.D014-1) unstable; urgency=low
 

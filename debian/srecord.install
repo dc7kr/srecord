@@ -6,12 +6,12 @@ usr/share/man/man1/srec_cmp.1
 usr/share/man/man1/srec_examples.1
 usr/share/man/man1/srec_info.1
 usr/share/man/man1/srec_input.1
-usr/share/man/man3/srecord.3
 usr/share/man/man5/srec_aomf.5
 usr/share/man/man5/srec_ascii_hex.5
 usr/share/man/man5/srec_atmel_generic.5
 usr/share/man/man5/srec_binary.5
 usr/share/man/man5/srec_brecord.5
+usr/share/man/man5/srec_coe.5
 usr/share/man/man5/srec_cosmac.5
 usr/share/man/man5/srec_dec_binary.5
 usr/share/man/man5/srec_emon52.5
@@ -23,6 +23,7 @@ usr/share/man/man5/srec_fpc.5
 usr/share/man/man5/srec_idt.5
 usr/share/man/man5/srec_intel.5
 usr/share/man/man5/srec_intel16.5
+usr/share/man/man5/srec_mem.5
 usr/share/man/man5/srec_mif.5
 usr/share/man/man5/srec_mips_flash.5
 usr/share/man/man5/srec_mos_tech.5

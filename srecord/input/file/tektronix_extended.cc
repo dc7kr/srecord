@@ -1,22 +1,22 @@
 //
 // srecord - manipulate eprom load files
-// Copyright (C) 2000-2003, 2006-2008, 2010, 2011 Peter Miller
+// Copyright (C) 2000-2003, 2006-2008, 2010, 2011, 2013 Peter Miller
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation; either version 3 of the License, or
-// (at your option) any later version.
+// This program is free software; you can redistribute it and/or modify it
+// under the terms of the GNU Lesser General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at your
+// option) any later version.
 //
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+// License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with this program. If not, see
-// <http://www.gnu.org/licenses/>.
+// along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
+#include <srecord/arglex/tool.h>
 #include <srecord/input/file/tektronix_extended.h>
 #include <srecord/record.h>
 
@@ -72,10 +72,10 @@ srecord::input_file_tektronix_extended::read_inner(srecord::record &record)
     }
     int length = get_byte();
     int tag = get_nibble();
-    int csum = ((length >> 4) & 15) + (length & 15) + tag;
+    unsigned char csum = ((length >> 4) & 15) + (length & 15) + tag;
     if (length < 2)
         fatal_error("line length invalid");
-    int csumX = get_byte();
+    unsigned char csumX = get_byte();
 
     int addr_len = get_nibble();
     csum += addr_len;
@@ -103,7 +103,14 @@ srecord::input_file_tektronix_extended::read_inner(srecord::record &record)
         csum += ((n >> 4) & 15) + (n & 15);
     }
     if (csumX != csum)
-        fatal_error("checksum mismatch (%02X)", csum);
+    {
+        fatal_error
+        (
+            "checksum mismatch (file says 0x%02X, calculated 0x%02X)",
+            csumX,
+            csum
+        );
+    }
     if (get_char() != '\n')
         fatal_error("end-of-line expected");
 
@@ -197,11 +204,11 @@ srecord::input_file_tektronix_extended::get_file_format_name(void)
 }
 
 
-const char *
-srecord::input_file_tektronix_extended::format_option_name(void)
+int
+srecord::input_file_tektronix_extended::format_option_number(void)
     const
 {
-    return "-Tektronix_Extended";
+    return arglex_tool::token_tektronix_extended;
 }
 
 

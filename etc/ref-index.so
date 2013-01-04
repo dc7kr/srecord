@@ -179,6 +179,20 @@ T}	T{
 .ad l
 code file format
 T}
+srec_coe(5)	\*[Page*Of*srec_coe(5)]	T{
+.ad r
+srec coe - Xilinx
+T}	T{
+.ad l
+Coefficient File Format
+T}
+srec_coe(5)	\*[Page*Of*srec_coe(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+coe - Xilinx Coefficient File Format
+T}
 srec_cmp(1)	\*[Page*Of*srec_cmp(1)]	T{
 .ad r
 srec cmp -
@@ -388,6 +402,13 @@ srec binary - binary
 T}	T{
 .ad l
 file format
+T}
+srec_coe(5)	\*[Page*Of*srec_coe(5)]	T{
+.ad r
+srec coe - Xilinx Coefficient
+T}	T{
+.ad l
+File Format
 T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
@@ -683,6 +704,13 @@ T}	T{
 .ad l
 format
 T}
+srec_coe(5)	\*[Page*Of*srec_coe(5)]	T{
+.ad r
+srec coe - Xilinx Coefficient File
+T}	T{
+.ad l
+Format
+T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
 srec cosmac - RCA Cosmac Elf file
@@ -742,6 +770,13 @@ T}
 srec_idt(5)	\*[Page*Of*srec_idt(5)]	T{
 .ad r
 srec idt - IDT/sim binary file
+T}	T{
+.ad l
+format
+T}
+srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
+.ad r
+srec mem - Lattice Memory Initialization
 T}	T{
 .ad l
 format
@@ -1089,6 +1124,13 @@ T}	T{
 .ad l
 Initialization File (MIF) format
 T}
+srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
+.ad r
+srec mem - Lattice Memory
+T}	T{
+.ad l
+Initialization format
+T}
 srec_input(1)	\*[Page*Of*srec_input(1)]	T{
 .ad r
 SRecord -
@@ -1151,6 +1193,13 @@ srec
 T}	T{
 .ad l
 intel - Intel Hexadecimal object file format specification
+T}
+srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
+.ad r
+srec mem -
+T}	T{
+.ad l
+Lattice Memory Initialization format
 T}
 srecord_license(3)	\*[Page*Of*srecord_license(3)]	T{
 .ad r
@@ -1257,12 +1306,26 @@ T}	T{
 .ad l
 MC68EZ328 Dragonball bootstrap record format
 T}
+srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+mem - Lattice Memory Initialization format
+T}
 srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
 .ad r
 srec mif -
 T}	T{
 .ad l
 Memory Initialization File (MIF) format
+T}
+srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
+.ad r
+srec mem - Lattice
+T}	T{
+.ad l
+Memory Initialization format
 T}
 srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
 .ad r
@@ -1649,6 +1712,13 @@ T}	T{
 .ad l
 srec cmp - compare two EPROM load files for equality
 T}
+srec_coe(5)	\*[Page*Of*srec_coe(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec coe - Xilinx Coefficient File Format
+T}
 srec_cosmac(5)	\*[Page*Of*srec_cosmac(5)]	T{
 .ad r
 
@@ -1739,6 +1809,13 @@ srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 T}	T{
 .ad l
 srec intel - Intel Hexadecimal object file format specification
+T}
+srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec mem - Lattice Memory Initialization format
 T}
 srec_mif(5)	\*[Page*Of*srec_mif(5)]	T{
 .ad r
@@ -2152,6 +2229,13 @@ srec msbin -
 T}	T{
 .ad l
 Windows CE Binary Image Data Format
+T}
+srec_coe(5)	\*[Page*Of*srec_coe(5)]	T{
+.ad r
+srec coe -
+T}	T{
+.ad l
+Xilinx Coefficient File Format
 T}
 srec_dec_binary(5)	\*[Page*Of*srec_dec_binary(5)]	T{
 .ad r

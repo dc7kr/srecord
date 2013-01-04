@@ -27,6 +27,7 @@
 #include <srecord/input/file/atmel_generic.h>
 #include <srecord/input/file/binary.h>
 #include <srecord/input/file/brecord.h>
+#include <srecord/input/file/coe.h>
 #include <srecord/input/file/cosmac.h>
 #include <srecord/input/file/dec_binary.h>
 #include <srecord/input/file/emon52.h>
@@ -36,6 +37,7 @@
 #include <srecord/input/file/four_packed_code.h>
 #include <srecord/input/file/intel.h>
 #include <srecord/input/file/intel16.h>
+#include <srecord/input/file/mem.h>
 #include <srecord/input/file/mif.h>
 #include <srecord/input/file/mips_flash.h>
 #include <srecord/input/file/mos_tech.h>

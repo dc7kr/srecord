@@ -12,18 +12,24 @@ endif
 
 config.status: configure
 	dh_testdir
-	sh configure --prefix=/usr --localstatedir=/var \
-		--sysconfdir=/etc --mandir=/usr/share/man \
-		CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
+	sh configure --prefix=/usr --localstatedir=/var --sysconfdir=/etc \
+		--mandir=/usr/share/man CFLAGS="$(CFLAGS)" LDFLAGS="-Wl,-z,defs"
 
-build: build-stamp
+build: build-arch build-indep
 
+build-arch: build-stamp
+
+build-indep: build-stamp
+
+# Build and test the tarball.
 build-stamp: config.status
 	dh_testdir
 	$(MAKE)
 	$(MAKE) check
 	touch $@
 
+# dpkg-buildpackage (step 3) invokes 'fakeroot debian/rules clean', and after
+# that (step 5) does the actual build.
 clean:
 	dh_testdir
 	dh_testroot
@@ -31,6 +37,8 @@ clean:
 	test ! -f Makefile || $(MAKE) distclean
 	dh_clean
 
+# Install the built tarball into the temporary install tree. It depends on the
+# 'build' target, so the tarball is also built by this rule.
 install: build
 	dh_testdir
 	dh_testroot
@@ -40,13 +48,11 @@ install: build
 	mkdir -p $(CURDIR)/debian/tmp/usr/share
 	$(MAKE) DESTDIR=$(CURDIR)/debian/tmp install
 	-rm $(CURDIR)/debian/tmp/usr/lib/*.la
-	rm $(CURDIR)/debian/tmp/usr/share/man/man1/srec_license.1
-	rm $(CURDIR)/debian/tmp/usr/share/man/man3/srecord_license.3
+	-rm -f $(CURDIR)/debian/tmp/usr/share/man/man1/srec_license.1
+	-rm -f $(CURDIR)/debian/tmp/usr/share/man/man3/srecord_license.3
 
-binary-indep: build install
-
-# Build architecture-dependent files here.
-binary-arch: build install
+# Build the binary package files here.
+binary binary-arch binary-indep: install
 	dh_testdir
 	dh_testroot
 	dh_installchangelogs
@@ -63,6 +69,7 @@ binary-arch: build install
 	dh_md5sums
 	dh_builddeb
 
-binary: binary-indep binary-arch
+.PHONY: binary binary-arch binary-indep build build-arch build-indep clean \
+		install
 
-.PHONY: build clean binary-indep binary-arch binary install
+# vim: set ts=8 sw=8 noet :
