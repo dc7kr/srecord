@@ -178,8 +178,8 @@ etc/README.pdf: etc/README.man etc/new.1.1.so etc/new.1.10.so etc/new.1.11.so \
 		etc/new.1.51.so etc/new.1.52.so etc/new.1.53.so \
 		etc/new.1.54.so etc/new.1.55.so etc/new.1.56.so \
 		etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so \
-		etc/new.1.60.so etc/new.1.61.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so
+		etc/new.1.60.so etc/new.1.61.so etc/new.1.62.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so
 	$(GROFF) -Tps -s -I. -t -man etc/README.man > etc/README.ps
 	ps2pdf etc/README.ps $@
 	rm etc/README.ps
@@ -206,7 +206,7 @@ etc/change_log.pdf: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so \
 		etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so \
 		etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so etc/new.1.61.so \
-		etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so
+		etc/new.1.62.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so
 	$(GROFF) -Tps -s -I. -t -man etc/change_log.man > etc/change_log.ps
 	ps2pdf etc/change_log.ps $@
 	rm etc/change_log.ps
@@ -252,11 +252,11 @@ etc/reference.pdf: etc/BUILDING.man etc/README.man etc/coding-style.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
 		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so \
 		etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so \
-		etc/new.1.61.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so \
-		etc/ref-toc.so etc/reference.man man/man1/o_at.so \
-		man/man1/o_ignore_checksums.so man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/o_sequence.so \
-		man/man1/srec_cat.1 man/man1/srec_cmp.1 \
+		etc/new.1.61.so etc/new.1.62.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so etc/ref-toc.so etc/reference.man \
+		man/man1/o_at.so man/man1/o_ignore_checksums.so \
+		man/man1/o_input.so man/man1/o_multiple.so \
+		man/man1/o_sequence.so man/man1/srec_cat.1 man/man1/srec_cmp.1 \
 		man/man1/srec_examples.1 man/man1/srec_info.1 \
 		man/man1/srec_input.1 man/man1/srec_license.1 \
 		man/man1/z_copyright.so man/man1/z_exit.so \
@@ -878,7 +878,8 @@ srec_cat/main.lo srec_cat/main.o: srec_cat/arglex3.h srec_cat/main.cc \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/writer.h srecord/output.h \
 		srecord/output/file.h srecord/output/filter.h \
-		srecord/output/filter/reblock.h srecord/record.h
+		srecord/output/filter/reblock.h srecord/record.h \
+		srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srec_cat/main.cc -o srec_cat/main.lo
 
@@ -886,7 +887,7 @@ srec_cmp/main.lo srec_cmp/main.o: srec_cmp/main.cc srecord/arglex.h \
 		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
 		srecord/input.h srecord/input/file.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
-		srecord/output.h srecord/record.h
+		srecord/output.h srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srec_cmp/main.cc -o srec_cmp/main.lo
 
@@ -894,7 +895,8 @@ srec_info/main.lo srec_info/main.o: srec_info/main.cc srecord/arglex.h \
 		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
 		srecord/input.h srecord/input/file.h srecord/interval.h \
 		srecord/memory.h srecord/memory/chunk.h \
-		srecord/memory/walker.h srecord/output.h srecord/record.h
+		srecord/memory/walker.h srecord/output.h srecord/record.h \
+		srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srec_info/main.cc -o srec_info/main.lo
 
@@ -934,7 +936,7 @@ srecord/arglex/tool.lo srecord/arglex/tool.o: srecord/arglex.h \
 		srecord/arglex/tool.cc srecord/arglex/tool.h srecord/endian.h \
 		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/memory.h srecord/memory/chunk.h \
-		srecord/memory/walker.h srecord/output.h
+		srecord/memory/walker.h srecord/output.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool.cc -o srecord/arglex/tool.lo
 
@@ -1028,7 +1030,8 @@ srecord/arglex/tool/input.lo srecord/arglex/tool/input.o: srecord/adler16.h \
 		srecord/input/filter/xor.h srecord/input/generator.h \
 		srecord/input/interval.h srecord/interval.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
-		srecord/output.h srecord/quit.h srecord/record.h srecord/stm32.h
+		srecord/output.h srecord/quit.h srecord/record.h \
+		srecord/stm32.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/input.cc -o srecord/arglex/tool/input.lo
 
@@ -1863,7 +1866,8 @@ srecord/input/filter/message.lo srecord/input/filter/message.o: \
 		srecord/endian.h srecord/format_printf.h srecord/input.h \
 		srecord/input/filter.h srecord/input/filter/message.cc \
 		srecord/input/filter/message.h srecord/memory.h \
-		srecord/memory/chunk.h srecord/memory/walker.h srecord/record.h
+		srecord/memory/chunk.h srecord/memory/walker.h \
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message.cc -o \
 		srecord/input/filter/message.lo
@@ -1882,7 +1886,7 @@ srecord/input/filter/message/adler16.lo \
 		srecord/input/filter/message/adler16.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/adler16.h srecord/output.h \
-		srecord/record.h
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/adler16.cc -o \
 		srecord/input/filter/message/adler16.lo
@@ -1901,7 +1905,7 @@ srecord/input/filter/message/adler32.lo \
 		srecord/input/filter/message/adler32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/adler32.h srecord/output.h \
-		srecord/record.h
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/adler32.cc -o \
 		srecord/input/filter/message/adler32.lo
@@ -1918,7 +1922,8 @@ srecord/input/filter/message/crc16.lo srecord/input/filter/message/crc16.o: \
 		srecord/input/filter/message/crc16.cc \
 		srecord/input/filter/message/crc16.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
-		srecord/memory/walker/crc16.h srecord/output.h srecord/record.h
+		srecord/memory/walker/crc16.h srecord/output.h \
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/crc16.cc -o \
 		srecord/input/filter/message/crc16.lo
@@ -1935,7 +1940,8 @@ srecord/input/filter/message/crc32.lo srecord/input/filter/message/crc32.o: \
 		srecord/input/filter/message/crc32.cc \
 		srecord/input/filter/message/crc32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
-		srecord/memory/walker/crc32.h srecord/output.h srecord/record.h
+		srecord/memory/walker/crc32.h srecord/output.h \
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/crc32.cc -o \
 		srecord/input/filter/message/crc32.lo
@@ -1954,7 +1960,7 @@ srecord/input/filter/message/fletcher16.lo \
 		srecord/input/filter/message/fletcher16.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/fletcher16.h srecord/output.h \
-		srecord/record.h
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/fletcher16.cc -o \
 		srecord/input/filter/message/fletcher16.lo
@@ -1973,7 +1979,7 @@ srecord/input/filter/message/fletcher32.lo \
 		srecord/input/filter/message/fletcher32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/fletcher32.h srecord/output.h \
-		srecord/record.h
+		srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/fletcher32.cc -o \
 		srecord/input/filter/message/fletcher32.lo
@@ -1991,7 +1997,7 @@ srecord/input/filter/message/gcrypt.lo srecord/input/filter/message/gcrypt.o: \
 		srecord/input/filter/message/gcrypt.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/gcrypt.h srecord/quit.h srecord/record.h \
-		srecord/sizeof.h
+		srecord/sizeof.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/gcrypt.cc -o \
 		srecord/input/filter/message/gcrypt.lo
@@ -2009,7 +2015,7 @@ srecord/input/filter/message/stm32.lo srecord/input/filter/message/stm32.o: \
 		srecord/input/filter/message/stm32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/stm32.h srecord/output.h \
-		srecord/record.h srecord/stm32.h
+		srecord/record.h srecord/stm32.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message/stm32.cc -o \
 		srecord/input/filter/message/stm32.lo
@@ -2135,7 +2141,7 @@ srecord/input/generator.lo srecord/input/generator.o: srecord/arglex.h \
 		srecord/input/generator.h srecord/input/generator/constant.h \
 		srecord/input/generator/random.h \
 		srecord/input/generator/repeat.h srecord/interval.h \
-		srecord/output.h srecord/record.h
+		srecord/output.h srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/generator.cc -o srecord/input/generator.lo
 
@@ -2213,7 +2219,8 @@ srecord/memory.lo srecord/memory.o: srecord/endian.h srecord/format_printf.h \
 		srecord/memory.h srecord/memory/chunk.h \
 		srecord/memory/walker.h srecord/memory/walker/alignment.h \
 		srecord/memory/walker/compare.h \
-		srecord/memory/walker/continuity.h srecord/record.h
+		srecord/memory/walker/continuity.h srecord/record.h \
+		srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/memory.cc -o srecord/memory.lo
 
@@ -2265,7 +2272,7 @@ srecord/memory/walker/compare.lo srecord/memory/walker/compare.o: \
 		srecord/format_printf.h srecord/input.h srecord/interval.h \
 		srecord/memory.h srecord/memory/chunk.h \
 		srecord/memory/walker.h srecord/memory/walker/compare.cc \
-		srecord/memory/walker/compare.h
+		srecord/memory/walker/compare.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/memory/walker/compare.cc -o \
 		srecord/memory/walker/compare.lo
@@ -3005,6 +3012,19 @@ srecord/stm32.lo srecord/stm32.o: srecord/stm32.cc srecord/stm32.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/stm32.cc -o srecord/stm32.lo
 
+$(includedir)/srecord/string.h: .mkdir.__includedir__srecord srecord/string.h
+	$(INSTALL_DATA) srecord/string.h $@
+
+srecord/string/url_decode.lo srecord/string/url_decode.o: srecord/string.h \
+		srecord/string/url_decode.cc
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/string/url_decode.cc -o srecord/string/url_decode.lo
+
+srecord/string/url_encode.lo srecord/string/url_encode.o: srecord/string.h \
+		srecord/string/url_encode.cc
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/string/url_encode.cc -o srecord/string/url_encode.lo
+
 srecord/versn_stamp.lo srecord/versn_stamp.o: srecord/progname.h \
 		srecord/versn_stamp.cc srecord/versn_stamp.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -3125,6 +3145,9 @@ t0036a: all test/00/t0036a.sh
 
 t0037a: all test/00/t0037a.sh
 	PATH=`pwd`/bin:$$PATH $(SH) test/00/t0037a.sh
+
+t0037b: all test/00/t0037b.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/00/t0037b.sh
 
 t0038a: all test/00/t0038a.sh
 	PATH=`pwd`/bin:$$PATH $(SH) test/00/t0038a.sh
@@ -3594,29 +3617,52 @@ t0231a: all test/02/t0231a.sh
 t0232a: all test/02/t0232a.sh
 	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0232a.sh
 
-test_arglex_ambiguous/main.lo test_arglex_ambiguous/main.o: srecord/arglex.h \
+t0233a: all test/02/t0233a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0233a.sh
+
+t0235a: all test/02/t0235a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0235a.sh
+
+t0236a: all test/02/t0236a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0236a.sh
+
+t0237a: all test/02/t0237a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0237a.sh
+
+t0238a: all test/02/t0238a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0238a.sh
+
+t0239a: all test/02/t0239a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0239a.sh
+
+test/arglex_ambiguous/main.lo test/arglex_ambiguous/main.o: srecord/arglex.h \
 		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h test_arglex_ambiguous/main.cc
+		srecord/input.h srecord/output.h test/arglex_ambiguous/main.cc
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
-		-c test_arglex_ambiguous/main.cc -o \
-		test_arglex_ambiguous/main.lo
+		-c test/arglex_ambiguous/main.cc -o \
+		test/arglex_ambiguous/main.lo
 
-test_crc16/main.lo test_crc16/main.o: srecord/bitrev.h srecord/crc16.h \
+test/crc16/main.lo test/crc16/main.o: srecord/bitrev.h srecord/crc16.h \
 		srecord/format_printf.h srecord/progname.h srecord/quit.h \
-		srecord/versn_stamp.h test_crc16/main.cc
+		srecord/versn_stamp.h test/crc16/main.cc
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
-		-c test_crc16/main.cc -o test_crc16/main.lo
+		-c test/crc16/main.cc -o test/crc16/main.lo
 
-test_fletcher16/main.lo test_fletcher16/main.o: srecord/endian.h \
-		srecord/fletcher16.h test_fletcher16/main.cc
+test/fletcher16/main.lo test/fletcher16/main.o: srecord/endian.h \
+		srecord/fletcher16.h test/fletcher16/main.cc
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
-		-c test_fletcher16/main.cc -o test_fletcher16/main.lo
+		-c test/fletcher16/main.cc -o test/fletcher16/main.lo
 
-test_hyphen/main.lo test_hyphen/main.o: srecord/format_printf.h \
+test/hyphen/main.lo test/hyphen/main.o: srecord/format_printf.h \
 		srecord/progname.h srecord/quit.h srecord/versn_stamp.h \
-		test_hyphen/main.cc
+		test/hyphen/main.cc
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
-		-c test_hyphen/main.cc -o test_hyphen/main.lo
+		-c test/hyphen/main.cc -o test/hyphen/main.lo
+
+test/url_decode/main.lo test/url_decode/main.o: srecord/progname.h \
+		srecord/string.h srecord/versn_stamp.h test/url_decode/main.cc
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c test/url_decode/main.cc -o test/url_decode/main.lo
 
 #
 # The srecord/libsrecord.la library.
@@ -3730,8 +3776,9 @@ srecord_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/output/filter/reblock.lo srecord/pretty_size.lo \
 		srecord/progname.lo srecord/quit.lo srecord/quit/exception.lo \
 		srecord/quit/normal.lo srecord/quit/prefix.lo srecord/r250.lo \
-		srecord/record.lo srecord/stm32.lo srecord/versn_stamp.lo \
-		srecord/vsnprintf.lo
+		srecord/record.lo srecord/stm32.lo \
+		srecord/string/url_decode.lo srecord/string/url_encode.lo \
+		srecord/versn_stamp.lo srecord/vsnprintf.lo
 
 srecord/libsrecord.la: $(srecord_obj)
 	rm -f $@
@@ -3909,7 +3956,7 @@ $(bindir)/srec_info: .mkdir.__bindir_ bin/srec_info
 #
 # The test_arglex_ambiguous program.
 #
-test_arglex_ambiguous_obj = test_arglex_ambiguous/main.lo
+test_arglex_ambiguous_obj = test/arglex_ambiguous/main.lo
 
 bin/test_arglex_ambiguous: $(test_arglex_ambiguous_obj) .bin \
 		srecord/libsrecord.la
@@ -3920,7 +3967,7 @@ bin/test_arglex_ambiguous: $(test_arglex_ambiguous_obj) .bin \
 #
 # The test_crc16 program.
 #
-test_crc16_obj = test_crc16/main.lo
+test_crc16_obj = test/crc16/main.lo
 
 bin/test_crc16: $(test_crc16_obj) .bin srecord/libsrecord.la
 	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
@@ -3929,7 +3976,7 @@ bin/test_crc16: $(test_crc16_obj) .bin srecord/libsrecord.la
 #
 # The test_fletcher16 program.
 #
-test_fletcher16_obj = test_fletcher16/main.lo
+test_fletcher16_obj = test/fletcher16/main.lo
 
 bin/test_fletcher16: $(test_fletcher16_obj) .bin srecord/libsrecord.la
 	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
@@ -3938,17 +3985,26 @@ bin/test_fletcher16: $(test_fletcher16_obj) .bin srecord/libsrecord.la
 #
 # The test_hyphen program.
 #
-test_hyphen_obj = test_hyphen/main.lo
+test_hyphen_obj = test/hyphen/main.lo
 
 bin/test_hyphen: $(test_hyphen_obj) .bin srecord/libsrecord.la
 	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
 		$(test_hyphen_obj) srecord/libsrecord.la $(LDFLAGS) $(LIBS)
 
+#
+# The test_url_decode program.
+#
+test_url_decode_obj = test/url_decode/main.lo
+
+bin/test_url_decode: $(test_url_decode_obj) .bin srecord/libsrecord.la
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(test_url_decode_obj) srecord/libsrecord.la $(LDFLAGS) $(LIBS)
+
 all: all-bin all-doc
 
 all-bin: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_arglex_ambiguous \
 		bin/test_crc16 bin/test_fletcher16 bin/test_hyphen \
-		bin/test_prelude
+		bin/test_prelude bin/test_url_decode
 
 all-doc: etc/BUILDING.pdf etc/README.pdf etc/change_log.pdf etc/reference.pdf \
 		man/cat1/srec_cat.1 man/cat1/srec_cmp.1 \
@@ -3987,24 +4043,25 @@ test_files = t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0010a t0011a t0012a t0013a t0014a t0015a t0016a t0017a t0018a \
 		t0019a t0020a t0021a t0022a t0023a t0024a t0025a t0026a t0027a \
 		t0028a t0029a t0030a t0031a t0032a t0033a t0034a t0035a t0036a \
-		t0037a t0038a t0039a t0040a t0050a t0051a t0052a t0053a t0055a \
-		t0056a t0057a t0058a t0059a t0060a t0061a t0062a t0063a t0065a \
-		t0066a t0067a t0068a t0069a t0070a t0071a t0072a t0073a t0075a \
-		t0076a t0077a t0078a t0079a t0080a t0081a t0082a t0083a t0085a \
-		t0086a t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a \
-		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a t0105a \
-		t0106a t0107a t0108a t0109a t0110a t0111a t0112a t0113a t0115a \
-		t0116a t0117a t0118a t0119a t0120a t0121a t0122a t0123a t0125a \
-		t0126a t0127a t0128a t0129a t0130a t0131a t0132a t0133a t0135a \
-		t0136a t0137a t0138a t0139a t0150a t0151a t0152a t0153a t0155a \
-		t0156a t0157a t0158a t0159a t0160a t0161a t0162a t0163a t0165a \
-		t0166a t0167a t0168a t0169a t0170a t0171a t0172a t0173a t0175a \
-		t0176a t0177a t0178a t0179a t0180a t0181a t0182a t0183a t0185a \
-		t0186a t0187a t0188a t0189a t0191a t0192a t0193a t0195a t0196a \
-		t0197a t0198a t0199a t0200a t0201a t0202a t0203a t0205a t0206a \
-		t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a \
-		t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a t0228a \
-		t0229a t0230a t0231a t0232a
+		t0037a t0037b t0038a t0039a t0040a t0050a t0051a t0052a t0053a \
+		t0055a t0056a t0057a t0058a t0059a t0060a t0061a t0062a t0063a \
+		t0065a t0066a t0067a t0068a t0069a t0070a t0071a t0072a t0073a \
+		t0075a t0076a t0077a t0078a t0079a t0080a t0081a t0082a t0083a \
+		t0085a t0086a t0087a t0088a t0089a t0090a t0091a t0092a t0093a \
+		t0095a t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a \
+		t0105a t0106a t0107a t0108a t0109a t0110a t0111a t0112a t0113a \
+		t0115a t0116a t0117a t0118a t0119a t0120a t0121a t0122a t0123a \
+		t0125a t0126a t0127a t0128a t0129a t0130a t0131a t0132a t0133a \
+		t0135a t0136a t0137a t0138a t0139a t0150a t0151a t0152a t0153a \
+		t0155a t0156a t0157a t0158a t0159a t0160a t0161a t0162a t0163a \
+		t0165a t0166a t0167a t0168a t0169a t0170a t0171a t0172a t0173a \
+		t0175a t0176a t0177a t0178a t0179a t0180a t0181a t0182a t0183a \
+		t0185a t0186a t0187a t0188a t0189a t0191a t0192a t0193a t0195a \
+		t0196a t0197a t0198a t0199a t0200a t0201a t0202a t0203a t0205a \
+		t0206a t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a \
+		t0217a t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a \
+		t0228a t0229a t0230a t0231a t0232a t0233a t0235a t0236a t0237a \
+		t0238a t0239a
 
 sure: $(test_files)
 	@echo Passed All Tests
@@ -4014,7 +4071,7 @@ clean: clean-bin clean-doc clean-misc clean-obj
 clean-bin:
 	rm -f bin/srec_cat bin/srec_cmp bin/srec_info bin/test_arglex_ambiguous
 	rm -f bin/test_crc16 bin/test_fletcher16 bin/test_hyphen
-	rm -f bin/test_prelude
+	rm -f bin/test_prelude bin/test_url_decode
 
 clean-doc:
 	rm -f etc/BUILDING.pdf etc/README.pdf etc/change_log.pdf
@@ -4260,11 +4317,14 @@ clean-obj:
 	rm -f srecord/quit/exception.o srecord/quit/normal.lo
 	rm -f srecord/quit/normal.o srecord/quit/prefix.lo srecord/quit/prefix.o
 	rm -f srecord/r250.lo srecord/r250.o srecord/record.lo srecord/record.o
-	rm -f srecord/stm32.lo srecord/stm32.o srecord/versn_stamp.lo
+	rm -f srecord/stm32.lo srecord/stm32.o srecord/string/url_decode.lo
+	rm -f srecord/string/url_decode.o srecord/string/url_encode.lo
+	rm -f srecord/string/url_encode.o srecord/versn_stamp.lo
 	rm -f srecord/versn_stamp.o srecord/vsnprintf.lo srecord/vsnprintf.o
-	rm -f test_arglex_ambiguous/main.lo test_arglex_ambiguous/main.o
-	rm -f test_crc16/main.lo test_crc16/main.o test_fletcher16/main.lo
-	rm -f test_fletcher16/main.o test_hyphen/main.lo test_hyphen/main.o
+	rm -f test/arglex_ambiguous/main.lo test/arglex_ambiguous/main.o
+	rm -f test/crc16/main.lo test/crc16/main.o test/fletcher16/main.lo
+	rm -f test/fletcher16/main.o test/hyphen/main.lo test/hyphen/main.o
+	rm -f test/url_decode/main.lo test/url_decode/main.o
 
 distclean: clean distclean-directories distclean-files
 
@@ -4283,8 +4343,9 @@ distclean-directories:
 	rm -rf srecord/interval/.libs srecord/memory/.libs
 	rm -rf srecord/memory/walker/.libs srecord/output/.libs
 	rm -rf srecord/output/file/.libs srecord/output/filter/.libs
-	rm -rf srecord/quit/.libs test_arglex_ambiguous/.libs test_crc16/.libs
-	rm -rf test_fletcher16/.libs test_hyphen/.libs
+	rm -rf srecord/quit/.libs srecord/string/.libs
+	rm -rf test/arglex_ambiguous/.libs test/crc16/.libs
+	rm -rf test/fletcher16/.libs test/hyphen/.libs test/url_decode/.libs
 
 install: install-bin install-doc install-include install-libdir install-man
 
@@ -4427,7 +4488,8 @@ install-include: $(includedir)/srecord/adler16.h \
 		$(includedir)/srecord/quit/exception.h \
 		$(includedir)/srecord/quit/normal.h \
 		$(includedir)/srecord/quit/prefix.h \
-		$(includedir)/srecord/record.h $(includedir)/srecord/srecord.h
+		$(includedir)/srecord/record.h $(includedir)/srecord/srecord.h \
+		$(includedir)/srecord/string.h
 
 #
 # The install of the *.la file automatically causes "$(LIBTOOL) --mode=install"
@@ -4598,14 +4660,14 @@ uninstall:
 	rm -f $(includedir)/srecord/quit/exception.h
 	rm -f $(includedir)/srecord/quit/normal.h
 	rm -f $(includedir)/srecord/quit/prefix.h $(includedir)/srecord/record.h
-	rm -f $(includedir)/srecord/srecord.h $(libdir)/libsrecord.a
-	rm -f $(libdir)/libsrecord.la $(libdir)/libsrecord.so*
-	rm -f $(libdir)/pkgconfig/srecord.pc $(mandir)/man1/srec_cat.1
-	rm -f $(mandir)/man1/srec_cmp.1 $(mandir)/man1/srec_examples.1
-	rm -f $(mandir)/man1/srec_info.1 $(mandir)/man1/srec_input.1
-	rm -f $(mandir)/man1/srec_license.1 $(mandir)/man3/srecord.3
-	rm -f $(mandir)/man3/srecord_license.3 $(mandir)/man5/srec_aomf.5
-	rm -f $(mandir)/man5/srec_ascii_hex.5
+	rm -f $(includedir)/srecord/srecord.h $(includedir)/srecord/string.h
+	rm -f $(libdir)/libsrecord.a $(libdir)/libsrecord.la
+	rm -f $(libdir)/libsrecord.so* $(libdir)/pkgconfig/srecord.pc
+	rm -f $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1
+	rm -f $(mandir)/man1/srec_examples.1 $(mandir)/man1/srec_info.1
+	rm -f $(mandir)/man1/srec_input.1 $(mandir)/man1/srec_license.1
+	rm -f $(mandir)/man3/srecord.3 $(mandir)/man3/srecord_license.3
+	rm -f $(mandir)/man5/srec_aomf.5 $(mandir)/man5/srec_ascii_hex.5
 	rm -f $(mandir)/man5/srec_atmel_generic.5 $(mandir)/man5/srec_binary.5
 	rm -f $(mandir)/man5/srec_brecord.5 $(mandir)/man5/srec_coe.5
 	rm -f $(mandir)/man5/srec_cosmac.5 $(mandir)/man5/srec_dec_binary.5
@@ -4634,23 +4696,24 @@ uninstall:
 		t0011a t0012a t0013a t0014a t0015a t0016a t0017a t0018a t0019a \
 		t0020a t0021a t0022a t0023a t0024a t0025a t0026a t0027a t0028a \
 		t0029a t0030a t0031a t0032a t0033a t0034a t0035a t0036a t0037a \
-		t0038a t0039a t0040a t0050a t0051a t0052a t0053a t0055a t0056a \
-		t0057a t0058a t0059a t0060a t0061a t0062a t0063a t0065a t0066a \
-		t0067a t0068a t0069a t0070a t0071a t0072a t0073a t0075a t0076a \
-		t0077a t0078a t0079a t0080a t0081a t0082a t0083a t0085a t0086a \
-		t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a t0096a \
-		t0097a t0098a t0099a t0100a t0101a t0102a t0103a t0105a t0106a \
-		t0107a t0108a t0109a t0110a t0111a t0112a t0113a t0115a t0116a \
-		t0117a t0118a t0119a t0120a t0121a t0122a t0123a t0125a t0126a \
-		t0127a t0128a t0129a t0130a t0131a t0132a t0133a t0135a t0136a \
-		t0137a t0138a t0139a t0150a t0151a t0152a t0153a t0155a t0156a \
-		t0157a t0158a t0159a t0160a t0161a t0162a t0163a t0165a t0166a \
-		t0167a t0168a t0169a t0170a t0171a t0172a t0173a t0175a t0176a \
-		t0177a t0178a t0179a t0180a t0181a t0182a t0183a t0185a t0186a \
-		t0187a t0188a t0189a t0191a t0192a t0193a t0195a t0196a t0197a \
-		t0198a t0199a t0200a t0201a t0202a t0203a t0205a t0206a t0207a \
-		t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a t0218a \
-		t0219a t0220a t0221a t0222a t0223a t0225a t0227a t0228a t0229a \
-		t0230a t0231a t0232a the-default-target
+		t0037b t0038a t0039a t0040a t0050a t0051a t0052a t0053a t0055a \
+		t0056a t0057a t0058a t0059a t0060a t0061a t0062a t0063a t0065a \
+		t0066a t0067a t0068a t0069a t0070a t0071a t0072a t0073a t0075a \
+		t0076a t0077a t0078a t0079a t0080a t0081a t0082a t0083a t0085a \
+		t0086a t0087a t0088a t0089a t0090a t0091a t0092a t0093a t0095a \
+		t0096a t0097a t0098a t0099a t0100a t0101a t0102a t0103a t0105a \
+		t0106a t0107a t0108a t0109a t0110a t0111a t0112a t0113a t0115a \
+		t0116a t0117a t0118a t0119a t0120a t0121a t0122a t0123a t0125a \
+		t0126a t0127a t0128a t0129a t0130a t0131a t0132a t0133a t0135a \
+		t0136a t0137a t0138a t0139a t0150a t0151a t0152a t0153a t0155a \
+		t0156a t0157a t0158a t0159a t0160a t0161a t0162a t0163a t0165a \
+		t0166a t0167a t0168a t0169a t0170a t0171a t0172a t0173a t0175a \
+		t0176a t0177a t0178a t0179a t0180a t0181a t0182a t0183a t0185a \
+		t0186a t0187a t0188a t0189a t0191a t0192a t0193a t0195a t0196a \
+		t0197a t0198a t0199a t0200a t0201a t0202a t0203a t0205a t0206a \
+		t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a \
+		t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a t0228a \
+		t0229a t0230a t0231a t0232a t0233a t0235a t0236a t0237a t0238a \
+		t0239a the-default-target
 
 # vim: set ts=8 sw=8 noet :

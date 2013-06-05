@@ -134,6 +134,7 @@ usr/include/srecord/quit/normal.h
 usr/include/srecord/quit/prefix.h
 usr/include/srecord/record.h
 usr/include/srecord/srecord.h
+usr/include/srecord/string.h
 usr/lib/libsrecord.a
 usr/lib/libsrecord.so
 usr/lib/pkgconfig/srecord.pc

@@ -1,8 +1,57 @@
+srecord (1.62.D001-1) unstable; urgency=low
+
+  * This change set prepares SRecored for the next public release.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 Jun 2013 14:25:12 +1000
+
+srecord (1.61.D006-1) unstable; urgency=low
+
+  * * Luc Steynen <LucSteynen@edna.be> discovered that the --checksum-big-endian
+    opion was a counter-intuitive alias for the the --checksum-bitnot-big-endian
+    option.
+  * * The --checksum-big-endian option is now deprecated, in favor of the --
+    checksum-bitnot-big-endian option; the code will warn uers of the old option
+    they will need to change.
+  * * Ditto little-endian variants
+
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 Jun 2013 12:04:34 +1000
+
+srecord (1.61.D005-1) unstable; urgency=low
+
+  * Alin Pilkington <apilkington@moog.com> found that the Tektronics Extended
+    format was calculating the record length incorrectory.
+  * Thanks you for the bug report.
+  * This has been fixed for both reading and writing.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 04 Jun 2013 09:53:04 +1000
+
+srecord (1.61.D004-1) unstable; urgency=low
+
+  * Dr. Benedikt Schmitt <Benedikt.Schmitt@safeintrain.de> suggted bein able o
+    inject arbitrary data into the file header (suh as NUL termination
+    characters.	 This change set adds URL-style escapes (e.g. %25) to the string
+    on he command line.	 E.g. --header or --generate --string
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 30 May 2013 22:17:00 +1000
+
+srecord (1.61.D003-1) unstable; urgency=low
+
+  * This change set fixes the Distribution: line in the debian/*.changes file,
+    to cater to Ubuntu's recent changes.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 05 Feb 2013 18:15:24 +1100
+
+srecord (1.61.D002-1) unstable; urgency=low
+
+  * This change set improves some of the links to the wind32 binaries on sf.net
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 05 Feb 2013 15:31:58 +1100
+
 srecord (1.61.D001-1) unstable; urgency=low
 
   * This change ser prepares the srecord project for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 12:28:03 +1100
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 04 Jan 2013 12:40:20 +1100
 
 srecord (1.60.D014-1) unstable; urgency=low
 

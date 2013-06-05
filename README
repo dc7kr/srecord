@@ -250,11 +250,11 @@ ARCHIVE SITE
 
         URL:    http://srecord.sourceforge.net/
         File:   index.html            # the SRecord page
-        File:   srecord-1.61.README   # Description, from the tar file
-        File:   srecord-1.61.lsm      # Description, LSM format
-        File:   srecord-1.61.spec     # RedHat package specification
-        File:   srecord-1.61.tar.gz   # the complete source
-        File:   srecord-1.61.pdf      # Reference Manual
+        File:   srecord-1.62.README   # Description, from the tar file
+        File:   srecord-1.62.lsm      # Description, LSM format
+        File:   srecord-1.62.spec     # RedHat package specification
+        File:   srecord-1.62.tar.gz   # the complete source
+        File:   srecord-1.62.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the
@@ -266,7 +266,7 @@ BUILDING SRECORD
        native Windows binaries.
 
 COPYRIGHT
-       srecord version 1.61
+       srecord version 1.62
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
        2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013 Peter Miller
 
@@ -296,6 +296,25 @@ RELEASE NOTES
        various releases.  For excruciating and complete detail, and
        also credits for those of you who have generously sent me
        suggestions and bug reports, see the etc/CHANGES.* files.
+
+   Version 1.62 (2013-Jun-05)
+       * Luc Steynen <LucSteynen@edna.be> discovered that the -hecksum-
+         big-endian opion was a counter-intuitive alias for the the
+         -checksum-bitnot-big-endian option.  The -checksum-big-endian
+         option is now deprecated, in favor of the -checksum-bitnot-
+         big-endian option; the code will warn uers of the old option
+         they will need to change.  Ditto little-endian variants
+
+       * Alin Pilkington <apilkington@moog.com> found that the
+         Tektronics Extended format was calculating the record length
+         incorrectory.  Thanks you for the bug report.  This has been
+         fixed for both reading and writing.
+
+       * Dr. Benedikt Schmitt <Benedikt.Schmitt@safeintrain.de>
+         suggested being able to inject arbitrary data into the file
+         header (such as NUL termination characters). This change set
+         adds URL-style escapes (e.g. %25) to the string on he command
+         line. For example: -header or -generate -string
 
    Version 1.61 (2013-Jan-04)
        * Izzet Ozcelik <izzetozcelik@cscope.co.uk> discovered a bug in

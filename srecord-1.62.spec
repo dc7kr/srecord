@@ -16,7 +16,7 @@
 #
 Summary: srecord
 Name: srecord
-Version: 1.61.D001
+Version: 1.62.D001
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -285,6 +285,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/srecord/quit/prefix.h
 %{_includedir}/srecord/record.h
 %{_includedir}/srecord/srecord.h
+%{_includedir}/srecord/string.h
 %{_libdir}/pkgconfig/srecord.pc
 %{_mandir}/man3/srecord.3
 %{_mandir}/man3/srecord_license.3
