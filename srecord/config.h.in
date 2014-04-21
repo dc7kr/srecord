@@ -1,4 +1,4 @@
-/* srecord/config.h.in.  Generated from etc/configure.ac by autoheader.  */
+/* srecord/config.h.in.  Generated from bl/etc/configure.ac by autoheader.  */
 
 /*
  * srecord - manipulate eprom load files

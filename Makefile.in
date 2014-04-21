@@ -178,8 +178,8 @@ etc/README.pdf: etc/README.man etc/new.1.1.so etc/new.1.10.so etc/new.1.11.so \
 		etc/new.1.51.so etc/new.1.52.so etc/new.1.53.so \
 		etc/new.1.54.so etc/new.1.55.so etc/new.1.56.so \
 		etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so \
-		etc/new.1.60.so etc/new.1.61.so etc/new.1.62.so etc/new.1.7.so \
-		etc/new.1.8.so etc/new.1.9.so
+		etc/new.1.60.so etc/new.1.61.so etc/new.1.62.so \
+		etc/new.1.63.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so
 	$(GROFF) -Tps -s -I. -t -man etc/README.man > etc/README.ps
 	ps2pdf etc/README.ps $@
 	rm etc/README.ps
@@ -206,7 +206,8 @@ etc/change_log.pdf: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so \
 		etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so \
 		etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so etc/new.1.61.so \
-		etc/new.1.62.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so
+		etc/new.1.62.so etc/new.1.63.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so
 	$(GROFF) -Tps -s -I. -t -man etc/change_log.man > etc/change_log.ps
 	ps2pdf etc/change_log.ps $@
 	rm etc/change_log.ps
@@ -252,8 +253,8 @@ etc/reference.pdf: etc/BUILDING.man etc/README.man etc/coding-style.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
 		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so \
 		etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so \
-		etc/new.1.61.so etc/new.1.62.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so etc/ref-toc.so etc/reference.man \
+		etc/new.1.61.so etc/new.1.62.so etc/new.1.63.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so etc/ref-toc.so etc/reference.man \
 		man/man1/o_at.so man/man1/o_ignore_checksums.so \
 		man/man1/o_input.so man/man1/o_multiple.so \
 		man/man1/o_sequence.so man/man1/srec_cat.1 man/man1/srec_cmp.1 \
@@ -269,11 +270,12 @@ etc/reference.pdf: etc/BUILDING.man etc/README.man etc/coding-style.so \
 		man/man5/srec_fairchild.5 man/man5/srec_fastload.5 \
 		man/man5/srec_formatted_binary.5 man/man5/srec_forth.5 \
 		man/man5/srec_fpc.5 man/man5/srec_idt.5 man/man5/srec_intel.5 \
-		man/man5/srec_intel16.5 man/man5/srec_mem.5 \
-		man/man5/srec_mif.5 man/man5/srec_mips_flash.5 \
-		man/man5/srec_mos_tech.5 man/man5/srec_motorola.5 \
-		man/man5/srec_msbin.5 man/man5/srec_needham.5 \
-		man/man5/srec_os65v.5 man/man5/srec_ppb.5 man/man5/srec_ppx.5 \
+		man/man5/srec_intel16.5 man/man5/srec_logisim.5 \
+		man/man5/srec_mem.5 man/man5/srec_mif.5 \
+		man/man5/srec_mips_flash.5 man/man5/srec_mos_tech.5 \
+		man/man5/srec_motorola.5 man/man5/srec_msbin.5 \
+		man/man5/srec_needham.5 man/man5/srec_os65v.5 \
+		man/man5/srec_ppb.5 man/man5/srec_ppx.5 \
 		man/man5/srec_signetics.5 man/man5/srec_spasm.5 \
 		man/man5/srec_spectrum.5 man/man5/srec_stewie.5 \
 		man/man5/srec_tektronix.5 man/man5/srec_tektronix_extended.5 \
@@ -303,17 +305,15 @@ $(libdir)/pkgconfig/srecord.pc: .mkdir.__libdir__pkgconfig \
 	$(INSTALL_DATA) libdir/pkgconfig/srecord.pc $@
 
 man/cat1/srec_cat.1: man/man1/o_at.so man/man1/o_ignore_checksums.so \
-		man/man1/o_input.so man/man1/o_multiple.so \
-		man/man1/o_sequence.so man/man1/srec_cat.1 \
+		man/man1/o_input.so man/man1/o_sequence.so man/man1/srec_cat.1 \
 		man/man1/z_copyright.so man/man1/z_exit.so man/man1/z_options.so
 	@mkdir -p man/cat1
 	GROFF_NO_SGR=-c $(GROFF) -I. -Tascii -t -man man/man1/srec_cat.1 > $@
 
 $(mandir)/man1/srec_cat.1: .mkdir.__mandir__man1 man/man1/o_at.so \
 		man/man1/o_ignore_checksums.so man/man1/o_input.so \
-		man/man1/o_multiple.so man/man1/o_sequence.so \
-		man/man1/srec_cat.1 man/man1/z_copyright.so man/man1/z_exit.so \
-		man/man1/z_options.so
+		man/man1/o_sequence.so man/man1/srec_cat.1 \
+		man/man1/z_copyright.so man/man1/z_exit.so man/man1/z_options.so
 	$(SOELIM) -I. man/man1/srec_cat.1 | sed '/^[.]XX ./d' > \
 		man/man1/srec_cat.1.tmp
 	$(INSTALL_DATA) man/man1/srec_cat.1.tmp $@
@@ -365,14 +365,16 @@ $(mandir)/man1/srec_info.1: .mkdir.__mandir__man1 man/man1/o_at.so \
 	$(INSTALL_DATA) man/man1/srec_info.1.tmp $@
 	@rm -f man/man1/srec_info.1.tmp
 
-man/cat1/srec_input.1: man/man1/o_ignore_checksums.so man/man1/srec_input.1 \
-		man/man1/z_copyright.so man/man1/z_options.so
+man/cat1/srec_input.1: man/man1/o_ignore_checksums.so man/man1/o_multiple.so \
+		man/man1/srec_input.1 man/man1/z_copyright.so \
+		man/man1/z_options.so
 	@mkdir -p man/cat1
 	GROFF_NO_SGR=-c $(GROFF) -I. -Tascii -t -man man/man1/srec_input.1 > $@
 
 $(mandir)/man1/srec_input.1: .mkdir.__mandir__man1 \
-		man/man1/o_ignore_checksums.so man/man1/srec_input.1 \
-		man/man1/z_copyright.so man/man1/z_options.so
+		man/man1/o_ignore_checksums.so man/man1/o_multiple.so \
+		man/man1/srec_input.1 man/man1/z_copyright.so \
+		man/man1/z_options.so
 	$(SOELIM) -I. man/man1/srec_input.1 | sed '/^[.]XX ./d' > \
 		man/man1/srec_input.1.tmp
 	$(INSTALL_DATA) man/man1/srec_input.1.tmp $@
@@ -603,6 +605,18 @@ $(mandir)/man5/srec_intel16.5: .mkdir.__mandir__man5 man/man1/z_copyright.so \
 		man/man5/srec_intel16.5.tmp
 	$(INSTALL_DATA) man/man5/srec_intel16.5.tmp $@
 	@rm -f man/man5/srec_intel16.5.tmp
+
+man/cat5/srec_logisim.5: man/man1/z_copyright.so man/man5/srec_logisim.5
+	@mkdir -p man/cat5
+	GROFF_NO_SGR=-c $(GROFF) -I. -Tascii -t -man man/man5/srec_logisim.5 > \
+		$@
+
+$(mandir)/man5/srec_logisim.5: .mkdir.__mandir__man5 man/man1/z_copyright.so \
+		man/man5/srec_logisim.5
+	$(SOELIM) -I. man/man5/srec_logisim.5 | sed '/^[.]XX ./d' > \
+		man/man5/srec_logisim.5.tmp
+	$(INSTALL_DATA) man/man5/srec_logisim.5.tmp $@
+	@rm -f man/man5/srec_logisim.5.tmp
 
 man/cat5/srec_mem.5: man/man1/z_copyright.so man/man5/srec_mem.5
 	@mkdir -p man/cat5
@@ -866,14 +880,15 @@ bin/test_prelude: .bin script/test_prelude.sh
 	chmod a+rx $@
 
 srec_cat/arglex3.lo srec_cat/arglex3.o: srec_cat/arglex3.cc srec_cat/arglex3.h \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/output.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/output.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srec_cat/arglex3.cc -o srec_cat/arglex3.lo
 
 srec_cat/main.lo srec_cat/main.o: srec_cat/arglex3.h srec_cat/main.cc \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
 		srecord/input/catenate.h srecord/input/file.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
 		srecord/memory/walker/writer.h srecord/output.h \
@@ -884,17 +899,18 @@ srec_cat/main.lo srec_cat/main.o: srec_cat/arglex3.h srec_cat/main.cc \
 		-c srec_cat/main.cc -o srec_cat/main.lo
 
 srec_cmp/main.lo srec_cmp/main.o: srec_cmp/main.cc srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h srecord/memory.h \
-		srecord/memory/chunk.h srecord/memory/walker.h \
-		srecord/output.h srecord/record.h srecord/string.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h srecord/output.h srecord/record.h \
+		srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srec_cmp/main.cc -o srec_cmp/main.lo
 
 srec_info/main.lo srec_info/main.o: srec_info/main.cc srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h srecord/interval.h \
-		srecord/memory.h srecord/memory/chunk.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/interval.h srecord/memory.h srecord/memory/chunk.h \
 		srecord/memory/walker.h srecord/output.h srecord/record.h \
 		srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -933,17 +949,16 @@ srecord/arglex/test_ambiguous.lo srecord/arglex/test_ambiguous.o: \
 		srecord/arglex/test_ambiguous.lo
 
 srecord/arglex/tool.lo srecord/arglex/tool.o: srecord/arglex.h \
-		srecord/arglex/tool.cc srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/memory.h srecord/memory/chunk.h \
-		srecord/memory/walker.h srecord/output.h srecord/string.h
+		srecord/arglex/tool.cc srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/output.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool.cc -o srecord/arglex/tool.lo
 
 srecord/arglex/tool/get_interval.lo srecord/arglex/tool/get_interval.o: \
 		srecord/arglex.h srecord/arglex/tool.h \
-		srecord/arglex/tool/get_interval.cc srecord/endian.h \
-		srecord/format_printf.h srecord/input.h \
+		srecord/arglex/tool/get_interval.cc srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
 		srecord/input/interval.h srecord/interval.h srecord/output.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/get_interval.cc -o \
@@ -952,17 +967,17 @@ srecord/arglex/tool/get_interval.lo srecord/arglex/tool/get_interval.o: \
 srecord/arglex/tool/get_interval_small.lo \
 		srecord/arglex/tool/get_interval_small.o: srecord/arglex.h \
 		srecord/arglex/tool.h \
-		srecord/arglex/tool/get_interval_small.cc srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/interval.h \
-		srecord/output.h srecord/pretty_size.h
+		srecord/arglex/tool/get_interval_small.cc srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/output.h srecord/pretty_size.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/get_interval_small.cc -o \
 		srecord/arglex/tool/get_interval_small.lo
 
 srecord/arglex/tool/get_number.lo srecord/arglex/tool/get_number.o: \
 		srecord/arglex.h srecord/arglex/tool.h \
-		srecord/arglex/tool/get_number.cc srecord/endian.h \
-		srecord/format_printf.h srecord/input.h \
+		srecord/arglex/tool/get_number.cc srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
 		srecord/input/interval.h srecord/interval.h srecord/output.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/get_number.cc -o \
@@ -970,8 +985,9 @@ srecord/arglex/tool/get_number.lo srecord/arglex/tool/get_number.o: \
 
 srecord/arglex/tool/get_string.lo srecord/arglex/tool/get_string.o: \
 		srecord/arglex.h srecord/arglex/tool.h \
-		srecord/arglex/tool/get_string.cc srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/output.h
+		srecord/arglex/tool/get_string.cc srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/output.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/arglex/tool/get_string.cc -o \
 		srecord/arglex/tool/get_string.lo
@@ -979,8 +995,8 @@ srecord/arglex/tool/get_string.lo srecord/arglex/tool/get_string.o: \
 srecord/arglex/tool/input.lo srecord/arglex/tool/input.o: srecord/adler16.h \
 		srecord/adler32.h srecord/arglex.h srecord/arglex/tool.h \
 		srecord/arglex/tool/input.cc srecord/crc16.h srecord/crc32.h \
-		srecord/endian.h srecord/fletcher16.h srecord/fletcher32.h \
-		srecord/format_printf.h srecord/input.h \
+		srecord/defcon.h srecord/endian.h srecord/fletcher16.h \
+		srecord/fletcher32.h srecord/format_printf.h srecord/input.h \
 		srecord/input/catenate.h srecord/input/file.h \
 		srecord/input/file/aomf.h srecord/input/file/ascii_hex.h \
 		srecord/input/file/atmel_generic.h srecord/input/file/binary.h \
@@ -991,13 +1007,14 @@ srecord/arglex/tool/input.lo srecord/arglex/tool/input.o: srecord/adler16.h \
 		srecord/input/file/four_packed_code.h \
 		srecord/input/file/hexdump.h srecord/input/file/idt.h \
 		srecord/input/file/intel.h srecord/input/file/intel16.h \
-		srecord/input/file/mif.h srecord/input/file/mips_flash.h \
-		srecord/input/file/mos_tech.h srecord/input/file/motorola.h \
-		srecord/input/file/msbin.h srecord/input/file/needham.h \
-		srecord/input/file/os65v.h srecord/input/file/ppb.h \
-		srecord/input/file/ppx.h srecord/input/file/signetics.h \
-		srecord/input/file/spasm.h srecord/input/file/spectrum.h \
-		srecord/input/file/stewie.h srecord/input/file/tektronix.h \
+		srecord/input/file/logisim.h srecord/input/file/mif.h \
+		srecord/input/file/mips_flash.h srecord/input/file/mos_tech.h \
+		srecord/input/file/motorola.h srecord/input/file/msbin.h \
+		srecord/input/file/needham.h srecord/input/file/os65v.h \
+		srecord/input/file/ppb.h srecord/input/file/ppx.h \
+		srecord/input/file/signetics.h srecord/input/file/spasm.h \
+		srecord/input/file/spectrum.h srecord/input/file/stewie.h \
+		srecord/input/file/tektronix.h \
 		srecord/input/file/tektronix_extended.h \
 		srecord/input/file/ti_tagged.h \
 		srecord/input/file/ti_tagged_16.h srecord/input/file/ti_txt.h \
@@ -1037,10 +1054,11 @@ srecord/arglex/tool/input.lo srecord/arglex/tool/input.o: srecord/adler16.h \
 
 srecord/arglex/tool/output.lo srecord/arglex/tool/output.o: srecord/arglex.h \
 		srecord/arglex/tool.h srecord/arglex/tool/output.cc \
-		srecord/endian.h srecord/format_printf.h srecord/input.h \
-		srecord/interval.h srecord/output.h srecord/output/file.h \
-		srecord/output/file/aomf.h srecord/output/file/ascii_hex.h \
-		srecord/output/file/asm.h srecord/output/file/atmel_generic.h \
+		srecord/defcon.h srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/interval.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/aomf.h \
+		srecord/output/file/ascii_hex.h srecord/output/file/asm.h \
+		srecord/output/file/atmel_generic.h \
 		srecord/output/file/basic.h srecord/output/file/binary.h \
 		srecord/output/file/brecord.h srecord/output/file/c.h \
 		srecord/output/file/coe.h srecord/output/file/cosmac.h \
@@ -1051,8 +1069,8 @@ srecord/arglex/tool/output.lo srecord/arglex/tool/output.o: srecord/arglex.h \
 		srecord/output/file/four_packed_code.h \
 		srecord/output/file/hexdump.h srecord/output/file/idt.h \
 		srecord/output/file/intel.h srecord/output/file/intel16.h \
-		srecord/output/file/mem.h srecord/output/file/mif.h \
-		srecord/output/file/mips_flash.h \
+		srecord/output/file/logisim.h srecord/output/file/mem.h \
+		srecord/output/file/mif.h srecord/output/file/mips_flash.h \
 		srecord/output/file/mos_tech.h srecord/output/file/motorola.h \
 		srecord/output/file/msbin.h srecord/output/file/needham.h \
 		srecord/output/file/os65v.h srecord/output/file/ppb.h \
@@ -1088,6 +1106,14 @@ srecord/crc32.lo srecord/crc32.o: srecord/crc32.cc srecord/crc32.h
 
 $(includedir)/srecord/crc32.h: .mkdir.__includedir__srecord srecord/crc32.h
 	$(INSTALL_DATA) srecord/crc32.h $@
+
+srecord/defcon.lo srecord/defcon.o: srecord/defcon.cc srecord/defcon.h \
+		srecord/sizeof.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/defcon.cc -o srecord/defcon.lo
+
+$(includedir)/srecord/defcon.h: .mkdir.__includedir__srecord srecord/defcon.h
+	$(INSTALL_DATA) srecord/defcon.h $@
 
 srecord/endian.lo srecord/endian.o: srecord/endian.cc srecord/endian.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1154,8 +1180,8 @@ $(includedir)/srecord/input/file.h: .mkdir.__includedir__srecord_input \
 	$(INSTALL_DATA) srecord/input/file.h $@
 
 srecord/input/file/aomf.lo srecord/input/file/aomf.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/aomf.cc srecord/input/file/aomf.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1167,10 +1193,10 @@ $(includedir)/srecord/input/file/aomf.h: \
 	$(INSTALL_DATA) srecord/input/file/aomf.h $@
 
 srecord/input/file/ascii_hex.lo srecord/input/file/ascii_hex.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/ascii_hex.cc srecord/input/file/ascii_hex.h \
-		srecord/output.h srecord/record.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/ascii_hex.cc \
+		srecord/input/file/ascii_hex.h srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/ascii_hex.cc -o \
 		srecord/input/file/ascii_hex.lo
@@ -1181,9 +1207,9 @@ $(includedir)/srecord/input/file/ascii_hex.h: \
 	$(INSTALL_DATA) srecord/input/file/ascii_hex.h $@
 
 srecord/input/file/atmel_generic.lo srecord/input/file/atmel_generic.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/atmel_generic.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/atmel_generic.cc \
 		srecord/input/file/atmel_generic.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1196,8 +1222,8 @@ $(includedir)/srecord/input/file/atmel_generic.h: \
 	$(INSTALL_DATA) srecord/input/file/atmel_generic.h $@
 
 srecord/input/file/binary.lo srecord/input/file/binary.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/binary.cc srecord/input/file/binary.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1209,8 +1235,8 @@ $(includedir)/srecord/input/file/binary.h: \
 	$(INSTALL_DATA) srecord/input/file/binary.h $@
 
 srecord/input/file/brecord.lo srecord/input/file/brecord.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/brecord.cc srecord/input/file/brecord.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1223,8 +1249,8 @@ $(includedir)/srecord/input/file/brecord.h: \
 	$(INSTALL_DATA) srecord/input/file/brecord.h $@
 
 srecord/input/file/cosmac.lo srecord/input/file/cosmac.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/cosmac.cc srecord/input/file/cosmac.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1236,9 +1262,9 @@ $(includedir)/srecord/input/file/cosmac.h: \
 	$(INSTALL_DATA) srecord/input/file/cosmac.h $@
 
 srecord/input/file/dec_binary.lo srecord/input/file/dec_binary.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/dec_binary.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/dec_binary.cc \
 		srecord/input/file/dec_binary.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1251,8 +1277,8 @@ $(includedir)/srecord/input/file/dec_binary.h: \
 	$(INSTALL_DATA) srecord/input/file/dec_binary.h $@
 
 srecord/input/file/emon52.lo srecord/input/file/emon52.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/emon52.cc srecord/input/file/emon52.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1264,10 +1290,10 @@ $(includedir)/srecord/input/file/emon52.h: \
 	$(INSTALL_DATA) srecord/input/file/emon52.h $@
 
 srecord/input/file/fairchild.lo srecord/input/file/fairchild.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/fairchild.cc srecord/input/file/fairchild.h \
-		srecord/output.h srecord/record.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/fairchild.cc \
+		srecord/input/file/fairchild.h srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/fairchild.cc -o \
 		srecord/input/file/fairchild.lo
@@ -1278,8 +1304,8 @@ $(includedir)/srecord/input/file/fairchild.h: \
 	$(INSTALL_DATA) srecord/input/file/fairchild.h $@
 
 srecord/input/file/fastload.lo srecord/input/file/fastload.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/fastload.cc srecord/input/file/fastload.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1292,9 +1318,9 @@ $(includedir)/srecord/input/file/fastload.h: \
 	$(INSTALL_DATA) srecord/input/file/fastload.h $@
 
 srecord/input/file/formatted_binary.lo srecord/input/file/formatted_binary.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/formatted_binary.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/formatted_binary.cc \
 		srecord/input/file/formatted_binary.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1307,9 +1333,9 @@ $(includedir)/srecord/input/file/formatted_binary.h: \
 	$(INSTALL_DATA) srecord/input/file/formatted_binary.h $@
 
 srecord/input/file/four_packed_code.lo srecord/input/file/four_packed_code.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/four_packed_code.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/four_packed_code.cc \
 		srecord/input/file/four_packed_code.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1333,14 +1359,14 @@ srecord/input/file/guess.lo srecord/input/file/guess.o: srecord/arglex.h \
 		srecord/input/file/four_packed_code.h \
 		srecord/input/file/guess.cc srecord/input/file/hexdump.h \
 		srecord/input/file/idt.h srecord/input/file/intel.h \
-		srecord/input/file/intel16.h srecord/input/file/mif.h \
-		srecord/input/file/mips_flash.h srecord/input/file/mos_tech.h \
-		srecord/input/file/motorola.h srecord/input/file/msbin.h \
-		srecord/input/file/needham.h srecord/input/file/os65v.h \
-		srecord/input/file/ppb.h srecord/input/file/ppx.h \
-		srecord/input/file/signetics.h srecord/input/file/spasm.h \
-		srecord/input/file/spectrum.h srecord/input/file/stewie.h \
-		srecord/input/file/tektronix.h \
+		srecord/input/file/intel16.h srecord/input/file/logisim.h \
+		srecord/input/file/mif.h srecord/input/file/mips_flash.h \
+		srecord/input/file/mos_tech.h srecord/input/file/motorola.h \
+		srecord/input/file/msbin.h srecord/input/file/needham.h \
+		srecord/input/file/os65v.h srecord/input/file/ppb.h \
+		srecord/input/file/ppx.h srecord/input/file/signetics.h \
+		srecord/input/file/spasm.h srecord/input/file/spectrum.h \
+		srecord/input/file/stewie.h srecord/input/file/tektronix.h \
 		srecord/input/file/tektronix_extended.h \
 		srecord/input/file/ti_tagged.h srecord/input/file/ti_txt.h \
 		srecord/input/file/trs80.h srecord/input/file/vmem.h \
@@ -1350,8 +1376,8 @@ srecord/input/file/guess.lo srecord/input/file/guess.o: srecord/arglex.h \
 		-c srecord/input/file/guess.cc -o srecord/input/file/guess.lo
 
 srecord/input/file/hexdump.lo srecord/input/file/hexdump.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/hexdump.cc srecord/input/file/hexdump.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1359,15 +1385,16 @@ srecord/input/file/hexdump.lo srecord/input/file/hexdump.o: srecord/arglex.h \
 		srecord/input/file/hexdump.lo
 
 srecord/input/file/idt.lo srecord/input/file/idt.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h srecord/input/file/idt.cc \
-		srecord/input/file/idt.h srecord/output.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/input/file/idt.cc srecord/input/file/idt.h \
+		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/idt.cc -o srecord/input/file/idt.lo
 
 srecord/input/file/intel.lo srecord/input/file/intel.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/intel.cc srecord/input/file/intel.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1379,23 +1406,33 @@ $(includedir)/srecord/input/file/intel.h: \
 	$(INSTALL_DATA) srecord/input/file/intel.h $@
 
 srecord/input/file/intel16.lo srecord/input/file/intel16.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/intel16.cc srecord/input/file/intel16.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/intel16.cc -o \
 		srecord/input/file/intel16.lo
 
-$(includedir)/srecord/input/file/intel16.h: \
+srecord/input/file/logisim.lo srecord/input/file/logisim.o: srecord/arglex.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/input/file/logisim.cc srecord/input/file/logisim.h \
+		srecord/output.h srecord/record.h srecord/string.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/input/file/logisim.cc -o \
+		srecord/input/file/logisim.lo
+
+$(includedir)/srecord/input/file/logisim.h: \
 		.mkdir.__includedir__srecord_input_file \
-		srecord/input/file/intel16.h
-	$(INSTALL_DATA) srecord/input/file/intel16.h $@
+		srecord/input/file/logisim.h
+	$(INSTALL_DATA) srecord/input/file/logisim.h $@
 
 srecord/input/file/mif.lo srecord/input/file/mif.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h srecord/input/file/mif.cc \
-		srecord/input/file/mif.h srecord/output.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/input/file/mif.cc srecord/input/file/mif.h \
+		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/mif.cc -o srecord/input/file/mif.lo
 
@@ -1404,9 +1441,9 @@ $(includedir)/srecord/input/file/mif.h: \
 	$(INSTALL_DATA) srecord/input/file/mif.h $@
 
 srecord/input/file/mips_flash.lo srecord/input/file/mips_flash.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/mips_flash.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/mips_flash.cc \
 		srecord/input/file/mips_flash.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1419,8 +1456,8 @@ $(includedir)/srecord/input/file/mips_flash.h: \
 	$(INSTALL_DATA) srecord/input/file/mips_flash.h $@
 
 srecord/input/file/mos_tech.lo srecord/input/file/mos_tech.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/mos_tech.cc srecord/input/file/mos_tech.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1433,8 +1470,8 @@ $(includedir)/srecord/input/file/mos_tech.h: \
 	$(INSTALL_DATA) srecord/input/file/mos_tech.h $@
 
 srecord/input/file/motorola.lo srecord/input/file/motorola.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/motorola.cc srecord/input/file/motorola.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1442,8 +1479,8 @@ srecord/input/file/motorola.lo srecord/input/file/motorola.o: srecord/arglex.h \
 		srecord/input/file/motorola.lo
 
 srecord/input/file/msbin.lo srecord/input/file/msbin.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/msbin.cc srecord/input/file/msbin.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1455,8 +1492,8 @@ $(includedir)/srecord/input/file/msbin.h: \
 	$(INSTALL_DATA) srecord/input/file/msbin.h $@
 
 srecord/input/file/needham.lo srecord/input/file/needham.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/needham.cc srecord/input/file/needham.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1469,8 +1506,8 @@ $(includedir)/srecord/input/file/needham.h: \
 	$(INSTALL_DATA) srecord/input/file/needham.h $@
 
 srecord/input/file/os65v.lo srecord/input/file/os65v.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/os65v.cc srecord/input/file/os65v.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1482,9 +1519,10 @@ $(includedir)/srecord/input/file/os65v.h: \
 	$(INSTALL_DATA) srecord/input/file/os65v.h $@
 
 srecord/input/file/ppb.lo srecord/input/file/ppb.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h srecord/input/file/ppb.cc \
-		srecord/input/file/ppb.h srecord/output.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/input/file/ppb.cc srecord/input/file/ppb.h \
+		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/ppb.cc -o srecord/input/file/ppb.lo
 
@@ -1493,9 +1531,10 @@ $(includedir)/srecord/input/file/ppb.h: \
 	$(INSTALL_DATA) srecord/input/file/ppb.h $@
 
 srecord/input/file/ppx.lo srecord/input/file/ppx.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h srecord/input/file/ppx.cc \
-		srecord/input/file/ppx.h srecord/output.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
+		srecord/input/file/ppx.cc srecord/input/file/ppx.h \
+		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/ppx.cc -o srecord/input/file/ppx.lo
 
@@ -1504,10 +1543,10 @@ $(includedir)/srecord/input/file/ppx.h: \
 	$(INSTALL_DATA) srecord/input/file/ppx.h $@
 
 srecord/input/file/signetics.lo srecord/input/file/signetics.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/signetics.cc srecord/input/file/signetics.h \
-		srecord/output.h srecord/record.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/signetics.cc \
+		srecord/input/file/signetics.h srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/signetics.cc -o \
 		srecord/input/file/signetics.lo
@@ -1518,8 +1557,8 @@ $(includedir)/srecord/input/file/signetics.h: \
 	$(INSTALL_DATA) srecord/input/file/signetics.h $@
 
 srecord/input/file/spasm.lo srecord/input/file/spasm.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/spasm.cc srecord/input/file/spasm.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1531,8 +1570,8 @@ $(includedir)/srecord/input/file/spasm.h: \
 	$(INSTALL_DATA) srecord/input/file/spasm.h $@
 
 srecord/input/file/spectrum.lo srecord/input/file/spectrum.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/spectrum.cc srecord/input/file/spectrum.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1545,8 +1584,8 @@ $(includedir)/srecord/input/file/spectrum.h: \
 	$(INSTALL_DATA) srecord/input/file/spectrum.h $@
 
 srecord/input/file/stewie.lo srecord/input/file/stewie.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/stewie.cc srecord/input/file/stewie.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1558,10 +1597,10 @@ $(includedir)/srecord/input/file/stewie.h: \
 	$(INSTALL_DATA) srecord/input/file/stewie.h $@
 
 srecord/input/file/tektronix.lo srecord/input/file/tektronix.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/tektronix.cc srecord/input/file/tektronix.h \
-		srecord/output.h srecord/record.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/tektronix.cc \
+		srecord/input/file/tektronix.h srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/tektronix.cc -o \
 		srecord/input/file/tektronix.lo
@@ -1573,8 +1612,8 @@ $(includedir)/srecord/input/file/tektronix.h: \
 
 srecord/input/file/tektronix_extended.lo \
 		srecord/input/file/tektronix_extended.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/tektronix_extended.cc \
 		srecord/input/file/tektronix_extended.h srecord/output.h \
 		srecord/record.h
@@ -1588,10 +1627,10 @@ $(includedir)/srecord/input/file/tektronix_extended.h: \
 	$(INSTALL_DATA) srecord/input/file/tektronix_extended.h $@
 
 srecord/input/file/ti_tagged.lo srecord/input/file/ti_tagged.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/ti_tagged.cc srecord/input/file/ti_tagged.h \
-		srecord/output.h srecord/record.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/ti_tagged.cc \
+		srecord/input/file/ti_tagged.h srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/file/ti_tagged.cc -o \
 		srecord/input/file/ti_tagged.lo
@@ -1602,9 +1641,9 @@ $(includedir)/srecord/input/file/ti_tagged.h: \
 	$(INSTALL_DATA) srecord/input/file/ti_tagged.h $@
 
 srecord/input/file/ti_tagged_16.lo srecord/input/file/ti_tagged_16.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/file.h \
-		srecord/input/file/ti_tagged_16.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/file.h srecord/input/file/ti_tagged_16.cc \
 		srecord/input/file/ti_tagged_16.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1617,8 +1656,8 @@ $(includedir)/srecord/input/file/ti_tagged_16.h: \
 	$(INSTALL_DATA) srecord/input/file/ti_tagged_16.h $@
 
 srecord/input/file/ti_txt.lo srecord/input/file/ti_txt.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/ti_txt.cc srecord/input/file/ti_txt.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1630,8 +1669,8 @@ $(includedir)/srecord/input/file/ti_txt.h: \
 	$(INSTALL_DATA) srecord/input/file/ti_txt.h $@
 
 srecord/input/file/trs80.lo srecord/input/file/trs80.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/trs80.cc srecord/input/file/trs80.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1643,8 +1682,8 @@ $(includedir)/srecord/input/file/trs80.h: \
 	$(INSTALL_DATA) srecord/input/file/trs80.h $@
 
 srecord/input/file/vmem.lo srecord/input/file/vmem.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/vmem.cc srecord/input/file/vmem.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1656,8 +1695,8 @@ $(includedir)/srecord/input/file/vmem.h: \
 	$(INSTALL_DATA) srecord/input/file/vmem.h $@
 
 srecord/input/file/wilson.lo srecord/input/file/wilson.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/file.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/input/file.h \
 		srecord/input/file/wilson.cc srecord/input/file/wilson.h \
 		srecord/output.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1703,9 +1742,9 @@ $(includedir)/srecord/input/filter/bitrev.h: \
 	$(INSTALL_DATA) srecord/input/filter/bitrev.h $@
 
 srecord/input/filter/byte_swap.lo srecord/input/filter/byte_swap.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
-		srecord/input/filter/byte_swap.cc \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/byte_swap.cc \
 		srecord/input/filter/byte_swap.h srecord/output.h \
 		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -1863,11 +1902,11 @@ $(includedir)/srecord/input/filter/interval/minimum.h: \
 	$(INSTALL_DATA) srecord/input/filter/interval/minimum.h $@
 
 srecord/input/filter/message.lo srecord/input/filter/message.o: \
-		srecord/endian.h srecord/format_printf.h srecord/input.h \
-		srecord/input/filter.h srecord/input/filter/message.cc \
-		srecord/input/filter/message.h srecord/memory.h \
-		srecord/memory/chunk.h srecord/memory/walker.h \
-		srecord/record.h srecord/string.h
+		srecord/defcon.h srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.cc srecord/input/filter/message.h \
+		srecord/memory.h srecord/memory/chunk.h \
+		srecord/memory/walker.h srecord/record.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/input/filter/message.cc -o \
 		srecord/input/filter/message.lo
@@ -1879,9 +1918,9 @@ $(includedir)/srecord/input/filter/message.h: \
 
 srecord/input/filter/message/adler16.lo \
 		srecord/input/filter/message/adler16.o: srecord/adler16.h \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
-		srecord/input/filter/message.h \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
 		srecord/input/filter/message/adler16.cc \
 		srecord/input/filter/message/adler16.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -1898,9 +1937,9 @@ $(includedir)/srecord/input/filter/message/adler16.h: \
 
 srecord/input/filter/message/adler32.lo \
 		srecord/input/filter/message/adler32.o: srecord/adler32.h \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
-		srecord/input/filter/message.h \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
 		srecord/input/filter/message/adler32.cc \
 		srecord/input/filter/message/adler32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -1917,8 +1956,9 @@ $(includedir)/srecord/input/filter/message/adler32.h: \
 
 srecord/input/filter/message/crc16.lo srecord/input/filter/message/crc16.o: \
 		srecord/arglex.h srecord/arglex/tool.h srecord/crc16.h \
-		srecord/endian.h srecord/format_printf.h srecord/input.h \
-		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/defcon.h srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.h \
 		srecord/input/filter/message/crc16.cc \
 		srecord/input/filter/message/crc16.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -1935,8 +1975,9 @@ $(includedir)/srecord/input/filter/message/crc16.h: \
 
 srecord/input/filter/message/crc32.lo srecord/input/filter/message/crc32.o: \
 		srecord/arglex.h srecord/arglex/tool.h srecord/crc32.h \
-		srecord/endian.h srecord/format_printf.h srecord/input.h \
-		srecord/input/filter.h srecord/input/filter/message.h \
+		srecord/defcon.h srecord/endian.h srecord/format_printf.h \
+		srecord/input.h srecord/input/filter.h \
+		srecord/input/filter/message.h \
 		srecord/input/filter/message/crc32.cc \
 		srecord/input/filter/message/crc32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -1953,9 +1994,9 @@ $(includedir)/srecord/input/filter/message/crc32.h: \
 
 srecord/input/filter/message/fletcher16.lo \
 		srecord/input/filter/message/fletcher16.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/fletcher16.h \
-		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
-		srecord/input/filter/message.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/fletcher16.h srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
 		srecord/input/filter/message/fletcher16.cc \
 		srecord/input/filter/message/fletcher16.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -1972,9 +2013,9 @@ $(includedir)/srecord/input/filter/message/fletcher16.h: \
 
 srecord/input/filter/message/fletcher32.lo \
 		srecord/input/filter/message/fletcher32.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/fletcher32.h \
-		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
-		srecord/input/filter/message.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/fletcher32.h srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
 		srecord/input/filter/message/fletcher32.cc \
 		srecord/input/filter/message/fletcher32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -1990,7 +2031,7 @@ $(includedir)/srecord/input/filter/message/fletcher32.h: \
 	$(INSTALL_DATA) srecord/input/filter/message/fletcher32.h $@
 
 srecord/input/filter/message/gcrypt.lo srecord/input/filter/message/gcrypt.o: \
-		srecord/config.messy.h srecord/endian.h \
+		srecord/config.messy.h srecord/defcon.h srecord/endian.h \
 		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
 		srecord/input/filter/message.h \
 		srecord/input/filter/message/gcrypt.cc \
@@ -2008,9 +2049,9 @@ $(includedir)/srecord/input/filter/message/gcrypt.h: \
 	$(INSTALL_DATA) srecord/input/filter/message/gcrypt.h $@
 
 srecord/input/filter/message/stm32.lo srecord/input/filter/message/stm32.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/input/filter.h \
-		srecord/input/filter/message.h \
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/input/filter.h srecord/input/filter/message.h \
 		srecord/input/filter/message/stm32.cc \
 		srecord/input/filter/message/stm32.h srecord/memory.h \
 		srecord/memory/chunk.h srecord/memory/walker.h \
@@ -2136,9 +2177,10 @@ $(includedir)/srecord/input/filter/xor.h: \
 	$(INSTALL_DATA) srecord/input/filter/xor.h $@
 
 srecord/input/generator.lo srecord/input/generator.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/input/generator.cc \
-		srecord/input/generator.h srecord/input/generator/constant.h \
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h \
+		srecord/input/generator.cc srecord/input/generator.h \
+		srecord/input/generator/constant.h \
 		srecord/input/generator/random.h \
 		srecord/input/generator/repeat.h srecord/interval.h \
 		srecord/output.h srecord/record.h srecord/string.h
@@ -2214,9 +2256,9 @@ srecord/interval/flatten.lo srecord/interval/flatten.o: srecord/interval.h \
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/interval/flatten.cc -o srecord/interval/flatten.lo
 
-srecord/memory.lo srecord/memory.o: srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/interval.h srecord/memory.cc \
-		srecord/memory.h srecord/memory/chunk.h \
+srecord/memory.lo srecord/memory.o: srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/interval.h \
+		srecord/memory.cc srecord/memory.h srecord/memory/chunk.h \
 		srecord/memory/walker.h srecord/memory/walker/alignment.h \
 		srecord/memory/walker/compare.h \
 		srecord/memory/walker/continuity.h srecord/record.h \
@@ -2269,8 +2311,8 @@ srecord/memory/walker/alignment.lo srecord/memory/walker/alignment.o: \
 		srecord/memory/walker/alignment.lo
 
 srecord/memory/walker/compare.lo srecord/memory/walker/compare.o: \
-		srecord/format_printf.h srecord/input.h srecord/interval.h \
-		srecord/memory.h srecord/memory/chunk.h \
+		srecord/defcon.h srecord/format_printf.h srecord/input.h \
+		srecord/interval.h srecord/memory.h srecord/memory/chunk.h \
 		srecord/memory/walker.h srecord/memory/walker/compare.cc \
 		srecord/memory/walker/compare.h srecord/string.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
@@ -2405,10 +2447,11 @@ $(includedir)/srecord/output/file/ascii_hex.h: \
 	$(INSTALL_DATA) srecord/output/file/ascii_hex.h $@
 
 srecord/output/file/asm.lo srecord/output/file/asm.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/interval.h srecord/output.h \
-		srecord/output/file.h srecord/output/file/asm.cc \
-		srecord/output/file/asm.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/interval.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/asm.cc srecord/output/file/asm.h \
+		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/asm.cc -o srecord/output/file/asm.lo
 
@@ -2469,10 +2512,11 @@ $(includedir)/srecord/output/file/brecord.h: \
 	$(INSTALL_DATA) srecord/output/file/brecord.h $@
 
 srecord/output/file/c.lo srecord/output/file/c.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/interval.h srecord/output.h \
-		srecord/output/file.h srecord/output/file/c.cc \
-		srecord/output/file/c.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/interval.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/c.cc srecord/output/file/c.h \
+		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/c.cc -o srecord/output/file/c.lo
 
@@ -2481,10 +2525,10 @@ $(includedir)/srecord/output/file/c.h: \
 	$(INSTALL_DATA) srecord/output/file/c.h $@
 
 srecord/output/file/coe.lo srecord/output/file/coe.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h srecord/output/file.h \
-		srecord/output/file/coe.cc srecord/output/file/coe.h \
-		srecord/progname.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/coe.cc \
+		srecord/output/file/coe.h srecord/progname.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/coe.cc -o srecord/output/file/coe.lo
 
@@ -2568,10 +2612,10 @@ $(includedir)/srecord/output/file/formatted_binary.h: \
 	$(INSTALL_DATA) srecord/output/file/formatted_binary.h $@
 
 srecord/output/file/forth.lo srecord/output/file/forth.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h srecord/output/file.h \
-		srecord/output/file/forth.cc srecord/output/file/forth.h \
-		srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/forth.cc \
+		srecord/output/file/forth.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/forth.cc -o srecord/output/file/forth.lo
 
@@ -2647,19 +2691,32 @@ srecord/output/file/line_termination.lo \
 		-c srecord/output/file/line_termination.cc -o \
 		srecord/output/file/line_termination.lo
 
+srecord/output/file/logisim.lo srecord/output/file/logisim.o: srecord/endian.h \
+		srecord/format_printf.h srecord/output.h srecord/output/file.h \
+		srecord/output/file/logisim.cc srecord/output/file/logisim.h \
+		srecord/record.h
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/output/file/logisim.cc -o \
+		srecord/output/file/logisim.lo
+
+$(includedir)/srecord/output/file/logisim.h: \
+		.mkdir.__includedir__srecord_output_file \
+		srecord/output/file/logisim.h
+	$(INSTALL_DATA) srecord/output/file/logisim.h $@
+
 srecord/output/file/mem.lo srecord/output/file/mem.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h srecord/output/file.h \
-		srecord/output/file/mem.cc srecord/output/file/mem.h \
-		srecord/progname.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/mem.cc \
+		srecord/output/file/mem.h srecord/progname.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/mem.cc -o srecord/output/file/mem.lo
 
 srecord/output/file/mif.lo srecord/output/file/mif.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h srecord/output/file.h \
-		srecord/output/file/mif.cc srecord/output/file/mif.h \
-		srecord/progname.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/mif.cc \
+		srecord/output/file/mif.h srecord/progname.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/mif.cc -o srecord/output/file/mif.lo
 
@@ -2696,10 +2753,11 @@ $(includedir)/srecord/output/file/mos_tech.h: \
 	$(INSTALL_DATA) srecord/output/file/mos_tech.h $@
 
 srecord/output/file/motorola.lo srecord/output/file/motorola.o: \
-		srecord/arglex.h srecord/arglex/tool.h srecord/endian.h \
-		srecord/format_printf.h srecord/input.h srecord/output.h \
-		srecord/output/file.h srecord/output/file/motorola.cc \
-		srecord/output/file/motorola.h srecord/record.h
+		srecord/arglex.h srecord/arglex/tool.h srecord/defcon.h \
+		srecord/endian.h srecord/format_printf.h srecord/input.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/motorola.cc srecord/output/file/motorola.h \
+		srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/motorola.cc -o \
 		srecord/output/file/motorola.lo
@@ -2895,10 +2953,11 @@ $(includedir)/srecord/output/file/trs80.h: \
 	$(INSTALL_DATA) srecord/output/file/trs80.h $@
 
 srecord/output/file/vhdl.lo srecord/output/file/vhdl.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/interval.h srecord/output.h \
-		srecord/output/file.h srecord/output/file/vhdl.cc \
-		srecord/output/file/vhdl.h srecord/progname.h srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/interval.h \
+		srecord/output.h srecord/output/file.h \
+		srecord/output/file/vhdl.cc srecord/output/file/vhdl.h \
+		srecord/progname.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/vhdl.cc -o srecord/output/file/vhdl.lo
 
@@ -2908,10 +2967,10 @@ $(includedir)/srecord/output/file/vhdl.h: \
 	$(INSTALL_DATA) srecord/output/file/vhdl.h $@
 
 srecord/output/file/vmem.lo srecord/output/file/vmem.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h srecord/output/file.h \
-		srecord/output/file/vmem.cc srecord/output/file/vmem.h \
-		srecord/record.h
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/output.h \
+		srecord/output/file.h srecord/output/file/vmem.cc \
+		srecord/output/file/vmem.h srecord/record.h
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c srecord/output/file/vmem.cc -o srecord/output/file/vmem.lo
 
@@ -3014,6 +3073,11 @@ srecord/stm32.lo srecord/stm32.o: srecord/stm32.cc srecord/stm32.h
 
 $(includedir)/srecord/string.h: .mkdir.__includedir__srecord srecord/string.h
 	$(INSTALL_DATA) srecord/string.h $@
+
+srecord/string/quote_c.lo srecord/string/quote_c.o: srecord/string.h \
+		srecord/string/quote_c.cc
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c srecord/string/quote_c.cc -o srecord/string/quote_c.lo
 
 srecord/string/url_decode.lo srecord/string/url_decode.o: srecord/string.h \
 		srecord/string/url_decode.cc
@@ -3635,9 +3699,16 @@ t0238a: all test/02/t0238a.sh
 t0239a: all test/02/t0239a.sh
 	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0239a.sh
 
+t0250a: all test/02/t0250a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0250a.sh
+
+t0251a: all test/02/t0251a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0251a.sh
+
 test/arglex_ambiguous/main.lo test/arglex_ambiguous/main.o: srecord/arglex.h \
-		srecord/arglex/tool.h srecord/endian.h srecord/format_printf.h \
-		srecord/input.h srecord/output.h test/arglex_ambiguous/main.cc
+		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
+		srecord/format_printf.h srecord/input.h srecord/output.h \
+		test/arglex_ambiguous/main.cc
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c test/arglex_ambiguous/main.cc -o \
 		test/arglex_ambiguous/main.lo
@@ -3652,6 +3723,11 @@ test/fletcher16/main.lo test/fletcher16/main.o: srecord/endian.h \
 		srecord/fletcher16.h test/fletcher16/main.cc
 	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
 		-c test/fletcher16/main.cc -o test/fletcher16/main.lo
+
+test/gecos/main.lo test/gecos/main.o: srecord/arglex.h srecord/format_printf.h \
+		test/gecos/main.cc
+	$(LIBTOOL) --mode=compile --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -I. \
+		-c test/gecos/main.cc -o test/gecos/main.lo
 
 test/hyphen/main.lo test/hyphen/main.o: srecord/format_printf.h \
 		srecord/progname.h srecord/quit.h srecord/versn_stamp.h \
@@ -3674,9 +3750,9 @@ srecord_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/arglex/tool/get_number.lo \
 		srecord/arglex/tool/get_string.lo srecord/arglex/tool/input.lo \
 		srecord/arglex/tool/output.lo srecord/bitrev.lo \
-		srecord/crc16.lo srecord/crc32.lo srecord/endian.lo \
-		srecord/endian/decode_word.lo srecord/fletcher16.lo \
-		srecord/fletcher32.lo srecord/input.lo \
+		srecord/crc16.lo srecord/crc32.lo srecord/defcon.lo \
+		srecord/endian.lo srecord/endian/decode_word.lo \
+		srecord/fletcher16.lo srecord/fletcher32.lo srecord/input.lo \
 		srecord/input/catenate.lo srecord/input/file.lo \
 		srecord/input/file/aomf.lo srecord/input/file/ascii_hex.lo \
 		srecord/input/file/atmel_generic.lo \
@@ -3688,8 +3764,8 @@ srecord_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/input/file/four_packed_code.lo \
 		srecord/input/file/guess.lo srecord/input/file/hexdump.lo \
 		srecord/input/file/idt.lo srecord/input/file/intel.lo \
-		srecord/input/file/intel16.lo srecord/input/file/mif.lo \
-		srecord/input/file/mips_flash.lo \
+		srecord/input/file/intel16.lo srecord/input/file/logisim.lo \
+		srecord/input/file/mif.lo srecord/input/file/mips_flash.lo \
 		srecord/input/file/mos_tech.lo srecord/input/file/motorola.lo \
 		srecord/input/file/msbin.lo srecord/input/file/needham.lo \
 		srecord/input/file/os65v.lo srecord/input/file/ppb.lo \
@@ -3758,8 +3834,8 @@ srecord_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/output/file/hexdump.lo srecord/output/file/idt.lo \
 		srecord/output/file/intel.lo srecord/output/file/intel16.lo \
 		srecord/output/file/line_termination.lo \
-		srecord/output/file/mem.lo srecord/output/file/mif.lo \
-		srecord/output/file/mips_flash.lo \
+		srecord/output/file/logisim.lo srecord/output/file/mem.lo \
+		srecord/output/file/mif.lo srecord/output/file/mips_flash.lo \
 		srecord/output/file/mos_tech.lo \
 		srecord/output/file/motorola.lo srecord/output/file/msbin.lo \
 		srecord/output/file/needham.lo srecord/output/file/os65v.lo \
@@ -3776,7 +3852,7 @@ srecord_obj = srecord/adler16.lo srecord/adler32.lo srecord/arglex.lo \
 		srecord/output/filter/reblock.lo srecord/pretty_size.lo \
 		srecord/progname.lo srecord/quit.lo srecord/quit/exception.lo \
 		srecord/quit/normal.lo srecord/quit/prefix.lo srecord/r250.lo \
-		srecord/record.lo srecord/stm32.lo \
+		srecord/record.lo srecord/stm32.lo srecord/string/quote_c.lo \
 		srecord/string/url_decode.lo srecord/string/url_encode.lo \
 		srecord/versn_stamp.lo srecord/vsnprintf.lo
 
@@ -3983,6 +4059,15 @@ bin/test_fletcher16: $(test_fletcher16_obj) .bin srecord/libsrecord.la
 		$(test_fletcher16_obj) srecord/libsrecord.la $(LDFLAGS) $(LIBS)
 
 #
+# The test_gecos program.
+#
+test_gecos_obj = test/gecos/main.lo
+
+bin/test_gecos: $(test_gecos_obj) .bin srecord/libsrecord.la
+	$(LIBTOOL) --mode=link --tag=CXX $(CXX) $(CPPFLAGS) $(CXXFLAGS) -o $@ \
+		$(test_gecos_obj) srecord/libsrecord.la $(LDFLAGS) $(LIBS)
+
+#
 # The test_hyphen program.
 #
 test_hyphen_obj = test/hyphen/main.lo
@@ -4003,8 +4088,8 @@ bin/test_url_decode: $(test_url_decode_obj) .bin srecord/libsrecord.la
 all: all-bin all-doc
 
 all-bin: bin/srec_cat bin/srec_cmp bin/srec_info bin/test_arglex_ambiguous \
-		bin/test_crc16 bin/test_fletcher16 bin/test_hyphen \
-		bin/test_prelude bin/test_url_decode
+		bin/test_crc16 bin/test_fletcher16 bin/test_gecos \
+		bin/test_hyphen bin/test_prelude bin/test_url_decode
 
 all-doc: etc/BUILDING.pdf etc/README.pdf etc/change_log.pdf etc/reference.pdf \
 		man/cat1/srec_cat.1 man/cat1/srec_cmp.1 \
@@ -4019,11 +4104,11 @@ all-doc: etc/BUILDING.pdf etc/README.pdf etc/change_log.pdf etc/reference.pdf \
 		man/cat5/srec_fastload.5 man/cat5/srec_formatted_binary.5 \
 		man/cat5/srec_forth.5 man/cat5/srec_fpc.5 man/cat5/srec_idt.5 \
 		man/cat5/srec_intel.5 man/cat5/srec_intel16.5 \
-		man/cat5/srec_mem.5 man/cat5/srec_mif.5 \
-		man/cat5/srec_mips_flash.5 man/cat5/srec_mos_tech.5 \
-		man/cat5/srec_motorola.5 man/cat5/srec_msbin.5 \
-		man/cat5/srec_needham.5 man/cat5/srec_os65v.5 \
-		man/cat5/srec_ppb.5 man/cat5/srec_ppx.5 \
+		man/cat5/srec_logisim.5 man/cat5/srec_mem.5 \
+		man/cat5/srec_mif.5 man/cat5/srec_mips_flash.5 \
+		man/cat5/srec_mos_tech.5 man/cat5/srec_motorola.5 \
+		man/cat5/srec_msbin.5 man/cat5/srec_needham.5 \
+		man/cat5/srec_os65v.5 man/cat5/srec_ppb.5 man/cat5/srec_ppx.5 \
 		man/cat5/srec_signetics.5 man/cat5/srec_spasm.5 \
 		man/cat5/srec_spectrum.5 man/cat5/srec_stewie.5 \
 		man/cat5/srec_tektronix.5 man/cat5/srec_tektronix_extended.5 \
@@ -4061,7 +4146,7 @@ test_files = t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0206a t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a \
 		t0217a t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a \
 		t0228a t0229a t0230a t0231a t0232a t0233a t0235a t0236a t0237a \
-		t0238a t0239a
+		t0238a t0239a t0250a t0251a
 
 sure: $(test_files)
 	@echo Passed All Tests
@@ -4070,7 +4155,7 @@ clean: clean-bin clean-doc clean-misc clean-obj
 
 clean-bin:
 	rm -f bin/srec_cat bin/srec_cmp bin/srec_info bin/test_arglex_ambiguous
-	rm -f bin/test_crc16 bin/test_fletcher16 bin/test_hyphen
+	rm -f bin/test_crc16 bin/test_fletcher16 bin/test_gecos bin/test_hyphen
 	rm -f bin/test_prelude bin/test_url_decode
 
 clean-doc:
@@ -4085,17 +4170,17 @@ clean-doc:
 	rm -f man/cat5/srec_emon52.5 man/cat5/srec_fairchild.5
 	rm -f man/cat5/srec_fastload.5 man/cat5/srec_formatted_binary.5
 	rm -f man/cat5/srec_forth.5 man/cat5/srec_fpc.5 man/cat5/srec_idt.5
-	rm -f man/cat5/srec_intel.5 man/cat5/srec_intel16.5 man/cat5/srec_mem.5
-	rm -f man/cat5/srec_mif.5 man/cat5/srec_mips_flash.5
-	rm -f man/cat5/srec_mos_tech.5 man/cat5/srec_motorola.5
-	rm -f man/cat5/srec_msbin.5 man/cat5/srec_needham.5
-	rm -f man/cat5/srec_os65v.5 man/cat5/srec_ppb.5 man/cat5/srec_ppx.5
-	rm -f man/cat5/srec_signetics.5 man/cat5/srec_spasm.5
-	rm -f man/cat5/srec_spectrum.5 man/cat5/srec_stewie.5
-	rm -f man/cat5/srec_tektronix.5 man/cat5/srec_tektronix_extended.5
-	rm -f man/cat5/srec_ti_tagged.5 man/cat5/srec_ti_tagged_16.5
-	rm -f man/cat5/srec_ti_txt.5 man/cat5/srec_trs80.5 man/cat5/srec_vmem.5
-	rm -f man/cat5/srec_wilson.5
+	rm -f man/cat5/srec_intel.5 man/cat5/srec_intel16.5
+	rm -f man/cat5/srec_logisim.5 man/cat5/srec_mem.5 man/cat5/srec_mif.5
+	rm -f man/cat5/srec_mips_flash.5 man/cat5/srec_mos_tech.5
+	rm -f man/cat5/srec_motorola.5 man/cat5/srec_msbin.5
+	rm -f man/cat5/srec_needham.5 man/cat5/srec_os65v.5 man/cat5/srec_ppb.5
+	rm -f man/cat5/srec_ppx.5 man/cat5/srec_signetics.5
+	rm -f man/cat5/srec_spasm.5 man/cat5/srec_spectrum.5
+	rm -f man/cat5/srec_stewie.5 man/cat5/srec_tektronix.5
+	rm -f man/cat5/srec_tektronix_extended.5 man/cat5/srec_ti_tagged.5
+	rm -f man/cat5/srec_ti_tagged_16.5 man/cat5/srec_ti_txt.5
+	rm -f man/cat5/srec_trs80.5 man/cat5/srec_vmem.5 man/cat5/srec_wilson.5
 
 clean-misc:
 	rm -f .bin .mkdir.__bindir_ .mkdir.__datarootdir_
@@ -4136,15 +4221,16 @@ clean-obj:
 	rm -f srecord/arglex/tool/input.lo srecord/arglex/tool/input.o
 	rm -f srecord/arglex/tool/output.lo srecord/arglex/tool/output.o
 	rm -f srecord/bitrev.lo srecord/bitrev.o srecord/crc16.lo
-	rm -f srecord/crc16.o srecord/crc32.lo srecord/crc32.o srecord/endian.lo
-	rm -f srecord/endian.o srecord/endian/decode_word.lo
-	rm -f srecord/endian/decode_word.o srecord/fletcher16.lo
-	rm -f srecord/fletcher16.o srecord/fletcher32.lo srecord/fletcher32.o
-	rm -f srecord/input.lo srecord/input.o srecord/input/catenate.lo
-	rm -f srecord/input/catenate.o srecord/input/file.lo
-	rm -f srecord/input/file.o srecord/input/file/aomf.lo
-	rm -f srecord/input/file/aomf.o srecord/input/file/ascii_hex.lo
-	rm -f srecord/input/file/ascii_hex.o srecord/input/file/atmel_generic.lo
+	rm -f srecord/crc16.o srecord/crc32.lo srecord/crc32.o srecord/defcon.lo
+	rm -f srecord/defcon.o srecord/endian.lo srecord/endian.o
+	rm -f srecord/endian/decode_word.lo srecord/endian/decode_word.o
+	rm -f srecord/fletcher16.lo srecord/fletcher16.o srecord/fletcher32.lo
+	rm -f srecord/fletcher32.o srecord/input.lo srecord/input.o
+	rm -f srecord/input/catenate.lo srecord/input/catenate.o
+	rm -f srecord/input/file.lo srecord/input/file.o
+	rm -f srecord/input/file/aomf.lo srecord/input/file/aomf.o
+	rm -f srecord/input/file/ascii_hex.lo srecord/input/file/ascii_hex.o
+	rm -f srecord/input/file/atmel_generic.lo
 	rm -f srecord/input/file/atmel_generic.o srecord/input/file/binary.lo
 	rm -f srecord/input/file/binary.o srecord/input/file/brecord.lo
 	rm -f srecord/input/file/brecord.o srecord/input/file/cosmac.lo
@@ -4161,7 +4247,8 @@ clean-obj:
 	rm -f srecord/input/file/hexdump.o srecord/input/file/idt.lo
 	rm -f srecord/input/file/idt.o srecord/input/file/intel.lo
 	rm -f srecord/input/file/intel.o srecord/input/file/intel16.lo
-	rm -f srecord/input/file/intel16.o srecord/input/file/mif.lo
+	rm -f srecord/input/file/intel16.o srecord/input/file/logisim.lo
+	rm -f srecord/input/file/logisim.o srecord/input/file/mif.lo
 	rm -f srecord/input/file/mif.o srecord/input/file/mips_flash.lo
 	rm -f srecord/input/file/mips_flash.o srecord/input/file/mos_tech.lo
 	rm -f srecord/input/file/mos_tech.o srecord/input/file/motorola.lo
@@ -4284,22 +4371,23 @@ clean-obj:
 	rm -f srecord/output/file/intel.lo srecord/output/file/intel.o
 	rm -f srecord/output/file/intel16.lo srecord/output/file/intel16.o
 	rm -f srecord/output/file/line_termination.lo
-	rm -f srecord/output/file/line_termination.o srecord/output/file/mem.lo
-	rm -f srecord/output/file/mem.o srecord/output/file/mif.lo
-	rm -f srecord/output/file/mif.o srecord/output/file/mips_flash.lo
-	rm -f srecord/output/file/mips_flash.o srecord/output/file/mos_tech.lo
-	rm -f srecord/output/file/mos_tech.o srecord/output/file/motorola.lo
-	rm -f srecord/output/file/motorola.o srecord/output/file/msbin.lo
-	rm -f srecord/output/file/msbin.o srecord/output/file/needham.lo
-	rm -f srecord/output/file/needham.o srecord/output/file/os65v.lo
-	rm -f srecord/output/file/os65v.o srecord/output/file/ppb.lo
-	rm -f srecord/output/file/ppb.o srecord/output/file/ppx.lo
-	rm -f srecord/output/file/ppx.o srecord/output/file/signetics.lo
-	rm -f srecord/output/file/signetics.o srecord/output/file/spasm.lo
-	rm -f srecord/output/file/spasm.o srecord/output/file/spectrum.lo
-	rm -f srecord/output/file/spectrum.o srecord/output/file/stewie.lo
-	rm -f srecord/output/file/stewie.o srecord/output/file/tektronix.lo
-	rm -f srecord/output/file/tektronix.o
+	rm -f srecord/output/file/line_termination.o
+	rm -f srecord/output/file/logisim.lo srecord/output/file/logisim.o
+	rm -f srecord/output/file/mem.lo srecord/output/file/mem.o
+	rm -f srecord/output/file/mif.lo srecord/output/file/mif.o
+	rm -f srecord/output/file/mips_flash.lo srecord/output/file/mips_flash.o
+	rm -f srecord/output/file/mos_tech.lo srecord/output/file/mos_tech.o
+	rm -f srecord/output/file/motorola.lo srecord/output/file/motorola.o
+	rm -f srecord/output/file/msbin.lo srecord/output/file/msbin.o
+	rm -f srecord/output/file/needham.lo srecord/output/file/needham.o
+	rm -f srecord/output/file/os65v.lo srecord/output/file/os65v.o
+	rm -f srecord/output/file/ppb.lo srecord/output/file/ppb.o
+	rm -f srecord/output/file/ppx.lo srecord/output/file/ppx.o
+	rm -f srecord/output/file/signetics.lo srecord/output/file/signetics.o
+	rm -f srecord/output/file/spasm.lo srecord/output/file/spasm.o
+	rm -f srecord/output/file/spectrum.lo srecord/output/file/spectrum.o
+	rm -f srecord/output/file/stewie.lo srecord/output/file/stewie.o
+	rm -f srecord/output/file/tektronix.lo srecord/output/file/tektronix.o
 	rm -f srecord/output/file/tektronix_extended.lo
 	rm -f srecord/output/file/tektronix_extended.o
 	rm -f srecord/output/file/ti_tagged.lo srecord/output/file/ti_tagged.o
@@ -4317,14 +4405,16 @@ clean-obj:
 	rm -f srecord/quit/exception.o srecord/quit/normal.lo
 	rm -f srecord/quit/normal.o srecord/quit/prefix.lo srecord/quit/prefix.o
 	rm -f srecord/r250.lo srecord/r250.o srecord/record.lo srecord/record.o
-	rm -f srecord/stm32.lo srecord/stm32.o srecord/string/url_decode.lo
+	rm -f srecord/stm32.lo srecord/stm32.o srecord/string/quote_c.lo
+	rm -f srecord/string/quote_c.o srecord/string/url_decode.lo
 	rm -f srecord/string/url_decode.o srecord/string/url_encode.lo
 	rm -f srecord/string/url_encode.o srecord/versn_stamp.lo
 	rm -f srecord/versn_stamp.o srecord/vsnprintf.lo srecord/vsnprintf.o
 	rm -f test/arglex_ambiguous/main.lo test/arglex_ambiguous/main.o
 	rm -f test/crc16/main.lo test/crc16/main.o test/fletcher16/main.lo
-	rm -f test/fletcher16/main.o test/hyphen/main.lo test/hyphen/main.o
-	rm -f test/url_decode/main.lo test/url_decode/main.o
+	rm -f test/fletcher16/main.o test/gecos/main.lo test/gecos/main.o
+	rm -f test/hyphen/main.lo test/hyphen/main.o test/url_decode/main.lo
+	rm -f test/url_decode/main.o
 
 distclean: clean distclean-directories distclean-files
 
@@ -4345,7 +4435,8 @@ distclean-directories:
 	rm -rf srecord/output/file/.libs srecord/output/filter/.libs
 	rm -rf srecord/quit/.libs srecord/string/.libs
 	rm -rf test/arglex_ambiguous/.libs test/crc16/.libs
-	rm -rf test/fletcher16/.libs test/hyphen/.libs test/url_decode/.libs
+	rm -rf test/fletcher16/.libs test/gecos/.libs test/hyphen/.libs
+	rm -rf test/url_decode/.libs
 
 install: install-bin install-doc install-include install-libdir install-man
 
@@ -4358,7 +4449,8 @@ install-doc: $(datarootdir)/doc/srecord/BUILDING.pdf \
 
 install-include: $(includedir)/srecord/adler16.h \
 		$(includedir)/srecord/adler32.h $(includedir)/srecord/crc16.h \
-		$(includedir)/srecord/crc32.h $(includedir)/srecord/endian.h \
+		$(includedir)/srecord/crc32.h $(includedir)/srecord/defcon.h \
+		$(includedir)/srecord/endian.h \
 		$(includedir)/srecord/fletcher16.h \
 		$(includedir)/srecord/fletcher32.h \
 		$(includedir)/srecord/format_printf.h \
@@ -4378,7 +4470,7 @@ install-include: $(includedir)/srecord/adler16.h \
 		$(includedir)/srecord/input/file/formatted_binary.h \
 		$(includedir)/srecord/input/file/four_packed_code.h \
 		$(includedir)/srecord/input/file/intel.h \
-		$(includedir)/srecord/input/file/intel16.h \
+		$(includedir)/srecord/input/file/logisim.h \
 		$(includedir)/srecord/input/file/mif.h \
 		$(includedir)/srecord/input/file/mips_flash.h \
 		$(includedir)/srecord/input/file/mos_tech.h \
@@ -4463,6 +4555,7 @@ install-include: $(includedir)/srecord/adler16.h \
 		$(includedir)/srecord/output/file/hexdump.h \
 		$(includedir)/srecord/output/file/intel.h \
 		$(includedir)/srecord/output/file/intel16.h \
+		$(includedir)/srecord/output/file/logisim.h \
 		$(includedir)/srecord/output/file/mif.h \
 		$(includedir)/srecord/output/file/mips_flash.h \
 		$(includedir)/srecord/output/file/mos_tech.h \
@@ -4511,8 +4604,9 @@ install-man: $(mandir)/man1/srec_cat.1 $(mandir)/man1/srec_cmp.1 \
 		$(mandir)/man5/srec_formatted_binary.5 \
 		$(mandir)/man5/srec_forth.5 $(mandir)/man5/srec_fpc.5 \
 		$(mandir)/man5/srec_idt.5 $(mandir)/man5/srec_intel.5 \
-		$(mandir)/man5/srec_intel16.5 $(mandir)/man5/srec_mem.5 \
-		$(mandir)/man5/srec_mif.5 $(mandir)/man5/srec_mips_flash.5 \
+		$(mandir)/man5/srec_intel16.5 $(mandir)/man5/srec_logisim.5 \
+		$(mandir)/man5/srec_mem.5 $(mandir)/man5/srec_mif.5 \
+		$(mandir)/man5/srec_mips_flash.5 \
 		$(mandir)/man5/srec_mos_tech.5 $(mandir)/man5/srec_motorola.5 \
 		$(mandir)/man5/srec_msbin.5 $(mandir)/man5/srec_needham.5 \
 		$(mandir)/man5/srec_os65v.5 $(mandir)/man5/srec_ppb.5 \
@@ -4533,7 +4627,8 @@ uninstall:
 	rm -f $(datarootdir)/doc/srecord/reference.pdf
 	rm -f $(includedir)/srecord/adler16.h $(includedir)/srecord/adler32.h
 	rm -f $(includedir)/srecord/crc16.h $(includedir)/srecord/crc32.h
-	rm -f $(includedir)/srecord/endian.h $(includedir)/srecord/fletcher16.h
+	rm -f $(includedir)/srecord/defcon.h $(includedir)/srecord/endian.h
+	rm -f $(includedir)/srecord/fletcher16.h
 	rm -f $(includedir)/srecord/fletcher32.h
 	rm -f $(includedir)/srecord/format_printf.h
 	rm -f $(includedir)/srecord/input.h
@@ -4552,7 +4647,7 @@ uninstall:
 	rm -f $(includedir)/srecord/input/file/formatted_binary.h
 	rm -f $(includedir)/srecord/input/file/four_packed_code.h
 	rm -f $(includedir)/srecord/input/file/intel.h
-	rm -f $(includedir)/srecord/input/file/intel16.h
+	rm -f $(includedir)/srecord/input/file/logisim.h
 	rm -f $(includedir)/srecord/input/file/mif.h
 	rm -f $(includedir)/srecord/input/file/mips_flash.h
 	rm -f $(includedir)/srecord/input/file/mos_tech.h
@@ -4635,6 +4730,7 @@ uninstall:
 	rm -f $(includedir)/srecord/output/file/hexdump.h
 	rm -f $(includedir)/srecord/output/file/intel.h
 	rm -f $(includedir)/srecord/output/file/intel16.h
+	rm -f $(includedir)/srecord/output/file/logisim.h
 	rm -f $(includedir)/srecord/output/file/mif.h
 	rm -f $(includedir)/srecord/output/file/mips_flash.h
 	rm -f $(includedir)/srecord/output/file/mos_tech.h
@@ -4676,14 +4772,14 @@ uninstall:
 	rm -f $(mandir)/man5/srec_formatted_binary.5 $(mandir)/man5/srec_forth.5
 	rm -f $(mandir)/man5/srec_fpc.5 $(mandir)/man5/srec_idt.5
 	rm -f $(mandir)/man5/srec_intel.5 $(mandir)/man5/srec_intel16.5
-	rm -f $(mandir)/man5/srec_mem.5 $(mandir)/man5/srec_mif.5
-	rm -f $(mandir)/man5/srec_mips_flash.5 $(mandir)/man5/srec_mos_tech.5
-	rm -f $(mandir)/man5/srec_motorola.5 $(mandir)/man5/srec_msbin.5
-	rm -f $(mandir)/man5/srec_needham.5 $(mandir)/man5/srec_os65v.5
-	rm -f $(mandir)/man5/srec_ppb.5 $(mandir)/man5/srec_ppx.5
-	rm -f $(mandir)/man5/srec_signetics.5 $(mandir)/man5/srec_spasm.5
-	rm -f $(mandir)/man5/srec_spectrum.5 $(mandir)/man5/srec_stewie.5
-	rm -f $(mandir)/man5/srec_tektronix.5
+	rm -f $(mandir)/man5/srec_logisim.5 $(mandir)/man5/srec_mem.5
+	rm -f $(mandir)/man5/srec_mif.5 $(mandir)/man5/srec_mips_flash.5
+	rm -f $(mandir)/man5/srec_mos_tech.5 $(mandir)/man5/srec_motorola.5
+	rm -f $(mandir)/man5/srec_msbin.5 $(mandir)/man5/srec_needham.5
+	rm -f $(mandir)/man5/srec_os65v.5 $(mandir)/man5/srec_ppb.5
+	rm -f $(mandir)/man5/srec_ppx.5 $(mandir)/man5/srec_signetics.5
+	rm -f $(mandir)/man5/srec_spasm.5 $(mandir)/man5/srec_spectrum.5
+	rm -f $(mandir)/man5/srec_stewie.5 $(mandir)/man5/srec_tektronix.5
 	rm -f $(mandir)/man5/srec_tektronix_extended.5
 	rm -f $(mandir)/man5/srec_ti_tagged.5 $(mandir)/man5/srec_ti_tagged_16.5
 	rm -f $(mandir)/man5/srec_ti_txt.5 $(mandir)/man5/srec_trs80.5
@@ -4714,6 +4810,6 @@ uninstall:
 		t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a \
 		t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a t0228a \
 		t0229a t0230a t0231a t0232a t0233a t0235a t0236a t0237a t0238a \
-		t0239a the-default-target
+		t0239a t0250a t0251a the-default-target
 
 # vim: set ts=8 sw=8 noet :

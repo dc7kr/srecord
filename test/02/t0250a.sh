@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # srecord - Manipulate EPROM load files
-# Copyright (C) 2012, 2014 Peter Miller
+# Copyright (C) 2013 Peter Miller
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,20 +17,34 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-TEST_SUBJECT="crc-16-ansi"
+TEST_SUBJECT="read logisim"
 . test_prelude
 
-echo "123456789" | dd bs=9 count=1 > test.in  2>/dev/null
-if test $? -ne 0; then no_result; fi
+cat > test.in << 'fubar'
+v2.0 raw
 
-# If anyone has the ANSI stantda test vectors,
-# I'd rather use those.
-cat > test.ok << 'fubar'
-0x9ECF
+02
+03
+00
+14
+ff
+123*8F
 fubar
 if test $? -ne 0; then no_result; fi
 
-test_crc16 -p ansi < test.in > test.out
+cat > test.ok << 'fubar'
+00000000: 02 03 00 14 FF 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000010: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000020: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000030: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000040: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000050: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000060: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+00000070: 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F 8F  #................
+fubar
+if test $? -ne 0; then no_result; fi
+
+srec_cat test.in -logi -o test.out -hexdump
 if test $? -ne 0; then fail; fi
 
 diff test.ok test.out

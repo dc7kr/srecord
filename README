@@ -89,7 +89,8 @@ DESCRIPTION
 
        LSI Logic Fast Load
                The LSI Logic Fast Load format is understood for both reading
-               and writing.
+               and writing.  Logisim The Logisim format is understood for both
+               reading and writing.  See srec_logisim(5) for more information.
 
        Memory Initialization Format
                The Memory Initialization Format (.mem) by Lattice
@@ -250,11 +251,11 @@ ARCHIVE SITE
 
         URL:    http://srecord.sourceforge.net/
         File:   index.html            # the SRecord page
-        File:   srecord-1.62.README   # Description, from the tar file
-        File:   srecord-1.62.lsm      # Description, LSM format
-        File:   srecord-1.62.spec     # RedHat package specification
-        File:   srecord-1.62.tar.gz   # the complete source
-        File:   srecord-1.62.pdf      # Reference Manual
+        File:   srecord-1.63.README   # Description, from the tar file
+        File:   srecord-1.63.lsm      # Description, LSM format
+        File:   srecord-1.63.spec     # RedHat package specification
+        File:   srecord-1.63.tar.gz   # the complete source
+        File:   srecord-1.63.pdf      # Reference Manual
 
 BUILDING SRECORD
        Full instructions for building SRecord may be found in the
@@ -266,9 +267,10 @@ BUILDING SRECORD
        native Windows binaries.
 
 COPYRIGHT
-       srecord version 1.62
+       srecord version 1.63
        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005,
-       2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013 Peter Miller
+       2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 Peter
+       Miller
 
        This program is free software; you can redistribute it and/or
        modify it under the terms of the GNU General Public License as
@@ -296,6 +298,55 @@ RELEASE NOTES
        various releases.  For excruciating and complete detail, and
        also credits for those of you who have generously sent me
        suggestions and bug reports, see the etc/CHANGES.* files.
+
+   Version 1.63 (2014-Apr-07)
+       * The srec_tools now understand how to read and write Logisim
+       formt.
+
+       * Daniel Anselmi <danselmi@gmx.ch> fixed a bug with generating
+       Lattice Memory init files.
+
+       * This change set generalises the code that handles redundant
+       byte settings and contradictory byte settings. The defcon_t type
+       describes what to do: ignore, warn or error.  The --multiple
+       option is no more.
+
+       * Daniel Anselmi <danselmi@gmx.ch> discovered that the "mem"
+       output format was malformed. The lines now break every "width"
+       bits.
+
+       * Hanspeter Niederstrasser disoverd some false negatives in the
+       test suite, when used on OSX.  Thank you for the bug report.
+       This has been fixed.
+
+       * Simplification of selection code to choose which CRC16
+       implmentation is used.
+
+       * Juliano Mouro Vieira <juliano@utfpr.edu.br> discovered a
+       problem with the srec_mif.5 description. This mistake is not
+       present in the code.
+
+       * Liju Prasanth Nivas (RBEI/ECA1)
+       <Liju.PrasanthNivas@in.bosch.com> suggsted another use case for
+       the examples. In the case of "joining" files that are meant to
+       be "stacked in layers".  Contributions for the examples are
+       always appreciated. Thank you.
+
+       * Added more comments to the code, so that the use of URL_deode
+       for the command line is better explained. And comment to explain
+       why not to do turl_encode when building header records.
+
+       * Added URL quoting to the command line. There are times you
+       need to be able to insert unprintable characters on the command
+       line. The immediate use case prompting this was a user wanting
+       to put a NUL in the header string. So now you can, as "%00". The
+       other choice was quoted printable encoding, but that was a bit
+       obscure.
+
+       * Fixed new warnings when building with g++ 4.8.1
+
+       * Added more links to the windows files on SourceForge, maybe it
+       will boost download numbers.
 
    Version 1.62 (2013-Jun-05)
        * Luc Steynen <LucSteynen@edna.be> discovered that the -hecksum-

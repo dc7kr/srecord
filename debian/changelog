@@ -1,8 +1,148 @@
+srecord (1.63.D004-1) unstable; urgency=low
+
+  * This change updates the download page to point at the new windows build
+    kindly supplied by Jens Heilig. The Windows build instructions have also
+    been updated.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 21 Apr 2014 20:01:23 +1000
+
+srecord (1.63.D003-1) unstable; urgency=low
+
+  * This change fixes the length field description in extended tektronix
+    documentation. The implemenation was already correct.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Fri, 18 Apr 2014 16:39:28 +1000
+
+srecord (1.63.D002-1) unstable; urgency=low
+
+  * This change addresses sourceforge bug 19.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Thu, 17 Apr 2014 21:35:01 +1000
+
+srecord (1.63.D001-1) unstable; urgency=low
+
+  * Prep next public release of SRecord. This will be srecord.1.63
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sun, 13 Apr 2014 21:23:11 +1000
+
+srecord (1.62.D017-1) unstable; urgency=low
+
+  * Add release instructions based on instructions from Peter
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 07 Apr 2014 18:17:27 +1000
+
+srecord (1.62.D016-1) unstable; urgency=low
+
+  * This change does a minor refactoring of the output_file class
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 07 Apr 2014 18:02:52 +1000
+
+srecord (1.62.D015-1) unstable; urgency=low
+
+  * This change from Daniel Anselmi fixes an issue with generating Lattice
+    Memory init files.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 07 Apr 2014 17:55:20 +1000
+
+srecord (1.62.D014-1) unstable; urgency=low
+
+  * Fixed new warnings from g++ 4.8.1
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 07 Apr 2014 17:47:58 +1000
+
+srecord (1.62.D013-1) unstable; urgency=low
+
+  * This change set generalises the code that handles redundant byte settings
+    and contradictory byte settings.  The defcon_t type describes what to do:
+    ignore, warn or error.
+  * The --multiple option is no more.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 06 Apr 2014 21:45:14 +1000
+
+srecord (1.62.D012-1) unstable; urgency=low
+
+  * Daniel Anselmi <danselmi@gmx.ch> discovered that the "mem" output format was
+    malformed. The lines now break every "width" bits.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 07 Mar 2014 19:11:30 +1100
+
+srecord (1.62.D011-1) unstable; urgency=low
+
+  * Hanspeter Niederstrasser  disoverd some false negatices in the test suite,
+    when used on OSX.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 07 Mar 2014 17:53:04 +1100
+
+srecord (1.62.D010-1) unstable; urgency=low
+
+  * This change set adds simpler seletion code to choose whivh CRC16
+    implmentation to be used.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 07 Mar 2014 17:40:45 +1100
+
+srecord (1.62.D009-1) unstable; urgency=low
+
+  * Juliano MourÃ£o Vieira <juliano@utfpr.edu.br> discovered a problem with the
+    srec_mif.5 description. This mistake is not present in the code.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 07 Mar 2014 10:07:40 +1100
+
+srecord (1.62.D008-1) unstable; urgency=low
+
+  * This change set adds more comments to the code, so that the use of URL_deode
+    for the command line is better explained. And comment to explain why not to
+    do turl_encode when building header records.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 04 Feb 2014 12:52:57 +1100
+
+srecord (1.62.D007-1) unstable; urgency=low
+
+  * This change makes a start at replacing Peter as the maintainer.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 02 Feb 2014 22:20:19 +1100
+
+srecord (1.62.D006-1) unstable; urgency=low
+
+  * This change set adds URL quoting to the command line. There are times you
+    need to be abase to insert unprintable characters on the command line. The
+    immediate use case prompting this was a user wanting to put a NUL in the
+    header string. So now you can, as "%00". The other choice was quoted
+    printable encoding, but that was a bit obscure.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Sun, 02 Feb 2014 19:59:03 +1100
+
+srecord (1.62.D005-1) unstable; urgency=low
+
+  * Liju Prasanth Nivas (RBEI/ECA1) <Liju.PrasanthNivas@in.bosch.com> suggsted
+    another use case for the examples. I the case of "joining" files that are
+    meant to be \[lq]stacked in layers\[rq].
+
+ -- Peter Miller <pmiller@opensource.org.au>  Fri, 30 Aug 2013 11:20:16 +1000
+
+srecord (1.62.D004-1) unstable; urgency=low
+
+  * The srec_tools now understand how to read and write Logisim formt.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Thu, 29 Aug 2013 13:15:02 +1000
+
+srecord (1.62.D003-1) unstable; urgency=low
+
+  * The tools now recogise the Logisim file format.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 27 Aug 2013 10:46:51 +1000
+
+srecord (1.62.D002-1) unstable; urgency=low
+
+  * This change set adds more links to the windows files on SourceForge, maybe
+    it will boost donload numbers.
+
+ -- Peter Miller <pmiller@opensource.org.au>  Tue, 11 Jun 2013 19:48:29 +1000
+
 srecord (1.62.D001-1) unstable; urgency=low
 
   * This change set prepares SRecored for the next public release.
 
- -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 Jun 2013 14:25:12 +1000
+ -- Peter Miller <pmiller@opensource.org.au>  Wed, 05 Jun 2013 14:29:37 +1000
 
 srecord (1.61.D006-1) unstable; urgency=low
 
@@ -29,8 +169,8 @@ srecord (1.61.D004-1) unstable; urgency=low
 
   * Dr. Benedikt Schmitt <Benedikt.Schmitt@safeintrain.de> suggted bein able o
     inject arbitrary data into the file header (suh as NUL termination
-    characters.	 This change set adds URL-style escapes (e.g. %25) to the string
-    on he command line.	 E.g. --header or --generate --string
+    characters.  This change set adds URL-style escapes (e.g. %25) to the string
+    on he command line.  E.g. --header or --generate --string
 
  -- Peter Miller <pmiller@opensource.org.au>  Thu, 30 May 2013 22:17:00 +1000
 
@@ -413,7 +553,7 @@ srecord (1.56.D010-1) unstable; urgency=low
 
   * The meaning of the --address-length option has been change for the Intel
     output format.  Previously, 2 meant using i16hex 20-bit segmented
-    addressing, and >2 meant using i32hex extended addressing.	This has been
+    addressing, and >2 meant using i32hex extended addressing. This has been
     changed: a value of 2 requests i8hex 16-bit addressing, a value of 3
     requests i16hex 20-bit segment addressing, and a value >=4 requests i32hex
     32-bit addressing.
@@ -467,7 +607,7 @@ srecord (1.56.D004-1) unstable; urgency=low
 
 srecord (1.56.D003-1) unstable; urgency=low
 
-  * This change set fixes some problems with the RPM spec file.	 My thanks to
+  * This change set fixes some problems with the RPM spec file.  My thanks to
     Galen Seitz <galens@seitzassoc.com> for reporting this problem.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sun, 07 Nov 2010 17:32:35 +1100
@@ -562,7 +702,7 @@ srecord (1.55.D007-1) unstable; urgency=low
   * There is a new srec_cat --enable=optional-address to cause coutpit formats
     capable of omitting addresses, to omit a leading zero address, as those
     formats usually default the address to zero, if no address information is
-    seen before the first data record.	Defaults to false (disabled).
+    seen before the first data record. Defaults to false (disabled).
   * My thanks to Stuart MacDonald <stuart.macdonald@christiedigital.com> for
     this suggestion.
 
@@ -931,7 +1071,7 @@ srecord (1.52.D004-1) unstable; urgency=low
 srecord (1.52.D003-1) unstable; urgency=low
 
   * The warning about hyphen in the manual pages has been silenced, by careful
-    use of \-, \[hy\ and \[mi] as appropriate.	 Sure makes some of the sources
+    use of \-, \[hy\ and \[mi] as appropriate.  Sure makes some of the sources
     ugly, tho.
   * The warning about the undefined .XX macro has been silenced, by making it
     conditional.
@@ -1022,7 +1162,7 @@ srecord (1.50.D001-1) unstable; urgency=low
 srecord (1.49.D012-1) unstable; urgency=low
 
   * The code has been enhanced to provide high-to-low bit order CRC16 (as was
-    already available) and also low-to-high bit order.	This is confirmed to
+    already available) and also low-to-high bit order. This is confirmed to
     produce the same results as reversing the order of bits within bytes *prior*
     to feeding it to the algorithm.
 
@@ -1144,7 +1284,7 @@ srecord (1.47.D004-1) unstable; urgency=low
 srecord (1.47.D003-1) unstable; urgency=low
 
   * There is now a input filter that may be used to calculate Adler 32 bit
-    checksums.	It has two command line forms, --big-endian-adler32 and --
+    checksums. It has two command line forms, --big-endian-adler32 and --
     little-endian-adler32.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sun, 22 Mar 2009 18:29:05 +1100
@@ -1428,7 +1568,7 @@ srecord (1.40.D016-1) unstable; urgency=low
 srecord (1.40.D015-1) unstable; urgency=low
 
   * The handling of the program name has been changed, so that any trailing .exe
-    is removed.	 This was giving false negatives in tests.
+    is removed.  This was giving false negatives in tests.
   * Also, the GNU diff --strip-trailing-cr option is exploited if available,
     dealing with a number of other false negatives.
 
@@ -1552,7 +1692,7 @@ srecord (1.40.D001-1) unstable; urgency=low
 
 srecord (1.39.D019-1) unstable; urgency=low
 
-  * This change set fixes an RPM build problem.	 The spec file needed some
+  * This change set fixes an RPM build problem.  The spec file needed some
     tweaking.
   * My thanks to Galen Seitz <galens@seitzassoc.com> for reporting this problem.
 
@@ -1601,7 +1741,7 @@ srecord (1.39.D013-1) unstable; urgency=low
 
 srecord (1.39.D012-1) unstable; urgency=low
 
-  * The BUILDING file now tells you about the Boost library dependency.	 And the
+  * The BUILDING file now tells you about the Boost library dependency.  And the
     ./configure script now fails if it is not installed.
   * My thanks to Chris Teague for reporting this problem.
 
@@ -1633,7 +1773,7 @@ srecord (1.39.D008-1) unstable; urgency=low
 
   * The handling of groff in the Makefile.in file has been improved.  Mostly
     this was an Aegis bug, but not completely.
-  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.	 Fathi is the
+  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.  Fathi is the
     Debian maintainer for SRecord.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sat, 16 Feb 2008 22:00:08 +1100
@@ -1641,7 +1781,7 @@ srecord (1.39.D008-1) unstable; urgency=low
 srecord (1.39.D007-1) unstable; urgency=low
 
   * An incorrect section number on the srec_fastload(5) man page has been fixed.
-  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.	 Fathi is the
+  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.  Fathi is the
     Debian maintainer for SRecord.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sat, 16 Feb 2008 16:47:58 +1100
@@ -1649,7 +1789,7 @@ srecord (1.39.D007-1) unstable; urgency=low
 srecord (1.39.D006-1) unstable; urgency=low
 
   * This change set removes several useless includes of <cstdio>
-  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.	 Fathi is the
+  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.  Fathi is the
     Debian maintainer for SRecord.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sat, 16 Feb 2008 16:08:39 +1100
@@ -1657,7 +1797,7 @@ srecord (1.39.D006-1) unstable; urgency=low
 srecord (1.39.D005-1) unstable; urgency=low
 
   * This change set adds support for GCC 4.3 to the code base.
-  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.	 Fathi is the
+  * My thanks to Fathi Boudra <fabo@debian.org> for this patch.  Fathi is the
     Debian maintainer for SRecord.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sat, 16 Feb 2008 16:03:16 +1100
@@ -1973,7 +2113,7 @@ srecord (1.33.D006-1) unstable; urgency=low
 srecord (1.33.D005-1) unstable; urgency=low
 
   * The assembler output has been changed to request the user manually pad their
-    data, rather than the output format making up data.	 This only applies when
+    data, rather than the output format making up data.  This only applies when
     the user has requested 16-bit output, 8-bit output is not affected.
 
  -- Peter Miller <pmiller@opensource.org.au>  Sun, 20 May 2007 09:37:18 +1000
@@ -2032,7 +2172,7 @@ srecord (1.32.D006-1) unstable; urgency=low
 
 srecord (1.32.D005-1) unstable; urgency=low
 
-  * There is a new type of data source: the generator.	There are three
+  * There is a new type of data source: the generator. There are three
     different generators, more are likely.
 
  -- Peter Miller <pmiller@opensource.org.au>  Wed, 16 May 2007 18:07:52 +1000
@@ -2134,7 +2274,7 @@ srecord (1.30.D001-1) unstable; urgency=low
 srecord (1.29.D007-1) unstable; urgency=low
 
   * The ascii-hex format has been improved, so that it does much better line
-    length accounting.	It also ensures the ^C is present even for the -data-
+    length accounting. It also ensures the ^C is present even for the -data-
     only option.
   * My thanks to Simon Manderson <phmilesc@blueyonder.co.uk> for reporting this
     problem.
@@ -2162,7 +2302,7 @@ srecord (1.29.D004-1) unstable; urgency=low
 
 srecord (1.29.D003-1) unstable; urgency=low
 
-  * The Intel code warned if there was no start address record.	 It was a
+  * The Intel code warned if there was no start address record.  It was a
     warning, not an error, but still some folks complained.  The warning has
     been removed.
 
@@ -2303,7 +2443,7 @@ srecord (1.26.D007-1) unstable; urgency=low
 
 srecord (1.26.D006-1) unstable; urgency=low
 
-  * M$IE has a BUG and it gets transparency in PNG files WRONG.	 Morons.  The
+  * M$IE has a BUG and it gets transparency in PNG files WRONG.  Morons.  The
     fix is to tell the pngcrush program to use a white background.
 
  -- Peter Miller <pmiller@opensource.org.au>  Tue, 26 Sep 2006 12:45:06 +1000
@@ -2555,7 +2695,7 @@ srecord (1.21.D003-1) unstable; urgency=low
     checksums option may be used to disable checksum validation of input files,
     for those formats which have checksums at all.  Note that trhe checksum
     values are still read in and parse (so it is still an error if they are
-    missing) but their values are not checked.	Used after an input file name,
+    missing) but their values are not checked. Used after an input file name,
     the option affects that file alone; used anywhere else on the command line,
     it applies to all following files.
   * My thanks to Jochen Betz <betz@sitronic.com> for this suggestion.
@@ -2691,7 +2831,7 @@ srecord (1.19.D001-1) unstable; urgency=low
 srecord (1.18.D007-1) unstable; urgency=low
 
   * It is now possible to set the start address in the output using the srec_cat
-    -Start_Address command line option.	 (Requested by anonymous user on
+    -Start_Address command line option.  (Requested by anonymous user on
     SourceForge.)
 
  -- Peter Miller <pmiller@opensource.org.au>  Fri, 02 Jan 2004 12:00:26 +1100
@@ -2706,7 +2846,7 @@ srecord (1.18.D006-1) unstable; urgency=low
 srecord (1.18.D005-1) unstable; urgency=low
 
   * There is a new -Random_Fill filter, like the -Fill filter except that it
-    uses random values.	 (Submitted by anonymous user on SourceForge.)
+    uses random values.  (Submitted by anonymous user on SourceForge.)
 
  -- Peter Miller <pmiller@opensource.org.au>  Thu, 01 Jan 2004 20:56:02 +1100
 
@@ -2999,7 +3139,7 @@ srecord (1.12.D001-1) unstable; urgency=low
 srecord (1.11.D005-1) unstable; urgency=low
 
   * This change adds the ability to put -min, -man or -len almost anywhere on
-    the command line that you can put a number.	 It allows, for example, the -
+    the command line that you can put a number.  It allows, for example, the -
     offset value to be calculated from the maximum of the previous file.
 
  -- Peter Miller <pmiller@opensource.org.au>  Fri, 06 Dec 2002 10:35:42 +1100
@@ -3295,7 +3435,7 @@ srecord (1.7.D005-1) unstable; urgency=low
 
 srecord (1.7.D004-1) unstable; urgency=low
 
-  * This change fixes a bug in the memory chunk iterator code.	This affected
+  * This change fixes a bug in the memory chunk iterator code. This affected
     CRC16 and CRC32 functionality.
   * My thanks to Dimitris Beletsiotis <dbele@intracom.gr> for reporting this
     problem.
@@ -3587,7 +3727,7 @@ srecord (1.2.D002-1) unstable; urgency=low
 
 srecord (1.2.D001-1) unstable; urgency=low
 
-  * This change prepares this next version for release.	 The releases are post-
+  * This change prepares this next version for release.  The releases are post-
     numbered.
 
  -- Peter Miller <pmiller@opensource.org.au>  Thu, 05 Nov 1998 10:49:49 +1100
@@ -3696,7 +3836,7 @@ srecord (1.0.D015-1) unstable; urgency=low
 
 srecord (1.0.D014-1) unstable; urgency=low
 
-  * 1. This change adds the C output filter.	     This allows a C source file
+  * 1. This change adds the C output filter.      This allows a C source file
     containing an array initialized with the input data.
   * 2. This change adds the -over and -within address range specifiers.
   * 3. This change adds a variety of examples to the man pages.
@@ -3731,7 +3871,7 @@ srecord (1.0.D010-1) unstable; urgency=low
 
 srecord (1.0.D009-1) unstable; urgency=low
 
-  * This change s the first round in preparing the code for release.	     It
+  * This change s the first round in preparing the code for release.      It
     constructs a Makefile, a tar file, and an RPM spec file.  RPM package build
     s are supported, but are not an integration build target, because they take
     so long.
@@ -3766,7 +3906,7 @@ srecord (1.0.D005-1) unstable; urgency=low
 
 srecord (1.0.D004-1) unstable; urgency=low
 
-  * This change adds the srec_cmp command, used to compare srec files.	It is
+  * This change adds the srec_cmp command, used to compare srec files. It is
     not sufficient to use cmp(1) or diff(1), because the record boundaries are
     arbitrary.
 

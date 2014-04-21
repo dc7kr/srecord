@@ -1,11 +1,11 @@
 Source: srecord
 Section: utils
 Priority: extra
-Maintainer: Peter Miller <pmiller@opensource.org.au>
+Maintainer: Scott Finneran <scottfinneran@yahoo.com.au>
 Homepage: http://srecord.sourceforge.net
 DM-Upload-Allowed: yes
-Build-Depends: debhelper (>= 5), ghostscript, groff, libboost-dev,
- libgcrypt11-dev, libtool
+Build-Depends: autotools-dev, debhelper (>= 5), dh-autoreconf, ghostscript,
+ groff, libboost-dev, libgcrypt11-dev, libtool
 Standards-Version: 3.9.3
 
 Package: srecord

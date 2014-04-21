@@ -2,6 +2,7 @@ usr/include/srecord/adler16.h
 usr/include/srecord/adler32.h
 usr/include/srecord/crc16.h
 usr/include/srecord/crc32.h
+usr/include/srecord/defcon.h
 usr/include/srecord/endian.h
 usr/include/srecord/fletcher16.h
 usr/include/srecord/fletcher32.h
@@ -22,7 +23,7 @@ usr/include/srecord/input/file/fastload.h
 usr/include/srecord/input/file/formatted_binary.h
 usr/include/srecord/input/file/four_packed_code.h
 usr/include/srecord/input/file/intel.h
-usr/include/srecord/input/file/intel16.h
+usr/include/srecord/input/file/logisim.h
 usr/include/srecord/input/file/mif.h
 usr/include/srecord/input/file/mips_flash.h
 usr/include/srecord/input/file/mos_tech.h
@@ -107,6 +108,7 @@ usr/include/srecord/output/file/four_packed_code.h
 usr/include/srecord/output/file/hexdump.h
 usr/include/srecord/output/file/intel.h
 usr/include/srecord/output/file/intel16.h
+usr/include/srecord/output/file/logisim.h
 usr/include/srecord/output/file/mif.h
 usr/include/srecord/output/file/mips_flash.h
 usr/include/srecord/output/file/mos_tech.h

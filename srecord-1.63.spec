@@ -16,7 +16,7 @@
 #
 Summary: srecord
 Name: srecord
-Version: 1.62.D001
+Version: 1.63.D004
 Release: 1
 License: GPL
 Group: Development/Tools
@@ -118,6 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man5/srec_idt.5
 %{_mandir}/man5/srec_intel.5
 %{_mandir}/man5/srec_intel16.5
+%{_mandir}/man5/srec_logisim.5
 %{_mandir}/man5/srec_mem.5
 %{_mandir}/man5/srec_mif.5
 %{_mandir}/man5/srec_mips_flash.5
@@ -153,6 +154,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/srecord/adler32.h
 %{_includedir}/srecord/crc16.h
 %{_includedir}/srecord/crc32.h
+%{_includedir}/srecord/defcon.h
 %{_includedir}/srecord/endian.h
 %{_includedir}/srecord/fletcher16.h
 %{_includedir}/srecord/fletcher32.h
@@ -173,7 +175,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/srecord/input/file/formatted_binary.h
 %{_includedir}/srecord/input/file/four_packed_code.h
 %{_includedir}/srecord/input/file/intel.h
-%{_includedir}/srecord/input/file/intel16.h
+%{_includedir}/srecord/input/file/logisim.h
 %{_includedir}/srecord/input/file/mif.h
 %{_includedir}/srecord/input/file/mips_flash.h
 %{_includedir}/srecord/input/file/mos_tech.h
@@ -258,6 +260,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/srecord/output/file/hexdump.h
 %{_includedir}/srecord/output/file/intel.h
 %{_includedir}/srecord/output/file/intel16.h
+%{_includedir}/srecord/output/file/logisim.h
 %{_includedir}/srecord/output/file/mif.h
 %{_includedir}/srecord/output/file/mips_flash.h
 %{_includedir}/srecord/output/file/mos_tech.h

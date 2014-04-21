@@ -291,6 +291,13 @@ T}	T{
 .ad l
 EPROM load files
 T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+srec logisim - format Logisim
+T}	T{
+.ad l
+EPROM load files
+T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
 srecord - library to manipulate
@@ -627,6 +634,13 @@ T}	T{
 .ad l
 files
 T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+srec logisim - format Logisim EPROM load
+T}	T{
+.ad l
+files
+T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
 srecord - library to manipulate EPROM load
@@ -920,6 +934,13 @@ srec wilson - wilson file
 T}	T{
 .ad l
 format
+T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+srec logisim -
+T}	T{
+.ad l
+format Logisim EPROM load files
 T}
 srec_intel16(5)	\*[Page*Of*srec_intel16(5)]	T{
 .ad r
@@ -1257,6 +1278,13 @@ T}	T{
 .ad l
 load files
 T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+srec logisim - format Logisim EPROM
+T}	T{
+.ad l
+load files
+T}
 srecord(3)	\*[Page*Of*srecord(3)]	T{
 .ad r
 srecord - library to manipulate EPROM
@@ -1277,6 +1305,20 @@ srec fastload - LSI
 T}	T{
 .ad l
 Logic Fast Load file format
+T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+srec logisim - format
+T}	T{
+.ad l
+Logisim EPROM load files
+T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+srec
+T}	T{
+.ad l
+logisim - format Logisim EPROM load files
 T}
 srec_fastload(5)	\*[Page*Of*srec_fastload(5)]	T{
 .ad r
@@ -1809,6 +1851,13 @@ srec_intel(5)	\*[Page*Of*srec_intel(5)]	T{
 T}	T{
 .ad l
 srec intel - Intel Hexadecimal object file format specification
+T}
+srec_logisim(5)	\*[Page*Of*srec_logisim(5)]	T{
+.ad r
+
+T}	T{
+.ad l
+srec logisim - format Logisim EPROM load files
 T}
 srec_mem(5)	\*[Page*Of*srec_mem(5)]	T{
 .ad r

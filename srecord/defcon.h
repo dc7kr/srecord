@@ -1,6 +1,6 @@
 //
 // srecord - Manipulate EPROM load files
-// Copyright (C) 2013 Peter Miller
+// Copyright (C) 2014 Peter Miller
 //
 // This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU Lesser General Public License as published by
@@ -16,28 +16,25 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#ifndef SRECORD_STRING_H
-#define SRECORD_STRING_H
-
-#include <string>
+#ifndef SRECORD_DEFCON_H
+#define SRECORD_DEFCON_H
 
 namespace srecord {
 
-/**
-  * The string_url_encode function build a new string by adding url
-  * quoting ("$FF")
-  */
-std::string string_url_encode(const std::string &text);
 
-/**
-  * The string_url_decode function build a new string by removing url
-  * quoting ("$FF")
-  */
-std::string string_url_decode(const std::string &text);
+enum defcon_t
+{
+    defcon_ignore,
+    defcon_warning,
+    defcon_fatal_error
+};
 
-std::string string_quote_c(const std::string &text);
+
+const char *text_from_defcon(defcon_t x);
+int defcon_from_text(const char *text);
+
 
 };
 
 // vim: set ts=8 sw=4 et :
-#endif // SRECORD_STRING_H
+#endif // SRECORD_DEFCON_H
