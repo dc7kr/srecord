@@ -687,6 +687,7 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+with_gcrypt
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1305,6 +1306,11 @@ fi
 if test -n "$ac_init_help"; then
 
   cat <<\_ACEOF
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --without-gcrypt        disable support for libgcrypt
 
 Some influential environment variables:
   CXX         C++ compiler command
@@ -4179,51 +4185,6 @@ _ACEOF
 fi
 done
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcry_md_open in -lgcrypt" >&5
-$as_echo_n "checking for gcry_md_open in -lgcrypt... " >&6; }
-if ${ac_cv_lib_gcrypt_gcry_md_open+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lgcrypt  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char gcry_md_open ();
-int
-main ()
-{
-return gcry_md_open ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_cxx_try_link "$LINENO"; then :
-  ac_cv_lib_gcrypt_gcry_md_open=yes
-else
-  ac_cv_lib_gcrypt_gcry_md_open=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gcrypt_gcry_md_open" >&5
-$as_echo "$ac_cv_lib_gcrypt_gcry_md_open" >&6; }
-if test "x$ac_cv_lib_gcrypt_gcry_md_open" = xyes; then :
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBGCRYPT 1
-_ACEOF
-
-  LIBS="-lgcrypt $LIBS"
-
-fi
-
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -lgpg-error" >&5
 $as_echo_n "checking for main in -lgpg-error... " >&6; }
@@ -4469,9 +4430,23 @@ else
 $as_echo "no" >&6; }
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt SHA224 support" >&5
+
+
+
+# Check whether --with-gcrypt was given.
+if test "${with_gcrypt+set}" = set; then :
+  withval=$with_gcrypt;
+else
+  with_gcrypt=yes
+fi
+
+
+LIBGCRYPT=
+if test "x$with_gcrypt" != xno; then :
+
+                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt SHA224 support" >&5
 $as_echo_n "checking for gcrypt SHA224 support... " >&6; }
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 #include <gcrypt.h>
 int
@@ -4486,16 +4461,16 @@ if ac_fn_cxx_try_compile "$LINENO"; then :
 
 $as_echo "#define HAVE_LIBGCRYPT_SHA224 1" >>confdefs.h
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt WHIRLPOOL support" >&5
+                { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcrypt WHIRLPOOL support" >&5
 $as_echo_n "checking for gcrypt WHIRLPOOL support... " >&6; }
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 #include <gcrypt.h>
 int
@@ -4510,13 +4485,66 @@ if ac_fn_cxx_try_compile "$LINENO"; then :
 
 $as_echo "#define HAVE_LIBGCRYPT_WHIRLPOOL 1" >>confdefs.h
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 else
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for gcry_md_open in -lgcrypt" >&5
+$as_echo_n "checking for gcry_md_open in -lgcrypt... " >&6; }
+if ${ac_cv_lib_gcrypt_gcry_md_open+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lgcrypt  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char gcry_md_open ();
+int
+main ()
+{
+return gcry_md_open ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_cxx_try_link "$LINENO"; then :
+  ac_cv_lib_gcrypt_gcry_md_open=yes
+else
+  ac_cv_lib_gcrypt_gcry_md_open=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gcrypt_gcry_md_open" >&5
+$as_echo "$ac_cv_lib_gcrypt_gcry_md_open" >&6; }
+if test "x$ac_cv_lib_gcrypt_gcry_md_open" = xyes; then :
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBGCRYPT 1
+_ACEOF
+
+  LIBS="-lgcrypt $LIBS"
+
+else
+  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "gcrypt test failed (--without-gcrypt to disable)
+See \`config.log' for more details" "$LINENO" 5; }
+fi
+
+
+fi
+
 for ac_prog in libtool
 do
   # Extract the first word of "$ac_prog", so it can be a program name with args.

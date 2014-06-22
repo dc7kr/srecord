@@ -179,7 +179,8 @@ etc/README.pdf: etc/README.man etc/new.1.1.so etc/new.1.10.so etc/new.1.11.so \
 		etc/new.1.54.so etc/new.1.55.so etc/new.1.56.so \
 		etc/new.1.57.so etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so \
 		etc/new.1.60.so etc/new.1.61.so etc/new.1.62.so \
-		etc/new.1.63.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so
+		etc/new.1.63.so etc/new.1.64.so etc/new.1.7.so etc/new.1.8.so \
+		etc/new.1.9.so
 	$(GROFF) -Tps -s -I. -t -man etc/README.man > etc/README.ps
 	ps2pdf etc/README.ps $@
 	rm etc/README.ps
@@ -206,8 +207,8 @@ etc/change_log.pdf: etc/change_log.man etc/new.1.1.so etc/new.1.10.so \
 		etc/new.1.53.so etc/new.1.54.so etc/new.1.55.so \
 		etc/new.1.56.so etc/new.1.57.so etc/new.1.58.so \
 		etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so etc/new.1.61.so \
-		etc/new.1.62.so etc/new.1.63.so etc/new.1.7.so etc/new.1.8.so \
-		etc/new.1.9.so
+		etc/new.1.62.so etc/new.1.63.so etc/new.1.64.so etc/new.1.7.so \
+		etc/new.1.8.so etc/new.1.9.so
 	$(GROFF) -Tps -s -I. -t -man etc/change_log.man > etc/change_log.ps
 	ps2pdf etc/change_log.ps $@
 	rm etc/change_log.ps
@@ -253,11 +254,12 @@ etc/reference.pdf: etc/BUILDING.man etc/README.man etc/coding-style.so \
 		etc/new.1.52.so etc/new.1.53.so etc/new.1.54.so \
 		etc/new.1.55.so etc/new.1.56.so etc/new.1.57.so \
 		etc/new.1.58.so etc/new.1.59.so etc/new.1.6.so etc/new.1.60.so \
-		etc/new.1.61.so etc/new.1.62.so etc/new.1.63.so etc/new.1.7.so \
-		etc/new.1.8.so etc/new.1.9.so etc/ref-toc.so etc/reference.man \
-		man/man1/o_at.so man/man1/o_ignore_checksums.so \
-		man/man1/o_input.so man/man1/o_multiple.so \
-		man/man1/o_sequence.so man/man1/srec_cat.1 man/man1/srec_cmp.1 \
+		etc/new.1.61.so etc/new.1.62.so etc/new.1.63.so \
+		etc/new.1.64.so etc/new.1.7.so etc/new.1.8.so etc/new.1.9.so \
+		etc/ref-toc.so etc/reference.man man/man1/o_at.so \
+		man/man1/o_ignore_checksums.so man/man1/o_input.so \
+		man/man1/o_multiple.so man/man1/o_sequence.so \
+		man/man1/srec_cat.1 man/man1/srec_cmp.1 \
 		man/man1/srec_examples.1 man/man1/srec_info.1 \
 		man/man1/srec_input.1 man/man1/srec_license.1 \
 		man/man1/z_copyright.so man/man1/z_exit.so \
@@ -3705,6 +3707,9 @@ t0250a: all test/02/t0250a.sh
 t0251a: all test/02/t0251a.sh
 	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0251a.sh
 
+t0253a: all test/02/t0253a.sh
+	PATH=`pwd`/bin:$$PATH $(SH) test/02/t0253a.sh
+
 test/arglex_ambiguous/main.lo test/arglex_ambiguous/main.o: srecord/arglex.h \
 		srecord/arglex/tool.h srecord/defcon.h srecord/endian.h \
 		srecord/format_printf.h srecord/input.h srecord/output.h \
@@ -4146,7 +4151,7 @@ test_files = t0001a t0002a t0003a t0004a t0005a t0006a t0007a t0008a t0009a \
 		t0206a t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a \
 		t0217a t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a \
 		t0228a t0229a t0230a t0231a t0232a t0233a t0235a t0236a t0237a \
-		t0238a t0239a t0250a t0251a
+		t0238a t0239a t0250a t0251a t0253a
 
 sure: $(test_files)
 	@echo Passed All Tests
@@ -4810,6 +4815,6 @@ uninstall:
 		t0207a t0209a t0210a t0211a t0212a t0213a t0215a t0216a t0217a \
 		t0218a t0219a t0220a t0221a t0222a t0223a t0225a t0227a t0228a \
 		t0229a t0230a t0231a t0232a t0233a t0235a t0236a t0237a t0238a \
-		t0239a t0250a t0251a the-default-target
+		t0239a t0250a t0251a t0253a the-default-target
 
 # vim: set ts=8 sw=8 noet :

@@ -253,16 +253,18 @@ GETTING HELP
         When reporting problems, please include the version number given by
         the
                 % srec_cat -version
-                srecord version 1.63.D004
+                srecord version 1.64.D001
                 ...warranty disclaimer...
                 %
         command.  Please do not send this example; run the program for the
         exact version number.
 
 COPYRIGHT
-        srecord version 1.63
+        srecord version 1.64
         Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
         2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 Peter Miller
+        Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006,
+        2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 SCott Finneran
 
         The SRecord package is distributed in the hope that it will be useful,
         but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -272,8 +274,8 @@ COPYRIGHT
         It should be in the LICENSE file included with this distribution.
 
 AUTHOR
-        Peter Miller   E-Mail:   pmiller@opensource.org.au
-        /\/\*             WWW:   http://miller.emu.id.au/pmiller/
+        Scott Finneran   E-Mail:   scottfinneran@yahoo.com.au
+        Peter Miller     E-Mail:   pmiller@opensource.org.au
 
 
 

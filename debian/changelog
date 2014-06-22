@@ -1,21 +1,88 @@
+srecord (1.64.D001-1) unstable; urgency=low
+
+  * Prep next public release of SRecord. This will be srecord.1.63
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sun, 22 Jun 2014 15:31:32 +1000
+
+srecord (1.63.D012-1) unstable; urgency=low
+
+  * Cleaned up a few references to the maintainer's name.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sat, 21 Jun 2014 19:57:55 +1000
+
+srecord (1.63.D011-1) unstable; urgency=low
+
+  * Fixed some warnings in test 38
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sat, 21 Jun 2014 19:18:38 +1000
+
+srecord (1.63.D010-1) unstable; urgency=low
+
+  * Fixed bugs discovered by Mike <russiane39@gmail.com> regarding the
+    formatting of some of the examples where lines were wrapping the wrong way.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sat, 21 Jun 2014 19:09:51 +1000
+
+srecord (1.63.D009-1) unstable; urgency=low
+
+  * Added the ability to compile without libgcrypt if the user specifies the
+    option --without-gcrypt to configure. If gcrypt is missing, the user is
+    prompted to either install it or explicitly compile with it disabled.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sat, 21 Jun 2014 16:49:49 +1000
+
+srecord (1.63.D008-1) unstable; urgency=low
+
+  * Cleaned up a few recent compiler and doxygen warnings.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Fri, 20 Jun 2014 08:10:58 +1000
+
+srecord (1.63.D007-1) unstable; urgency=low
+
+  * This change adds Sourceforge Patch #4 contributed by Stas Sergeev
+    <stsp@sourceforge.net>. Adds get_upper_bound() and makes it and the lower
+    equivalent public (for use from libsrecord).
+  * Also fixed a bug in srec_memory::find_next_chunk() where it would fail to
+    reset the find_next_chunk_index once it became equal to nchunks. After that,
+    find_next_chunk() would always fail.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 28 Apr 2014 18:04:20 +1000
+
+srecord (1.63.D006-1) unstable; urgency=low
+
+  * Added prefix and postfix strings to the C-Array format which are applied at
+    each end of the data array declaration. This allows the user to add various
+    compiler directives such as location flags or non-standard load address
+    specifiers.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Sun, 27 Apr 2014 19:50:54 +1000
+
+srecord (1.63.D005-1) unstable; urgency=low
+
+  * Fixed Sourceforge bug 11 raised by patryks. In the analysis, it was
+    discovered that a start address (of zero) was being generated when
+    converting from AOMF. AOMF does not support the concept of an execution
+    start address.
+
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Tue, 22 Apr 2014 18:11:41 +1000
+
 srecord (1.63.D004-1) unstable; urgency=low
 
-  * This change updates the download page to point at the new windows build
-    kindly supplied by Jens Heilig. The Windows build instructions have also
-    been updated.
+  * The Windows build instructions have been updated by Jens Heilig
+    <jens@familie-heilig.net>.
 
- -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 21 Apr 2014 20:01:23 +1000
+ -- Scott Finneran <scottfinneran@yahoo.com.au>  Mon, 21 Apr 2014 20:13:29 +1000
 
 srecord (1.63.D003-1) unstable; urgency=low
 
-  * This change fixes the length field description in extended tektronix
-    documentation. The implemenation was already correct.
+  * Fixed the length field description in extended tektronix documentation. The
+    implementation was already correct.
 
  -- Scott Finneran <scottfinneran@yahoo.com.au>  Fri, 18 Apr 2014 16:39:28 +1000
 
 srecord (1.63.D002-1) unstable; urgency=low
 
-  * This change addresses sourceforge bug 19.
+  * Added a regression test for calculated address for CRC (Sourceforge bug 19).
 
  -- Scott Finneran <scottfinneran@yahoo.com.au>  Thu, 17 Apr 2014 21:35:01 +1000
 

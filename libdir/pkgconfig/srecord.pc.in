@@ -8,7 +8,7 @@ includedir=@includedir@
 
 Name: srecord
 Description: Manipulate EPROM load files
-Version: 1.63.D004
+Version: 1.64.D001
 URL: http://srecord.sourceforge.net
 Libs: -L${libdir} -lsrecord
 Libs.private: @LIBS@
